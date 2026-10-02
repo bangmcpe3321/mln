@@ -1,7 +1,5 @@
 ===== Slide 1 =====
 VẬT CHẤT LÀ GÌ DƯỚI GÓC ĐỘ TRIẾT HỌC?
-VẬN ĐỘNG, ĐỨNG IM, KHÔNG GIAN, THỜI GIAN LÀ GÌ?
-By nhóm 1
 
 ===== Slide 2 =====
 QUAN ĐIỂM VỀ VẬT CHẤT THỜI KỲ CỔ ĐẠI
@@ -76,53 +74,50 @@ Cách hiểu vật chất | Nước, lửa, nguyên tử, Ngũ hành… | Quản
 Hạn chế | Chất phác, trực quan, chưa kiểm chứng | Siêu hình, cơ học, chưa thấy đầy đủ sự phát triển và liên hệ
 
 ===== Slide 7 =====
-LENIN ĐƯA RA KHÁI NIỆM TRIẾT HỌC MỚI
-
-===== Slide 8 =====
 1. CUỘC CÁCH MẠNG TRONG KHOA HỌC TỰ NHIÊN CUỐI THẾ KỶ XIX – ĐẦU THẾ KỶ XX
 
 Năm 1895: W.C. Roentgen phát hiện ra tia X.
 H. Becquerel phát hiện ra hiện tượng phóng xạ của nguyên tố urani.
 
-===== Slide 9 =====
+===== Slide 8 =====
 1. CUỘC CÁCH MẠNG TRONG KHOA HỌC TỰ NHIÊN CUỐI THẾ KỶ XIX – ĐẦU THẾ KỶ XX
 
 Năm 1897: J.J. Thomson phát hiện ra điện tử.
 Năm 1905, 1916: Albert Einstein đưa ra Thuyết tương đối hẹp và Thuyết tương đối rộng.
 
-===== Slide 10 =====
+===== Slide 9 =====
 HẬU QUẢ
 
 Nguyên tử không phải là phần tử nhỏ nhất không thể phân chia, và khối lượng không phải là bất biến.
 
 Vì vậy đã giáng một đòn chí mạng, làm sụp đổ hoàn toàn quan niệm của chủ nghĩa duy vật siêu hình vốn đồng nhất vật chất với nguyên tử hay khối lượng cơ học suốt nhiều thế kỷ. Quan niệm duy vật siêu hình cũ bị phá sản.
 
-===== Slide 11 =====
+===== Slide 10 =====
 2. CUỘC KHỦNG HOẢNG VỀ THẾ GIỚI QUAN TRONG VẬT LÝ HỌC VÀ SỰ TẤN CÔNG CỦA CHỦ NGHĨA DUY TÂM
 
 Do chịu ảnh hưởng nặng nề của phương pháp tư duy siêu hình, khi thấy nguyên tử bị phân rã và khối lượng thay đổi, nhiều nhà vật lý học đã rơi vào hoang mang, dao động, hoài nghi tính đúng đắn của chủ nghĩa duy vật.
 
-===== Slide 12 =====
+===== Slide 11 =====
 2. CUỘC KHỦNG HOẢNG VỀ THẾ GIỚI QUAN TRONG VẬT LÝ HỌC VÀ SỰ TẤN CÔNG CỦA CHỦ NGHĨA DUY TÂM
 
 Chủ nghĩa duy tâm thừa cơ tấn công: Lợi dụng tình hình khủng hoảng này, các nhà triết học duy tâm (đặc biệt là phái Makhơ – chủ nghĩa kinh nghiệm phê phán) lớn tiếng rêu rao rằng: "Vật chất biến mất", "Nguyên tử bị tiêu tan", "Hiện thực khách quan đã tiêu tan, chỉ còn lại cảm giác của con người".
 
 Lênin đã vạch rõ: Không phải vật chất biến mất, mà chỉ có 'giới hạn hiểu biết cũ' của con người biến mất.
 
-===== Slide 13 =====
+===== Slide 12 =====
 3. YÊU CẦU BẢO VỆ CHỦ NGHĨA MÁC VÀ TÌM PHƯƠNG PHÁP ĐỊNH NGHĨA MỚI
 
 Đầu thế kỷ XX, chủ nghĩa tư bản chuyển sang giai đoạn đế quốc chủ nghĩa; mâu thuẫn giai cấp sâu sắc dẫn đến phong trào cách mạng vô sản bùng nổ, mà nước Nga là tâm điểm.
 
-===== Slide 14 =====
+===== Slide 13 =====
 3. YÊU CẦU BẢO VỆ CHỦ NGHĨA MÁC VÀ TÌM PHƯƠNG PHÁP ĐỊNH NGHĨA MỚI
 
 Một số phần tử cơ hội, xét lại nhân danh chủ nghĩa Mác nhưng lại câu kết với phái Makhơ để tước bỏ thế giới quan duy vật của giai cấp công nhân.
 
-===== Slide 15 =====
+===== Slide 14 =====
 Như vậy, để giải quyết cuộc khủng hoảng trong vật lý học, đập tan sự công kích của chủ nghĩa duy tâm, và khắc phục sự bế tắc của chủ nghĩa duy vật cũ, năm 1908 V.I. Lênin đã viết tác phẩm 'Chủ nghĩa duy vật và chủ nghĩa kinh nghiệm phê phán', chính thức đưa ra một định nghĩa triết học mới, hoàn chỉnh và kinh điển về vật chất.
 
-===== Slide 16 =====
+===== Slide 15 =====
 ĐỊNH NGHĨA CỦA VẬT CHẤT
 
 Định nghĩa: "Vật chất là một phạm trù triết học dùng để chỉ thực tại khách quan được đem lại cho con người trong cảm giác, được cảm giác của chúng ta chép lại, chụp lại, phản ánh và tồn tại không lệ thuộc vào cảm giác." - V.I Lenin
@@ -130,25 +125,19 @@ Như vậy, để giải quyết cuộc khủng hoảng trong vật lý học, �
 - Vật chất (Triết học): Là cái chung, vô hạn, vĩnh cửu (không bao giờ mất đi).
 - Vật thể/Dạng vật chất (KHTN): Là những cái riêng, cụ thể (như nguyên tử, điện tử, hạt, trường…), có giới hạn, có sinh ra và mất đi để hóa thành cái khác.
 
-===== Slide 17 =====
-THUỘC TÍNH CỦA VẬT CHẤT
-
-===== Slide 18 =====
+===== Slide 16 =====
 THUỘC TÍNH KHÁCH QUAN
 
 - Tồn tại khách quan: Vật chất là cái có trước, tồn tại độc lập ở bên ngoài, không phụ thuộc vào ý muốn, cảm xúc hay ý chí của con người.
 - Bất kể sự nhận thức: Dù con người đã nhận thức được hay chưa nhận thức được thì chúng vẫn âm thầm tồn tại.
 
-===== Slide 19 =====
+===== Slide 17 =====
 MỐI QUAN HỆ VẬT CHẤT – Ý THỨC & KHẢ NĂNG NHẬN THỨC
 
 - Vật chất là cái có trước, gây nên cảm giác ở con người: Khi trực tiếp hoặc gián tiếp tác động lên giác quan con người, vật chất sẽ đem lại cho con người cảm giác, nhận thức. Vật chất là tính thứ nhất, là nguyên nhân, nguồn gốc khách quan của cảm giác.
 - Cảm giác, tư duy, ý thức chỉ là sự phản ánh của vật chất: Con người có thể "chép lại, chụp lại, phản ánh" hiện thực khách quan. Điều này khẳng định con người có khả năng nhận thức được thế giới vật chất khách quan.
 
-===== Slide 20 =====
-Ý NGHĨA CỦA ĐỊNH NGHĨA VẬT CHẤT
-
-===== Slide 21 =====
+===== Slide 18 =====
 ĐỐI VỚI TRIẾT HỌC
 
 Giải quyết triệt để hai mặt vấn đề cơ bản của triết học:
@@ -160,7 +149,7 @@ Khắc phục triệt để các hạn chế của chủ nghĩa duy vật trư�
 - CNDV cận đại đồng nhất vật chất với khối lượng và mang tính siêu hình, máy móc.
   - Định nghĩa của Lênin đã chỉ ra: Vật chất là thực tại khách quan, không phụ thuộc vào trạng thái cấu tạo hay khối lượng cụ thể nào.
 
-===== Slide 25 =====
+===== Slide 19 =====
 ĐỐI VỚI KHOA HỌC TỰ NHIÊN
 
 Chấm dứt "cuộc khủng hoảng vật lý học" đầu thế kỷ XX:
@@ -169,7 +158,7 @@ Chấm dứt "cuộc khủng hoảng vật lý học" đầu thế kỷ XX:
 Định hướng cho khoa học tiếp tục phát triển:
 - Định nghĩa đóng vai trò là "kim chỉ nam", cổ vũ các nhà khoa học tự nhiên tự tin đi sâu khám phá các hạt vi mô, các trường vật chất mới, không gian vũ trụ... mà không bao giờ lo sợ rơi vào cái bẫy "vật chất tiêu tan" của chủ nghĩa duy tâm.
 
-===== Slide 26 =====
+===== Slide 20 =====
 ĐỐI VỚI KHOA HỌC XÃ HỘI
 
 Đặt nền tảng lý luận để xây dựng Chủ nghĩa duy vật lịch sử:
@@ -179,10 +168,7 @@ Chấm dứt "cuộc khủng hoảng vật lý học" đầu thế kỷ XX:
 Ý nghĩa phương pháp luận trong hoạt động thực tiễn:
 - Đòi hỏi con người trong mọi hoạt động (học tập, làm việc, hoạch định chính sách) phải xuất phát từ hiện thực, tôn trọng quy luật khách quan, không được lấy ý muốn chủ quan áp đặt cho thực tế.
 
-===== Slide 27 =====
-VẬN ĐỘNG, KHÔNG GIAN, THỜI GIAN
-
-===== Slide 28 =====
+===== Slide 21 =====
 VẬN ĐỘNG LÀ GÌ?
 
 Định nghĩa (theo Ăngghen):
@@ -196,7 +182,7 @@ Ví dụ: Trái Đất quay quanh Mặt Trời, đến các thiên hà dịch ch
 
 [Hình: Hệ Mặt Trời]
 
-===== Slide 29 =====
+===== Slide 22 =====
 5 HÌNH THỨC VẬN ĐỘNG CƠ BẢN
 
 Ăngghen phân chia vận động của vật chất thành 5 hình thức cơ bản, từ đơn giản đến phức tạp:
@@ -206,7 +192,7 @@ Ví dụ: Trái Đất quay quanh Mặt Trời, đến các thiên hà dịch ch
 - Vận động sinh học — trao đổi chất, sinh trưởng của cơ thể sống
 - Vận động xã hội — biến đổi trong các quá trình lịch sử, xã hội loài người
 
-===== Slide 30 =====
+===== Slide 23 =====
 VÍ DỤ MINH HOẠ
 
 Cơ học | Vật lý | Hoá học | Sinh học | Xã hội
@@ -214,7 +200,7 @@ Cơ học | Vật lý | Hoá học | Sinh học | Xã hội
 
 Kết Luận: "5 hình thức trên tồn tại đan xen, hình thức sau chứa hình thức trước nhưng không quy giản về nhau."
 
-===== Slide 31 =====
+===== Slide 24 =====
 ĐỨNG IM
 
 Đứng im là trạng thái vận động đặc biệt — vận động trong thế cân bằng, ổn định, chưa làm thay đổi căn bản về chất của sự vật.
@@ -225,7 +211,7 @@ Kết Luận: "5 hình thức trên tồn tại đan xen, hình thức sau chứ
 
 Ví dụ: Một cuốn sách đặt yên trên bàn — đứng im so với mặt bàn, nhưng vẫn đang vận động cùng Trái Đất quay quanh trục và quanh Mặt Trời
 
-===== Slide 32 =====
+===== Slide 25 =====
 KHÔNG GIAN, THỜI GIAN LÀ GÌ?
 
 Không gian:
@@ -238,7 +224,7 @@ Không gian và thời gian không tồn tại độc lập, mà gắn liền v�
 
 [Hình: Mô hình nón ánh sáng Minkowski 3D — Đường thế giới (Worldline), Sự kiện hiện tại (0,0,0); trục x, y (Không gian)]
 
-===== Slide 33 =====
+===== Slide 26 =====
 TÍNH CHẤT & LIÊN HỆ THỰC TIỄN
 
 Tính chất:
@@ -249,10 +235,7 @@ Tính chất:
 Liên hệ thực tiễn:
 Thuyết tương đối của Einstein đã chứng minh không gian và thời gian không tuyệt đối, cố định như quan niệm cổ điển (Newton), mà co giãn tuỳ theo vận tốc và trọng trường — điều này càng xác nhận luận điểm của triết học Mác-Lênin: không gian, thời gian không tách rời vật chất và vận động.
 
-===== Slide 34 =====
-TÍNH THỐNG NHẤT VẬT CHẤT CỦA THẾ GIỚI
-
-===== Slide 35 =====
+===== Slide 27 =====
 TÍNH THỐNG NHẤT VẬT CHẤT CỦA THẾ GIỚI
 
 1. Khái niệm ngắn gọn: Thế giới tuy rất đa dạng, phong phú với vô số sự vật và hiện tượng khác nhau, nhưng tất cả đều có nguồn gốc vật chất, tồn tại khách quan và liên hệ với nhau trong một chỉnh thể thống nhất.
@@ -262,7 +245,7 @@ TÍNH THỐNG NHẤT VẬT CHẤT CỦA THẾ GIỚI
 - Mọi sự vật, hiện tượng đều là những dạng tồn tại khác nhau của vật chất, có mối liên hệ và tác động lẫn nhau.
 - Ý thức là sản phẩm của vật chất có tổ chức cao (bộ não con người), không phải cái có trước và sinh ra thế giới.
 
-===== Slide 36 =====
+===== Slide 28 =====
 TÍNH THỐNG NHẤT VẬT CHẤT CỦA THẾ GIỚI
 
 1. Ý nghĩa:
@@ -271,4 +254,3 @@ TÍNH THỐNG NHẤT VẬT CHẤT CỦA THẾ GIỚI
 - Phê phán các quan điểm duy tâm cho rằng ý thức hay lực lượng siêu nhiên quyết định thế giới.
 
 2. Kết luận: Theo triết học Mác - Lênin, thế giới thống nhất ở tính vật chất, nghĩa là mọi sự vật, hiện tượng từ tự nhiên, xã hội đến tư duy của con người đều có cơ sở vật chất và tồn tại trong mối liên hệ khách quan với nhau.
-
