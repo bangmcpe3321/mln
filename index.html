@@ -164,6 +164,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   transition:color .2s ease,background-color .2s ease,transform .2s ease;
 }
 .icon-button:hover{color:var(--amber);background:rgba(255,255,255,0.08);transform:translateY(-1px)}
+.icon-button:disabled{cursor:default;opacity:.6}
 .icon-button svg{width:18px;height:18px}
 .menu-toggle{display:none;width:34px}
 .menu-toggle span{display:block;width:21px;height:1.5px;background:#fff;transition:transform .2s ease}
@@ -191,6 +192,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   opacity:0;
   transform:translateY(20px);
 }
+.hero-copy.is-outgoing .copy-part{transition-duration:.18s;transition-delay:0s}
 [data-copy=region]{--stagger:0ms}
 [data-copy=title]{--stagger:100ms}
 [data-copy=description]{--stagger:200ms}
@@ -291,9 +293,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 }
 .cards-track.is-shifting{
   transform:translateX(calc(-1 * var(--card-slot)));
+}
+.cards-track.is-shifting,.cards-track.is-restoring{
   transition:transform .8s var(--ease);
 }
 
+.card-item{flex:0 0 var(--card-width)}
 .destination-card{
   position:relative;
   display:flex;
@@ -302,6 +307,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   flex:0 0 var(--card-width);
   flex-direction:column;
   justify-content:flex-end;
+  padding:0;
+  text-align:left;
   overflow:hidden;
   border:1px solid rgba(255,255,255,0.15);
   border-radius:14px;
@@ -442,8 +449,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 .photo-expansion.is-expanded{
   top:0;
   left:0;
-  width:100vw;
-  height:100vh;
+  width:100%;
+  height:100%;
   border-radius:0;
 }
 
@@ -711,8 +718,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{
     scroll-behavior:auto!important;
-    transition-duration:.01ms!important;
-    animation-duration:.01ms!important;
+    transition:none!important;
+    animation:none!important;
   }
 }
 </style>
@@ -746,6 +753,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     </nav>
 
     <div class="nav-tools">
+      <button class="icon-button" id="autoplay-toggle" type="button" aria-label="Tạm dừng tự động chuyển slide" aria-pressed="false">
+        <svg id="autoplay-pause-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 4h3v12H5zm7 0h3v12h-3z"/></svg>
+        <svg id="autoplay-play-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" style="display:none"><path d="m6 3 11 7-11 7z"/></svg>
+      </button>
       <button class="icon-button" id="search-trigger" type="button" aria-label="Tìm kiếm nội dung bài giảng">
         <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <circle cx="8.8" cy="8.8" r="5.8" stroke="currentColor" stroke-width="1.5"/>
@@ -819,7 +830,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 </div>
 
 <!-- Modal chi tiết nội dung slide từ slide_luong_chat.txt -->
-<div class="content-modal" id="content-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+<div class="content-modal" id="content-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true" inert>
   <div class="modal-box">
     <div class="modal-header">
       <div>
@@ -841,7 +852,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 </div>
 
 <!-- Search Palette Modal -->
-<div class="search-modal" id="search-modal" role="dialog" aria-modal="true" aria-label="Tìm kiếm bài giảng">
+<div class="search-modal" id="search-modal" role="dialog" aria-modal="true" aria-label="Tìm kiếm bài giảng" aria-hidden="true" inert>
   <div class="search-box">
     <div class="search-input-wrap">
       <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -1243,21 +1254,45 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   const searchResults = document.getElementById("search-results");
 
   const saved = new Set();
+  const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const autoplayToggle = document.getElementById("autoplay-toggle");
+  const pauseIcon = document.getElementById("autoplay-pause-icon");
+  const playIcon = document.getElementById("autoplay-play-icon");
+  const transitionControls = [
+    nextButton, previousButton, bookmark, discover, modalPrev, modalNext,
+    searchTrigger, bookmarksTrigger, ...navLinks
+  ];
   let activeIndex = 0;
   let transitioning = false;
-  let paused = false;
+  let userPaused = false;
+  let hoverPaused = experience.matches(":hover");
+  let focusPaused = experience.contains(document.activeElement);
   let timer = null;
   let timerStarted = 0;
   let timeLeft = duration;
+  let contentReturnFocus = null;
+  let searchReturnFocus = null;
 
   counterTotal.textContent = "/ " + String(slides.length).padStart(2, "0");
 
+  function setTransitioning(busy) {
+    transitioning = busy;
+    experience.setAttribute("aria-busy", String(busy));
+    transitionControls.forEach((control) => { control.disabled = busy; });
+    track.querySelectorAll("button").forEach((card) => { card.disabled = busy; });
+  }
+
   function makeCard(slide, index) {
-    const card = document.createElement("article");
+    const item = document.createElement("article");
+    item.className = "card-item";
+    item.setAttribute("role", "listitem");
+    item.dataset.slideIndex = String(index);
+
+    const card = document.createElement("button");
+    card.type = "button";
     card.className = "destination-card";
-    card.setAttribute("role", "listitem");
+    card.disabled = transitioning;
     card.setAttribute("aria-label", slide.region + ": " + slide.title.join(" "));
-    card.dataset.slideIndex = String(index);
 
     const photo = document.createElement("div");
     photo.className = "card-photo";
@@ -1284,13 +1319,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 
     caption.append(dash, label, title);
     card.append(photo, caption);
-
-    card.addEventListener("click", () => {
-      if (transitioning) return;
-      changeSlide(1);
-    });
-
-    return card;
+    item.appendChild(card);
+    card.addEventListener("click", () => { void navigateToSlide(index, item); });
+    return item;
   }
 
   function renderCards() {
@@ -1302,24 +1333,30 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     track.replaceChildren(cards);
   }
 
+  function renderContentModal(index) {
+    const slide = slides[index];
+    modalBadge.textContent = slide.badge;
+    modalTitle.textContent = slide.modalHeading;
+    modalBody.innerHTML = slide.modalContent;
+    contentModal.querySelector(".modal-box").scrollTop = 0;
+  }
+
   function renderSlide(index) {
     const slide = slides[index];
     region.textContent = slide.region;
     line1.textContent = slide.title[0];
     line2.textContent = slide.title[1];
     description.textContent = slide.description;
-
     bookmark.setAttribute("aria-pressed", String(saved.has(index)));
     bookmark.setAttribute("aria-label", (saved.has(index) ? "Bỏ lưu slide " : "Lưu slide ") + slide.title.join(" "));
 
-    // Update active nav link
-    const category = slide.navCategory;
     navLinks.forEach((link, idx) => {
-      const isActive = idx === category;
+      const isActive = idx === slide.navCategory;
       link.classList.toggle("is-active", isActive);
       if (isActive) link.setAttribute("aria-current", "page");
       else link.removeAttribute("aria-current");
     });
+    if (contentModal.classList.contains("is-open")) renderContentModal(index);
   }
 
   function paintProgress(ratio) {
@@ -1330,192 +1367,208 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     });
   }
 
-  function startAutoplay() {
-    if (paused || transitioning) return;
+  function stopAutoplay() {
+    if (timer === null) return;
     clearTimeout(timer);
-    timeLeft = duration;
+    timer = null;
+    timeLeft = Math.max(0, timeLeft - (performance.now() - timerStarted));
+    paintProgress(1 - timeLeft / duration);
+  }
+
+  function syncAutoplay() {
+    const reduced = motionPreference.matches;
+    const explicitlyPaused = userPaused || reduced;
+    autoplayToggle.disabled = reduced;
+    autoplayToggle.setAttribute("aria-pressed", String(explicitlyPaused));
+    autoplayToggle.setAttribute("aria-label", reduced
+      ? "Tự động chuyển slide đã tắt theo tùy chọn giảm chuyển động"
+      : userPaused ? "Tiếp tục tự động chuyển slide" : "Tạm dừng tự động chuyển slide");
+    pauseIcon.style.display = explicitlyPaused ? "none" : "";
+    playIcon.style.display = explicitlyPaused ? "" : "none";
+
+    const blocked = explicitlyPaused || hoverPaused || focusPaused || document.hidden ||
+      transitioning || header.classList.contains("menu-open") ||
+      contentModal.classList.contains("is-open") || searchModal.classList.contains("is-open");
+    if (blocked) {
+      stopAutoplay();
+      return;
+    }
+    if (timer !== null) return;
+
+    paintProgress(1 - timeLeft / duration);
     timerStarted = performance.now();
     bars.forEach((bar) => {
-      bar.style.transition = "none";
-      bar.style.transform = "scaleX(0)";
       void bar.offsetWidth;
-      bar.style.transition = "transform " + duration + "ms linear";
+      bar.style.transition = "transform " + timeLeft + "ms linear";
       bar.style.transform = "scaleX(1)";
     });
-    timer = setTimeout(() => changeSlide(1), duration);
-  }
-
-  function pauseAutoplay() {
-    if (paused) return;
-    paused = true;
-    if (timer) {
-      clearTimeout(timer);
+    timer = setTimeout(() => {
       timer = null;
-      timeLeft = Math.max(0, timeLeft - (performance.now() - timerStarted));
-      paintProgress(1 - timeLeft / duration);
-    }
+      timeLeft = duration;
+      changeSlide(1);
+    }, timeLeft);
   }
 
-  function resumeAutoplay() {
-    if (!paused) return;
-    paused = false;
-    if (transitioning || contentModal.classList.contains("is-open") || searchModal.classList.contains("is-open")) return;
-    if (timeLeft < duration) {
-      timerStarted = performance.now();
-      bars.forEach((bar) => {
-        bar.style.transition = "transform " + timeLeft + "ms linear";
-        bar.style.transform = "scaleX(1)";
-      });
-      timer = setTimeout(() => changeSlide(1), timeLeft);
-    } else {
-      startAutoplay();
-    }
+  function waitForMotion(element, property) {
+    const animations = element.getAnimations({ subtree: true })
+      .filter((animation) => !property || animation.transitionProperty === property);
+    return Promise.all(animations.map((animation) => animation.finished.catch(() => {})));
   }
 
-  function updateCounter(index) {
-    counter.classList.remove("is-in");
+  async function updateCounter(index) {
     counter.classList.add("is-out");
-    setTimeout(() => {
-      counter.textContent = String(index + 1).padStart(2, "0");
-      counter.classList.remove("is-out");
-      counter.classList.add("is-in");
-      requestAnimationFrame(() => counter.classList.remove("is-in"));
-    }, 150);
+    await waitForMotion(counter);
+    counter.textContent = String(index + 1).padStart(2, "0");
+    counter.classList.remove("is-out");
+    counter.classList.add("is-in");
+    void counter.offsetWidth;
+    counter.classList.remove("is-in");
+    await waitForMotion(counter);
   }
 
-  function animateCopy(index) {
+  async function animateCopy(index) {
     copy.classList.add("is-outgoing");
-    setTimeout(() => {
-      renderSlide(index);
-      copy.classList.remove("is-outgoing");
-      copy.classList.add("is-entering");
-      copy.classList.remove("is-visible");
-      requestAnimationFrame(() => copy.classList.add("is-visible"));
-      setTimeout(() => copy.classList.remove("is-entering", "is-visible"), 850);
-    }, 240);
+    await waitForMotion(copy);
+    renderSlide(index);
+    copy.classList.remove("is-outgoing");
+    copy.classList.add("is-entering");
+    void copy.offsetWidth;
+    copy.classList.add("is-visible");
+    await waitForMotion(copy);
+    copy.classList.remove("is-entering", "is-visible");
   }
 
-  function prepareExpansion(card) {
+  function prepareExpansion(card, reverse = false) {
     const rect = card.getBoundingClientRect();
-    const photo = card.querySelector(".card-photo");
+    const bounds = experience.getBoundingClientRect();
     const expansion = document.createElement("div");
     expansion.className = "photo-expansion";
     expansion.setAttribute("aria-hidden", "true");
-    expansion.style.backgroundImage = photo.style.backgroundImage;
-    expansion.style.setProperty("--start-top", rect.top + "px");
-    expansion.style.setProperty("--start-left", rect.left + "px");
+    expansion.style.backgroundImage = card.querySelector(".card-photo").style.backgroundImage;
+    expansion.style.setProperty("--start-top", (rect.top - bounds.top) + "px");
+    expansion.style.setProperty("--start-left", (rect.left - bounds.left) + "px");
     expansion.style.setProperty("--start-width", rect.width + "px");
     expansion.style.setProperty("--start-height", rect.height + "px");
+    if (reverse) expansion.classList.add("is-expanded");
     experience.appendChild(expansion);
     card.style.visibility = "hidden";
-    requestAnimationFrame(() => expansion.classList.add("is-expanded"));
+    void expansion.offsetWidth;
+    expansion.classList.toggle("is-expanded", !reverse);
     return expansion;
   }
 
-  function settleForwardRail(promoted) {
-    track.style.transition = "none";
-    track.classList.remove("is-shifting");
-    track.style.transform = "translateX(0)";
-    promoted.remove();
-    void track.offsetWidth;
-    track.style.removeProperty("transition");
+  async function animateBackground(index, promoted, previousIndex) {
+    if (promoted) {
+      const forward = promoted === track.firstElementChild;
+      const expansion = prepareExpansion(promoted);
+      try {
+        if (forward) {
+          const incomingIndex = (index + 5) % slides.length;
+          track.appendChild(makeCard(slides[incomingIndex], incomingIndex));
+          void track.offsetWidth;
+          track.classList.add("is-shifting");
+        }
+        await Promise.all([waitForMotion(expansion), waitForMotion(track)]);
+        activePhoto.src = slides[index].image;
+      } finally {
+        expansion.remove();
+      }
+    } else if (index === (previousIndex - 1 + slides.length) % slides.length) {
+      // Reverse the forward transition: return the current background to the rail.
+      const returning = makeCard(slides[previousIndex], previousIndex);
+      track.prepend(returning);
+      const expansion = prepareExpansion(returning, true);
+      try {
+        activePhoto.src = slides[index].image;
+        // Keep the existing cards in place before animating them one slot right.
+        track.style.transform = "translateX(calc(-1 * var(--card-slot)))";
+        void track.offsetWidth;
+        track.classList.add("is-restoring");
+        track.style.removeProperty("transform");
+        await Promise.all([waitForMotion(expansion), waitForMotion(track)]);
+      } finally {
+        expansion.remove();
+      }
+    } else {
+      activePhoto.classList.add("is-switching");
+      await waitForMotion(activePhoto, "opacity");
+      activePhoto.src = slides[index].image;
+      activePhoto.classList.remove("is-switching");
+      await waitForMotion(activePhoto, "opacity");
+    }
+  }
+
+  async function navigateToSlide(index, promoted = null) {
+    if (transitioning || index === activeIndex || !Number.isInteger(index) ||
+        index < 0 || index >= slides.length) return;
+
+    const previousIndex = activeIndex;
+    const focusedCard = track.contains(document.activeElement);
+    setTransitioning(true);
+    stopAutoplay();
+    timeLeft = duration;
+    paintProgress(0);
+    try {
+      if (motionPreference.matches) {
+        activeIndex = index;
+        renderSlide(index);
+        counter.textContent = String(index + 1).padStart(2, "0");
+        activePhoto.src = slides[index].image;
+      } else {
+        const image = new Image();
+        image.src = slides[index].image;
+        await image.decode().catch(() => {});
+        activeIndex = index;
+        await Promise.all([
+          animateCopy(index), updateCounter(index), animateBackground(index, promoted, previousIndex)
+        ]);
+      }
+    } finally {
+      track.classList.remove("is-shifting", "is-restoring");
+      track.style.removeProperty("transform");
+      renderCards();
+      setTransitioning(false);
+      if (focusedCard) nextButton.focus({ preventScroll: true });
+      syncAutoplay();
+    }
   }
 
   function changeSlide(direction) {
-    if (transitioning) return;
-    transitioning = true;
-    clearTimeout(timer);
-    timer = null;
-    timeLeft = duration;
-    nextButton.disabled = true;
-    previousButton.disabled = true;
-
-    const target = (activeIndex + direction + slides.length) % slides.length;
-    const promoted = direction > 0 ? track.firstElementChild : null;
-    let expansion = null;
-    activeIndex = target;
-    bookmark.disabled = true;
-
-    if (direction > 0 && promoted) {
-      expansion = prepareExpansion(promoted);
-      const incomingIndex = (target + 4) % slides.length;
-      track.appendChild(makeCard(slides[incomingIndex], incomingIndex));
-      void track.offsetWidth;
-      track.classList.add("is-shifting");
-    } else {
-      activePhoto.classList.add("is-switching");
-    }
-
-    animateCopy(target);
-    updateCounter(target);
-
-    if (direction < 0) {
-      setTimeout(() => {
-        activePhoto.src = slides[target].image;
-        requestAnimationFrame(() => activePhoto.classList.remove("is-switching"));
-      }, 180);
-    }
-
-    setTimeout(() => {
-      activeIndex = target;
-      if (direction > 0) {
-        activePhoto.src = slides[target].image;
-        if (expansion) expansion.remove();
-        if (promoted) settleForwardRail(promoted);
-      } else {
-        renderCards();
-      }
-      nextButton.disabled = false;
-      previousButton.disabled = false;
-      bookmark.disabled = false;
-      transitioning = false;
-      if (!paused && !contentModal.classList.contains("is-open") && !searchModal.classList.contains("is-open")) {
-        startAutoplay();
-      }
-    }, direction > 0 ? 820 : 560);
+    const index = (activeIndex + direction + slides.length) % slides.length;
+    return navigateToSlide(index, direction > 0 ? track.firstElementChild : null);
   }
 
-  function jumpToSlide(targetIndex) {
-    if (transitioning || targetIndex === activeIndex) return;
-    transitioning = true;
-    clearTimeout(timer);
-    timer = null;
-    timeLeft = duration;
-    activeIndex = targetIndex;
-    activePhoto.classList.add("is-switching");
-    animateCopy(targetIndex);
-    updateCounter(targetIndex);
-    setTimeout(() => {
-      activePhoto.src = slides[targetIndex].image;
-      requestAnimationFrame(() => activePhoto.classList.remove("is-switching"));
-      renderCards();
-      transitioning = false;
-      if (!paused && !contentModal.classList.contains("is-open") && !searchModal.classList.contains("is-open")) {
-        startAutoplay();
-      }
-    }, 300);
+  function jumpToSlide(index) {
+    return navigateToSlide(index);
   }
 
-  // Modal display logic
+  // Dialog state is also an independent reason to pause autoplay.
   function openContentModal(index) {
-    const slide = slides[index];
-    modalBadge.textContent = slide.badge;
-    modalTitle.textContent = slide.modalHeading;
-    modalBody.innerHTML = slide.modalContent;
+    if (transitioning) return;
+    contentReturnFocus = document.activeElement;
+    renderContentModal(index);
+    contentModal.inert = false;
+    contentModal.setAttribute("aria-hidden", "false");
     contentModal.classList.add("is-open");
-    pauseAutoplay();
+    syncAutoplay();
     modalClose.focus();
   }
 
   function closeContentModal() {
     contentModal.classList.remove("is-open");
-    resumeAutoplay();
+    contentModal.inert = true;
+    contentModal.setAttribute("aria-hidden", "true");
+    contentReturnFocus?.focus({ preventScroll: true });
+    syncAutoplay();
   }
 
-  // Search Palette Logic
   function openSearchModal() {
+    if (transitioning) return;
+    searchReturnFocus = document.activeElement;
+    searchModal.inert = false;
+    searchModal.setAttribute("aria-hidden", "false");
     searchModal.classList.add("is-open");
-    pauseAutoplay();
+    syncAutoplay();
     searchInput.value = "";
     renderSearchResults("");
     searchInput.focus();
@@ -1523,7 +1576,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 
   function closeSearchModal() {
     searchModal.classList.remove("is-open");
-    resumeAutoplay();
+    searchModal.inert = true;
+    searchModal.setAttribute("aria-hidden", "true");
+    searchReturnFocus?.focus({ preventScroll: true });
+    syncAutoplay();
   }
 
   function renderSearchResults(query) {
@@ -1582,13 +1638,11 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   modalPrev.addEventListener("click", () => {
     const prev = (activeIndex - 1 + slides.length) % slides.length;
     jumpToSlide(prev);
-    openContentModal(prev);
   });
 
   modalNext.addEventListener("click", () => {
     const next = (activeIndex + 1) % slides.length;
     jumpToSlide(next);
-    openContentModal(next);
   });
 
   searchTrigger.addEventListener("click", openSearchModal);
@@ -1629,6 +1683,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     menuToggle.setAttribute("aria-expanded", String(open));
     menuToggle.setAttribute("aria-label", open ? "Đóng điều hướng" : "Mở điều hướng");
     header.classList.toggle("menu-open", open);
+    syncAutoplay();
   });
 
   navLinks.forEach((link) => {
@@ -1637,49 +1692,83 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
       jumpToSlide(jumpIndex);
       header.classList.remove("menu-open");
       menuToggle.setAttribute("aria-expanded", "false");
+      syncAutoplay();
     });
   });
 
-  experience.addEventListener("pointerenter", pauseAutoplay);
-  experience.addEventListener("pointerleave", resumeAutoplay);
-  experience.addEventListener("focusin", pauseAutoplay);
+  autoplayToggle.addEventListener("click", () => {
+    userPaused = !userPaused;
+    syncAutoplay();
+  });
+  experience.addEventListener("pointerenter", () => {
+    hoverPaused = true;
+    syncAutoplay();
+  });
+  experience.addEventListener("pointerleave", () => {
+    hoverPaused = false;
+    syncAutoplay();
+  });
+  experience.addEventListener("focusin", () => {
+    focusPaused = true;
+    syncAutoplay();
+  });
   experience.addEventListener("focusout", (e) => {
-    if (!experience.contains(e.relatedTarget)) resumeAutoplay();
+    focusPaused = experience.contains(e.relatedTarget);
+    syncAutoplay();
   });
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) pauseAutoplay();
-    else resumeAutoplay();
-  });
+  document.addEventListener("visibilitychange", syncAutoplay);
+  motionPreference.addEventListener("change", syncAutoplay);
 
   document.addEventListener("keydown", (e) => {
+    const openDialog = contentModal.classList.contains("is-open") ? contentModal
+      : searchModal.classList.contains("is-open") ? searchModal : null;
+    if (e.key === "Tab" && openDialog) {
+      const controls = Array.from(openDialog.querySelectorAll("button:not(:disabled), input:not(:disabled)"));
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (first && (!openDialog.contains(document.activeElement) ||
+          (e.shiftKey ? document.activeElement === first : document.activeElement === last))) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+      }
+      return;
+    }
     if (e.key === "Escape") {
       if (contentModal.classList.contains("is-open")) closeContentModal();
       else if (searchModal.classList.contains("is-open")) closeSearchModal();
       else if (header.classList.contains("menu-open")) {
         header.classList.remove("menu-open");
         menuToggle.setAttribute("aria-expanded", "false");
+        syncAutoplay();
       }
     } else if (!contentModal.classList.contains("is-open") && !searchModal.classList.contains("is-open")) {
-      if (e.key === "ArrowRight") changeSlide(1);
-      else if (e.key === "ArrowLeft") changeSlide(-1);
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        changeSlide(e.key === "ArrowRight" ? 1 : -1);
+      }
     }
   });
 
-  // Khởi tạo
-  renderCards();
-  renderSlide(activeIndex);
-  slides.slice(1, 6).forEach((s) => {
-    const img = new Image();
-    img.src = s.image;
-  });
-
-  requestAnimationFrame(() => {
-    copy.classList.add("is-visible");
-    setTimeout(() => copy.classList.remove("is-entering", "is-visible"), 850);
-  });
-
-  startAutoplay();
+  // Initialize without animation timers that could outlive a later transition.
+  async function initialize() {
+    setTransitioning(true);
+    renderCards();
+    renderSlide(activeIndex);
+    new Set(slides.map((slide) => slide.image)).forEach((src) => {
+      const image = new Image();
+      image.src = src;
+      void image.decode().catch(() => {});
+    });
+    if (!motionPreference.matches) {
+      void copy.offsetWidth;
+      copy.classList.add("is-visible");
+      await waitForMotion(copy);
+    }
+    copy.classList.remove("is-entering", "is-visible");
+    setTransitioning(false);
+    syncAutoplay();
+  }
+  void initialize();
 })();
 </script>
 </body>
