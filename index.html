@@ -15,7 +15,6 @@
   --amber:#F5B731;
   --white:#ffffff;
   --muted:rgba(255,255,255,0.72);
-  --duration:5000ms;
   --ease:cubic-bezier(0.65,0,0.35,1);
   --card-width:170px;
   --card-height:265px;
@@ -202,7 +201,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   display:flex;
   align-items:center;
   gap:13px;
-  margin:0 0 14px;
+  margin:0 0 26px;
   color:rgba(255,255,255,0.85);
   font-size:16px;
   font-weight:400;
@@ -678,9 +677,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   .menu-toggle span+span{margin-top:0}
 
   .hero-copy{bottom:5.2vh;left:7vw;width:86vw}
-  .region-line{gap:10px;margin-bottom:8px;font-size:14px}
+  .region-line{gap:10px;margin-bottom:20px;font-size:14px}
   .region-dash{width:16px}
-  .hero-title{font-size:clamp(42px,11vw,64px);line-height:.92}
+  .hero-title{font-size:clamp(34px,10vw,60px);line-height:.98}
+  .hero-title span{white-space:normal;overflow-wrap:anywhere}
   .hero-description{max-width:340px;margin:10px 0 16px;font-size:12px;line-height:1.55}
   .hero-actions{gap:10px}
   .bookmark{width:38px;height:38px}
@@ -1217,7 +1217,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     }
   ];
 
-  const duration = 5000;
+  const duration = 9000;
   const experience = document.getElementById("experience");
   const header = document.getElementById("site-header");
   const track = document.getElementById("cards-track");
@@ -1253,7 +1253,18 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   const searchInput = document.getElementById("search-input");
   const searchResults = document.getElementById("search-results");
 
+  const bookmarkStorageKey = "quantity-quality-bookmarks";
   const saved = new Set();
+  try {
+    const stored = JSON.parse(localStorage.getItem(bookmarkStorageKey) || "[]");
+    if (Array.isArray(stored)) {
+      stored.forEach((index) => {
+        if (Number.isInteger(index) && index >= 0 && index < slides.length) saved.add(index);
+      });
+    }
+  } catch {
+    // Storage may be unavailable or contain invalid data; start with an empty set.
+  }
   const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
   const autoplayToggle = document.getElementById("autoplay-toggle");
   const pauseIcon = document.getElementById("autoplay-pause-icon");
@@ -1582,15 +1593,21 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     syncAutoplay();
   }
 
+  function normalizeSearch(text) {
+    return text.toLowerCase().normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/đ/g, "d")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
   function renderSearchResults(query) {
-    const q = query.toLowerCase().trim();
+    const q = normalizeSearch(query);
     searchResults.innerHTML = "";
-    const filtered = slides.filter((s, i) => {
+    const filtered = slides.filter((slide) => {
       if (!q) return true;
-      return s.title.join(" ").toLowerCase().includes(q) ||
-             s.region.toLowerCase().includes(q) ||
-             s.description.toLowerCase().includes(q) ||
-             s.modalContent.toLowerCase().includes(q);
+      return [slide.title.join(" "), slide.region, slide.description, slide.modalContent]
+        .some((text) => normalizeSearch(text).includes(q));
     });
 
     if (filtered.length === 0) {
@@ -1625,6 +1642,11 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   bookmark.addEventListener("click", () => {
     if (saved.has(activeIndex)) saved.delete(activeIndex);
     else saved.add(activeIndex);
+    try {
+      localStorage.setItem(bookmarkStorageKey, JSON.stringify(Array.from(saved)));
+    } catch {
+      // Keep bookmarks available for this visit when browser storage is blocked.
+    }
     bookmark.setAttribute("aria-pressed", String(saved.has(activeIndex)));
     bookmark.setAttribute("aria-label", (saved.has(activeIndex) ? "Bỏ lưu slide " : "Lưu slide ") + slides[activeIndex].title.join(" "));
   });
