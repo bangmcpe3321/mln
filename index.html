@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#101310">
-<meta name="description" content="Quy luật Lượng - Chất: Quy luật chuyển hóa từ những thay đổi về lượng dẫn đến những thay đổi về chất và ngược lại.">
-<title>Quy Luật Lượng - Chất — Triết Học Mác - Lênin (Nhóm 4)</title>
+<meta name="description" content="Bài giảng Nhóm 1 về vật chất theo triết học Mác - Lênin: quan điểm lịch sử, định nghĩa của Lênin, vận động, đứng im, không gian, thời gian và tính thống nhất vật chất của thế giới.">
+<title>Vật Chất &amp; Vận Động — Triết Học Mác - Lênin (Nhóm 1)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -530,6 +530,18 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   font-weight:300;
   line-height:1.75;
 }
+.modal-body h3{margin:20px 0 10px;color:var(--amber);font-size:15px;font-weight:500}
+.modal-table-wrap{overflow-x:auto;margin:0 0 18px}
+.modal-table-wrap table{width:100%;min-width:480px;border-collapse:collapse;font-size:12px;line-height:1.6}
+.modal-table-wrap th,.modal-table-wrap td{padding:10px 12px;border:1px solid rgba(255,255,255,.15);text-align:left;vertical-align:top}
+.modal-table-wrap th{color:var(--amber);background:rgba(245,183,49,.08);font-weight:500}
+.lesson-figure{margin:20px 0;padding:12px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(10,15,21,.6)}
+.lesson-figure>svg{display:block;width:100%;height:auto}
+.lesson-figure figcaption{margin-top:10px;color:var(--muted);font-size:11px;line-height:1.6}
+.motion-examples{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;padding:12px 0}
+.motion-examples>div{flex:1 1 82px;text-align:center;color:var(--amber)}
+.motion-examples svg{display:block;width:48px;height:48px;margin:0 auto 10px}
+.motion-examples strong{font-size:12px;font-weight:500;color:var(--white)}
 .modal-body p{margin:0 0 14px}
 .modal-body ul{margin:0 0 16px;padding-left:20px}
 .modal-body li{margin-bottom:8px}
@@ -727,29 +739,29 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 <body>
 <div class="experience" id="experience">
   <div class="top-progress" aria-hidden="true"><span id="top-progress-bar"></span></div>
-  <div class="backdrop" aria-hidden="true"><img id="active-photo" src="assets/images/quantity_quality_dialectic.jpg" alt="Quy luật lượng chất"></div>
+  <div class="backdrop" aria-hidden="true"><img id="active-photo" src="assets/images/slide01_cover.jpg" alt="Minh họa các dạng tồn tại và vận động của vật chất"></div>
   <div class="backdrop-shade" aria-hidden="true"></div>
 
   <header class="site-header" id="site-header">
-    <a class="brand" href="#home" aria-label="Quy Luật Lượng - Chất">
+    <a class="brand" href="#home" aria-label="Vật chất, vận động, không gian và thời gian">
       <svg class="brand-mark" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <circle cx="14" cy="14" r="10.5" stroke="currentColor" stroke-width="1.4"/>
         <path d="M3.8 14h20.4M14 3.5c3 2.8 4.5 6.3 4.5 10.5S17 21.7 14 24.5C11 21.7 9.5 18.2 9.5 14S11 6.3 14 3.5Z" stroke="currentColor" stroke-width="1.2"/>
         <path d="M6.2 7.1c2.2 1.6 4.8 2.4 7.8 2.4s5.6-.8 7.8-2.4M6.2 20.9c2.2-1.6 4.8-2.4 7.8-2.4s5.6.8 7.8 2.4" stroke="currentColor"/>
       </svg>
       <span class="brand-text">
-        <span class="brand-title">Quy Luật Lượng - Chất</span>
-        <span class="brand-sub">Triết Học Mác – Lênin • Group 4</span>
+        <span class="brand-title">Vật Chất &amp; Vận Động</span>
+        <span class="brand-sub">Triết Học Mác – Lênin • Nhóm 1</span>
       </span>
     </a>
 
     <nav class="nav-links" id="primary-nav" aria-label="Các phần bài học">
       <button class="nav-link is-active" type="button" data-jump="0">Tổng quan</button>
-      <button class="nav-link" type="button" data-jump="5">Chất</button>
-      <button class="nav-link" type="button" data-jump="10">Lượng</button>
-      <button class="nav-link" type="button" data-jump="14">Nội dung</button>
-      <button class="nav-link" type="button" data-jump="15">Độ &amp; Bước nhảy</button>
+      <button class="nav-link" type="button" data-jump="6">Lênin</button>
+      <button class="nav-link" type="button" data-jump="16">Thuộc tính</button>
       <button class="nav-link" type="button" data-jump="19">Ý nghĩa</button>
+      <button class="nav-link" type="button" data-jump="23">Vận động</button>
+      <button class="nav-link" type="button" data-jump="30">Thống nhất</button>
     </nav>
 
     <div class="nav-tools">
@@ -778,14 +790,14 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     <section class="hero-copy is-entering" id="hero-copy" aria-labelledby="hero-title">
       <p class="region-line copy-part" data-copy="region">
         <span class="region-dash" aria-hidden="true"></span>
-        <span id="region">Group 4 • Triết Học Mác - Lênin</span>
+        <span id="region">Nhóm 1 • Triết Học Mác - Lênin</span>
       </p>
       <h1 class="hero-title copy-part" id="hero-title" data-copy="title">
-        <span id="title-line-1">QUY LUẬT</span>
-        <span id="title-line-2">LƯỢNG - CHẤT</span>
+        <span id="title-line-1">VẬT CHẤT</span>
+        <span id="title-line-2">&amp; VẬN ĐỘNG</span>
       </h1>
       <p class="hero-description copy-part" id="description" data-copy="description">
-        Quy luật chuyển hóa từ những thay đổi về lượng dẫn đến những thay đổi về chất và ngược lại.
+        Vật chất dưới góc độ triết học; vận động, đứng im, không gian, thời gian và tính thống nhất vật chất của thế giới.
       </p>
       <div class="hero-actions copy-part" data-copy="actions">
         <button class="bookmark" id="bookmark" type="button" aria-label="Lưu slide này" aria-pressed="false">
@@ -822,20 +834,20 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
         <div class="line-progress-track" aria-hidden="true"><span class="line-progress" id="line-progress"></span></div>
         <div class="slide-counter" aria-live="polite" aria-atomic="true">
           <span class="counter-window"><span class="counter-number" id="counter-number">01</span></span>
-          <span class="counter-total" id="counter-total">/ 20</span>
+          <span class="counter-total" id="counter-total">/ 33</span>
         </div>
       </div>
     </aside>
   </main>
 </div>
 
-<!-- Modal chi tiết nội dung slide từ slide_luong_chat.txt -->
+<!-- Nội dung chi tiết từ vat_chat_nhom1_slide.txt -->
 <div class="content-modal" id="content-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true" inert>
   <div class="modal-box">
     <div class="modal-header">
       <div>
-        <span class="modal-badge" id="modal-badge">Slide 01 • Giới thiệu</span>
-        <h2 class="modal-title" id="modal-title">QUY LUẬT LƯỢNG - CHẤT</h2>
+        <span class="modal-badge" id="modal-badge">Trang 01/33 • Slide nguồn 1</span>
+        <h2 class="modal-title" id="modal-title">VẬT CHẤT LÀ GÌ DƯỚI GÓC ĐỘ TRIẾT HỌC?</h2>
       </div>
       <button class="modal-close" id="modal-close" type="button" aria-label="Đóng bảng nội dung">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
@@ -859,7 +871,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
         <circle cx="8.8" cy="8.8" r="5.8" stroke="currentColor" stroke-width="1.5"/>
         <path d="m13.2 13.2 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
-      <input class="search-input" id="search-input" type="search" placeholder="Tìm theo từ khóa (Ăngghen, chất, lượng, độ, điểm nút, bước nhảy...)" aria-label="Từ khóa tìm kiếm">
+      <input class="search-input" id="search-input" type="search" placeholder="Tìm theo từ khóa (vật chất, Lênin, vận động, đứng im, không gian...)" aria-label="Từ khóa tìm kiếm">
     </div>
     <div class="search-results" id="search-results"></div>
   </div>
@@ -869,353 +881,438 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 (() => {
   "use strict";
 
-  /* Dữ liệu 20 slide trích xuất chi tiết từ slide_luong_chat.txt */
+  /* Nội dung 33 slide từ vat_chat_nhom1_slide.txt; giữ số slide nguồn trong phần chi tiết. */
   const slides = [
-    {
-      region: "Group 4 • Triết Học Mác - Lênin",
-      title: ["QUY LUẬT", "LƯỢNG - CHẤT"],
-      description: "Quy luật chuyển hóa từ những thay đổi về lượng dẫn đến những thay đổi về chất và ngược lại.",
-      badge: "Slide 1 • Giới thiệu",
-      modalHeading: "QUY LUẬT LƯỢNG - CHẤT",
-      modalContent: `
-        <p><strong>Chủ đề:</strong> Quy luật chuyển hóa từ những thay đổi về lượng dẫn đến những thay đổi về chất và ngược lại.</p>
-        <p><strong>Thực hiện:</strong> Nhóm 4 (Group 4)</p>
-        <blockquote>Quy luật Lượng - Chất là một trong ba quy luật cơ bản của phép biện chứng duy vật, chỉ rõ cách thức chung nhất của sự vận động và phát triển trong thế giới hiện thực khách quan.</blockquote>
-        <p>Bài giảng hệ thống hóa các khái niệm nền tảng: Chất, Lượng, Độ, Điểm nút, Bước nhảy và rút ra ý nghĩa phương pháp luận sâu sắc cho thực tiễn học tập và cuộc sống.</p>
-      `,
-      image: "assets/images/quantity_quality_dialectic.jpg",
-      navCategory: 0
-    },
-    {
-      region: "Mối quan hệ biện chứng",
-      title: ["CHUYỂN HÓA", "HAI CHIỀU"],
-      description: "Khi chất mới ra đời, nó tạo ra lượng mới phù hợp để xác lập một sự thống nhất mới giữa chất và lượng.",
-      badge: "Slide 2 • Hai chiều chuyển hóa",
-      modalHeading: "QUY LUẬT CHUYỂN HÓA HAI CHIỀU",
-      modalContent: `
-        <p>Quy luật chuyển hóa từ những thay đổi về lượng dẫn đến những thay đổi về chất <strong>và ngược lại</strong>.</p>
-        <p><strong>Ý nghĩa của chiều ngược lại:</strong></p>
-        <ul>
-          <li>Khi chất mới đã ra đời, nó không đứng yên mà lại tạo ra một lượng mới phù hợp với nó.</li>
-          <li>Xác lập một độ mới, quy định quy mô, nhịp độ và tốc độ phát triển mới của sự vật.</li>
-          <li>Tạo nên một sự thống nhất biện chứng mới giữa chất và lượng, mở ra chu trình phát triển cao hơn.</li>
-        </ul>
-      `,
-      image: "assets/images/quantity_quality_dialectic.jpg",
-      navCategory: 0
-    },
-    {
-      region: "Cơ chế phát triển",
-      title: ["QUY TRÌNH", "VẬN ĐỘNG"],
-      description: "Sự phát triển không ngẫu nhiên hay đột ngột: lượng tích lũy đến điểm nút sẽ làm thay đổi căn bản về chất.",
-      badge: "Slide 3 • Cách thức vận động",
-      modalHeading: "QUY TRÌNH CỤ THỂ CỦA SỰ VẬN ĐỘNG",
-      modalContent: `
-        <p>Quy luật chỉ ra cách thức chung nhất của sự vận động và phát triển: sự vận động không diễn ra ngẫu nhiên hay đột ngột mà có quy trình cụ thể:</p>
-        <ul>
-          <li><strong>Giai đoạn 1:</strong> Ban đầu, sự thay đổi nhỏ về lượng không làm thay đổi chất. Sự vật vẫn duy trì trạng thái ban đầu (trong giới hạn của độ).</li>
-          <li><strong>Giai đoạn 2:</strong> Tiếp theo, sự tích lũy về lượng diễn ra dần dần đến một mức giới hạn nhất định.</li>
-          <li><strong>Giai đoạn 3:</strong> Cuối cùng, khi vượt qua điểm nút, sự thay đổi về lượng dẫn đến sự thay đổi về chất, tạo ra sự vật hoặc trạng thái mới.</li>
-        </ul>
-      `,
-      image: "assets/images/quantity_quality_dialectic.jpg",
-      navCategory: 0
-    },
-    {
-      region: "Kinh điển triết học",
-      title: ["LUẬN ĐIỂM", "PH. ĂNG-GHEN"],
-      description: "“... những sự biến đổi về chất chỉ có thể có được do thêm vào hay bớt đi một số lượng vật chất hay vận động.”",
-      badge: "Slide 4 • Trích dẫn Ăngghen",
-      modalHeading: "LUẬN ĐIỂM KINH ĐIỂN CỦA PH. ĂNG-GHEN",
-      modalContent: `
-        <blockquote>“... trong giới tự nhiên, thì những sự biến đổi về chất xảy ra một cách xác định chặt chẽ đối với từng trường hợp cá biệt chỉ có thể có được do thêm vào hay bớt đi một số lượng vật chất hay vận động.”<br><br><strong>— Ph. Ăngghen (Biện chứng của tự nhiên)</strong></blockquote>
-        <p>Luận điểm khẳng định tính phổ biến và tính quy luật khách quan của sự chuyển hóa từ lượng thành chất trong toàn bộ giới tự nhiên.</p>
-      `,
-      image: "assets/images/engels_philosophy.jpg",
-      navCategory: 0
-    },
-    {
-      region: "Tính chất vận động",
-      title: ["TUẦN TỰ &", "ĐỘT PHÁ"],
-      description: "Sự thay đổi về lượng tuần tự kết hợp với bước nhảy vọt về chất làm cho sự vật vừa tiến bước tuần tự vừa đột phá.",
-      badge: "Slide 5 • Tính chất phát triển",
-      modalHeading: "TÍNH TUẦN TỰ VÀ TÍNH ĐỘT PHÁ",
-      modalContent: `
-        <p>Quy luật chỉ ra hai tính chất song hành của sự vận động:</p>
-        <ul>
-          <li><strong>Tính liên tục (Thay đổi về lượng):</strong> Diễn ra một cách từ từ, tuần tự. Lượng không ngừng biến đổi trong phạm vi cho phép mà chưa làm thay đổi chất.</li>
-          <li><strong>Tính nhảy vọt (Thay đổi về chất):</strong> Mang tính đột phá, diễn ra khi lượng tích lũy đạt tới ngưỡng điểm nút nhất định.</li>
-          <li><strong>Sự kết hợp hài hòa:</strong> Sự thay đổi về lượng (liên tục) và chất (gián đoạn) luôn phối hợp chặt chẽ, tạo nên sự vận động vừa tuần tự, vừa đột phá vượt bậc.</li>
-        </ul>
-      `,
-      image: "assets/images/qualitative_leap.jpg",
-      navCategory: 0
-    },
-    {
-      region: "Phạm trù Chất",
-      title: ["KHÁI NIỆM", "VỀ CHẤT"],
-      description: "Chất là tính quy định khách quan vốn có, sự thống nhất hữu cơ của các thuộc tính phân biệt sự vật với cái khác.",
-      badge: "Slide 6 • Khái niệm Chất",
-      modalHeading: "ĐỊNH NGHĨA KHÁI NIỆM CHẤT",
-      modalContent: `
-        <p><strong>Khái niệm Chất trong triết học:</strong></p>
-        <ul>
-          <li>Chất là khái niệm dùng để chỉ những <strong>tính quy định khách quan vốn có</strong> của sự vật, hiện tượng.</li>
-          <li>Chất là sự <strong>thống nhất hữu cơ</strong> của các thuộc tính và yếu tố tạo nên sự vật, hiện tượng.</li>
-          <li>Chất làm cho sự vật là chính nó, giúp <strong>phân biệt nó với các sự vật, hiện tượng khác</strong>.</li>
-        </ul>
-      `,
-      image: "assets/images/concept_quality.jpg",
-      navCategory: 1
-    },
-    {
-      region: "Bản thể của Chất",
-      title: ["TÍNH ỔN ĐỊNH", "CỦA CHẤT"],
-      description: "Chất thể hiện tính ổn định tương đối; mỗi sự vật trải qua nhiều giai đoạn và có thể có nhiều chất khác nhau.",
-      badge: "Slide 7 • Đặc điểm của Chất",
-      modalHeading: "ĐẶC ĐIỂM CƠ BẢN CỦA CHẤT",
-      modalContent: `
-        <ul>
-          <li><strong>Tính ổn định tương đối:</strong> Khi sự vật chưa chuyển hóa thành sự vật khác thì chất của nó vẫn chưa thay đổi.</li>
-          <li><strong>Đa dạng theo giai đoạn:</strong> Mỗi sự vật, hiện tượng đều có quá trình tồn tại và phát triển qua nhiều giai đoạn; trong mỗi giai đoạn ấy nó lại có chất riêng.</li>
-          <li><strong>Tính đa diện:</strong> Mỗi sự vật không phải chỉ có một chất duy nhất mà có thể chứa đựng nhiều chất tùy theo các mối quan hệ cấu thành.</li>
-        </ul>
-      `,
-      image: "assets/images/concept_quality.jpg",
-      navCategory: 1
-    },
-    {
-      region: "Quan hệ hữu cơ",
-      title: ["CHẤT VÀ", "SỰ VẬT"],
-      description: "Không có sự vật nào không mang chất, và không có chất nào tồn tại độc lập bên ngoài sự vật.",
-      badge: "Slide 8 • Sự vật và Chất",
-      modalHeading: "MỐI QUAN HỆ CHẤT VÀ SỰ VẬT",
-      modalContent: `
-        <p>Chất và sự vật có mối quan hệ chặt chẽ, không thể tách rời:</p>
-        <ul>
-          <li>Trong hiện thực khách quan, không có sự vật nào tồn tại mà không mang chất.</li>
-          <li>Ngược lại, cũng không thể có chất tồn tại độc lập, trừu tượng ngoài sự vật.</li>
-          <li>Chất của sự vật được biểu hiện cụ thể ra bên ngoài thông qua những <strong>thuộc tính</strong> khách quan của nó.</li>
-        </ul>
-      `,
-      image: "assets/images/concept_quality.jpg",
-      navCategory: 1
-    },
-    {
-      region: "Phân loại thuộc tính",
-      title: ["THUỘC TÍNH", "CƠ BẢN"],
-      description: "Thuộc tính cơ bản quy định sự tồn tại của sự vật. Nếu thuộc tính này mất đi, sự vật sẽ thay đổi hoặc biến mất.",
-      badge: "Slide 9 • Thuộc tính Chất",
-      modalHeading: "THUỘC TÍNH CƠ BẢN VÀ KHÔNG CƠ BẢN",
-      modalContent: `
-        <ul>
-          <li><strong>Thuộc tính cơ bản:</strong> Là những thuộc tính quan trọng nhất, quy định sự tồn tại, vận động và phát triển của sự vật. Nếu thuộc tính này thay đổi hoặc mất đi, sự vật cũng sẽ thay đổi căn bản hoặc không còn tồn tại.</li>
-          <li><strong>Thuộc tính không cơ bản:</strong> Là những thuộc tính phụ, không ảnh hưởng đến bản chất sống còn của sự vật trong mối quan hệ cụ thể.</li>
-        </ul>
-      `,
-      image: "assets/images/concept_quality.jpg",
-      navCategory: 1
-    },
-    {
-      region: "Kết cấu sự vật",
-      title: ["PHƯƠNG THỨC", "LIÊN KẾT"],
-      description: "Chất còn được quy định bởi phương thức liên kết giữa các yếu tố tạo thành (kết cấu của sự vật).",
-      badge: "Slide 10 • Phương thức liên kết",
-      modalHeading: "KẾT CẤU VÀ PHƯƠNG THỨC LIÊN KẾT",
-      modalContent: `
-        <p>Chất của sự vật không những được quy định bởi chất của những yếu tố tạo thành mà còn bởi <strong>phương thức liên kết</strong> giữa các yếu tố đó (kết cấu sự vật).</p>
-        <blockquote>Trong hiện thực, các sự vật có thể được tạo thành bởi các yếu tố hoàn toàn như nhau, song chất của chúng lại khác nhau do phương thức liên kết khác nhau.</blockquote>
-        <p><em>Ví dụ:</em> Kim cương và than chì đều cấu tạo từ các nguyên tử Cacbon (C), nhưng do cấu trúc tinh thể liên kết khác nhau nên kim cương vô cùng cứng và trong suốt, còn than chì thì mềm và đen sẫm.</p>
-      `,
-      image: "assets/images/diamond_graphite.jpg",
-      navCategory: 1
-    },
-    {
-      region: "Phạm trù Lượng",
-      title: ["KHÁI NIỆM", "VỀ LƯỢNG"],
-      description: "Lượng chỉ tính quy định vốn có về quy mô, trình độ phát triển, số lượng thuộc tính, tốc độ và nhịp điệu vận động.",
-      badge: "Slide 11 • Khái niệm Lượng",
-      modalHeading: "ĐỊNH NGHĨA KHÁI NIỆM LƯỢNG",
-      modalContent: `
-        <p><strong>Khái niệm Lượng trong triết học:</strong></p>
-        <p>Lượng là khái niệm dùng để chỉ <strong>tính quy định vốn có</strong> của sự vật, hiện tượng về mặt:</p>
-        <ul>
-          <li>Quy mô, trình độ phát triển.</li>
-          <li>Các yếu tố biểu hiện ở số lượng các thuộc tính, tổng số các bộ phận.</li>
-          <li>Đại lượng, kích thước.</li>
-          <li>Tốc độ và nhịp điệu vận động và phát triển của sự vật, hiện tượng.</li>
-        </ul>
-      `,
-      image: "assets/images/quantity_measurement.jpg",
-      navCategory: 2
-    },
-    {
-      region: "Hình thức biểu đạt",
-      title: ["BIỂU HIỆN", "CỦA LƯỢNG"],
-      description: "Lượng biểu hiện qua kích thước, số lượng, trình độ cao/thấp, tốc độ nhanh/chậm... có thể đo đếm hoặc so sánh được.",
-      badge: "Slide 12-14 • Biểu hiện của Lượng",
-      modalHeading: "CÁC HÌNH THỨC BIỂU HIỆN CỦA LƯỢNG",
-      modalContent: `
-        <ul>
-          <li>Lượng chính là những đặc điểm cụ thể, <strong>có thể đo đếm hoặc so sánh được</strong> của một sự vật, hiện tượng.</li>
-          <li>Lượng có thể biểu hiện dưới nhiều hình thức đa dạng:
-            <ul>
-              <li>Kích thước: dài hay ngắn, lớn hay nhỏ.</li>
-              <li>Số lượng: ít hay nhiều, tổng số.</li>
-              <li>Trình độ: cao hay thấp.</li>
-              <li>Tốc độ vận động: nhanh hay chậm.</li>
-              <li>Màu sắc: đậm hay nhạt...</li>
-            </ul>
-          </li>
-        </ul>
-      `,
-      image: "assets/images/quantity_measurement.jpg",
-      navCategory: 2
-    },
-    {
-      region: "Bản thể của Lượng",
-      title: ["TÍNH KHÁCH QUAN", "CỦA LƯỢNG"],
-      description: "Lượng mang tính khách quan vì là dạng biểu hiện của vật chất, chiếm vị trí trong không gian và thời gian.",
-      badge: "Slide 15 • Tính khách quan",
-      modalHeading: "TÍNH KHÁCH QUAN CỦA LƯỢNG",
-      modalContent: `
-        <p>Đặc điểm cơ bản của lượng là <strong>tính khách quan</strong>:</p>
-        <ul>
-          <li>Lượng là một dạng biểu hiện khách quan của vật chất.</li>
-          <li>Lượng chiếm một vị trí nhất định trong không gian và tồn tại trong thời gian xác định.</li>
-          <li>Lượng tồn tại độc lập với ý thức, không phụ thuộc vào ý muốn chủ quan hay cảm tính của con người.</li>
-        </ul>
-      `,
-      image: "assets/images/quantity_measurement.jpg",
-      navCategory: 2
-    },
-    {
-      region: "Tính phong phú & tương đối",
-      title: ["TÍNH TƯƠNG ĐỐI", "CHẤT & LƯỢNG"],
-      description: "Sự phân biệt giữa chất và lượng chỉ có ý nghĩa tương đối; cái là lượng ở quan hệ này có thể là chất ở quan hệ khác.",
-      badge: "Slide 16-18 • Tính tương đối",
-      modalHeading: "SỰ PHÂN BIỆT MANG TÍNH TƯƠNG ĐỐI",
-      modalContent: `
-        <ul>
-          <li>Trong tự nhiên, lượng thường dễ đo đếm bằng con số cụ thể; nhưng trong xã hội và tư duy, lượng phức tạp hơn, chỉ nhận biết được bằng <strong>năng lực trừu tượng hóa</strong>.</li>
-          <li>Sự phân biệt giữa chất và lượng <strong>chỉ có ý nghĩa tương đối</strong>:
-            <ul>
-              <li>Tùy theo từng mối quan hệ cụ thể mà xác định đâu là lượng và đâu là chất.</li>
-              <li>Cái là lượng trong mối quan hệ này lại có thể đóng vai trò là chất trong một mối quan hệ khác.</li>
-            </ul>
-          </li>
-        </ul>
-      `,
-      image: "assets/images/quantity_measurement.jpg",
-      navCategory: 2
-    },
-    {
-      region: "Luận đề trung tâm",
-      title: ["NỘI DUNG", "QUY LUẬT"],
-      description: "Lượng đổi trong độ tới điểm nút dẫn đến chất đổi qua bước nhảy; chất mới ra đời lại tác động lên lượng mới.",
-      badge: "Slide 19 • Nội dung quy luật",
-      modalHeading: "NỘI DUNG QUY LUẬT LƯỢNG - CHẤT",
-      modalContent: `
-        <blockquote>“Mọi sự vật, hiện tượng đều là sự thống nhất giữa lượng và chất, sự thay đổi dần dần về lượng trong khuôn khổ của độ tới điểm nút sẽ làm thay đổi chất của sự vật thông qua bước nhảy, chất mới ra đời tác động trở lại sự thay đổi của lượng mới, tạo thành quá trình vận động phát triển liên tục của sự vật”</blockquote>
-        <p>Đây là phát biểu hoàn chỉnh, thể hiện đầy đủ 4 mắt xích cốt lõi: <strong>Độ → Điểm nút → Bước nhảy → Chất mới tác động lượng mới</strong>.</p>
-      `,
-      image: "assets/images/quantity_quality_dialectic.jpg",
-      navCategory: 3
-    },
-    {
-      region: "Phạm trù Độ",
-      title: ["KHÁI NIỆM", "VỀ ĐỘ"],
-      description: "Độ là khoảng giới hạn mà trong đó sự thay đổi về lượng chưa làm thay đổi căn bản chất của sự vật (nước lỏng 0°C – 100°C).",
-      badge: "Slide 20-21 • Khái niệm Độ",
-      modalHeading: "KHOẢNG GIỚI HẠN CỦA ĐỘ",
-      modalContent: `
-        <p><strong>Khái niệm Độ:</strong></p>
-        <blockquote>“Độ là khoảng giới hạn mà trong đó sự thay đổi về lượng chưa làm thay đổi căn bản chất của sự vật, hiện tượng.”</blockquote>
-        <p><strong>Ví dụ điển hình về sự biến đổi trạng thái của nước:</strong></p>
-        <ul>
-          <li>Ở áp suất tiêu chuẩn 1 atm, từ <strong>0°C đến 100°C</strong> là <em>Độ</em> của trạng thái nước ở thể lỏng.</li>
-          <li>Trong khoảng nhiệt độ này, nhiệt độ tăng hay giảm (lượng đổi) nhưng nước vẫn duy trì bản chất là chất lỏng.</li>
-        </ul>
-      `,
-      image: "assets/images/water_phase_change.jpg",
-      navCategory: 4
-    },
-    {
-      region: "Giới hạn bứt phá",
-      title: ["KHÁI NIỆM", "ĐIỂM NÚT"],
-      description: "Điểm nút là điểm giới hạn mà tại đó sự thay đổi về lượng phá vỡ độ cũ, làm chất thay đổi và chuyển thành chất mới.",
-      badge: "Slide 22 • Điểm nút",
-      modalHeading: "ĐIỂM NÚT — NGƯỠNG ĐỔI THAY",
-      modalContent: `
-        <p><strong>Khái niệm Điểm nút:</strong></p>
-        <blockquote>“Điểm nút là điểm giới hạn mà tại đó sự thay đổi về lượng đạt tới chỗ phá vỡ độ cũ, làm cho chất của sự vật, hiện tượng thay đổi, chuyển thành chất mới.”</blockquote>
-        <p><em>Nói cách khác:</em> Đó là thời điểm mà sự tích lũy về lượng đã đạt đến mức giới hạn có thể làm thay đổi căn bản về chất của sự vật.</p>
-        <p>Trong ví dụ của nước: <strong>0°C</strong> (điểm đông đặc thành băng) và <strong>100°C</strong> (điểm sôi hóa hơi thành khí) chính là hai <strong>Điểm nút</strong> phá vỡ độ thể lỏng.</p>
-      `,
-      image: "assets/images/water_phase_change.jpg",
-      navCategory: 4
-    },
-    {
-      region: "Hình thức chuyển hóa",
-      title: ["CÁC LOẠI", "BƯỚC NHẢY"],
-      description: "Bước nhảy là sự chuyển hóa về chất do lượng đổi gây nên: toàn bộ/cục bộ (theo quy mô) và tức thời/dần dần (theo nhịp điệu).",
-      badge: "Slide 23-24 • Bước nhảy",
-      modalHeading: "PHÂN LOẠI CÁC BƯỚC NHẢY",
-      modalContent: `
-        <p><strong>Bước nhảy:</strong> “Là sự chuyển hóa về chất của sự vật do những sự thay đổi về lượng gây nên.”</p>
-        <p><strong>1. Dựa vào quy mô:</strong></p>
-        <ul>
-          <li><strong>Bước nhảy toàn bộ:</strong> Sự thay đổi về chất diễn ra đồng thời ở tất cả các mặt, các bộ phận, các yếu tố của sự vật.</li>
-          <li><strong>Bước nhảy cục bộ:</strong> Sự thay đổi chất chỉ diễn ra ở một số mặt, một số bộ phận trong khi các phần còn lại vẫn giữ nguyên.</li>
-        </ul>
-        <p><strong>2. Dựa vào nhịp điệu:</strong></p>
-        <ul>
-          <li><strong>Bước nhảy tức thời:</strong> Sự thay đổi chất diễn ra nhanh chóng, toàn diện trong một khoảng thời gian rất ngắn.</li>
-          <li><strong>Bước nhảy dần dần:</strong> Sự thay đổi chất diễn ra từ từ, qua quá trình tích lũy lâu dài, loại bỏ dần yếu tố cũ và thay bằng yếu tố mới.</li>
-        </ul>
-      `,
-      image: "assets/images/qualitative_leap.jpg",
-      navCategory: 4
-    },
-    {
-      region: "Tác động tái lập",
-      title: ["CHẤT MỚI &", "LƯỢNG MỚI"],
-      description: "Khi chất mới hình thành, nó quy định lượng mới phù hợp, tạo ra một sự thống nhất biện chứng mới.",
-      badge: "Slide 25 • Tác động trở lại",
-      modalHeading: "CHẤT MỚI TÁC ĐỘNG TRỞ LẠI LƯỢNG MỚI",
-      modalContent: `
-        <ul>
-          <li><strong>Sự thay đổi về lượng dẫn đến sự thay đổi về chất:</strong> Lượng biến đổi dần dần (tăng hoặc giảm) đến một điểm giới hạn gọi là điểm nút, lúc này sẽ xảy ra bước nhảy làm chất thay đổi.</li>
-          <li><strong>Chất mới tác động trở lại lượng mới:</strong> Khi chất mới hình thành, nó quy định lượng mới phù hợp với nó, tạo ra một sự thống nhất mới giữa chất và lượng.</li>
-          <li><em>Ví dụ:</em> Khi một học sinh tích lũy đủ tri thức và vượt qua kỳ thi để trở thành sinh viên đại học (chất mới), phương pháp tự học, khối lượng tài liệu tiếp cận và tốc độ tiếp thu (lượng mới) sẽ tự động thay đổi ở cấp độ cao hơn.</li>
-        </ul>
-      `,
-      image: "assets/images/qualitative_leap.jpg",
-      navCategory: 4
-    },
-    {
-      region: "Bài học thực tiễn",
-      title: ["Ý NGHĨA", "PHƯƠNG PHÁP"],
-      description: "Khắc phục bệnh nôn nóng 'đốt cháy giai đoạn' và bảo thủ trì trệ; quyết tâm thực hiện bước nhảy kịp thời khi đủ điều kiện.",
-      badge: "Slide 26 • Ý nghĩa thực tiễn",
-      modalHeading: "Ý NGHĨA PHƯƠNG PHÁP LUẬN CỦA QUY LUẬT",
-      modalContent: `
-        <ul>
-          <li><strong>Tích lũy lượng kiên trì:</strong> Sự thay đổi về chất chỉ có thể xảy ra khi có sự tích lũy đầy đủ về lượng. Muốn phát triển phải tích lũy từng bước vững chắc.</li>
-          <li><strong>Khắc phục hai khuynh hướng sai lầm:</strong>
-            <ul>
-              <li><em>Tư tưởng vội vàng, nôn nóng:</em> Chủ quan “đốt cháy giai đoạn”, muốn đổi chất khi lượng chưa tích lũy đủ.</li>
-              <li><em>Tư tưởng bảo thủ, trì trệ:</em> Ngại thay đổi, do dự không dám thực hiện bước nhảy khi điều kiện đã chín muồi.</li>
-            </ul>
-          </li>
-          <li><strong>Quyết tâm thực hiện bước nhảy:</strong> Cần xác định quy mô và nhịp điệu bước nhảy khách quan, có quyết tâm và nghị lực để thực hiện bước nhảy kịp thời mà không chần chừ, sợ hãi.</li>
-          <li><strong>Tác động vào phương thức liên kết:</strong> Biết lựa chọn phương pháp phù hợp để tác động vào cấu trúc và sự sắp xếp của các yếu tố trên cơ sở hiểu rõ quy luật của chúng.</li>
-        </ul>
-      `,
-      image: "assets/images/engels_philosophy.jpg",
-      navCategory: 5
-    }
-  ];
+  {
+    "region": "Nhóm 1 • Triết Học Mác - Lênin",
+    "title": [
+      "VẬT CHẤT",
+      "& VẬN ĐỘNG"
+    ],
+    "description": "Vật chất dưới góc độ triết học; vận động, đứng im, không gian, thời gian và tính thống nhất vật chất của thế giới.",
+    "badge": "Trang 01/33 • Slide nguồn 1",
+    "modalHeading": "VẬT CHẤT LÀ GÌ DƯỚI GÓC ĐỘ TRIẾT HỌC?",
+    "modalContent": "<p>VẬN ĐỘNG, ĐỨNG IM, KHÔNG GIAN, THỜI GIAN LÀ GÌ?<br>By nhóm 1<\/p>",
+    "image": "assets/images/slide01_cover.jpg",
+    "navCategory": 0
+  },
+  {
+    "region": "Quan niệm cổ đại",
+    "title": [
+      "VẬT CHẤT",
+      "THỜI CỔ ĐẠI"
+    ],
+    "description": "Từ nước, lửa và nguyên tử đến Ngũ hành: con người tìm cách giải thích thế giới bằng tự nhiên và lý trí.",
+    "badge": "Trang 02/33 • Slide nguồn 2",
+    "modalHeading": "QUAN ĐIỂM VỀ VẬT CHẤT THỜI KỲ CỔ ĐẠI",
+    "modalContent": "<h3>Bối cảnh<\/h3>\n<ul><li>Khoảng thế kỷ VIII–III trước Công nguyên.<\/li><li>Triết học hình thành ở Hy Lạp, Ấn Độ và Trung Hoa.<\/li><li>Con người dần chuyển từ việc giải thích thế giới bằng thần thoại sang giải thích bằng tự nhiên và lý trí.<\/li><\/ul>\n<div class=\"modal-table-wrap\"><table><thead><tr><th scope=\"col\">Khu vực / triết gia<\/th><th scope=\"col\">Quan điểm về vật chất<\/th><\/tr><\/thead><tbody><tr><td>Thales (Hy Lạp)<\/td><td>Nước là bản nguyên của vạn vật.<\/td><\/tr><tr><td>Heraclitus (Hy Lạp)<\/td><td>Lửa là bản nguyên; mọi sự vật luôn vận động và biến đổi.<\/td><\/tr><tr><td>Democritus (Hy Lạp)<\/td><td>Thế giới cấu tạo từ nguyên tử và khoảng không.<\/td><\/tr><tr><td>Trâu Diễn (Trung Hoa cổ đại)<\/td><td>Thuyết Ngũ hành: Kim, Mộc, Thủy, Hỏa, Thổ là các yếu tố tạo thành và chi phối vạn vật.<\/td><\/tr><tr><td>Kanada / Charvaka (Ấn Độ cổ đại)<\/td><td>Một số trường phái nêu quan niệm về hạt vật chất cực nhỏ, thường được gọi là nguyên tử.<\/td><\/tr><\/tbody><\/table><\/div>",
+    "image": "assets/images/slide02_ancient_materialism.jpg",
+    "navCategory": 0
+  },
+  {
+    "region": "Ưu điểm và hạn chế",
+    "title": [
+      "DUY VẬT",
+      "CỔ ĐẠI"
+    ],
+    "description": "Đặt nền móng cho tư duy khoa học và biện chứng, nhưng còn chất phác, trực quan và thiếu thực nghiệm hiện đại.",
+    "badge": "Trang 03/33 • Slide nguồn 3",
+    "modalHeading": "ĐẶC ĐIỂM CỦA CHỦ NGHĨA DUY VẬT CỔ ĐẠI",
+    "modalContent": "<h3>Ưu điểm<\/h3>\n<ul><li>Giải thích tự nhiên bằng chính tự nhiên; hạn chế dựa vào thần thoại hoặc lực lượng siêu nhiên.<\/li><li>Đặt nền móng cho tư duy khoa học và chủ nghĩa duy vật sau này.<\/li><li>Có mầm mống tư duy biện chứng, đặc biệt ở Heraclitus khi ông nhấn mạnh sự vận động và biến đổi.<\/li><li>Tìm kiếm một bản nguyên chung, qua đó nhìn nhận thế giới có tính thống nhất.<\/li><\/ul>\n<h3>Hạn chế<\/h3>\n<ul><li>Còn chất phác, trực quan và phỏng đoán.<\/li><li>Dựa phần lớn vào quan sát cảm tính; chưa có thực nghiệm khoa học hiện đại.<\/li><li>Chưa phân biệt rõ vật chất với các dạng tồn tại cụ thể của vật chất.<\/li><li>Ví dụ: vì nước thiết yếu đối với đời sống, Thales suy ra nước là bản nguyên của mọi vật.<\/li><\/ul>",
+    "image": "assets/images/slide02_ancient_materialism.jpg",
+    "navCategory": 0
+  },
+  {
+    "region": "Quan niệm cận đại",
+    "title": [
+      "VẬT CHẤT",
+      "THỜI CẬN ĐẠI"
+    ],
+    "description": "Khoa học thế kỷ XVI–XVIII đề cao quan sát, thực nghiệm và toán học; vật chất được gắn với quảng tính và cơ học.",
+    "badge": "Trang 04/33 • Slide nguồn 4",
+    "modalHeading": "QUAN ĐIỂM VỀ VẬT CHẤT THỜI KỲ CẬN ĐẠI",
+    "modalContent": "<h3>Bối cảnh lịch sử<\/h3>\n<ul><li>Từ khoảng thế kỷ XVI đến XVIII.<\/li><li>Cách mạng khoa học ở châu Âu phát triển: thiên văn học, toán học, cơ học và phương pháp thực nghiệm.<\/li><li>Sự hình thành, phát triển của chủ nghĩa tư bản làm tăng nhu cầu chinh phục và giải thích tự nhiên.<\/li><li>Chủ nghĩa duy vật trở thành một công cụ tư tưởng để phê phán thần học và quyền lực của Giáo hội.<\/li><\/ul>\n<h3>Một số đại diện và quan điểm<\/h3>\n<div class=\"modal-table-wrap\"><table><thead><tr><th scope=\"col\">Nhà tư tưởng<\/th><th scope=\"col\">Quan điểm liên quan đến vật chất<\/th><\/tr><\/thead><tbody><tr><td>Galileo Galilei<\/td><td>Nghiên cứu tự nhiên bằng quan sát, thực nghiệm và toán học; nhấn mạnh tính quy luật của vận động.<\/td><\/tr><tr><td>Francis Bacon<\/td><td>Đề cao kinh nghiệm và phương pháp quy nạp; tri thức phải dựa vào việc nghiên cứu tự nhiên.<\/td><\/tr><tr><td>René Descartes<\/td><td>Thuộc tính cơ bản của vật chất là quảng tính: có chiều dài, chiều rộng và chiều sâu.<\/td><\/tr><tr><td>Baruch Spinoza<\/td><td>Vật chất và tinh thần là hai thuộc tính của một thực thể duy nhất.<\/td><\/tr><tr><td>Julien Offray de La Mettrie<\/td><td>Giải thích con người theo lối duy vật cơ học; nổi tiếng với hình ảnh &quot;con người là một cỗ máy&quot;.<\/td><\/tr><\/tbody><\/table><\/div>",
+    "image": "assets/images/slide04_modern_materialism.jpg",
+    "navCategory": 0
+  },
+  {
+    "region": "Tư duy cơ học và siêu hình",
+    "title": [
+      "DUY VẬT",
+      "CẬN ĐẠI"
+    ],
+    "description": "Có cơ sở khoa học vững hơn, nhưng còn nhìn thế giới như một cỗ máy và quy giản vận động về sự dịch chuyển.",
+    "badge": "Trang 05/33 • Slide nguồn 5",
+    "modalHeading": "ĐẶC ĐIỂM CỦA CHỦ NGHĨA DUY VẬT CẬN ĐẠI",
+    "modalContent": "<h3>Ưu điểm<\/h3>\n<ul><li>Có cơ sở vững hơn từ khoa học tự nhiên, đặc biệt là toán học, thiên văn học và cơ học.<\/li><li>Đề cao quan sát, thực nghiệm, lý trí và tính quy luật.<\/li><li>Khẳng định thế giới vật chất tồn tại khách quan, không phụ thuộc vào ý thức con người.<\/li><li>Góp phần chống thần học, giải phóng nghiên cứu khoa học khỏi sự chi phối của Giáo hội.<\/li><\/ul>\n<h3>Hạn chế: tính siêu hình và cơ học<\/h3>\n<ul><li>Đồng nhất vật chất chủ yếu với những thuộc tính cơ học như khối lượng, hình dạng, vị trí và chuyển động.<\/li><li>Xem vận động chủ yếu là sự dịch chuyển cơ học trong không gian.<\/li><li>Có xu hướng nhìn thế giới như một cỗ máy lớn gồm các bộ phận tách rời, vận hành theo quy luật cố định.<\/li><li>Chưa nhận thức đầy đủ các dạng vận động và phát triển phức tạp: hóa học, sinh học, xã hội.<\/li><\/ul>",
+    "image": "assets/images/slide05_mechanical.jpg",
+    "navCategory": 0
+  },
+  {
+    "region": "Lịch sử chủ nghĩa duy vật",
+    "title": [
+      "SO SÁNH",
+      "& KẾT LUẬN"
+    ],
+    "description": "So sánh bối cảnh, cơ sở nhận thức, cách hiểu vật chất, ưu điểm và hạn chế của duy vật cổ đại và cận đại.",
+    "badge": "Trang 06/33 • Slide nguồn 6",
+    "modalHeading": "SO SÁNH VÀ KẾT LUẬN",
+    "modalContent": "<div class=\"modal-table-wrap\"><table><thead><tr><th scope=\"col\">Tiêu chí<\/th><th scope=\"col\">Duy vật cổ đại<\/th><th scope=\"col\">Duy vật cận đại<\/th><\/tr><\/thead><tbody><tr><td>Bối cảnh<\/td><td>Xã hội cổ đại; tri thức khoa học còn sơ khai<\/td><td>Cách mạng khoa học và sự phát triển của xã hội tư bản ở châu Âu<\/td><\/tr><tr><td>Cơ sở nhận thức<\/td><td>Quan sát trực tiếp, trực giác, suy đoán<\/td><td>Thực nghiệm, toán học, cơ học<\/td><\/tr><tr><td>Cách hiểu vật chất<\/td><td>Nước, lửa, nguyên tử, Ngũ hành…<\/td><td>Quảng tính, khối lượng, vật thể vận động cơ học<\/td><\/tr><tr><td>Ưu điểm<\/td><td>Chống thần thoại; đặt nền móng duy vật; có mầm mống biện chứng<\/td><td>Có cơ sở khoa học hơn; góp phần chống thần học và phát triển khoa học<\/td><\/tr><tr><td>Hạn chế<\/td><td>Chất phác, trực quan, chưa kiểm chứng<\/td><td>Siêu hình, cơ học, chưa thấy đầy đủ sự phát triển và liên hệ<\/td><\/tr><\/tbody><\/table><\/div>",
+    "image": "assets/images/slide04_modern_materialism.jpg",
+    "navCategory": 0
+  },
+  {
+    "region": "Bước ngoặt trong triết học",
+    "title": [
+      "LÊNIN &",
+      "VẬT CHẤT"
+    ],
+    "description": "Những phát hiện khoa học mới và cuộc khủng hoảng thế giới quan đặt ra yêu cầu xây dựng định nghĩa mới về vật chất.",
+    "badge": "Trang 07/33 • Slide nguồn 7",
+    "modalHeading": "LENIN ĐƯA RA KHÁI NIỆM TRIẾT HỌC MỚI",
+    "modalContent": "<p>LENIN ĐƯA RA KHÁI NIỆM TRIẾT HỌC MỚI<\/p>",
+    "image": "assets/images/slide01_cover.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Khoa học cuối thế kỷ XIX",
+    "title": [
+      "TIA X &",
+      "PHÓNG XẠ"
+    ],
+    "description": "Roentgen phát hiện tia X năm 1895; Becquerel phát hiện phóng xạ ở urani, mở rộng nhận thức về vật chất.",
+    "badge": "Trang 08/33 • Slide nguồn 8",
+    "modalHeading": "1. CUỘC CÁCH MẠNG TRONG KHOA HỌC TỰ NHIÊN CUỐI THẾ KỶ XIX – ĐẦU THẾ KỶ XX",
+    "modalContent": "<p>Năm 1895: W.C. Roentgen phát hiện ra tia X.<br>H. Becquerel phát hiện ra hiện tượng phóng xạ của nguyên tố urani.<\/p>",
+    "image": "assets/images/slide08_xray_radioactivity.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Vật lý đầu thế kỷ XX",
+    "title": [
+      "ĐIỆN TỬ &",
+      "TƯƠNG ĐỐI"
+    ],
+    "description": "Điện tử (1897) và thuyết tương đối (1905, 1916) làm thay đổi cách hiểu về nguyên tử, khối lượng và thế giới vật chất.",
+    "badge": "Trang 09/33 • Slide nguồn 9",
+    "modalHeading": "1. CUỘC CÁCH MẠNG TRONG KHOA HỌC TỰ NHIÊN CUỐI THẾ KỶ XIX – ĐẦU THẾ KỶ XX",
+    "modalContent": "<p>Năm 1897: J.J. Thomson phát hiện ra điện tử.<br>Năm 1905, 1916: Albert Einstein đưa ra Thuyết tương đối hẹp và Thuyết tương đối rộng.<\/p>",
+    "image": "assets/images/slide09_electron_relativity.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Giới hạn của quan niệm cũ",
+    "title": [
+      "QUAN NIỆM CŨ",
+      "BỊ PHÁ VỠ"
+    ],
+    "description": "Nguyên tử có thể phân chia; khối lượng không bất biến. Quan niệm đồng nhất vật chất với nguyên tử hay khối lượng bị phá vỡ.",
+    "badge": "Trang 10/33 • Slide nguồn 10",
+    "modalHeading": "HẬU QUẢ",
+    "modalContent": "<p>Nguyên tử không phải là phần tử nhỏ nhất không thể phân chia, và khối lượng không phải là bất biến.<\/p>\n<p>Vì vậy đã giáng một đòn chí mạng, làm sụp đổ hoàn toàn quan niệm của chủ nghĩa duy vật siêu hình vốn đồng nhất vật chất với nguyên tử hay khối lượng cơ học suốt nhiều thế kỷ. Quan niệm duy vật siêu hình cũ bị phá sản.<\/p>",
+    "image": "assets/images/slide10_atom_splitting.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Khủng hoảng trong vật lý",
+    "title": [
+      "KHỦNG HOẢNG",
+      "THẾ GIỚI QUAN"
+    ],
+    "description": "Tư duy siêu hình khiến nhiều nhà vật lý hoang mang, dao động và hoài nghi khi những hiểu biết cũ bị phá vỡ.",
+    "badge": "Trang 11/33 • Slide nguồn 11",
+    "modalHeading": "2. CUỘC KHỦNG HOẢNG VỀ THẾ GIỚI QUAN TRONG VẬT LÝ HỌC VÀ SỰ TẤN CÔNG CỦA CHỦ NGHĨA DUY TÂM",
+    "modalContent": "<p>Do chịu ảnh hưởng nặng nề của phương pháp tư duy siêu hình, khi thấy nguyên tử bị phân rã và khối lượng thay đổi, nhiều nhà vật lý học đã rơi vào hoang mang, dao động, hoài nghi tính đúng đắn của chủ nghĩa duy vật.<\/p>",
+    "image": "assets/images/slide10_atom_splitting.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Lênin và chủ nghĩa duy tâm",
+    "title": [
+      "VẬT CHẤT",
+      "CÓ BIẾN MẤT?"
+    ],
+    "description": "Lênin khẳng định: vật chất không biến mất; chỉ có giới hạn hiểu biết cũ của con người về vật chất bị vượt qua.",
+    "badge": "Trang 12/33 • Slide nguồn 12",
+    "modalHeading": "2. CUỘC KHỦNG HOẢNG VỀ THẾ GIỚI QUAN TRONG VẬT LÝ HỌC VÀ SỰ TẤN CÔNG CỦA CHỦ NGHĨA DUY TÂM",
+    "modalContent": "<p>Chủ nghĩa duy tâm thừa cơ tấn công: Lợi dụng tình hình khủng hoảng này, các nhà triết học duy tâm (đặc biệt là phái Makhơ – chủ nghĩa kinh nghiệm phê phán) lớn tiếng rêu rao rằng: &quot;Vật chất biến mất&quot;, &quot;Nguyên tử bị tiêu tan&quot;, &quot;Hiện thực khách quan đã tiêu tan, chỉ còn lại cảm giác của con người&quot;.<\/p>\n<p>Lênin đã vạch rõ: Không phải vật chất biến mất, mà chỉ có &#x27;giới hạn hiểu biết cũ&#x27; của con người biến mất.<\/p>",
+    "image": "assets/images/slide10_atom_splitting.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Bảo vệ thế giới quan duy vật",
+    "title": [
+      "BẢO VỆ",
+      "CHỦ NGHĨA MÁC"
+    ],
+    "description": "Bối cảnh đế quốc chủ nghĩa và phong trào cách mạng đầu thế kỷ XX đặt ra yêu cầu bảo vệ thế giới quan duy vật.",
+    "badge": "Trang 13/33 • Slide nguồn 13",
+    "modalHeading": "3. YÊU CẦU BẢO VỆ CHỦ NGHĨA MÁC VÀ TÌM PHƯƠNG PHÁP ĐỊNH NGHĨA MỚI",
+    "modalContent": "<p>Đầu thế kỷ XX, chủ nghĩa tư bản chuyển sang giai đoạn đế quốc chủ nghĩa; mâu thuẫn giai cấp sâu sắc dẫn đến phong trào cách mạng vô sản bùng nổ, mà nước Nga là tâm điểm.<\/p>",
+    "image": "assets/images/slide04_modern_materialism.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Chủ nghĩa kinh nghiệm phê phán",
+    "title": [
+      "PHÊ PHÁN",
+      "PHÁI MAKHƠ"
+    ],
+    "description": "Phê phán những quan điểm cơ hội, xét lại câu kết với phái Makhơ để tước bỏ thế giới quan duy vật.",
+    "badge": "Trang 14/33 • Slide nguồn 14",
+    "modalHeading": "3. YÊU CẦU BẢO VỆ CHỦ NGHĨA MÁC VÀ TÌM PHƯƠNG PHÁP ĐỊNH NGHĨA MỚI",
+    "modalContent": "<p>Một số phần tử cơ hội, xét lại nhân danh chủ nghĩa Mác nhưng lại câu kết với phái Makhơ để tước bỏ thế giới quan duy vật của giai cấp công nhân.<\/p>",
+    "image": "assets/images/slide05_mechanical.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Sự ra đời của định nghĩa",
+    "title": [
+      "TÁC PHẨM",
+      "NĂM 1908"
+    ],
+    "description": "Lênin viết «Chủ nghĩa duy vật và chủ nghĩa kinh nghiệm phê phán», đưa ra định nghĩa triết học mới về vật chất.",
+    "badge": "Trang 15/33 • Slide nguồn 15",
+    "modalHeading": "SỰ RA ĐỜI CỦA ĐỊNH NGHĨA VẬT CHẤT",
+    "modalContent": "<p>Như vậy, để giải quyết cuộc khủng hoảng trong vật lý học, đập tan sự công kích của chủ nghĩa duy tâm, và khắc phục sự bế tắc của chủ nghĩa duy vật cũ, năm 1908 V.I. Lênin đã viết tác phẩm &#x27;Chủ nghĩa duy vật và chủ nghĩa kinh nghiệm phê phán&#x27;, chính thức đưa ra một định nghĩa triết học mới, hoàn chỉnh và kinh điển về vật chất.<\/p>",
+    "image": "assets/images/slide16_lenin_definition.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Định nghĩa của V.I. Lênin",
+    "title": [
+      "ĐỊNH NGHĨA",
+      "VẬT CHẤT"
+    ],
+    "description": "Vật chất là thực tại khách quan, được cảm giác phản ánh và tồn tại không lệ thuộc vào cảm giác.",
+    "badge": "Trang 16/33 • Slide nguồn 16",
+    "modalHeading": "ĐỊNH NGHĨA CỦA VẬT CHẤT",
+    "modalContent": "<blockquote>Định nghĩa: &quot;Vật chất là một phạm trù triết học dùng để chỉ thực tại khách quan được đem lại cho con người trong cảm giác, được cảm giác của chúng ta chép lại, chụp lại, phản ánh và tồn tại không lệ thuộc vào cảm giác.&quot; - V.I Lenin<\/blockquote>\n<ul><li>Vật chất (Triết học): Là cái chung, vô hạn, vĩnh cửu (không bao giờ mất đi).<\/li><li>Vật thể/Dạng vật chất (KHTN): Là những cái riêng, cụ thể (như nguyên tử, điện tử, hạt, trường…), có giới hạn, có sinh ra và mất đi để hóa thành cái khác.<\/li><\/ul>",
+    "image": "assets/images/slide16_lenin_definition.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Bản chất của vật chất",
+    "title": [
+      "THUỘC TÍNH",
+      "VẬT CHẤT"
+    ],
+    "description": "Tồn tại khách quan và mối quan hệ giữa vật chất, cảm giác, ý thức là những nội dung cốt lõi của định nghĩa.",
+    "badge": "Trang 17/33 • Slide nguồn 17",
+    "modalHeading": "THUỘC TÍNH CỦA VẬT CHẤT",
+    "modalContent": "<p>THUỘC TÍNH CỦA VẬT CHẤT<\/p>",
+    "image": "assets/images/slide16_lenin_definition.jpg",
+    "navCategory": 2
+  },
+  {
+    "region": "Thuộc tính khách quan",
+    "title": [
+      "TỒN TẠI",
+      "KHÁCH QUAN"
+    ],
+    "description": "Vật chất tồn tại độc lập với ý muốn, cảm xúc và ý chí, dù con người đã nhận thức được hay chưa.",
+    "badge": "Trang 18/33 • Slide nguồn 18",
+    "modalHeading": "THUỘC TÍNH KHÁCH QUAN",
+    "modalContent": "<ul><li>Tồn tại khách quan: Vật chất là cái có trước, tồn tại độc lập ở bên ngoài, không phụ thuộc vào ý muốn, cảm xúc hay ý chí của con người.<\/li><li>Bất kể sự nhận thức: Dù con người đã nhận thức được hay chưa nhận thức được thì chúng vẫn âm thầm tồn tại.<\/li><\/ul>",
+    "image": "assets/images/slide16_lenin_definition.jpg",
+    "navCategory": 2
+  },
+  {
+    "region": "Vật chất và nhận thức",
+    "title": [
+      "VẬT CHẤT",
+      "& Ý THỨC"
+    ],
+    "description": "Vật chất có trước, gây nên cảm giác; cảm giác và ý thức phản ánh hiện thực khách quan mà con người có thể nhận thức.",
+    "badge": "Trang 19/33 • Slide nguồn 19",
+    "modalHeading": "MỐI QUAN HỆ VẬT CHẤT – Ý THỨC & KHẢ NĂNG NHẬN THỨC",
+    "modalContent": "<ul><li>Vật chất là cái có trước, gây nên cảm giác ở con người: Khi trực tiếp hoặc gián tiếp tác động lên giác quan con người, vật chất sẽ đem lại cho con người cảm giác, nhận thức. Vật chất là tính thứ nhất, là nguyên nhân, nguồn gốc khách quan của cảm giác.<\/li><li>Cảm giác, tư duy, ý thức chỉ là sự phản ánh của vật chất: Con người có thể &quot;chép lại, chụp lại, phản ánh&quot; hiện thực khách quan. Điều này khẳng định con người có khả năng nhận thức được thế giới vật chất khách quan.<\/li><\/ul>",
+    "image": "assets/images/slide16_lenin_definition.jpg",
+    "navCategory": 2
+  },
+  {
+    "region": "Ý nghĩa phương pháp luận",
+    "title": [
+      "Ý NGHĨA",
+      "ĐỊNH NGHĨA"
+    ],
+    "description": "Định nghĩa vật chất có ý nghĩa đối với triết học, khoa học tự nhiên, khoa học xã hội và hoạt động thực tiễn.",
+    "badge": "Trang 20/33 • Slide nguồn 20",
+    "modalHeading": "Ý NGHĨA CỦA ĐỊNH NGHĨA VẬT CHẤT",
+    "modalContent": "<p>Ý NGHĨA CỦA ĐỊNH NGHĨA VẬT CHẤT<\/p>",
+    "image": "assets/images/slide01_cover.jpg",
+    "navCategory": 3
+  },
+  {
+    "region": "Đối với triết học",
+    "title": [
+      "ĐỐI VỚI",
+      "TRIẾT HỌC"
+    ],
+    "description": "Giải quyết hai mặt vấn đề cơ bản của triết học và khắc phục hạn chế của chủ nghĩa duy vật trước Marx.",
+    "badge": "Trang 21/33 • Slide nguồn 21",
+    "modalHeading": "ĐỐI VỚI TRIẾT HỌC",
+    "modalContent": "<h3>Giải quyết triệt để hai mặt vấn đề cơ bản của triết học:<\/h3>\n<ul><li>Mặt thứ nhất (Bản thể luận): Khẳng định vật chất có trước, ý thức có sau, vật chất quyết định ý thức =&gt; phủ định hoàn toàn chủ nghĩa duy tâm.<\/li><li>Mặt thứ hai (Nhận thức luận): Khẳng định ý thức có thể phản ánh đúng hiện thực khách quan. =&gt; Phủ nhận Thuyết bất khả tri và chủ nghĩa hoài nghi.<\/li><\/ul>\n<h3>Khắc phục triệt để các hạn chế của chủ nghĩa duy vật trước Marx:<\/h3>\n<ul><li>CNDV cổ đại đồng nhất vật chất với vật thể cụ thể (nước, lửa, nguyên tử...).<\/li><li>CNDV cận đại đồng nhất vật chất với khối lượng và mang tính siêu hình, máy móc.<ul><li>Định nghĩa của Lênin đã chỉ ra: Vật chất là thực tại khách quan, không phụ thuộc vào trạng thái cấu tạo hay khối lượng cụ thể nào.<\/li><\/ul><\/li><\/ul>",
+    "image": "assets/images/slide09_electron_relativity.jpg",
+    "navCategory": 3
+  },
+  {
+    "region": "Đối với khoa học tự nhiên",
+    "title": [
+      "KHOA HỌC",
+      "TỰ NHIÊN"
+    ],
+    "description": "Làm rõ cuộc khủng hoảng vật lý học và định hướng khoa học tiếp tục khám phá các dạng tồn tại mới của vật chất.",
+    "badge": "Trang 22/33 • Slide nguồn 25",
+    "modalHeading": "ĐỐI VỚI KHOA HỌC TỰ NHIÊN",
+    "modalContent": "<h3>Chấm dứt &quot;cuộc khủng hoảng vật lý học&quot; đầu thế kỷ XX:<\/h3>\n<ul><li>Giúp các nhà khoa học hiểu đúng rằng: Khi phát hiện ra điện tử, hiện tượng phóng xạ, hay khối lượng biến thiên theo vận tốc... chỉ có giới hạn hiểu biết cũ của con người về nguyên tử bị phá vỡ, chứ vật chất không hề mất đi.<\/li><\/ul>\n<h3>Định hướng cho khoa học tiếp tục phát triển:<\/h3>\n<ul><li>Định nghĩa đóng vai trò là &quot;kim chỉ nam&quot;, cổ vũ các nhà khoa học tự nhiên tự tin đi sâu khám phá các hạt vi mô, các trường vật chất mới, không gian vũ trụ... mà không bao giờ lo sợ rơi vào cái bẫy &quot;vật chất tiêu tan&quot; của chủ nghĩa duy tâm.<\/li><\/ul>",
+    "image": "assets/images/slide08_xray_radioactivity.jpg",
+    "navCategory": 3
+  },
+  {
+    "region": "Đối với khoa học xã hội",
+    "title": [
+      "KHOA HỌC",
+      "XÃ HỘI"
+    ],
+    "description": "Đặt nền tảng cho duy vật lịch sử; hoạt động thực tiễn phải xuất phát từ hiện thực và tôn trọng quy luật khách quan.",
+    "badge": "Trang 23/33 • Slide nguồn 26",
+    "modalHeading": "ĐỐI VỚI KHOA HỌC XÃ HỘI",
+    "modalContent": "<h3>Đặt nền tảng lý luận để xây dựng Chủ nghĩa duy vật lịch sử:<\/h3>\n<ul><li>Giúp nhận diện được: Cái gì là vật chất trong đời sống xã hội? Đó chính là tồn tại xã hội, phương thức sản xuất, điều kiện kinh tế, quy luật khách quan.<\/li><li>Bác bỏ quan điểm duy tâm về lịch sử, Khẳng định nguyên nhân sâu xa của mọi biến đổi lịch sử bắt nguồn từ sự phát triển của sản xuất vật chất.<\/li><\/ul>\n<h3>Ý nghĩa phương pháp luận trong hoạt động thực tiễn:<\/h3>\n<ul><li>Đòi hỏi con người trong mọi hoạt động (học tập, làm việc, hoạch định chính sách) phải xuất phát từ hiện thực, tôn trọng quy luật khách quan, không được lấy ý muốn chủ quan áp đặt cho thực tế.<\/li><\/ul>",
+    "image": "assets/images/slide35_material_unity.jpg",
+    "navCategory": 3
+  },
+  {
+    "region": "Phương thức tồn tại",
+    "title": [
+      "VẬN ĐỘNG",
+      "& KHÔNG GIAN"
+    ],
+    "description": "Tìm hiểu vận động, đứng im, không gian và thời gian như những phương thức và hình thức tồn tại của vật chất.",
+    "badge": "Trang 24/33 • Slide nguồn 27",
+    "modalHeading": "VẬN ĐỘNG, KHÔNG GIAN, THỜI GIAN",
+    "modalContent": "<p>VẬN ĐỘNG, KHÔNG GIAN, THỜI GIAN<\/p>",
+    "image": "assets/images/slide28_motion.jpg",
+    "navCategory": 4
+  },
+  {
+    "region": "Vận động của vật chất",
+    "title": [
+      "VẬN ĐỘNG",
+      "LÀ GÌ?"
+    ],
+    "description": "Theo Ăngghen, vận động bao gồm mọi sự biến đổi, là phương thức tồn tại cố hữu, tuyệt đối và vĩnh viễn của vật chất.",
+    "badge": "Trang 25/33 • Slide nguồn 28",
+    "modalHeading": "VẬN ĐỘNG LÀ GÌ?",
+    "modalContent": "<p>Định nghĩa (theo Ăngghen):<br>Vận động là phương thức tồn tại của vật chất, bao gồm mọi sự biến đổi nói chung — từ dịch chuyển vị trí đơn giản đến tư duy.<\/p>\n<ul><li>Vận động là thuộc tính cố hữu, gắn liền với vật chất — không tách rời vật chất<\/li><li>Vận động là tuyệt đối, vĩnh viễn — không có vật chất nào tồn tại mà không vận động (kể cả cái tưởng như &quot;đứng yên&quot;)<\/li><li>Vận động không do ai sinh ra, cũng không mất đi — chỉ chuyển hoá từ dạng này sang dạng khác<\/li><\/ul>\n<p>Ví dụ: Trái Đất quay quanh Mặt Trời, đến các thiên hà dịch chuyển trong vũ trụ — tất cả đều là vận động ở các cấp độ khác nhau<\/p>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 290\" role=\"img\" aria-label=\"Sơ đồ các hành tinh chuyển động quanh Mặt Trời\"><rect width=\"600\" height=\"290\" rx=\"12\" fill=\"#101827\"/><g fill=\"none\" stroke=\"#54677e\" stroke-width=\"1\"><circle cx=\"300\" cy=\"145\" r=\"28\"/><circle cx=\"300\" cy=\"145\" r=\"42\"/><circle cx=\"300\" cy=\"145\" r=\"57\"/><circle cx=\"300\" cy=\"145\" r=\"72\"/><circle cx=\"300\" cy=\"145\" r=\"87\"/><circle cx=\"300\" cy=\"145\" r=\"102\"/><circle cx=\"300\" cy=\"145\" r=\"117\"/><circle cx=\"300\" cy=\"145\" r=\"132\"/><\/g><circle cx=\"300\" cy=\"145\" r=\"16\" fill=\"#f5b731\"/><g stroke=\"#101827\" stroke-width=\"2\"><circle cx=\"328\" cy=\"145\" r=\"4\" fill=\"#b3ada2\"/><circle cx=\"271\" cy=\"115\" r=\"5\" fill=\"#e0b478\"/><circle cx=\"349\" cy=\"116\" r=\"6\" fill=\"#67b8ef\"/><circle cx=\"334\" cy=\"208\" r=\"5\" fill=\"#de8165\"/><circle cx=\"213\" cy=\"145\" r=\"10\" fill=\"#d2b28e\"/><circle cx=\"363\" cy=\"65\" r=\"8\" fill=\"#dbcba0\"/><circle cx=\"208\" cy=\"217\" r=\"6\" fill=\"#9adce7\"/><circle cx=\"432\" cy=\"145\" r=\"6\" fill=\"#658fdf\"/><\/g><ellipse cx=\"363\" cy=\"65\" rx=\"15\" ry=\"4\" fill=\"none\" stroke=\"#dbcba0\" transform=\"rotate(-25 363 65)\"/><g fill=\"#f0f2f7\" font-family=\"Arial,sans-serif\" font-size=\"11\"><text x=\"20\" y=\"38\">Thủy tinh<\/text><text x=\"20\" y=\"61\">Kim tinh<\/text><text x=\"20\" y=\"84\">Trái Đất<\/text><text x=\"20\" y=\"107\">Hỏa tinh<\/text><text x=\"490\" y=\"184\">Mộc tinh<\/text><text x=\"490\" y=\"207\">Thổ tinh<\/text><text x=\"490\" y=\"230\">Thiên Vương<\/text><text x=\"490\" y=\"253\">Hải Vương<\/text><text x=\"300\" y=\"175\" text-anchor=\"middle\" fill=\"#f5b731\">Mặt Trời<\/text><\/g><\/svg><figcaption>Hệ Mặt Trời — sơ đồ giản lược về kích thước và khoảng cách.<\/figcaption><\/figure>",
+    "image": "assets/images/slide28_motion.jpg",
+    "navCategory": 4
+  },
+  {
+    "region": "Từ đơn giản đến phức tạp",
+    "title": [
+      "5 HÌNH THỨC",
+      "VẬN ĐỘNG"
+    ],
+    "description": "Cơ học, vật lý, hóa học, sinh học và xã hội: năm hình thức vận động cơ bản từ đơn giản đến phức tạp.",
+    "badge": "Trang 26/33 • Slide nguồn 29",
+    "modalHeading": "5 HÌNH THỨC VẬN ĐỘNG CƠ BẢN",
+    "modalContent": "<h3>Ăngghen phân chia vận động của vật chất thành 5 hình thức cơ bản, từ đơn giản đến phức tạp:<\/h3>\n<ul><li>Vận động cơ học — dịch chuyển vị trí trong không gian<\/li><li>Vận động vật lý — biến đổi nhiệt, điện, ánh sáng, từ trường...<\/li><li>Vận động hoá học — biến đổi các chất qua phản ứng hoá học<\/li><li>Vận động sinh học — trao đổi chất, sinh trưởng của cơ thể sống<\/li><li>Vận động xã hội — biến đổi trong các quá trình lịch sử, xã hội loài người<\/li><\/ul>",
+    "image": "assets/images/slide29_five_forms.jpg",
+    "navCategory": 4
+  },
+  {
+    "region": "Các hình thức vận động",
+    "title": [
+      "VẬN ĐỘNG",
+      "TRONG THỰC TẾ"
+    ],
+    "description": "Các hình thức vận động tồn tại đan xen; hình thức sau chứa hình thức trước nhưng không quy giản về nhau.",
+    "badge": "Trang 27/33 • Slide nguồn 30",
+    "modalHeading": "VÍ DỤ MINH HOẠ",
+    "modalContent": "<p>Cơ học | Vật lý | Hoá học | Sinh học | Xã hội<\/p>\n<figure class=\"lesson-figure\"><div class=\"motion-examples\"><div><svg viewBox=\"0 0 60 60\" aria-hidden=\"true\"><path d=\"M9 40h36M37 31l10 9-10 9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/><circle cx=\"23\" cy=\"23\" r=\"8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/><\/svg><strong>Cơ học<\/strong><\/div><div><svg viewBox=\"0 0 60 60\" aria-hidden=\"true\"><path d=\"M34 7 17 33h13l-4 20 18-29H31z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/><\/svg><strong>Vật lý<\/strong><\/div><div><svg viewBox=\"0 0 60 60\" aria-hidden=\"true\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"><path d=\"m19 19 22 22M19 41l22-22\"/><circle cx=\"15\" cy=\"15\" r=\"8\"/><circle cx=\"45\" cy=\"45\" r=\"8\"/><circle cx=\"15\" cy=\"45\" r=\"8\"/><circle cx=\"45\" cy=\"15\" r=\"8\"/><\/g><\/svg><strong>Hóa học<\/strong><\/div><div><svg viewBox=\"0 0 60 60\" aria-hidden=\"true\"><path d=\"M13 47c-9-21 7-35 35-35 1 29-16 44-35 35Zm1 0 27-28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/><\/svg><strong>Sinh học<\/strong><\/div><div><svg viewBox=\"0 0 60 60\" aria-hidden=\"true\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"><circle cx=\"30\" cy=\"16\" r=\"7\"/><circle cx=\"12\" cy=\"25\" r=\"5\"/><circle cx=\"48\" cy=\"25\" r=\"5\"/><path d=\"M18 50V37c0-11 24-11 24 0v13M3 49V38c0-8 9-10 15-6m39 17V38c0-8-9-10-15-6\"/><\/g><\/svg><strong>Xã hội<\/strong><\/div><\/div><figcaption>Năm hình thức vận động cơ bản.<\/figcaption><\/figure>\n<p>Kết Luận: &quot;5 hình thức trên tồn tại đan xen, hình thức sau chứa hình thức trước nhưng không quy giản về nhau.&quot;<\/p>",
+    "image": "assets/images/slide29_five_forms.jpg",
+    "navCategory": 4
+  },
+  {
+    "region": "Cân bằng và ổn định",
+    "title": [
+      "ĐỨNG IM",
+      "LÀ TƯƠNG ĐỐI"
+    ],
+    "description": "Đứng im là trạng thái vận động trong thế cân bằng, ổn định, chỉ tương đối và tạm thời trong một quan hệ nhất định.",
+    "badge": "Trang 28/33 • Slide nguồn 31",
+    "modalHeading": "ĐỨNG IM",
+    "modalContent": "<p>Đứng im là trạng thái vận động đặc biệt — vận động trong thế cân bằng, ổn định, chưa làm thay đổi căn bản về chất của sự vật.<\/p>\n<ul><li>Đứng im chỉ là tương đối, tạm thời — không phải phủ định vận động, mà là một dạng vận động đặc biệt<\/li><li>Đứng im chỉ xảy ra trong một mối quan hệ, một hình thức vận động nhất định, không phải với mọi quan hệ<\/li><li>Vận động là tuyệt đối, đứng im là tương đối — đứng im chỉ là biểu hiện của trạng thái vận động trong sự ổn định tạm thời<\/li><\/ul>\n<p>Ví dụ: Một cuốn sách đặt yên trên bàn — đứng im so với mặt bàn, nhưng vẫn đang vận động cùng Trái Đất quay quanh trục và quanh Mặt Trời<\/p>",
+    "image": "assets/images/slide28_motion.jpg",
+    "navCategory": 4
+  },
+  {
+    "region": "Hình thức tồn tại của vật chất",
+    "title": [
+      "KHÔNG GIAN",
+      "& THỜI GIAN"
+    ],
+    "description": "Không gian thể hiện quảng tính và kết cấu; thời gian thể hiện độ dài diễn biến, trình tự trước–sau của các quá trình.",
+    "badge": "Trang 29/33 • Slide nguồn 32",
+    "modalHeading": "KHÔNG GIAN, THỜI GIAN LÀ GÌ?",
+    "modalContent": "<p>Không gian:<br>Hình thức tồn tại của vật chất, thể hiện quảng tính (chiều dài, rộng, cao), kết cấu, và sự cùng tồn tại, tách biệt giữa các sự vật.<\/p>\n<p>Thời gian:<br>Hình thức tồn tại của vật chất, thể hiện độ dài diễn biến, trình tự trước–sau của các quá trình.<\/p>\n<p>Không gian và thời gian không tồn tại độc lập, mà gắn liền với vật chất đang vận động — không có vật chất &quot;phi không gian, phi thời gian&quot;.<\/p>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 340\" role=\"img\" aria-label=\"Minh họa nón ánh sáng Minkowski với trục thời gian, hai trục không gian, sự kiện hiện tại và đường thế giới\"><rect width=\"600\" height=\"340\" rx=\"12\" fill=\"#101827\"/><path d=\"M300 170 210 62a90 25 0 0 1 180 0Z\" fill=\"#67b8ef\" fill-opacity=\".2\" stroke=\"#67b8ef\"/><ellipse cx=\"300\" cy=\"62\" rx=\"90\" ry=\"25\" fill=\"none\" stroke=\"#67b8ef\"/><path d=\"M300 170 210 278a90 25 0 0 0 180 0Z\" fill=\"#9fa3e7\" fill-opacity=\".16\" stroke=\"#9fa3e7\"/><ellipse cx=\"300\" cy=\"278\" rx=\"90\" ry=\"25\" fill=\"none\" stroke=\"#9fa3e7\"/><g fill=\"none\" stroke=\"#e5eaf2\" stroke-width=\"1.5\"><path d=\"M120 170h360M300 316V20M190 235l220-130\"/><path d=\"m470 165 10 5-10 5M295 30l5-10 5 10m94 78 11-3-5 10\"/><\/g><path d=\"M278 285q35-62 22-115t24-118\" fill=\"none\" stroke=\"#f5b731\" stroke-width=\"3\" stroke-dasharray=\"6 4\"/><circle cx=\"300\" cy=\"170\" r=\"5\" fill=\"#fff\"/><g font-family=\"Arial,sans-serif\" font-size=\"12\" fill=\"#e5eaf2\"><text x=\"309\" y=\"28\">t — Thời gian<\/text><text x=\"444\" y=\"191\">x — Không gian<\/text><text x=\"410\" y=\"105\">y<\/text><text x=\"323\" y=\"151\">(0, 0, 0)<\/text><text x=\"370\" y=\"38\" fill=\"#67b8ef\">Tương lai<\/text><text x=\"367\" y=\"309\" fill=\"#9fa3e7\">Quá khứ<\/text><text x=\"35\" y=\"304\" fill=\"#f5b731\">Đường thế giới<\/text><\/g><\/svg><figcaption>Nón ánh sáng Minkowski — minh họa hai chiều của mô hình ba chiều với sự kiện hiện tại tại (0, 0, 0).<\/figcaption><\/figure>",
+    "image": "assets/images/slide32_spacetime.jpg",
+    "navCategory": 4
+  },
+  {
+    "region": "Không gian, thời gian và thực tiễn",
+    "title": [
+      "TÍNH CHẤT",
+      "& THỰC TIỄN"
+    ],
+    "description": "Không gian, thời gian gắn liền với vật chất và vận động; thuyết tương đối làm rõ sự co giãn theo vận tốc, trọng trường.",
+    "badge": "Trang 30/33 • Slide nguồn 33",
+    "modalHeading": "TÍNH CHẤT & LIÊN HỆ THỰC TIỄN",
+    "modalContent": "<h3>Tính chất:<\/h3>\n<ul><li>Khách quan — tồn tại độc lập với ý thức con người<\/li><li>Vô tận, vô hạn — không có điểm bắt đầu/kết thúc tuyệt đối<\/li><li>Gắn liền, không tách rời vận động của vật chất<\/li><\/ul>\n<p>Liên hệ thực tiễn:<br>Thuyết tương đối của Einstein đã chứng minh không gian và thời gian không tuyệt đối, cố định như quan niệm cổ điển (Newton), mà co giãn tuỳ theo vận tốc và trọng trường — điều này càng xác nhận luận điểm của triết học Mác-Lênin: không gian, thời gian không tách rời vật chất và vận động.<\/p>",
+    "image": "assets/images/slide32_spacetime.jpg",
+    "navCategory": 4
+  },
+  {
+    "region": "Tính thống nhất của thế giới",
+    "title": [
+      "THẾ GIỚI",
+      "THỐNG NHẤT"
+    ],
+    "description": "Thế giới đa dạng nhưng mọi sự vật, hiện tượng đều có cơ sở vật chất và liên hệ với nhau trong một chỉnh thể.",
+    "badge": "Trang 31/33 • Slide nguồn 34",
+    "modalHeading": "TÍNH THỐNG NHẤT VẬT CHẤT CỦA THẾ GIỚI",
+    "modalContent": "<p>TÍNH THỐNG NHẤT VẬT CHẤT CỦA THẾ GIỚI<\/p>",
+    "image": "assets/images/slide35_material_unity.jpg",
+    "navCategory": 5
+  },
+  {
+    "region": "Một chỉnh thể thống nhất",
+    "title": [
+      "THỐNG NHẤT",
+      "VẬT CHẤT"
+    ],
+    "description": "Chỉ có một thế giới vật chất; các dạng tồn tại của vật chất liên hệ, tác động lẫn nhau và là cơ sở của ý thức.",
+    "badge": "Trang 32/33 • Slide nguồn 35",
+    "modalHeading": "TÍNH THỐNG NHẤT VẬT CHẤT CỦA THẾ GIỚI",
+    "modalContent": "<p>1. Khái niệm ngắn gọn: Thế giới tuy rất đa dạng, phong phú với vô số sự vật và hiện tượng khác nhau, nhưng tất cả đều có nguồn gốc vật chất, tồn tại khách quan và liên hệ với nhau trong một chỉnh thể thống nhất.<\/p>\n<h3>2. Biểu hiện của tính thống nhất vật chất của thế giới:<\/h3>\n<ul><li>Chỉ có một thế giới duy nhất là thế giới vật chất, không tồn tại thế giới siêu nhiên tách rời vật chất.<\/li><li>Mọi sự vật, hiện tượng đều là những dạng tồn tại khác nhau của vật chất, có mối liên hệ và tác động lẫn nhau.<\/li><li>Ý thức là sản phẩm của vật chất có tổ chức cao (bộ não con người), không phải cái có trước và sinh ra thế giới.<\/li><\/ul>",
+    "image": "assets/images/slide35_material_unity.jpg",
+    "navCategory": 5
+  },
+  {
+    "region": "Bài học nhận thức và thực tiễn",
+    "title": [
+      "Ý NGHĨA",
+      "& KẾT LUẬN"
+    ],
+    "description": "Nhận thức và cải tạo thế giới dựa trên quy luật khách quan; tự nhiên, xã hội và tư duy đều có cơ sở vật chất.",
+    "badge": "Trang 33/33 • Slide nguồn 36",
+    "modalHeading": "TÍNH THỐNG NHẤT VẬT CHẤT CỦA THẾ GIỚI",
+    "modalContent": "<h3>1. Ý nghĩa:<\/h3>\n<ul><li>Khẳng định vật chất có trước, ý thức có sau.<\/li><li>Giúp con người nhận thức và cải tạo thế giới dựa trên các quy luật khách quan.<\/li><li>Phê phán các quan điểm duy tâm cho rằng ý thức hay lực lượng siêu nhiên quyết định thế giới.<\/li><\/ul>\n<p>2. Kết luận: Theo triết học Mác - Lênin, thế giới thống nhất ở tính vật chất, nghĩa là mọi sự vật, hiện tượng từ tự nhiên, xã hội đến tư duy của con người đều có cơ sở vật chất và tồn tại trong mối liên hệ khách quan với nhau.<\/p>",
+    "image": "assets/images/slide35_material_unity.jpg",
+    "navCategory": 5
+  }
+];
 
   const duration = 9000;
   const experience = document.getElementById("experience");
@@ -1253,7 +1350,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   const searchInput = document.getElementById("search-input");
   const searchResults = document.getElementById("search-results");
 
-  const bookmarkStorageKey = "quantity-quality-bookmarks";
+  const bookmarkStorageKey = "matter-group1-bookmarks";
   const saved = new Set();
   try {
     const stored = JSON.parse(localStorage.getItem(bookmarkStorageKey) || "[]");
