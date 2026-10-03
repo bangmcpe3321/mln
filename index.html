@@ -51,8 +51,17 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 .cards-shell,.rail-controls,.site-header{cursor:default}
 
 /* Background photo and dark gradient */
-.backdrop,.backdrop-shade{position:absolute;inset:0}
-.backdrop{z-index:-2;overflow:hidden;background:#181c19;pointer-events:none}
+.backdrop-shade{position:absolute;inset:0}
+.backdrop{
+  position:absolute;
+  inset:-24px;
+  z-index:-2;
+  overflow:hidden;
+  background:#181c19;
+  pointer-events:none;
+  transform:translate3d(var(--bg-pan-x, 0px), var(--bg-pan-y, 0px), 0) scale(1.02);
+  will-change:transform;
+}
 .backdrop img{
   display:block;
   width:100%;
@@ -66,8 +75,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 .backdrop-shade{
   z-index:-1;
   pointer-events:none;
-  background:linear-gradient(90deg,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.64) 34%,rgba(0,0,0,0.35) 60%,rgba(0,0,0,0.15) 100%),
-             linear-gradient(0deg,rgba(0,0,0,0.65) 0%,transparent 45%);
+  background:
+    radial-gradient(circle 650px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(245,183,49,0.085), transparent 70%),
+    linear-gradient(90deg,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.64) 34%,rgba(0,0,0,0.35) 60%,rgba(0,0,0,0.15) 100%),
+    linear-gradient(0deg,rgba(0,0,0,0.65) 0%,transparent 45%);
 }
 
 /* Top progress bar */
@@ -224,6 +235,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   letter-spacing:.05em;
   line-height:1.24;
   text-transform:uppercase;
+  cursor:pointer;
+  transition:transform .3s var(--ease),text-shadow .3s var(--ease);
+}
+.hero-title:hover{
+  transform:translateX(5px);
+  text-shadow:0 0 24px rgba(245,183,49,0.3);
 }
 .hero-title span{display:block;white-space:nowrap}
 
@@ -247,9 +264,19 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   border-radius:50%;
   color:#15130e;
   background:var(--amber);
-  transition:transform .2s ease,background-color .2s ease,color .2s ease;
+  transition:transform .28s cubic-bezier(0.34, 1.56, 0.64, 1),
+             box-shadow .25s ease,
+             background-color .2s ease,
+             color .2s ease;
 }
-.bookmark:hover{transform:scale(1.06)}
+.bookmark:hover{
+  transform:translateY(-2px) scale(1.08);
+  box-shadow:0 8px 22px rgba(245,183,49,0.4);
+}
+.bookmark:active{
+  transform:translateY(0) scale(0.95);
+  transition-duration:.1s;
+}
 .bookmark svg{width:16px;height:18px}
 .bookmark[aria-pressed="true"] svg path{fill:currentColor}
 
@@ -269,16 +296,39 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   font-weight:400;
   letter-spacing:.02em;
   line-height:1;
-  transition:all .25s ease;
+  transition:transform .28s cubic-bezier(0.34, 1.56, 0.64, 1),
+             background-color .25s ease,
+             border-color .25s ease,
+             box-shadow .25s ease,
+             color .25s ease;
   cursor:pointer;
 }
-.discover-hint:hover{
-  border-color:rgba(245,183,49,0.5);
-  background:rgba(245,183,49,0.12);
-  color:var(--amber);
+.discover-hint span{
+  display:inline-block;
+  transition:transform .25s ease;
 }
-.hint-icon{width:13px;height:13px;transition:transform .2s ease}
-.discover-hint:hover .hint-icon{transform:translate(2px,-2px)}
+.discover-hint:hover{
+  transform:translateY(-2px);
+  border-color:rgba(245,183,49,0.55);
+  background:rgba(245,183,49,0.14);
+  color:var(--amber);
+  box-shadow:0 8px 24px rgba(0,0,0,0.35),0 0 18px rgba(245,183,49,0.22);
+}
+.discover-hint:hover span{
+  transform:translateX(2px);
+}
+.discover-hint:active{
+  transform:translateY(0) scale(0.97);
+  transition-duration:.1s;
+}
+.hint-icon{
+  width:13px;
+  height:13px;
+  transition:transform .28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.discover-hint:hover .hint-icon{
+  transform:translate(3px,-3px) scale(1.18);
+}
 
 /* Right card rail */
 .destinations{position:absolute;z-index:5;inset:0;pointer-events:none}
@@ -322,9 +372,13 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   box-shadow:0 14px 36px rgba(0,0,0,0.28);
   isolation:isolate;
   cursor:pointer;
-  transition:border-color .2s ease;
+  transition:border-color .25s ease,transform .3s var(--ease),box-shadow .3s var(--ease);
 }
-.destination-card:hover{border-color:rgba(245,183,49,0.5)}
+.destination-card:hover{
+  border-color:rgba(245,183,49,0.6);
+  transform:translateY(-5px);
+  box-shadow:0 20px 42px rgba(0,0,0,0.45),0 0 20px rgba(245,183,49,0.15);
+}
 .card-photo{
   position:absolute;
   z-index:-2;
@@ -1838,6 +1892,70 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     }
 
     openContentModal(activeIndex);
+  });
+
+  // Interactive background parallax & ambient spotlight
+  let targetPanX = 0, targetPanY = 0;
+  let currentPanX = 0, currentPanY = 0;
+  let targetMouseX = 50, targetMouseY = 50;
+  let currentMouseX = 50, currentMouseY = 50;
+  let parallaxActive = false;
+  let bgRafId = null;
+
+  function updateBackgroundParallax() {
+    currentPanX += (targetPanX - currentPanX) * 0.08;
+    currentPanY += (targetPanY - currentPanY) * 0.08;
+    currentMouseX += (targetMouseX - currentMouseX) * 0.08;
+    currentMouseY += (targetMouseY - currentMouseY) * 0.08;
+
+    experience.style.setProperty("--bg-pan-x", `${currentPanX.toFixed(2)}px`);
+    experience.style.setProperty("--bg-pan-y", `${currentPanY.toFixed(2)}px`);
+    experience.style.setProperty("--mouse-x", `${currentMouseX.toFixed(2)}%`);
+    experience.style.setProperty("--mouse-y", `${currentMouseY.toFixed(2)}%`);
+
+    const hasDelta = Math.abs(targetPanX - currentPanX) > 0.02 ||
+                     Math.abs(targetPanY - currentPanY) > 0.02 ||
+                     Math.abs(targetMouseX - currentMouseX) > 0.02 ||
+                     Math.abs(targetMouseY - currentMouseY) > 0.02;
+
+    if (hasDelta || parallaxActive) {
+      bgRafId = requestAnimationFrame(updateBackgroundParallax);
+    } else {
+      bgRafId = null;
+    }
+  }
+
+  function kickParallax() {
+    if (!bgRafId && !motionPreference.matches) {
+      bgRafId = requestAnimationFrame(updateBackgroundParallax);
+    }
+  }
+
+  window.addEventListener("pointermove", (e) => {
+    if (e.pointerType === "touch" || motionPreference.matches) return;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    if (w <= 0 || h <= 0) return;
+
+    const normX = (e.clientX / w) - 0.5;
+    const normY = (e.clientY / h) - 0.5;
+    targetPanX = -normX * 32;
+    targetPanY = -normY * 20;
+
+    targetMouseX = (e.clientX / w) * 100;
+    targetMouseY = (e.clientY / h) * 100;
+
+    parallaxActive = true;
+    kickParallax();
+  }, { passive: true });
+
+  window.addEventListener("pointerleave", () => {
+    targetPanX = 0;
+    targetPanY = 0;
+    targetMouseX = 50;
+    targetMouseY = 50;
+    parallaxActive = false;
+    kickParallax();
   });
 
   autoplayToggle.addEventListener("click", () => {
