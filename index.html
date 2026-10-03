@@ -253,30 +253,32 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 .bookmark svg{width:16px;height:18px}
 .bookmark[aria-pressed="true"] svg path{fill:currentColor}
 
-.discover{
+.discover-hint{
   display:inline-flex;
-  min-height:42px;
+  min-height:38px;
   align-items:center;
-  justify-content:center;
-  gap:12px;
-  padding:0 22px;
-  border:1px solid rgba(255,255,255,0.82);
+  gap:8px;
+  padding:0 16px 0 14px;
+  border:1px solid rgba(255,255,255,0.18);
   border-radius:999px;
-  color:#fff;
-  font-size:11px;
-  font-weight:600;
-  letter-spacing:.09em;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  color:rgba(255,255,255,0.78);
+  font-size:12px;
+  font-weight:400;
+  letter-spacing:.02em;
   line-height:1;
-  text-transform:uppercase;
-  transition:color .2s ease,background-color .2s ease,border-color .2s ease;
+  transition:all .25s ease;
+  cursor:pointer;
 }
-.discover:hover{
-  border-color:var(--amber);
-  color:#19150c;
-  background:var(--amber);
+.discover-hint:hover{
+  border-color:rgba(245,183,49,0.5);
+  background:rgba(245,183,49,0.12);
+  color:var(--amber);
 }
-.discover svg{width:12px;height:12px;transition:transform .2s ease}
-.discover:hover svg{transform:translateX(3px)}
+.hint-icon{width:13px;height:13px;transition:transform .2s ease}
+.discover-hint:hover .hint-icon{transform:translate(2px,-2px)}
 
 /* Right card rail */
 .destinations{position:absolute;z-index:5;inset:0;pointer-events:none}
@@ -712,7 +714,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   .hero-description{max-width:340px;margin:10px 0 16px;font-size:12px;line-height:1.55}
   .hero-actions{gap:10px}
   .bookmark{width:38px;height:38px}
-  .discover{min-height:38px;padding-inline:16px;font-size:10px}
+  .discover-hint{min-height:34px;padding:0 12px 0 10px;font-size:11px;gap:6px}
 
   .cards-shell{
     top:14vh;
@@ -821,10 +823,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
             <path d="M4 2.3h10v15l-5-3.2-5 3.2v-15Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
           </svg>
         </button>
-        <button class="discover" id="discover-location" type="button">
-          Xem nội dung slide
-          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <button class="discover-hint" id="discover-location" type="button" aria-label="Xem nội dung chi tiết slide này">
+          <span>Chạm vào ảnh để xem chi tiết</span>
+          <svg class="hint-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M4.5 11.5L11.5 4.5M11.5 4.5H6.5M11.5 4.5V9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
       </div>
