@@ -1827,7 +1827,6 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     if (transitioning) return;
     if (contentModal.classList.contains("is-open") ||
         searchModal.classList.contains("is-open") ||
-        bookmarksModal.classList.contains("is-open") ||
         header.classList.contains("menu-open")) return;
 
     if (window.getSelection && window.getSelection().toString().trim().length > 0) return;
