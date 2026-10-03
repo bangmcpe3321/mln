@@ -224,6 +224,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   letter-spacing:.05em;
   line-height:1.24;
   text-transform:uppercase;
+  cursor:pointer;
+  transition:transform .3s var(--ease),text-shadow .3s var(--ease);
+}
+.hero-title:hover{
+  transform:translateX(5px);
+  text-shadow:0 0 24px rgba(245,183,49,0.3);
 }
 .hero-title span{display:block;white-space:nowrap}
 
@@ -247,9 +253,19 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   border-radius:50%;
   color:#15130e;
   background:var(--amber);
-  transition:transform .2s ease,background-color .2s ease,color .2s ease;
+  transition:transform .28s cubic-bezier(0.34, 1.56, 0.64, 1),
+             box-shadow .25s ease,
+             background-color .2s ease,
+             color .2s ease;
 }
-.bookmark:hover{transform:scale(1.06)}
+.bookmark:hover{
+  transform:translateY(-2px) scale(1.08);
+  box-shadow:0 8px 22px rgba(245,183,49,0.4);
+}
+.bookmark:active{
+  transform:translateY(0) scale(0.95);
+  transition-duration:.1s;
+}
 .bookmark svg{width:16px;height:18px}
 .bookmark[aria-pressed="true"] svg path{fill:currentColor}
 
@@ -269,16 +285,39 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   font-weight:400;
   letter-spacing:.02em;
   line-height:1;
-  transition:all .25s ease;
+  transition:transform .28s cubic-bezier(0.34, 1.56, 0.64, 1),
+             background-color .25s ease,
+             border-color .25s ease,
+             box-shadow .25s ease,
+             color .25s ease;
   cursor:pointer;
 }
-.discover-hint:hover{
-  border-color:rgba(245,183,49,0.5);
-  background:rgba(245,183,49,0.12);
-  color:var(--amber);
+.discover-hint span{
+  display:inline-block;
+  transition:transform .25s ease;
 }
-.hint-icon{width:13px;height:13px;transition:transform .2s ease}
-.discover-hint:hover .hint-icon{transform:translate(2px,-2px)}
+.discover-hint:hover{
+  transform:translateY(-2px);
+  border-color:rgba(245,183,49,0.55);
+  background:rgba(245,183,49,0.14);
+  color:var(--amber);
+  box-shadow:0 8px 24px rgba(0,0,0,0.35),0 0 18px rgba(245,183,49,0.22);
+}
+.discover-hint:hover span{
+  transform:translateX(2px);
+}
+.discover-hint:active{
+  transform:translateY(0) scale(0.97);
+  transition-duration:.1s;
+}
+.hint-icon{
+  width:13px;
+  height:13px;
+  transition:transform .28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.discover-hint:hover .hint-icon{
+  transform:translate(3px,-3px) scale(1.18);
+}
 
 /* Right card rail */
 .destinations{position:absolute;z-index:5;inset:0;pointer-events:none}
@@ -322,9 +361,13 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   box-shadow:0 14px 36px rgba(0,0,0,0.28);
   isolation:isolate;
   cursor:pointer;
-  transition:border-color .2s ease;
+  transition:border-color .25s ease,transform .3s var(--ease),box-shadow .3s var(--ease);
 }
-.destination-card:hover{border-color:rgba(245,183,49,0.5)}
+.destination-card:hover{
+  border-color:rgba(245,183,49,0.6);
+  transform:translateY(-5px);
+  box-shadow:0 20px 42px rgba(0,0,0,0.45),0 0 20px rgba(245,183,49,0.15);
+}
 .card-photo{
   position:absolute;
   z-index:-2;
