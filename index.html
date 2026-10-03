@@ -51,8 +51,17 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 .cards-shell,.rail-controls,.site-header{cursor:default}
 
 /* Background photo and dark gradient */
-.backdrop,.backdrop-shade{position:absolute;inset:0}
-.backdrop{z-index:-2;overflow:hidden;background:#181c19;pointer-events:none}
+.backdrop-shade{position:absolute;inset:0}
+.backdrop{
+  position:absolute;
+  inset:-24px;
+  z-index:-2;
+  overflow:hidden;
+  background:#181c19;
+  pointer-events:none;
+  transform:translate3d(var(--bg-pan-x, 0px), var(--bg-pan-y, 0px), 0) scale(1.02);
+  will-change:transform;
+}
 .backdrop img{
   display:block;
   width:100%;
@@ -66,8 +75,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 .backdrop-shade{
   z-index:-1;
   pointer-events:none;
-  background:linear-gradient(90deg,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.64) 34%,rgba(0,0,0,0.35) 60%,rgba(0,0,0,0.15) 100%),
-             linear-gradient(0deg,rgba(0,0,0,0.65) 0%,transparent 45%);
+  background:
+    radial-gradient(circle 650px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(245,183,49,0.085), transparent 70%),
+    linear-gradient(90deg,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.64) 34%,rgba(0,0,0,0.35) 60%,rgba(0,0,0,0.15) 100%),
+    linear-gradient(0deg,rgba(0,0,0,0.65) 0%,transparent 45%);
 }
 
 /* Top progress bar */
@@ -1881,6 +1892,70 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     }
 
     openContentModal(activeIndex);
+  });
+
+  // Interactive background parallax & ambient spotlight
+  let targetPanX = 0, targetPanY = 0;
+  let currentPanX = 0, currentPanY = 0;
+  let targetMouseX = 50, targetMouseY = 50;
+  let currentMouseX = 50, currentMouseY = 50;
+  let parallaxActive = false;
+  let bgRafId = null;
+
+  function updateBackgroundParallax() {
+    currentPanX += (targetPanX - currentPanX) * 0.08;
+    currentPanY += (targetPanY - currentPanY) * 0.08;
+    currentMouseX += (targetMouseX - currentMouseX) * 0.08;
+    currentMouseY += (targetMouseY - currentMouseY) * 0.08;
+
+    experience.style.setProperty("--bg-pan-x", `${currentPanX.toFixed(2)}px`);
+    experience.style.setProperty("--bg-pan-y", `${currentPanY.toFixed(2)}px`);
+    experience.style.setProperty("--mouse-x", `${currentMouseX.toFixed(2)}%`);
+    experience.style.setProperty("--mouse-y", `${currentMouseY.toFixed(2)}%`);
+
+    const hasDelta = Math.abs(targetPanX - currentPanX) > 0.02 ||
+                     Math.abs(targetPanY - currentPanY) > 0.02 ||
+                     Math.abs(targetMouseX - currentMouseX) > 0.02 ||
+                     Math.abs(targetMouseY - currentMouseY) > 0.02;
+
+    if (hasDelta || parallaxActive) {
+      bgRafId = requestAnimationFrame(updateBackgroundParallax);
+    } else {
+      bgRafId = null;
+    }
+  }
+
+  function kickParallax() {
+    if (!bgRafId && !motionPreference.matches) {
+      bgRafId = requestAnimationFrame(updateBackgroundParallax);
+    }
+  }
+
+  window.addEventListener("pointermove", (e) => {
+    if (e.pointerType === "touch" || motionPreference.matches) return;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    if (w <= 0 || h <= 0) return;
+
+    const normX = (e.clientX / w) - 0.5;
+    const normY = (e.clientY / h) - 0.5;
+    targetPanX = -normX * 32;
+    targetPanY = -normY * 20;
+
+    targetMouseX = (e.clientX / w) * 100;
+    targetMouseY = (e.clientY / h) * 100;
+
+    parallaxActive = true;
+    kickParallax();
+  }, { passive: true });
+
+  window.addEventListener("pointerleave", () => {
+    targetPanX = 0;
+    targetPanY = 0;
+    targetMouseX = 50;
+    targetMouseY = 50;
+    parallaxActive = false;
+    kickParallax();
   });
 
   autoplayToggle.addEventListener("click", () => {
