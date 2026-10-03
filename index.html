@@ -690,8 +690,17 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   .menu-open .nav-links{display:flex;flex-direction:column}
   .nav-link{padding:12px 0;font-size:11px;text-align:left}
   .nav-link::after{right:auto;width:28px}
-  .menu-toggle{display:grid;gap:5px;margin-left:2px}
+  .menu-toggle{
+    display:grid;
+    width:42px;
+    height:42px;
+    place-items:center;
+    gap:5px;
+    margin-left:2px;
+  }
   .menu-toggle span+span{margin-top:0}
+  .menu-open .menu-toggle span:first-child{transform:translateY(3.25px) rotate(45deg)}
+  .menu-open .menu-toggle span:last-child{transform:translateY(-3.25px) rotate(-45deg)}
 
   .hero-copy{bottom:7vh;left:7vw;width:86vw}
   .region-line{gap:10px;margin-bottom:20px;font-size:14px}
@@ -763,10 +772,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     <nav class="nav-links" id="primary-nav" aria-label="Các phần bài học">
       <button class="nav-link is-active" type="button" data-jump="0">Tổng quan</button>
       <button class="nav-link" type="button" data-jump="6">Lênin</button>
-      <button class="nav-link" type="button" data-jump="16">Thuộc tính</button>
-      <button class="nav-link" type="button" data-jump="19">Ý nghĩa</button>
-      <button class="nav-link" type="button" data-jump="23">Vận động</button>
-      <button class="nav-link" type="button" data-jump="30">Thống nhất</button>
+      <button class="nav-link" type="button" data-jump="15">Thuộc tính</button>
+      <button class="nav-link" type="button" data-jump="17">Ý nghĩa</button>
+      <button class="nav-link" type="button" data-jump="20">Vận động</button>
+      <button class="nav-link" type="button" data-jump="26">Thống nhất</button>
     </nav>
 
     <div class="nav-tools">
@@ -1745,15 +1754,57 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     syncAutoplay();
   });
 
+  // Close mobile menu when clicking outside
+  document.addEventListener("pointerdown", (e) => {
+    if (header.classList.contains("menu-open") && !header.contains(e.target)) {
+      header.classList.remove("menu-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Mở điều hướng");
+      syncAutoplay();
+    }
+  });
+
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
       const jumpIndex = parseInt(link.dataset.jump, 10);
       jumpToSlide(jumpIndex);
       header.classList.remove("menu-open");
       menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Mở điều hướng");
       syncAutoplay();
     });
   });
+
+  // Mobile touch swipe gesture navigation
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+
+  experience.addEventListener("touchstart", (e) => {
+    if (e.touches.length !== 1) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchStartTime = performance.now();
+  }, { passive: true });
+
+  experience.addEventListener("touchend", (e) => {
+    if (e.changedTouches.length !== 1) return;
+    if (contentModal.classList.contains("is-open") ||
+        searchModal.classList.contains("is-open") ||
+        header.classList.contains("menu-open")) return;
+
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
+    const deltaY = e.changedTouches[0].clientY - touchStartY;
+    const duration = performance.now() - touchStartTime;
+
+    if (Math.abs(deltaX) >= 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3 && duration < 800) {
+      if (deltaX < 0) {
+        changeSlide(1);
+      } else {
+        changeSlide(-1);
+      }
+    }
+  }, { passive: true });
 
   autoplayToggle.addEventListener("click", () => {
     userPaused = !userPaused;
