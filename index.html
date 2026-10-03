@@ -62,16 +62,22 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   transform:translate3d(var(--bg-pan-x, 0px), var(--bg-pan-y, 0px), 0) scale(1.02);
   will-change:transform;
 }
+@keyframes cinematicBreathing{
+  0%{transform:scale(1.02) translate3d(0,0,0)}
+  50%{transform:scale(1.065) translate3d(-1%,-0.8%,0)}
+  100%{transform:scale(1.02) translate3d(0,0,0)}
+}
 .backdrop img{
   display:block;
   width:100%;
   height:100%;
   object-fit:cover;
   object-position:center 50%;
-  transform:scale(1.015);
-  transition:opacity .35s ease,transform 7s ease;
+  animation:cinematicBreathing 22s ease-in-out infinite alternate;
+  will-change:transform,opacity;
+  transition:opacity .35s ease;
 }
-.backdrop img.is-switching{opacity:.12;transform:scale(1.055)}
+.backdrop img.is-switching{opacity:.12}
 .backdrop-shade{
   z-index:-1;
   pointer-events:none;
@@ -1957,6 +1963,51 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     parallaxActive = false;
     kickParallax();
   });
+
+  // Mobile device orientation (gyroscope tilt parallax)
+  let gyroInitialized = false;
+
+  function handleOrientation(e) {
+    if (motionPreference.matches) return;
+    const gamma = e.gamma; // [-90, 90] left/right tilt
+    const beta = e.beta;   // [-180, 180] front/back tilt
+    if (gamma === null || beta === null) return;
+
+    // Normal comfortable portrait holding angle: ~45 deg
+    const clampedGamma = Math.max(-30, Math.min(30, gamma));
+    const clampedBeta = Math.max(-25, Math.min(25, beta - 45));
+
+    targetPanX = (clampedGamma / 30) * 20;
+    targetPanY = (clampedBeta / 25) * 14;
+
+    targetMouseX = 50 + (clampedGamma / 30) * 20;
+    targetMouseY = 50 + (clampedBeta / 25) * 20;
+
+    parallaxActive = true;
+    kickParallax();
+  }
+
+  function initGyro() {
+    if (gyroInitialized || motionPreference.matches) return;
+    if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
+      DeviceOrientationEvent.requestPermission()
+        .then((response) => {
+          if (response === "granted") {
+            window.addEventListener("deviceorientation", handleOrientation, { passive: true });
+            gyroInitialized = true;
+          }
+        })
+        .catch(() => {});
+    } else if (typeof window !== "undefined" && "ondeviceorientation" in window) {
+      window.addEventListener("deviceorientation", handleOrientation, { passive: true });
+      gyroInitialized = true;
+    }
+  }
+
+  if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission !== "function") {
+    initGyro();
+  }
+  window.addEventListener("touchstart", initGyro, { once: true, passive: true });
 
   autoplayToggle.addEventListener("click", () => {
     userPaused = !userPaused;
