@@ -294,7 +294,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   will-change:transform;
 }
 .cards-track.is-shifting{
-  transform:translateX(calc(-1 * var(--card-slot)));
+  transform:translateX(calc(-1 * var(--shift-slots, 1) * var(--card-slot)));
 }
 .cards-track.is-shifting,.cards-track.is-restoring{
   transition:transform .8s var(--ease);
@@ -1516,16 +1516,26 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 
   async function animateBackground(index, promoted, previousIndex) {
     if (promoted) {
-      const forward = promoted === track.firstElementChild;
+      const stepIndex = Array.from(track.children).indexOf(promoted) + 1;
       const expansion = prepareExpansion(promoted);
       try {
-        if (forward) {
-          const incomingIndex = (index + 5) % slides.length;
-          track.appendChild(makeCard(slides[incomingIndex], incomingIndex));
+        if (stepIndex > 0) {
+          for (let s = 1; s <= stepIndex; s++) {
+            const incomingIndex = (previousIndex + 5 + s) % slides.length;
+            track.appendChild(makeCard(slides[incomingIndex], incomingIndex));
+          }
+          for (let i = 0; i < stepIndex - 1; i++) {
+            const preceding = track.children[i];
+            if (preceding) {
+              preceding.style.transition = "opacity .3s ease";
+              preceding.style.opacity = "0";
+            }
+          }
+          track.style.setProperty("--shift-slots", String(stepIndex));
           void track.offsetWidth;
           track.classList.add("is-shifting");
         }
-        await Promise.all([waitForMotion(expansion), waitForMotion(track)]);
+        await Promise.all([waitForMotion(expansion), waitForMotion(track, "transform")]);
         activePhoto.src = slides[index].image;
       } finally {
         expansion.remove();
@@ -1542,7 +1552,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
         void track.offsetWidth;
         track.classList.add("is-restoring");
         track.style.removeProperty("transform");
-        await Promise.all([waitForMotion(expansion), waitForMotion(track)]);
+        await Promise.all([waitForMotion(expansion), waitForMotion(track, "transform")]);
       } finally {
         expansion.remove();
       }
@@ -1582,6 +1592,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
       }
     } finally {
       track.classList.remove("is-shifting", "is-restoring");
+      track.style.removeProperty("--shift-slots");
       track.style.removeProperty("transform");
       renderCards();
       setTransitioning(false);
