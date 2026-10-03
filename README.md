@@ -39,6 +39,7 @@ Repository cũng chứa tài liệu dạng văn bản về **quy luật lượng
 ├── assets/                    # Hình ảnh và tài nguyên minh họa
 ├── vat_chat_nhom1_slide.txt   # Nội dung slide Vật chất & Vận động
 ├── slide_luong_chat.txt       # Nội dung slide Quy luật lượng – chất
+├── LICENSE                    # Giấy phép MIT
 └── .gitignore
 ```
 
@@ -90,4 +91,10 @@ Dự án sử dụng các thuộc tính ARIA cho nút điều hướng, modal v�
 
 ## 📄 Giấy phép
 
-Repository hiện chưa khai báo giấy phép cụ thể. Nếu muốn cho phép người khác sử dụng hoặc đóng góp lại mã nguồn, hãy bổ sung một file `LICENSE` phù hợp.
+Mã nguồn của dự án được phát hành theo **MIT License**. Xem đầy đủ điều khoản trong file [`LICENSE`](LICENSE).
+
+MIT cho phép sử dụng, sao chép, chỉnh sửa, phân phối và sử dụng thương mại, với điều kiện giữ lại thông báo bản quyền và nội dung giấy phép.
+
+### Nội dung và tài nguyên bên thứ ba
+
+MIT License chỉ áp dụng cho mã nguồn và tài liệu do dự án sở hữu. Hình ảnh, phông chữ, trích dẫn, sơ đồ hoặc nội dung do bên thứ ba cung cấp có thể có điều khoản riêng. Hãy kiểm tra và tuân thủ giấy phép hoặc yêu cầu ghi công tương ứng trước khi tái phân phối các tài nguyên đó.
