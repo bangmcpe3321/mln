@@ -46,7 +46,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   min-height:520px;
   overflow:hidden;
   background:#111;
+  cursor:pointer;
 }
+.cards-shell,.rail-controls,.site-header{cursor:default}
 
 /* Background photo and dark gradient */
 .backdrop,.backdrop-shade{position:absolute;inset:0}
@@ -751,7 +753,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 </style>
 </head>
 <body>
-<div class="experience" id="experience">
+<div class="experience" id="experience" title="Nhấn vào ảnh để xem nội dung chi tiết">
   <div class="top-progress" aria-hidden="true"><span id="top-progress-bar"></span></div>
   <div class="backdrop" aria-hidden="true"><img id="active-photo" src="assets/images/slide01_cover.jpg" alt="Minh họa các dạng tồn tại và vận động của vật chất"></div>
   <div class="backdrop-shade" aria-hidden="true"></div>
@@ -1790,6 +1792,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
   let touchStartX = 0;
   let touchStartY = 0;
   let touchStartTime = 0;
+  let lastSwipeTime = 0;
 
   experience.addEventListener("touchstart", (e) => {
     if (e.touches.length !== 1) return;
@@ -1809,6 +1812,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     const duration = performance.now() - touchStartTime;
 
     if (Math.abs(deltaX) >= 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3 && duration < 800) {
+      lastSwipeTime = performance.now();
       if (deltaX < 0) {
         changeSlide(1);
       } else {
@@ -1816,6 +1820,24 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
       }
     }
   }, { passive: true });
+
+  // Direct click on hero background or title area opens slide detail modal
+  experience.addEventListener("click", (e) => {
+    if (performance.now() - lastSwipeTime < 400) return;
+    if (transitioning) return;
+    if (contentModal.classList.contains("is-open") ||
+        searchModal.classList.contains("is-open") ||
+        bookmarksModal.classList.contains("is-open") ||
+        header.classList.contains("menu-open")) return;
+
+    if (window.getSelection && window.getSelection().toString().trim().length > 0) return;
+
+    if (e.target.closest("button, a, input, select, textarea, .cards-shell, .rail-controls, .site-header")) {
+      return;
+    }
+
+    openContentModal(activeIndex);
+  });
 
   autoplayToggle.addEventListener("click", () => {
     userPaused = !userPaused;
