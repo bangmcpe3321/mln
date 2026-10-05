@@ -31,6 +31,11 @@ body{
   font-family:var(--body-font);
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
+  animation: deckEntryFade 0.42s ease-out;
+}
+@keyframes deckEntryFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 button,a{color:inherit;font:inherit;-webkit-tap-highlight-color:transparent}
 button{border:0;background:transparent;cursor:pointer}
