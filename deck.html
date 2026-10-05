@@ -1,0 +1,2064 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101310">
+<meta name="description" content="Bài giảng Nhóm 1 về vật chất theo triết học Mác - Lênin: quan điểm lịch sử, định nghĩa của Lênin, vận động, đứng im, không gian, thời gian và tính thống nhất vật chất của thế giới.">
+<title>Vật Chất &amp; Vận Động — Triết Học Mác - Lênin (Nhóm 1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;500;700&subset=vietnamese&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --amber:#F5B731;
+  --white:#ffffff;
+  --muted:rgba(255,255,255,0.72);
+  --ease:cubic-bezier(0.65,0,0.35,1);
+  --card-width:170px;
+  --card-height:265px;
+  --card-gap:22px;
+  --card-slot:192px;
+  --body-font:"Roboto",Arial,sans-serif;
+  --display-font:"Oswald","Bebas Neue",Impact,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;overflow:hidden}
+body{
+  color:var(--white);
+  background:#101310;
+  font-family:var(--body-font);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+button,a{color:inherit;font:inherit;-webkit-tap-highlight-color:transparent}
+button{border:0;background:transparent;cursor:pointer}
+a{text-decoration:none}
+button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offset:4px}
+
+.experience{
+  position:relative;
+  isolation:isolate;
+  width:100vw;
+  height:100vh;
+  height:100dvh;
+  min-height:520px;
+  overflow:hidden;
+  background:#111;
+  cursor:pointer;
+}
+.cards-shell,.rail-controls,.site-header{cursor:default}
+
+/* Background photo and dark gradient */
+.backdrop-shade{position:absolute;inset:0}
+.backdrop{
+  position:absolute;
+  inset:-24px;
+  z-index:-2;
+  overflow:hidden;
+  background:#181c19;
+  pointer-events:none;
+  transform:translate3d(var(--bg-pan-x, 0px), var(--bg-pan-y, 0px), 0) scale(1.02);
+  will-change:transform;
+}
+.backdrop img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 50%;
+  transform:scale(1.015);
+  transition:opacity .35s ease,transform 7s ease;
+}
+.backdrop img.is-switching{opacity:.12;transform:scale(1.055)}
+.backdrop-shade{
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle 650px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(245,183,49,0.085), transparent 70%),
+    linear-gradient(90deg,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.64) 34%,rgba(0,0,0,0.35) 60%,rgba(0,0,0,0.15) 100%),
+    linear-gradient(0deg,rgba(0,0,0,0.65) 0%,transparent 45%);
+}
+
+/* Top progress bar */
+.top-progress{
+  position:absolute;
+  z-index:50;
+  inset:0 0 auto;
+  height:3px;
+  background:rgba(255,255,255,0.13);
+  pointer-events:none;
+}
+.top-progress span,.line-progress{
+  display:block;
+  width:100%;
+  height:100%;
+  background:var(--amber);
+  transform:scaleX(0);
+  transform-origin:left center;
+  will-change:transform;
+}
+
+/* Site header / Navigation */
+.site-header{
+  position:absolute;
+  z-index:15;
+  top:0;
+  left:0;
+  display:flex;
+  width:100%;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:32px 6.2vw 20px;
+}
+.brand{
+  display:inline-flex;
+  flex:0 0 auto;
+  align-items:center;
+  gap:12px;
+  min-width:max-content;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.25em;
+  line-height:1;
+  text-transform:uppercase;
+}
+.brand-mark{width:24px;height:24px;color:var(--amber);flex:0 0 auto}
+.brand-text{display:flex;flex-direction:column;gap:3px}
+.brand-title{color:#fff;letter-spacing:.28em}
+.brand-sub{color:var(--amber);font-size:9px;letter-spacing:.15em;font-weight:400}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:clamp(14px,2vw,30px);
+  margin-left:auto;
+}
+.nav-link{
+  position:relative;
+  padding:8px 0;
+  color:rgba(255,255,255,0.78);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.1em;
+  line-height:1;
+  text-transform:uppercase;
+  white-space:nowrap;
+  transition:color .2s ease;
+}
+.nav-link::after{
+  position:absolute;
+  right:0;
+  bottom:0;
+  left:0;
+  height:2px;
+  background:var(--amber);
+  content:"";
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .22s ease;
+}
+.nav-link:hover,.nav-link.is-active{color:#fff}
+.nav-link.is-active::after{transform:scaleX(1)}
+
+.nav-tools{display:flex;align-items:center;gap:12px}
+.deck-switch-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:5px 11px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:#fff;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:999px;
+  transition:all .2s ease;
+  white-space:nowrap;
+}
+.deck-switch-btn:hover{
+  background:rgba(255,255,255,0.16);
+  border-color:#fff;
+  transform:translateY(-1px);
+}
+.deck-btn-editorial{
+  color:#FF6B78;
+  border-color:rgba(214,32,46,0.45);
+  background:rgba(214,32,46,0.12);
+}
+.deck-btn-editorial:hover{
+  background:#D6202E;
+  color:#fff;
+  border-color:#D6202E;
+  box-shadow:0 0 12px rgba(214,32,46,0.5);
+}
+.icon-button,.menu-toggle{
+  display:grid;
+  width:32px;
+  height:32px;
+  padding:0;
+  place-items:center;
+  border-radius:50%;
+  color:#fff;
+  transition:color .2s ease,background-color .2s ease,transform .2s ease;
+}
+.icon-button:hover{color:var(--amber);background:rgba(255,255,255,0.08);transform:translateY(-1px)}
+.icon-button:disabled{cursor:default;opacity:.6}
+.icon-button svg{width:18px;height:18px}
+.menu-toggle{display:none;width:34px}
+.menu-toggle span{display:block;width:21px;height:1.5px;background:#fff;transition:transform .2s ease}
+.menu-toggle span+span{margin-top:-7px}
+.menu-open .menu-toggle span:first-child{transform:translateY(3px) rotate(45deg)}
+.menu-open .menu-toggle span:last-child{transform:translateY(-4px) rotate(-45deg)}
+
+/* Left content block */
+.hero-copy{
+  position:absolute;
+  z-index:3;
+  bottom:12.5vh;
+  left:8vw;
+  width:min(520px,40vw);
+}
+.hero-copy.is-outgoing,.hero-copy.is-entering{pointer-events:none}
+.copy-part{
+  --stagger:0ms;
+  opacity:1;
+  transform:translateY(0);
+  transition:opacity .34s ease var(--stagger),transform .34s ease var(--stagger);
+}
+.hero-copy.is-outgoing .copy-part,
+.hero-copy.is-entering:not(.is-visible) .copy-part{
+  opacity:0;
+  transform:translateY(20px);
+}
+.hero-copy.is-outgoing .copy-part{transition-duration:.18s;transition-delay:0s}
+[data-copy=region]{--stagger:0ms}
+[data-copy=title]{--stagger:100ms}
+[data-copy=description]{--stagger:200ms}
+[data-copy=actions]{--stagger:300ms}
+
+.region-line{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  margin:0 0 26px;
+  color:rgba(255,255,255,0.85);
+  font-size:16px;
+  font-weight:400;
+  letter-spacing:.04em;
+  line-height:1.2;
+}
+.region-dash{width:20px;height:2px;flex:0 0 auto;background:var(--amber)}
+
+.hero-title{
+  display:flex;
+  flex-direction:column;
+  gap:0.12em;
+  margin:0;
+  color:#fff;
+  font-family:var(--display-font);
+  font-size:clamp(46px,5.8vw,78px);
+  font-weight:700;
+  letter-spacing:.05em;
+  line-height:1.24;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:transform .3s var(--ease),text-shadow .3s var(--ease);
+}
+.hero-title:hover{
+  transform:translateX(5px);
+  text-shadow:0 0 24px rgba(245,183,49,0.3);
+}
+.hero-title span{display:block;white-space:nowrap}
+
+.hero-description{
+  max-width:420px;
+  margin:18px 0 24px;
+  color:var(--muted);
+  font-size:13.5px;
+  font-weight:300;
+  line-height:1.65;
+}
+
+.hero-actions{display:flex;align-items:center;gap:14px}
+.bookmark{
+  display:grid;
+  width:42px;
+  height:42px;
+  flex:0 0 auto;
+  place-items:center;
+  border:1px solid var(--amber);
+  border-radius:50%;
+  color:#15130e;
+  background:var(--amber);
+  transition:transform .28s cubic-bezier(0.34, 1.56, 0.64, 1),
+             box-shadow .25s ease,
+             background-color .2s ease,
+             color .2s ease;
+}
+.bookmark:hover{
+  transform:translateY(-2px) scale(1.08);
+  box-shadow:0 8px 22px rgba(245,183,49,0.4);
+}
+.bookmark:active{
+  transform:translateY(0) scale(0.95);
+  transition-duration:.1s;
+}
+.bookmark svg{width:16px;height:18px}
+.bookmark[aria-pressed="true"] svg path{fill:currentColor}
+
+.discover-hint{
+  display:inline-flex;
+  min-height:38px;
+  align-items:center;
+  gap:8px;
+  padding:0 16px 0 14px;
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:999px;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  color:rgba(255,255,255,0.78);
+  font-size:12px;
+  font-weight:400;
+  letter-spacing:.02em;
+  line-height:1;
+  transition:transform .28s cubic-bezier(0.34, 1.56, 0.64, 1),
+             background-color .25s ease,
+             border-color .25s ease,
+             box-shadow .25s ease,
+             color .25s ease;
+  cursor:pointer;
+}
+.discover-hint span{
+  display:inline-block;
+  transition:transform .25s ease;
+}
+.discover-hint:hover{
+  border-color:rgba(245,183,49,0.55);
+  background:rgba(245,183,49,0.14);
+  color:var(--amber);
+  box-shadow:0 8px 24px rgba(0,0,0,0.35),0 0 18px rgba(245,183,49,0.22);
+}
+.hint-icon{
+  width:13px;
+  height:13px;
+}
+
+/* Right card rail */
+.destinations{position:absolute;z-index:5;inset:0;pointer-events:none}
+.cards-shell{
+  position:absolute;
+  top:43.5%;
+  left:44vw;
+  width:calc(100vw - 44vw + 80px);
+  overflow:visible;
+  pointer-events:auto;
+}
+.cards-track{
+  display:flex;
+  width:max-content;
+  gap:var(--card-gap);
+  transform:translateX(0);
+  will-change:transform;
+}
+.cards-track.is-shifting{
+  transform:translateX(calc(-1 * var(--shift-slots, 1) * var(--card-slot)));
+}
+.cards-track.is-shifting,.cards-track.is-restoring{
+  transition:transform .8s var(--ease);
+}
+
+.card-item{flex:0 0 var(--card-width)}
+.destination-card{
+  position:relative;
+  display:flex;
+  width:var(--card-width);
+  height:var(--card-height);
+  flex:0 0 var(--card-width);
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:0;
+  text-align:left;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:14px;
+  background:#262a27;
+  box-shadow:0 14px 36px rgba(0,0,0,0.28);
+  isolation:isolate;
+  cursor:pointer;
+  transition:border-color .25s ease,transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.destination-card:hover{
+  border-color:rgba(245,183,49,0.6);
+  transform:translateY(-5px);
+  box-shadow:0 20px 42px rgba(0,0,0,0.45),0 0 20px rgba(245,183,49,0.15);
+}
+.card-photo{
+  position:absolute;
+  z-index:-2;
+  inset:0;
+  background-position:center;
+  background-size:cover;
+  transition:transform .55s ease;
+}
+.destination-card::after{
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  background:linear-gradient(180deg,transparent 25%,rgba(0,0,0,0.2) 45%,rgba(0,0,0,0.88) 100%);
+  content:"";
+}
+.destination-card:hover .card-photo{transform:scale(1.06)}
+
+.card-caption{padding:0 15px 17px}
+.card-dash{display:block;width:16px;height:2px;margin-bottom:9px;background:var(--amber)}
+.card-region{
+  display:block;
+  margin-bottom:7px;
+  color:rgba(255,255,255,0.85);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.08em;
+  line-height:1.3;
+  text-transform:uppercase;
+}
+.card-title{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  color:#fff;
+  font-family:var(--display-font);
+  font-size:21px;
+  font-weight:600;
+  letter-spacing:.02em;
+  line-height:1.2;
+  text-transform:uppercase;
+}
+.card-title span{display:block}
+
+/* Below the cards: controls & counter */
+.rail-controls{
+  position:absolute;
+  z-index:7;
+  right:5vw;
+  bottom:7.6vh;
+  left:44vw;
+  display:flex;
+  align-items:center;
+  gap:27px;
+  pointer-events:auto;
+}
+.arrow-group{display:flex;flex:0 0 auto;gap:12px}
+.arrow-button{
+  display:grid;
+  width:58px;
+  height:58px;
+  flex:0 0 auto;
+  place-items:center;
+  border:1px solid rgba(255,255,255,0.68);
+  border-radius:50%;
+  color:#fff;
+  background:transparent;
+  transition:border-color .2s ease,color .2s ease,transform .2s ease;
+}
+.arrow-button:hover{
+  border-color:var(--amber);
+  color:var(--amber);
+  transform:scale(1.05);
+}
+.arrow-button:disabled{cursor:wait;opacity:.6}
+.arrow-button svg{width:18px;height:18px}
+
+.line-progress-track{
+  height:1px;
+  flex:1 1 auto;
+  overflow:hidden;
+  background:rgba(255,255,255,0.35);
+}
+.slide-counter{
+  display:flex;
+  min-width:64px;
+  align-items:baseline;
+  justify-content:flex-end;
+  gap:5px;
+  overflow:hidden;
+  white-space:nowrap;
+}
+.counter-window{display:block;height:48px;overflow:hidden}
+.counter-number{
+  display:block;
+  color:#fff;
+  font-family:var(--display-font);
+  font-size:48px;
+  font-weight:700;
+  line-height:1;
+  transition:opacity .18s ease,transform .18s ease;
+}
+.counter-number.is-out{opacity:0;transform:translateY(-100%)}
+.counter-number.is-in{opacity:0;transform:translateY(100%)}
+.counter-total{color:rgba(255,255,255,0.65);font-size:11px;letter-spacing:.09em;font-weight:500}
+
+/* Photo expansion animation */
+.photo-expansion{
+  position:absolute;
+  z-index:1;
+  top:var(--start-top);
+  left:var(--start-left);
+  width:var(--start-width);
+  height:var(--start-height);
+  overflow:hidden;
+  border-radius:14px;
+  background-color:#181c19;
+  background-position:center;
+  background-size:cover;
+  transform:translateZ(0);
+  transition:top .8s var(--ease),left .8s var(--ease),width .8s var(--ease),height .8s var(--ease),border-radius .8s var(--ease);
+  pointer-events:none;
+}
+.photo-expansion::after{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.64) 34%,rgba(0,0,0,0.35) 60%,rgba(0,0,0,0.15) 100%),
+             linear-gradient(0deg,rgba(0,0,0,0.65) 0%,transparent 45%);
+  content:"";
+}
+.photo-expansion.is-expanded{
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  border-radius:0;
+}
+
+/* Glassmorphic Slide Detail Modal */
+.content-modal{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(8,10,9,0.78);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s ease;
+}
+.content-modal.is-open{opacity:1;pointer-events:auto}
+.modal-box{
+  position:relative;
+  width:min(660px,94vw);
+  max-height:86vh;
+  overflow-y:auto;
+  padding:36px 36px 32px;
+  background:rgba(22,26,23,0.95);
+  border:1px solid rgba(255,255,255,0.16);
+  border-radius:20px;
+  box-shadow:0 24px 64px rgba(0,0,0,0.55);
+  transform:scale(0.96) translateY(18px);
+  transition:transform .3s cubic-bezier(0.16,1,0.3,1);
+}
+.content-modal.is-open .modal-box{transform:scale(1) translateY(0)}
+.modal-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:20px;
+}
+.modal-badge{
+  display:inline-block;
+  padding:4px 12px;
+  border:1px solid var(--amber);
+  border-radius:999px;
+  color:var(--amber);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+.modal-title{
+  margin:0;
+  color:#fff;
+  font-family:var(--display-font);
+  font-size:28px;
+  font-weight:700;
+  line-height:1.3;
+  text-transform:uppercase;
+}
+.modal-close{
+  display:grid;
+  width:36px;
+  height:36px;
+  flex:0 0 auto;
+  place-items:center;
+  border-radius:50%;
+  color:rgba(255,255,255,0.7);
+  background:rgba(255,255,255,0.08);
+  transition:color .2s ease,background-color .2s ease;
+}
+.modal-close:hover{color:#fff;background:rgba(255,255,255,0.18)}
+.modal-body{
+  color:rgba(255,255,255,0.85);
+  font-size:14px;
+  font-weight:300;
+  line-height:1.75;
+}
+.modal-body h3{margin:20px 0 10px;color:var(--amber);font-size:15px;font-weight:500}
+.modal-table-wrap{overflow-x:auto;margin:0 0 18px}
+.modal-table-wrap table{width:100%;min-width:480px;border-collapse:collapse;font-size:12px;line-height:1.6}
+.modal-table-wrap th,.modal-table-wrap td{padding:10px 12px;border:1px solid rgba(255,255,255,.15);text-align:left;vertical-align:top}
+.modal-table-wrap th{color:var(--amber);background:rgba(245,183,49,.08);font-weight:500}
+.lesson-figure{margin:20px 0;padding:12px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(10,15,21,.6)}
+.lesson-figure>svg{display:block;width:100%;height:auto}
+.lesson-figure figcaption{margin-top:10px;color:var(--muted);font-size:11px;line-height:1.6}
+.motion-examples{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;padding:12px 0}
+.motion-examples>div{flex:1 1 82px;text-align:center;color:var(--amber)}
+.motion-examples svg{display:block;width:48px;height:48px;margin:0 auto 10px}
+.motion-examples strong{font-size:12px;font-weight:500;color:var(--white)}
+.modal-body p{margin:0 0 14px}
+.modal-body ul{margin:0 0 16px;padding-left:20px}
+.modal-body li{margin-bottom:8px}
+.modal-body blockquote{
+  margin:18px 0;
+  padding:14px 18px;
+  border-left:3px solid var(--amber);
+  background:rgba(245,183,49,0.08);
+  border-radius:0 8px 8px 0;
+  font-style:italic;
+  color:#fff;
+}
+.modal-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-top:24px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,0.1);
+}
+.modal-nav-button{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 16px;
+  border:1px solid rgba(255,255,255,0.25);
+  border-radius:999px;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  transition:border-color .2s ease,color .2s ease;
+}
+.modal-nav-button:hover{border-color:var(--amber);color:var(--amber)}
+
+/* Search overlay palette */
+.search-modal{
+  position:fixed;
+  inset:0;
+  z-index:110;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:12vh 20px 20px;
+  background:rgba(8,10,9,0.78);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease;
+}
+.search-modal.is-open{opacity:1;pointer-events:auto}
+.search-box{
+  width:min(560px,94vw);
+  background:rgba(22,26,23,0.96);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:18px;
+  box-shadow:0 24px 60px rgba(0,0,0,0.6);
+  overflow:hidden;
+}
+.search-input-wrap{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.search-input-wrap svg{width:18px;height:18px;color:var(--amber);flex:0 0 auto}
+.search-input{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#fff;
+  font-size:14px;
+  outline:none;
+}
+.search-results{
+  max-height:380px;
+  overflow-y:auto;
+  padding:10px 12px;
+}
+.search-item{
+  display:flex;
+  width:100%;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:12px 14px;
+  border-radius:10px;
+  text-align:left;
+  transition:background-color .2s ease;
+}
+.search-item:hover{background:rgba(255,255,255,0.08)}
+.search-item-info{display:flex;flex-direction:column;gap:3px}
+.search-item-region{color:var(--amber);font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+.search-item-title{color:#fff;font-weight:500;font-size:13px}
+.search-item-counter{color:rgba(255,255,255,0.5);font-size:11px;font-family:var(--display-font)}
+
+/* Responsive adjustments */
+@media(max-width:1120px) and (min-width:768px){
+  .site-header{padding-inline:4vw;gap:20px}
+  .brand-text{display:none}
+  .nav-links{gap:14px}
+  .nav-link{font-size:10px}
+  .hero-copy{left:6vw;width:38vw}
+  .hero-title{font-size:clamp(42px,5.5vw,68px)}
+  .cards-shell,.rail-controls{left:46vw}
+  .rail-controls{right:4vw;gap:18px}
+  .arrow-button{width:52px;height:52px}
+  .arrow-group{gap:9px}
+}
+
+@media(max-width:767px){
+  :root{
+    --card-width:122px;
+    --card-height:clamp(150px,22vh,190px);
+    --card-gap:14px;
+    --card-slot:136px;
+  }
+  .backdrop img{object-position:56% center}
+  .site-header{padding:22px 6vw 14px;gap:12px}
+  .brand-text{display:none}
+  .nav-links{
+    position:absolute;
+    top:66px;
+    right:6vw;
+    display:none;
+    width:min(320px,88vw);
+    align-items:stretch;
+    justify-content:flex-start;
+    gap:0;
+    margin:0;
+    padding:8px 16px;
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:12px;
+    background:rgba(12,15,13,0.96);
+    box-shadow:0 16px 40px rgba(0,0,0,0.4);
+    backdrop-filter:blur(16px);
+  }
+  .menu-open .nav-links{display:flex;flex-direction:column}
+  .nav-link{padding:12px 0;font-size:11px;text-align:left}
+  .nav-link::after{right:auto;width:28px}
+  .menu-toggle{
+    display:grid;
+    width:42px;
+    height:42px;
+    place-items:center;
+    gap:5px;
+    margin-left:2px;
+  }
+  .menu-toggle span+span{margin-top:0}
+  .menu-open .menu-toggle span:first-child{transform:translateY(3.25px) rotate(45deg)}
+  .menu-open .menu-toggle span:last-child{transform:translateY(-3.25px) rotate(-45deg)}
+
+  .hero-copy{bottom:7vh;left:7vw;width:86vw}
+  .region-line{gap:10px;margin-bottom:20px;font-size:14px}
+  .region-dash{width:16px}
+  .hero-title{font-size:clamp(34px,10vw,56px);line-height:1.22;gap:0.1em}
+  .hero-title span{white-space:normal;overflow-wrap:anywhere}
+  .hero-description{max-width:340px;margin:10px 0 16px;font-size:12px;line-height:1.55}
+  .hero-actions{gap:10px}
+  .bookmark{width:38px;height:38px}
+  .discover-hint{min-height:34px;padding:0 12px 0 10px;font-size:11px;gap:6px}
+
+  .cards-shell{
+    top:14vh;
+    left:7vw;
+    width:calc(2 * var(--card-width) + var(--card-gap));
+    overflow:hidden;
+  }
+  .destination-card{border-radius:12px}
+  .card-caption{padding:0 10px 10px}
+  .card-dash{width:12px;margin-bottom:6px}
+  .card-region{margin-bottom:4px;font-size:8.5px}
+  .card-title{font-size:17px;line-height:1.2;gap:2px}
+
+  .rail-controls{
+    top:calc(14vh + clamp(150px,22vh,190px) + 16px);
+    right:auto;
+    bottom:auto;
+    left:7vw;
+    width:min(86vw,400px);
+    gap:14px;
+  }
+  .arrow-group{gap:8px}
+  .arrow-button{width:44px;height:44px}
+  .arrow-button svg{width:16px;height:16px}
+  .slide-counter{min-width:48px}
+  .counter-window{height:38px}
+  .counter-number{font-size:38px}
+  .counter-total{font-size:9.5px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    scroll-behavior:auto!important;
+    transition:none!important;
+    animation:none!important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="experience" id="experience" title="Nhấn vào ảnh để xem nội dung chi tiết">
+  <div class="top-progress" aria-hidden="true"><span id="top-progress-bar"></span></div>
+  <div class="backdrop" aria-hidden="true"><img id="active-photo" src="assets/images/slide01_cover.jpg" alt="Minh họa các dạng tồn tại và vận động của vật chất"></div>
+  <div class="backdrop-shade" aria-hidden="true"></div>
+
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#home" aria-label="Vật chất, vận động, không gian và thời gian">
+      <svg class="brand-mark" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <circle cx="14" cy="14" r="10.5" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M3.8 14h20.4M14 3.5c3 2.8 4.5 6.3 4.5 10.5S17 21.7 14 24.5C11 21.7 9.5 18.2 9.5 14S11 6.3 14 3.5Z" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M6.2 7.1c2.2 1.6 4.8 2.4 7.8 2.4s5.6-.8 7.8-2.4M6.2 20.9c2.2-1.6 4.8-2.4 7.8-2.4s5.6.8 7.8 2.4" stroke="currentColor"/>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-title">Vật Chất &amp; Vận Động</span>
+        <span class="brand-sub">Triết Học Mác – Lênin • Nhóm 1</span>
+      </span>
+    </a>
+
+    <nav class="nav-links" id="primary-nav" aria-label="Các phần bài học">
+      <button class="nav-link is-active" type="button" data-jump="0">Tổng quan</button>
+      <button class="nav-link" type="button" data-jump="6">Lênin</button>
+      <button class="nav-link" type="button" data-jump="15">Thuộc tính</button>
+      <button class="nav-link" type="button" data-jump="17">Ý nghĩa</button>
+      <button class="nav-link" type="button" data-jump="20">Vận động</button>
+      <button class="nav-link" type="button" data-jump="26">Thống nhất</button>
+    </nav>
+
+    <div class="nav-tools">
+      <a href="index.html" class="deck-switch-btn" title="Trở về Menu chọn phương thức">
+        <span>☰</span> MENU
+      </a>
+      <a href="editorial.html" class="deck-switch-btn deck-btn-editorial" title="Chuyển sang bản Tạp chí Persona 5">
+        <span>★</span> BẢN EDITORIAL
+      </a>
+      <button class="icon-button" id="autoplay-toggle" type="button" aria-label="Tạm dừng tự động chuyển slide" aria-pressed="false">
+        <svg id="autoplay-pause-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 4h3v12H5zm7 0h3v12h-3z"/></svg>
+        <svg id="autoplay-play-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" style="display:none"><path d="m6 3 11 7-11 7z"/></svg>
+      </button>
+      <button class="icon-button" id="search-trigger" type="button" aria-label="Tìm kiếm nội dung bài giảng">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="8.8" cy="8.8" r="5.8" stroke="currentColor" stroke-width="1.5"/>
+          <path d="m13.2 13.2 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button class="icon-button" id="bookmarks-trigger" type="button" aria-label="Xem các slide đã đánh dấu">
+        <svg viewBox="0 0 18 20" fill="none" aria-hidden="true">
+          <path d="M4 2.3h10v15l-5-3.2-5 3.2v-15Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <button class="menu-toggle" type="button" aria-label="Mở menu điều hướng" aria-expanded="false" aria-controls="primary-nav">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main id="home">
+    <section class="hero-copy is-entering" id="hero-copy" aria-labelledby="hero-title">
+      <p class="region-line copy-part" data-copy="region">
+        <span class="region-dash" aria-hidden="true"></span>
+        <span id="region">Nhóm 1 • Triết Học Mác - Lênin</span>
+      </p>
+      <h1 class="hero-title copy-part" id="hero-title" data-copy="title">
+        <span id="title-line-1">VẬT CHẤT</span>
+        <span id="title-line-2">&amp; VẬN ĐỘNG</span>
+      </h1>
+      <p class="hero-description copy-part" id="description" data-copy="description">
+        Vật chất dưới góc độ triết học; vận động, đứng im, không gian, thời gian và tính thống nhất vật chất của thế giới.
+      </p>
+      <div class="hero-actions copy-part" data-copy="actions">
+        <button class="bookmark" id="bookmark" type="button" aria-label="Lưu slide này" aria-pressed="false">
+          <svg viewBox="0 0 18 20" fill="none" aria-hidden="true">
+            <path d="M4 2.3h10v15l-5-3.2-5 3.2v-15Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="discover-hint" id="discover-location" type="button" aria-label="Xem nội dung chi tiết slide này">
+          <span>Chạm vào ảnh để xem chi tiết</span>
+          <svg class="hint-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M4.5 11.5L11.5 4.5M11.5 4.5H6.5M11.5 4.5V9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <aside class="destinations" aria-label="Các slide tiếp theo">
+      <div class="cards-shell" id="destinations">
+        <div class="cards-track" id="cards-track" role="list" aria-label="Danh sách slide bài giảng"></div>
+      </div>
+      <div class="rail-controls">
+        <div class="arrow-group">
+          <button class="arrow-button" id="previous-slide" type="button" aria-label="Slide trước">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M12.5 4.5 7 10l5.5 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="arrow-button" id="next-slide" type="button" aria-label="Slide sau">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="m7.5 4.5 5.5 5.5-5.5 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="line-progress-track" aria-hidden="true"><span class="line-progress" id="line-progress"></span></div>
+        <div class="slide-counter" aria-live="polite" aria-atomic="true">
+          <span class="counter-window"><span class="counter-number" id="counter-number">01</span></span>
+          <span class="counter-total" id="counter-total">/ 28</span>
+        </div>
+      </div>
+    </aside>
+  </main>
+</div>
+
+<!-- Nội dung chi tiết từ vat_chat_nhom1_slide.txt -->
+<div class="content-modal" id="content-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true" inert>
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <span class="modal-badge" id="modal-badge">Trang 01/28 • Slide 1</span>
+        <h2 class="modal-title" id="modal-title">VẬT CHẤT LÀ GÌ DƯỚI GÓC ĐỘ TRIẾT HỌC?</h2>
+      </div>
+      <button class="modal-close" id="modal-close" type="button" aria-label="Đóng bảng nội dung">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
+          <path d="M12 4 4 12M4 4l8 8"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <button class="modal-nav-button" id="modal-prev" type="button">← Slide trước</button>
+      <button class="modal-nav-button" id="modal-next" type="button">Slide sau →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Search Palette Modal -->
+<div class="search-modal" id="search-modal" role="dialog" aria-modal="true" aria-label="Tìm kiếm bài giảng" aria-hidden="true" inert>
+  <div class="search-box">
+    <div class="search-input-wrap">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="8.8" cy="8.8" r="5.8" stroke="currentColor" stroke-width="1.5"/>
+        <path d="m13.2 13.2 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <input class="search-input" id="search-input" type="search" placeholder="Tìm theo từ khóa (vật chất, Lênin, vận động, đứng im, không gian...)" aria-label="Từ khóa tìm kiếm">
+    </div>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  /* Nội dung 28 slide từ vat_chat_nhom1_slide.txt */
+  const slides = [
+  {
+    "region": "Nhóm 1 • Triết Học Mác - Lênin",
+    "title": [
+      "VẬT CHẤT",
+      "& VẬN ĐỘNG"
+    ],
+    "description": "Vật chất dưới góc độ triết học; vận động, đứng im, không gian, thời gian và tính thống nhất vật chất của thế giới.",
+    "badge": "Trang 01/28 • Slide 1",
+    "modalHeading": "VẬT CHẤT LÀ GÌ DƯỚI GÓC ĐỘ TRIẾT HỌC?",
+    "modalContent": "<p>Chuyên đề Triết học Mác - Lênin: Tổng quan về bản chất của vật chất, các phương thức và hình thức tồn tại của vật chất (vận động, đứng im, không gian, thời gian) và tính thống nhất vật chất của thế giới.</p>",
+    "image": "assets/images/slide01_cover.jpg",
+    "navCategory": 0
+  },
+  {
+    "region": "Quan niệm cổ đại",
+    "title": [
+      "VẬT CHẤT",
+      "THỜI CỔ ĐẠI"
+    ],
+    "description": "Từ nước, lửa và nguyên tử đến Ngũ hành: con người tìm cách giải thích thế giới bằng tự nhiên và lý trí.",
+    "badge": "Trang 02/28 • Slide 2",
+    "modalHeading": "QUAN ĐIỂM VỀ VẬT CHẤT THỜI KỲ CỔ ĐẠI",
+    "modalContent": "<h3>Bối cảnh</h3>\n<ul><li>Khoảng thế kỷ VIII–III trước Công nguyên.</li><li>Triết học hình thành ở Hy Lạp, Ấn Độ và Trung Hoa.</li><li>Con người dần chuyển từ việc giải thích thế giới bằng thần thoại sang giải thích bằng tự nhiên và lý trí.</li></ul>\n<div class=\"modal-table-wrap\"><table><thead><tr><th scope=\"col\">Khu vực / triết gia</th><th scope=\"col\">Quan điểm về vật chất</th></tr></thead><tbody><tr><td>Thales (Hy Lạp)</td><td>Nước là bản nguyên của vạn vật.</td></tr><tr><td>Heraclitus (Hy Lạp)</td><td>Lửa là bản nguyên; mọi sự vật luôn vận động và biến đổi.</td></tr><tr><td>Democritus (Hy Lạp)</td><td>Thế giới cấu tạo từ nguyên tử và khoảng không.</td></tr><tr><td>Trâu Diễn (Trung Hoa cổ đại)</td><td>Thuyết Ngũ hành: Kim, Mộc, Thủy, Hỏa, Thổ là các yếu tố tạo thành và chi phối vạn vật.</td></tr><tr><td>Kanada / Charvaka (Ấn Độ cổ đại)</td><td>Một số trường phái nêu quan niệm về hạt vật chất cực nhỏ, thường được gọi là nguyên tử.</td></tr></tbody></table></div>",
+    "image": "assets/images/slide02_ancient_materialism.jpg",
+    "navCategory": 0
+  },
+  {
+    "region": "Ưu điểm và hạn chế",
+    "title": [
+      "DUY VẬT",
+      "CỔ ĐẠI"
+    ],
+    "description": "Đặt nền móng cho tư duy khoa học và biện chứng, nhưng còn chất phác, trực quan và thiếu thực nghiệm hiện đại.",
+    "badge": "Trang 03/28 • Slide 3",
+    "modalHeading": "ĐẶC ĐIỂM CỦA CHỦ NGHĨA DUY VẬT CỔ ĐẠI",
+    "modalContent": "<h3>Ưu điểm</h3>\n<ul><li>Giải thích tự nhiên bằng chính tự nhiên; hạn chế dựa vào thần thoại hoặc lực lượng siêu nhiên.</li><li>Đặt nền móng cho tư duy khoa học và chủ nghĩa duy vật sau này.</li><li>Có mầm mống tư duy biện chứng, đặc biệt ở Heraclitus khi ông nhấn mạnh sự vận động và biến đổi.</li><li>Tìm kiếm một bản nguyên chung, qua đó nhìn nhận thế giới có tính thống nhất.</li></ul>\n<h3>Hạn chế</h3>\n<ul><li>Còn chất phác, trực quan và phỏng đoán.</li><li>Dựa phần lớn vào quan sát cảm tính; chưa có thực nghiệm khoa học hiện đại.</li><li>Chưa phân biệt rõ vật chất với các dạng tồn tại cụ thể của vật chất.</li><li>Ví dụ: vì nước thiết yếu đối với đời sống, Thales suy ra nước là bản nguyên của mọi vật.</li></ul>",
+    "image": "assets/images/slide03_ancient_debate.jpg",
+    "navCategory": 0
+  },
+  {
+    "region": "Quan niệm cận đại",
+    "title": [
+      "VẬT CHẤT",
+      "THỜI CẬN ĐẠI"
+    ],
+    "description": "Khoa học thế kỷ XVI–XVIII đề cao quan sát, thực nghiệm và toán học; vật chất được gắn với quảng tính và cơ học.",
+    "badge": "Trang 04/28 • Slide 4",
+    "modalHeading": "QUAN ĐIỂM VỀ VẬT CHẤT THỜI KỲ CẬN ĐẠI",
+    "modalContent": "<h3>Bối cảnh lịch sử</h3>\n<ul><li>Từ khoảng thế kỷ XVI đến XVIII.</li><li>Cách mạng khoa học ở châu Âu phát triển: thiên văn học, toán học, cơ học và phương pháp thực nghiệm.</li><li>Sự hình thành, phát triển của chủ nghĩa tư bản làm tăng nhu cầu chinh phục và giải thích tự nhiên.</li><li>Chủ nghĩa duy vật trở thành một công cụ tư tưởng để phê phán thần học và quyền lực của Giáo hội.</li></ul>\n<h3>Một số đại diện và quan điểm</h3>\n<div class=\"modal-table-wrap\"><table><thead><tr><th scope=\"col\">Nhà tư tưởng</th><th scope=\"col\">Quan điểm liên quan đến vật chất</th></tr></thead><tbody><tr><td>Galileo Galilei</td><td>Nghiên cứu tự nhiên bằng quan sát, thực nghiệm và toán học; nhấn mạnh tính quy luật của vận động.</td></tr><tr><td>Francis Bacon</td><td>Đề cao kinh nghiệm và phương pháp quy nạp; tri thức phải dựa vào việc nghiên cứu tự nhiên.</td></tr><tr><td>René Descartes</td><td>Thuộc tính cơ bản của vật chất là quảng tính: có chiều dài, chiều rộng và chiều sâu.</td></tr><tr><td>Baruch Spinoza</td><td>Vật chất và tinh thần là hai thuộc tính của một thực thể duy nhất.</td></tr><tr><td>Julien Offray de La Mettrie</td><td>Giải thích con người theo lối duy vật cơ học; nổi tiếng với hình ảnh &quot;con người là một cỗ máy&quot;.</td></tr></tbody></table></div>",
+    "image": "assets/images/slide04_modern_materialism.jpg",
+    "navCategory": 0
+  },
+  {
+    "region": "Tư duy cơ học và siêu hình",
+    "title": [
+      "DUY VẬT",
+      "CẬN ĐẠI"
+    ],
+    "description": "Có cơ sở khoa học vững hơn, nhưng còn nhìn thế giới như một cỗ máy và quy giản vận động về sự dịch chuyển.",
+    "badge": "Trang 05/28 • Slide 5",
+    "modalHeading": "ĐẶC ĐIỂM CỦA CHỦ NGHĨA DUY VẬT CẬN ĐẠI",
+    "modalContent": "<h3>Ưu điểm</h3>\n<ul><li>Có cơ sở vững hơn từ khoa học tự nhiên, đặc biệt là toán học, thiên văn học và cơ học.</li><li>Đề cao quan sát, thực nghiệm, lý trí và tính quy luật.</li><li>Khẳng định thế giới vật chất tồn tại khách quan, không phụ thuộc vào ý thức con người.</li><li>Góp phần chống thần học, giải phóng nghiên cứu khoa học khỏi sự chi phối của Giáo hội.</li></ul>\n<h3>Hạn chế: tính siêu hình và cơ học</h3>\n<ul><li>Đồng nhất vật chất chủ yếu với những thuộc tính cơ học như khối lượng, hình dạng, vị trí và chuyển động.</li><li>Xem vận động chủ yếu là sự dịch chuyển cơ học trong không gian.</li><li>Có xu hướng nhìn thế giới như một cỗ máy lớn gồm các bộ phận tách rời, vận hành theo quy luật cố định.</li><li>Chưa nhận thức đầy đủ các dạng vận động và phát triển phức tạp: hóa học, sinh học, xã hội.</li></ul>",
+    "image": "assets/images/slide05_mechanical.jpg",
+    "navCategory": 0
+  },
+  {
+    "region": "Lịch sử chủ nghĩa duy vật",
+    "title": [
+      "SO SÁNH",
+      "& KẾT LUẬN"
+    ],
+    "description": "So sánh bối cảnh, cơ sở nhận thức, cách hiểu vật chất, ưu điểm và hạn chế của duy vật cổ đại và cận đại.",
+    "badge": "Trang 06/28 • Slide 6",
+    "modalHeading": "SO SÁNH VÀ KẾT LUẬN",
+    "modalContent": "<div class=\"modal-table-wrap\"><table><thead><tr><th scope=\"col\">Tiêu chí</th><th scope=\"col\">Duy vật cổ đại</th><th scope=\"col\">Duy vật cận đại</th></tr></thead><tbody><tr><td>Bối cảnh</td><td>Xã hội cổ đại; tri thức khoa học còn sơ khai</td><td>Cách mạng khoa học và sự phát triển của xã hội tư bản ở châu Âu</td></tr><tr><td>Cơ sở nhận thức</td><td>Quan sát trực tiếp, trực giác, suy đoán</td><td>Thực nghiệm, toán học, cơ học</td></tr><tr><td>Cách hiểu vật chất</td><td>Nước, lửa, nguyên tử, Ngũ hành…</td><td>Quảng tính, khối lượng, vật thể vận động cơ học</td></tr><tr><td>Ưu điểm</td><td>Chống thần thoại; đặt nền móng duy vật; có mầm mống biện chứng</td><td>Có cơ sở khoa học hơn; góp phần chống thần học và phát triển khoa học</td></tr><tr><td>Hạn chế</td><td>Chất phác, trực quan, chưa kiểm chứng</td><td>Siêu hình, cơ học, chưa thấy đầy đủ sự phát triển và liên hệ</td></tr></tbody></table></div>",
+    "image": "assets/images/slide06_comparison.jpg",
+    "navCategory": 0
+  },
+  {
+    "region": "Khoa học cuối thế kỷ XIX",
+    "title": [
+      "TIA X &",
+      "PHÓNG XẠ"
+    ],
+    "description": "Roentgen phát hiện tia X năm 1895; Becquerel phát hiện phóng xạ ở urani, mở rộng nhận thức về vật chất.",
+    "badge": "Trang 07/28 • Slide 7",
+    "modalHeading": "1. CUỘC CÁCH MẠNG TRONG KHOA HỌC TỰ NHIÊN CUỐI THẾ KỶ XIX – ĐẦU THẾ KỶ XX",
+    "modalContent": "<p>Năm 1895: W.C. Roentgen phát hiện ra tia X.<br>H. Becquerel phát hiện ra hiện tượng phóng xạ của nguyên tố urani.</p>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 240\" role=\"img\" aria-label=\"Minh họa phát hiện Tia X và Phóng xạ Urani\"><rect width=\"600\" height=\"240\" rx=\"12\" fill=\"#101827\"/><rect x=\"25\" y=\"25\" width=\"260\" height=\"190\" rx=\"10\" fill=\"#152032\" stroke=\"#2a3c54\" stroke-width=\"1.5\"/><rect x=\"40\" y=\"38\" width=\"65\" height=\"22\" rx=\"4\" fill=\"#f5b731\" fill-opacity=\"0.15\"/><text x=\"72\" y=\"53\" fill=\"#f5b731\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">1895</text><text x=\"115\" y=\"54\" fill=\"#67b8ef\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">W.C. Roentgen</text><g transform=\"translate(60, 80)\"><rect x=\"0\" y=\"25\" width=\"55\" height=\"30\" rx=\"6\" fill=\"#1f2f47\" stroke=\"#67b8ef\" stroke-width=\"1.5\"/><ellipse cx=\"27\" cy=\"40\" rx=\"14\" ry=\"7\" fill=\"none\" stroke=\"#67b8ef\"/><path d=\"M55 40h45\" stroke=\"#f5b731\" stroke-width=\"2\" stroke-dasharray=\"4 3\"/><path d=\"M100 20l50-10M100 40l60 0M100 60l50 10\" stroke=\"#f5b731\" stroke-width=\"1.5\" stroke-dasharray=\"3 3\"/><rect x=\"165\" y=\"15\" width=\"22\" height=\"50\" rx=\"3\" fill=\"#24344d\" stroke=\"#54677e\"/><text x=\"176\" y=\"80\" fill=\"#9fa3e7\" font-size=\"10\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Phát quang</text></g><text x=\"155\" y=\"185\" fill=\"#f0f2f7\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Phát hiện Tia X (X-Ray)</text><text x=\"155\" y=\"202\" fill=\"#94a3b8\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Tia vô hình xuyên qua vật thể</text><rect x=\"315\" y=\"25\" width=\"260\" height=\"190\" rx=\"10\" fill=\"#152032\" stroke=\"#2a3c54\" stroke-width=\"1.5\"/><rect x=\"330\" y=\"38\" width=\"65\" height=\"22\" rx=\"4\" fill=\"#f5b731\" fill-opacity=\"0.15\"/><text x=\"362\" y=\"53\" fill=\"#f5b731\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">1896</text><text x=\"405\" y=\"54\" fill=\"#4ade80\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">H. Becquerel</text><g transform=\"translate(370, 80)\"><circle cx=\"75\" cy=\"40\" r=\"18\" fill=\"#166534\" stroke=\"#4ade80\" stroke-width=\"2\"/><text x=\"75\" y=\"44\" fill=\"#fff\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">U-238</text><path d=\"M75 18v-20M92 28l20-15M92 52l20 15M75 62v20M58 52l-20 15M58 28l-20-15\" stroke=\"#4ade80\" stroke-width=\"1.8\" stroke-dasharray=\"4 2\"/><circle cx=\"115\" cy=\"10\" r=\"3\" fill=\"#f5b731\"/><circle cx=\"115\" cy=\"70\" r=\"3\" fill=\"#67b8ef\"/><circle cx=\"35\" cy=\"10\" r=\"3\" fill=\"#f87171\"/></g><text x=\"445\" y=\"185\" fill=\"#f0f2f7\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Hiện tượng Phóng xạ</text><text x=\"445\" y=\"202\" fill=\"#94a3b8\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Nguyên tố Urani tự phân rã</text></svg><figcaption>1895–1896: Tia X và hiện tượng phóng xạ mở đầu cuộc cách mạng vật lý hiện đại.</figcaption></figure>",
+    "image": "assets/images/slide08_xray_radioactivity.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Vật lý đầu thế kỷ XX",
+    "title": [
+      "ĐIỆN TỬ &",
+      "TƯƠNG ĐỐI"
+    ],
+    "description": "Điện tử (1897) và thuyết tương đối (1905, 1916) làm thay đổi cách hiểu về nguyên tử, khối lượng và thế giới vật chất.",
+    "badge": "Trang 08/28 • Slide 8",
+    "modalHeading": "1. CUỘC CÁCH MẠNG TRONG KHOA HỌC TỰ NHIÊN CUỐI THẾ KỶ XIX – ĐẦU THẾ KỶ XX",
+    "modalContent": "<p>Năm 1897: J.J. Thomson phát hiện ra điện tử.<br>Năm 1905, 1916: Albert Einstein đưa ra Thuyết tương đối hẹp và Thuyết tương đối rộng.</p>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 240\" role=\"img\" aria-label=\"Minh họa phát hiện Điện tử và Thuyết tương đối\"><rect width=\"600\" height=\"240\" rx=\"12\" fill=\"#101827\"/><rect x=\"25\" y=\"25\" width=\"260\" height=\"190\" rx=\"10\" fill=\"#152032\" stroke=\"#2a3c54\" stroke-width=\"1.5\"/><rect x=\"40\" y=\"38\" width=\"65\" height=\"22\" rx=\"4\" fill=\"#f5b731\" fill-opacity=\"0.15\"/><text x=\"72\" y=\"53\" fill=\"#f5b731\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">1897</text><text x=\"115\" y=\"54\" fill=\"#67b8ef\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">J.J. Thomson</text><g transform=\"translate(155, 115)\"><ellipse cx=\"0\" cy=\"0\" rx=\"45\" ry=\"18\" fill=\"none\" stroke=\"#54677e\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><ellipse cx=\"0\" cy=\"0\" rx=\"18\" ry=\"45\" fill=\"none\" stroke=\"#54677e\" stroke-width=\"1\" stroke-dasharray=\"3 3\"/><circle cx=\"0\" cy=\"0\" r=\"14\" fill=\"#f5b731\" fill-opacity=\"0.8\"/><text x=\"0\" y=\"4\" fill=\"#101827\" font-size=\"9\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">+</text><circle cx=\"36\" cy=\"11\" r=\"5\" fill=\"#67b8ef\"/><text x=\"36\" y=\"14\" fill=\"#fff\" font-size=\"7\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">-</text><circle cx=\"-36\" cy=\"-11\" r=\"5\" fill=\"#67b8ef\"/><text x=\"-36\" y=\"-8\" fill=\"#fff\" font-size=\"7\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">-</text><circle cx=\"11\" cy=\"-36\" r=\"5\" fill=\"#67b8ef\"/><text x=\"11\" y=\"-33\" fill=\"#fff\" font-size=\"7\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">-</text></g><text x=\"155\" y=\"185\" fill=\"#f0f2f7\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Phát hiện Điện tử (e⁻)</text><text x=\"155\" y=\"202\" fill=\"#94a3b8\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Nguyên tử có cấu trúc phân chia</text><rect x=\"315\" y=\"25\" width=\"260\" height=\"190\" rx=\"10\" fill=\"#152032\" stroke=\"#2a3c54\" stroke-width=\"1.5\"/><rect x=\"330\" y=\"38\" width=\"90\" height=\"22\" rx=\"4\" fill=\"#f5b731\" fill-opacity=\"0.15\"/><text x=\"375\" y=\"53\" fill=\"#f5b731\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">1905 • 1916</text><text x=\"430\" y=\"54\" fill=\"#a78bfa\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">A. Einstein</text><g transform=\"translate(445, 115)\"><rect x=\"-70\" y=\"-32\" width=\"140\" height=\"52\" rx=\"8\" fill=\"#1e1b4b\" stroke=\"#818cf8\" stroke-width=\"1.5\"/><text x=\"0\" y=\"4\" fill=\"#f5b731\" font-size=\"22\" font-weight=\"bold\" font-family=\"'Times New Roman',serif\" text-anchor=\"middle\">E = mc²</text><path d=\"M-60 28h120\" stroke=\"#54677e\" stroke-width=\"1\"/><text x=\"0\" y=\"40\" fill=\"#cbd5e1\" font-size=\"9\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">m biến thiên theo vận tốc v</text></g><text x=\"445\" y=\"185\" fill=\"#f0f2f7\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Thuyết Tương Đối</text><text x=\"445\" y=\"202\" fill=\"#94a3b8\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Khối lượng &amp; thời gian không bất biến</text></svg><figcaption>1897–1916: Phát hiện điện tử và Thuyết tương đối làm thay đổi căn bản vật lý cổ điển.</figcaption></figure>",
+    "image": "assets/images/slide09_electron_relativity.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Giới hạn của quan niệm cũ",
+    "title": [
+      "QUAN NIỆM CŨ",
+      "BỊ PHÁ VỠ"
+    ],
+    "description": "Nguyên tử có thể phân chia; khối lượng không bất biến. Quan niệm đồng nhất vật chất với nguyên tử hay khối lượng bị phá vỡ.",
+    "badge": "Trang 09/28 • Slide 9",
+    "modalHeading": "HẬU QUẢ",
+    "modalContent": "<p>Nguyên tử không phải là phần tử nhỏ nhất không thể phân chia, và khối lượng không phải là bất biến.</p>\n<p>Vì vậy đã giáng một đòn chí mạng, làm sụp đổ hoàn toàn quan niệm của chủ nghĩa duy vật siêu hình vốn đồng nhất vật chất với nguyên tử hay khối lượng cơ học suốt nhiều thế kỷ. Quan niệm duy vật siêu hình cũ bị phá sản.</p>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 220\" role=\"img\" aria-label=\"Sơ đồ quan niệm cũ bị phá vỡ\"><rect width=\"600\" height=\"220\" rx=\"12\" fill=\"#101827\"/><g transform=\"translate(30, 25)\"><rect width=\"215\" height=\"170\" rx=\"10\" fill=\"#1e2430\" stroke=\"#f87171\" stroke-width=\"1.5\"/><text x=\"107.5\" y=\"30\" fill=\"#f87171\" font-size=\"12\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">QUAN NIỆM CŨ (SIÊU HÌNH)</text><circle cx=\"107.5\" cy=\"72\" r=\"30\" fill=\"#334155\" stroke=\"#94a3b8\" stroke-width=\"2\"/><text x=\"107.5\" y=\"76\" fill=\"#e2e8f0\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">NGUYÊN TỬ</text><text x=\"28\" y=\"122\" fill=\"#fca5a5\" font-size=\"11\" font-family=\"Arial,sans-serif\">• Hạt bi đặc, nhỏ nhất</text><text x=\"28\" y=\"140\" fill=\"#fca5a5\" font-size=\"11\" font-family=\"Arial,sans-serif\">• Bất khả phân, bất biến</text><text x=\"28\" y=\"158\" fill=\"#fca5a5\" font-size=\"11\" font-family=\"Arial,sans-serif\">• Đồng nhất với vật chất</text></g><g transform=\"translate(255, 92)\"><path d=\"M-5 0h24\" stroke=\"#54677e\" stroke-width=\"1.5\" stroke-dasharray=\"3 2\"/><path d=\"M71 0h24\" stroke=\"#54677e\" stroke-width=\"1.5\" stroke-dasharray=\"3 2\"/><circle cx=\"45\" cy=\"0\" r=\"22\" fill=\"#f5b731\" fill-opacity=\"0.15\" stroke=\"#f5b731\" stroke-width=\"1.5\"/><path d=\"M38 0h14M47 -5l5 5-5 5\" fill=\"none\" stroke=\"#f5b731\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><text x=\"45\" y=\"34\" fill=\"#f5b731\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">ĐỘT PHÁ</text><text x=\"45\" y=\"47\" fill=\"#94a3b8\" font-size=\"9\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">1895–1897</text></g><g transform=\"translate(355, 25)\"><rect width=\"215\" height=\"170\" rx=\"10\" fill=\"#152433\" stroke=\"#4ade80\" stroke-width=\"1.5\"/><text x=\"107.5\" y=\"30\" fill=\"#4ade80\" font-size=\"12\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">HIỆN THỰC KHOA HỌC</text><g transform=\"translate(107.5, 72)\"><ellipse cx=\"0\" cy=\"0\" rx=\"38\" ry=\"14\" fill=\"none\" stroke=\"#38bdf8\" stroke-width=\"1.2\" stroke-dasharray=\"3 2\" transform=\"rotate(-30)\"/><ellipse cx=\"0\" cy=\"0\" rx=\"38\" ry=\"14\" fill=\"none\" stroke=\"#38bdf8\" stroke-width=\"1.2\" stroke-dasharray=\"3 2\" transform=\"rotate(30)\"/><circle cx=\"0\" cy=\"0\" r=\"20\" fill=\"#064e3b\" stroke=\"#34d399\" stroke-width=\"1.5\"/><text x=\"0\" y=\"3.5\" fill=\"#ecfdf5\" font-size=\"8.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Hạt nhân</text><circle cx=\"33\" cy=\"-19\" r=\"4.5\" fill=\"#38bdf8\"/><text x=\"33\" y=\"-16.5\" fill=\"#0f172a\" font-size=\"8\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">-</text><circle cx=\"-33\" cy=\"-19\" r=\"4.5\" fill=\"#38bdf8\"/><text x=\"-33\" y=\"-16.5\" fill=\"#0f172a\" font-size=\"8\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">-</text></g><text x=\"28\" y=\"122\" fill=\"#86efac\" font-size=\"11\" font-family=\"Arial,sans-serif\">• Nguyên tử có cấu trúc</text><text x=\"28\" y=\"140\" fill=\"#86efac\" font-size=\"11\" font-family=\"Arial,sans-serif\">• Phân chia được (e⁻, p...)</text><text x=\"28\" y=\"158\" fill=\"#86efac\" font-size=\"11\" font-family=\"Arial,sans-serif\">• Khối lượng biến thiên</text></g></svg><figcaption>Sự sụp đổ của quan niệm duy vật siêu hình: nguyên tử không phải giới hạn cuối cùng của vật chất.</figcaption></figure>",
+    "image": "assets/images/slide10_atom_splitting.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Khủng hoảng trong vật lý",
+    "title": [
+      "KHỦNG HOẢNG",
+      "THẾ GIỚI QUAN"
+    ],
+    "description": "Tư duy siêu hình khiến nhiều nhà vật lý hoang mang, dao động và hoài nghi khi những hiểu biết cũ bị phá vỡ.",
+    "badge": "Trang 10/28 • Slide 10",
+    "modalHeading": "2. CUỘC KHỦNG HOẢNG VỀ THẾ GIỚI QUAN TRONG VẬT LÝ HỌC VÀ SỰ TẤN CÔNG CỦA CHỦ NGHĨA DUY TÂM",
+    "modalContent": "<p>Do chịu ảnh hưởng nặng nề của phương pháp tư duy siêu hình, khi thấy nguyên tử bị phân rã và khối lượng thay đổi, nhiều nhà vật lý học đã rơi vào hoang mang, dao động, hoài nghi tính đúng đắn của chủ nghĩa duy vật.</p>",
+    "image": "assets/images/slide10_physics_crisis.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Lênin và chủ nghĩa duy tâm",
+    "title": [
+      "VẬT CHẤT",
+      "CÓ BIẾN MẤT?"
+    ],
+    "description": "Lênin khẳng định: vật chất không biến mất; chỉ có giới hạn hiểu biết cũ của con người về vật chất bị vượt qua.",
+    "badge": "Trang 11/28 • Slide 11",
+    "modalHeading": "2. CUỘC KHỦNG HOẢNG VỀ THẾ GIỚI QUAN TRONG VẬT LÝ HỌC VÀ SỰ TẤN CÔNG CỦA CHỦ NGHĨA DUY TÂM",
+    "modalContent": "<p>Chủ nghĩa duy tâm thừa cơ tấn công: Lợi dụng tình hình khủng hoảng này, các nhà triết học duy tâm (đặc biệt là phái Makhơ – chủ nghĩa kinh nghiệm phê phán) lớn tiếng rêu rao rằng: &quot;Vật chất biến mất&quot;, &quot;Nguyên tử bị tiêu tan&quot;, &quot;Hiện thực khách quan đã tiêu tan, chỉ còn lại cảm giác của con người&quot;.</p>\n<p>Lênin đã vạch rõ: Không phải vật chất biến mất, mà chỉ có &#x27;giới hạn hiểu biết cũ&#x27; của con người biến mất.</p>",
+    "image": "assets/images/slide11_matter_vanish.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Bảo vệ thế giới quan duy vật",
+    "title": [
+      "BẢO VỆ",
+      "CHỦ NGHĨA MÁC"
+    ],
+    "description": "Bối cảnh đế quốc chủ nghĩa và phong trào cách mạng đầu thế kỷ XX đặt ra yêu cầu bảo vệ thế giới quan duy vật.",
+    "badge": "Trang 12/28 • Slide 12",
+    "modalHeading": "3. YÊU CẦU BẢO VỆ CHỦ NGHĨA MÁC VÀ TÌM PHƯƠNG PHÁP ĐỊNH NGHĨA MỚI",
+    "modalContent": "<p>Đầu thế kỷ XX, chủ nghĩa tư bản chuyển sang giai đoạn đế quốc chủ nghĩa; mâu thuẫn giai cấp sâu sắc dẫn đến phong trào cách mạng vô sản bùng nổ, mà nước Nga là tâm điểm.</p>",
+    "image": "assets/images/slide12_defend_marxism.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Chủ nghĩa kinh nghiệm phê phán",
+    "title": [
+      "PHÊ PHÁN",
+      "PHÁI MAKHƠ"
+    ],
+    "description": "Phê phán những quan điểm cơ hội, xét lại câu kết với phái Makhơ để tước bỏ thế giới quan duy vật.",
+    "badge": "Trang 13/28 • Slide 13",
+    "modalHeading": "3. YÊU CẦU BẢO VỆ CHỦ NGHĨA MÁC VÀ TÌM PHƯƠNG PHÁP ĐỊNH NGHĨA MỚI",
+    "modalContent": "<p>Một số phần tử cơ hội, xét lại nhân danh chủ nghĩa Mác nhưng lại câu kết với phái Makhơ để tước bỏ thế giới quan duy vật của giai cấp công nhân.</p>",
+    "image": "assets/images/slide13_criticism_machism.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Sự ra đời của định nghĩa",
+    "title": [
+      "TÁC PHẨM",
+      "NĂM 1908"
+    ],
+    "description": "Lênin viết «Chủ nghĩa duy vật và chủ nghĩa kinh nghiệm phê phán», đưa ra định nghĩa triết học mới về vật chất.",
+    "badge": "Trang 14/28 • Slide 14",
+    "modalHeading": "SỰ RA ĐỜI CỦA ĐỊNH NGHĨA VẬT CHẤT",
+    "modalContent": "<p>Như vậy, để giải quyết cuộc khủng hoảng trong vật lý học, đập tan sự công kích của chủ nghĩa duy tâm, và khắc phục sự bế tắc của chủ nghĩa duy vật cũ, năm 1908 V.I. Lênin đã viết tác phẩm &#x27;Chủ nghĩa duy vật và chủ nghĩa kinh nghiệm phê phán&#x27;, chính thức đưa ra một định nghĩa triết học mới, hoàn chỉnh và kinh điển về vật chất.</p>",
+    "image": "assets/images/slide14_manuscript_1908.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Định nghĩa của V.I. Lênin",
+    "title": [
+      "ĐỊNH NGHĨA",
+      "VẬT CHẤT"
+    ],
+    "description": "Vật chất là thực tại khách quan, được cảm giác phản ánh và tồn tại không lệ thuộc vào cảm giác.",
+    "badge": "Trang 15/28 • Slide 15",
+    "modalHeading": "ĐỊNH NGHĨA CỦA VẬT CHẤT",
+    "modalContent": "<blockquote>Định nghĩa: &quot;Vật chất là một phạm trù triết học dùng để chỉ thực tại khách quan được đem lại cho con người trong cảm giác, được cảm giác của chúng ta chép lại, chụp lại, phản ánh và tồn tại không lệ thuộc vào cảm giác.&quot; - V.I Lenin</blockquote>\n<ul><li>Vật chất (Triết học): Là cái chung, vô hạn, vĩnh cửu (không bao giờ mất đi).</li><li>Vật thể/Dạng vật chất (KHTN): Là những cái riêng, cụ thể (như nguyên tử, điện tử, hạt, trường…), có giới hạn, có sinh ra và mất đi để hóa thành cái khác.</li></ul>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 270\" role=\"img\" aria-label=\"Sơ đồ định nghĩa vật chất của Lênin\"><rect width=\"600\" height=\"270\" rx=\"12\" fill=\"#101827\"/><text x=\"300\" y=\"28\" fill=\"#f5b731\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">MÔ HÌNH NHẬN THỨC LUẬN TRONG ĐỊNH NGHĨA LÊNIN</text><g transform=\"translate(30, 48)\"><rect width=\"230\" height=\"90\" rx=\"8\" fill=\"#162235\" stroke=\"#67b8ef\" stroke-width=\"1.5\"/><text x=\"115\" y=\"28\" fill=\"#67b8ef\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">THỰC TẠI KHÁCH QUAN</text><text x=\"115\" y=\"52\" fill=\"#cbd5e1\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Tồn tại độc lập với ý thức</text><text x=\"115\" y=\"70\" fill=\"#cbd5e1\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Nguồn gốc của nhận thức</text></g><g transform=\"translate(260, 83)\"><path d=\"M10 10h60\" stroke=\"#f5b731\" stroke-width=\"2.5\"/><polygon points=\"70,5 80,10 70,15\" fill=\"#f5b731\"/><text x=\"45\" y=\"-2\" fill=\"#f5b731\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">TÁC ĐỘNG</text><text x=\"45\" y=\"26\" fill=\"#94a3b8\" font-size=\"9\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">giác quan</text></g><g transform=\"translate(340, 48)\"><rect width=\"230\" height=\"90\" rx=\"8\" fill=\"#241b35\" stroke=\"#a78bfa\" stroke-width=\"1.5\"/><text x=\"115\" y=\"28\" fill=\"#a78bfa\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Ý THỨC / CẢM GIÁC</text><text x=\"115\" y=\"52\" fill=\"#cbd5e1\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Chép lại, chụp lại, phản ánh</text><text x=\"115\" y=\"70\" fill=\"#cbd5e1\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Hình ảnh chủ quan của TGKQ</text></g><g transform=\"translate(30, 155)\"><rect width=\"260\" height=\"95\" rx=\"8\" fill=\"#13271f\" stroke=\"#34d399\" stroke-width=\"1.5\"/><text x=\"130\" y=\"26\" fill=\"#34d399\" font-size=\"12\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">VẬT CHẤT (Triết học)</text><text x=\"130\" y=\"48\" fill=\"#e2e8f0\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Là cái CHUNG, vô hạn, vĩnh cửu</text><text x=\"130\" y=\"68\" fill=\"#e2e8f0\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Không sinh ra, không mất đi</text><text x=\"130\" y=\"86\" fill=\"#86efac\" font-size=\"10\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">⇒ Bản chất khách quan bất biến</text></g><g transform=\"translate(310, 155)\"><rect width=\"260\" height=\"95\" rx=\"8\" fill=\"#2d1e2f\" stroke=\"#f472b6\" stroke-width=\"1.5\"/><text x=\"130\" y=\"26\" fill=\"#f472b6\" font-size=\"12\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">VẬT THỂ / DẠNG VẬT CHẤT (KHTN)</text><text x=\"130\" y=\"48\" fill=\"#e2e8f0\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Là cái RIÊNG, cụ thể (nguyên tử, hạt...)</text><text x=\"130\" y=\"68\" fill=\"#e2e8f0\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Hữu hạn, có sinh ra và mất đi</text><text x=\"130\" y=\"86\" fill=\"#fbcfe8\" font-size=\"10\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">⇒ Dạng biểu hiện cụ thể biến đổi</text></g></svg><figcaption>Mô hình phản ánh nhận thức luận và sự phân biệt giữa Vật chất (triết học) với Vật thể (KHTN).</figcaption></figure>",
+    "image": "assets/images/slide16_lenin_definition.jpg",
+    "navCategory": 1
+  },
+  {
+    "region": "Thuộc tính khách quan",
+    "title": [
+      "TỒN TẠI",
+      "KHÁCH QUAN"
+    ],
+    "description": "Vật chất tồn tại độc lập với ý muốn, cảm xúc và ý chí, dù con người đã nhận thức được hay chưa.",
+    "badge": "Trang 16/28 • Slide 16",
+    "modalHeading": "THUỘC TÍNH KHÁCH QUAN",
+    "modalContent": "<ul><li>Tồn tại khách quan: Vật chất là cái có trước, tồn tại độc lập ở bên ngoài, không phụ thuộc vào ý muốn, cảm xúc hay ý chí của con người.</li><li>Bất kể sự nhận thức: Dù con người đã nhận thức được hay chưa nhận thức được thì chúng vẫn âm thầm tồn tại.</li></ul>",
+    "image": "assets/images/slide16_objective_reality.jpg",
+    "navCategory": 2
+  },
+  {
+    "region": "Vật chất và nhận thức",
+    "title": [
+      "VẬT CHẤT",
+      "& Ý THỨC"
+    ],
+    "description": "Vật chất có trước, gây nên cảm giác; cảm giác và ý thức phản ánh hiện thực khách quan mà con người có thể nhận thức.",
+    "badge": "Trang 17/28 • Slide 17",
+    "modalHeading": "MỐI QUAN HỆ VẬT CHẤT – Ý THỨC & KHẢ NĂNG NHẬN THỨC",
+    "modalContent": "<ul><li>Vật chất là cái có trước, gây nên cảm giác ở con người: Khi trực tiếp hoặc gián tiếp tác động lên giác quan con người, vật chất sẽ đem lại cho con người cảm giác, nhận thức. Vật chất là tính thứ nhất, là nguyên nhân, nguồn gốc khách quan của cảm giác.</li><li>Cảm giác, tư duy, ý thức chỉ là sự phản ánh của vật chất: Con người có thể &quot;chép lại, chụp lại, phản ánh&quot; hiện thực khách quan. Điều này khẳng định con người có khả năng nhận thức được thế giới vật chất khách quan.</li></ul>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 230\" role=\"img\" aria-label=\"Mối quan hệ giữa vật chất và ý thức\"><rect width=\"600\" height=\"230\" rx=\"12\" fill=\"#101827\"/><text x=\"300\" y=\"26\" fill=\"#f5b731\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">MỐI QUAN HỆ BIỆN CHỨNG GIỮA VẬT CHẤT VÀ Ý THỨC</text><g transform=\"translate(40, 50)\"><rect width=\"210\" height=\"145\" rx=\"10\" fill=\"#14233a\" stroke=\"#38bdf8\" stroke-width=\"2\"/><rect x=\"15\" y=\"15\" width=\"180\" height=\"26\" rx=\"5\" fill=\"#0284c7\"/><text x=\"105\" y=\"32\" fill=\"#fff\" font-size=\"12\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">VẬT CHẤT (Tính thứ nhất)</text><text x=\"105\" y=\"66\" fill=\"#e0f2fe\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Là cái có trước, cái gốc</text><text x=\"105\" y=\"86\" fill=\"#e0f2fe\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Tồn tại khách quan</text><text x=\"105\" y=\"106\" fill=\"#e0f2fe\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Quyết định nội dung ý thức</text><text x=\"105\" y=\"128\" fill=\"#38bdf8\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">THỰC TẠI GỐC</text></g><g transform=\"translate(260, 80)\"><path d=\"M0 20h70\" stroke=\"#f5b731\" stroke-width=\"2.5\"/><polygon points=\"70,14 80,20 70,26\" fill=\"#f5b731\"/><text x=\"40\" y=\"12\" fill=\"#f5b731\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">TÁC ĐỘNG</text><path d=\"M80 60h-70\" stroke=\"#4ade80\" stroke-width=\"2\" stroke-dasharray=\"4 3\"/><polygon points=\"10,54 0,60 10,66\" fill=\"#4ade80\"/><text x=\"40\" y=\"52\" fill=\"#4ade80\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">TÁC ĐỘNG TRỞ LẠI</text><text x=\"40\" y=\"74\" fill=\"#94a3b8\" font-size=\"9\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">(qua thực tiễn)</text></g><g transform=\"translate(350, 50)\"><rect width=\"210\" height=\"145\" rx=\"10\" fill=\"#2a1836\" stroke=\"#c084fc\" stroke-width=\"2\"/><rect x=\"15\" y=\"15\" width=\"180\" height=\"26\" rx=\"5\" fill=\"#7e22ce\"/><text x=\"105\" y=\"32\" fill=\"#fff\" font-size=\"12\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Ý THỨC (Tính thứ hai)</text><text x=\"105\" y=\"66\" fill=\"#f3e8ff\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Là cái có sau, phụ thuộc</text><text x=\"105\" y=\"86\" fill=\"#f3e8ff\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Là sự phản ánh thế giới</text><text x=\"105\" y=\"106\" fill=\"#f3e8ff\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">• Có tính năng động sáng tạo</text><text x=\"105\" y=\"128\" fill=\"#c084fc\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">BẢN SAO / PHẢN ÁNH</text></g></svg><figcaption>Mối quan hệ biện chứng: Vật chất quyết định ý thức; ý thức phản ánh năng động, sáng tạo.</figcaption></figure>",
+    "image": "assets/images/slide17_consciousness_reflection.jpg",
+    "navCategory": 2
+  },
+  {
+    "region": "Đối với triết học",
+    "title": [
+      "ĐỐI VỚI",
+      "TRIẾT HỌC"
+    ],
+    "description": "Giải quyết hai mặt vấn đề cơ bản của triết học và khắc phục hạn chế của chủ nghĩa duy vật trước Marx.",
+    "badge": "Trang 18/28 • Slide 18",
+    "modalHeading": "ĐỐI VỚI TRIẾT HỌC",
+    "modalContent": "<h3>Giải quyết triệt để hai mặt vấn đề cơ bản của triết học:</h3>\n<ul><li>Mặt thứ nhất (Bản thể luận): Khẳng định vật chất có trước, ý thức có sau, vật chất quyết định ý thức =&gt; phủ định hoàn toàn chủ nghĩa duy tâm.</li><li>Mặt thứ hai (Nhận thức luận): Khẳng định ý thức có thể phản ánh đúng hiện thực khách quan. =&gt; Phủ nhận Thuyết bất khả tri và chủ nghĩa hoài nghi.</li></ul>\n<h3>Khắc phục triệt để các hạn chế của chủ nghĩa duy vật trước Marx:</h3>\n<ul><li>CNDV cổ đại đồng nhất vật chất với vật thể cụ thể (nước, lửa, nguyên tử...).</li><li>CNDV cận đại đồng nhất vật chất với khối lượng và mang tính siêu hình, máy móc.<ul><li>Định nghĩa của Lênin đã chỉ ra: Vật chất là thực tại khách quan, không phụ thuộc vào trạng thái cấu tạo hay khối lượng cụ thể nào.</li></ul></li></ul>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 240\" role=\"img\" aria-label=\"Giải quyết hai mặt vấn đề cơ bản của triết học\"><rect width=\"600\" height=\"240\" rx=\"12\" fill=\"#101827\"/><rect x=\"160\" y=\"15\" width=\"280\" height=\"34\" rx=\"8\" fill=\"#1e293b\" stroke=\"#f5b731\" stroke-width=\"1.5\"/><text x=\"300\" y=\"36\" fill=\"#f5b731\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">VẤN ĐỀ CƠ BẢN CỦA TRIẾT HỌC</text><path d=\"M240 49v26h-110v20M360 49v26h110v20\" fill=\"none\" stroke=\"#54677e\" stroke-width=\"1.5\"/><g transform=\"translate(30, 95)\"><rect width=\"250\" height=\"120\" rx=\"8\" fill=\"#142534\" stroke=\"#38bdf8\" stroke-width=\"1.5\"/><text x=\"125\" y=\"24\" fill=\"#38bdf8\" font-size=\"12\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">MẶT 1: BẢN THỂ LUẬN</text><text x=\"125\" y=\"42\" fill=\"#94a3b8\" font-size=\"10\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">(Vật chất hay ý thức có trước?)</text><text x=\"125\" y=\"66\" fill=\"#e2e8f0\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Khẳng định: VẬT CHẤT CÓ TRƯỚC</text><rect x=\"25\" y=\"80\" width=\"200\" height=\"26\" rx=\"5\" fill=\"#ef4444\" fill-opacity=\"0.2\" stroke=\"#ef4444\"/><text x=\"125\" y=\"97\" fill=\"#fca5a5\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">BÁC BỎ CHỦ NGHĨA DUY TÂM</text></g><g transform=\"translate(320, 95)\"><rect width=\"250\" height=\"120\" rx=\"8\" fill=\"#201a35\" stroke=\"#a78bfa\" stroke-width=\"1.5\"/><text x=\"125\" y=\"24\" fill=\"#a78bfa\" font-size=\"12\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">MẶT 2: NHẬN THỨC LUẬN</text><text x=\"125\" y=\"42\" fill=\"#94a3b8\" font-size=\"10\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">(Con người có nhận thức được không?)</text><text x=\"125\" y=\"66\" fill=\"#e2e8f0\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Khẳng định: CON NGƯỜI NHẬN THỨC ĐƯỢC</text><rect x=\"20\" y=\"80\" width=\"210\" height=\"26\" rx=\"5\" fill=\"#f59e0b\" fill-opacity=\"0.2\" stroke=\"#f59e0b\"/><text x=\"125\" y=\"97\" fill=\"#fde68a\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">BÁC BỎ THUYẾT BẤT KHẢ TRI</text></g></svg><figcaption>Định nghĩa của Lênin giải quyết triệt để hai mặt của vấn đề cơ bản trong triết học.</figcaption></figure>",
+    "image": "assets/images/slide18_philosophy_triumph.jpg",
+    "navCategory": 3
+  },
+  {
+    "region": "Đối với khoa học tự nhiên",
+    "title": [
+      "KHOA HỌC",
+      "TỰ NHIÊN"
+    ],
+    "description": "Làm rõ cuộc khủng hoảng vật lý học và định hướng khoa học tiếp tục khám phá các dạng tồn tại mới của vật chất.",
+    "badge": "Trang 19/28 • Slide 19",
+    "modalHeading": "ĐỐI VỚI KHOA HỌC TỰ NHIÊN",
+    "modalContent": "<h3>Chấm dứt &quot;cuộc khủng hoảng vật lý học&quot; đầu thế kỷ XX:</h3>\n<ul><li>Giúp các nhà khoa học hiểu đúng rằng: Khi phát hiện ra điện tử, hiện tượng phóng xạ, hay khối lượng biến thiên theo vận tốc... chỉ có giới hạn hiểu biết cũ của con người về nguyên tử bị phá vỡ, chứ vật chất không hề mất đi.</li></ul>\n<h3>Định hướng cho khoa học tiếp tục phát triển:</h3>\n<ul><li>Định nghĩa đóng vai trò là &quot;kim chỉ nam&quot;, cổ vũ các nhà khoa học tự nhiên tự tin đi sâu khám phá các hạt vi mô, các trường vật chất mới, không gian vũ trụ... mà không bao giờ lo sợ rơi vào cái bẫy &quot;vật chất tiêu tan&quot; của chủ nghĩa duy tâm.</li></ul>",
+    "image": "assets/images/slide19_natural_science.jpg",
+    "navCategory": 3
+  },
+  {
+    "region": "Đối với khoa học xã hội",
+    "title": [
+      "KHOA HỌC",
+      "XÃ HỘI"
+    ],
+    "description": "Đặt nền tảng cho duy vật lịch sử; hoạt động thực tiễn phải xuất phát từ hiện thực và tôn trọng quy luật khách quan.",
+    "badge": "Trang 20/28 • Slide 20",
+    "modalHeading": "ĐỐI VỚI KHOA HỌC XÃ HỘI",
+    "modalContent": "<h3>Đặt nền tảng lý luận để xây dựng Chủ nghĩa duy vật lịch sử:</h3>\n<ul><li>Giúp nhận diện được: Cái gì là vật chất trong đời sống xã hội? Đó chính là tồn tại xã hội, phương thức sản xuất, điều kiện kinh tế, quy luật khách quan.</li><li>Bác bỏ quan điểm duy tâm về lịch sử, Khẳng định nguyên nhân sâu xa của mọi biến đổi lịch sử bắt nguồn từ sự phát triển của sản xuất vật chất.</li></ul>\n<h3>Ý nghĩa phương pháp luận trong hoạt động thực tiễn:</h3>\n<ul><li>Đòi hỏi con người trong mọi hoạt động (học tập, làm việc, hoạch định chính sách) phải xuất phát từ hiện thực, tôn trọng quy luật khách quan, không được lấy ý muốn chủ quan áp đặt cho thực tế.</li></ul>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 240\" role=\"img\" aria-label=\"Mô hình Duy vật lịch sử trong khoa học xã hội\"><rect width=\"600\" height=\"240\" rx=\"12\" fill=\"#101827\"/><text x=\"300\" y=\"26\" fill=\"#f5b731\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">NỀN TẢNG DUY VẬT LỊCH SỬ TRONG ĐỜI SỐNG XÃ HỘI</text><g transform=\"translate(60, 45)\"><rect width=\"480\" height=\"65\" rx=\"8\" fill=\"#241b35\" stroke=\"#c084fc\" stroke-width=\"1.5\"/><text x=\"240\" y=\"26\" fill=\"#c084fc\" font-size=\"12\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Ý THỨC XÃ HỘI &amp; THƯỢNG TẦNG KIẾN TRÚC</text><text x=\"240\" y=\"48\" fill=\"#cbd5e1\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Tư tưởng, pháp quyền, chính trị, đạo đức, tôn giáo, triết học...</text></g><g transform=\"translate(300, 110)\"><path d=\"M0 0v22\" stroke=\"#f5b731\" stroke-width=\"2.5\"/><polygon points=\"-6,18 0,26 6,18\" fill=\"#f5b731\"/><text x=\"18\" y=\"15\" fill=\"#f5b731\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">QUYẾT ĐỊNH</text></g><g transform=\"translate(60, 138)\"><rect width=\"480\" height=\"80\" rx=\"8\" fill=\"#13271f\" stroke=\"#34d399\" stroke-width=\"1.5\"/><text x=\"240\" y=\"26\" fill=\"#34d399\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">TỒN TẠI XÃ HỘI &amp; SẢN XUẤT VẬT CHẤT (NỀN TẢNG GỐC)</text><text x=\"240\" y=\"48\" fill=\"#e2e8f0\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Phương thức sản xuất • Điều kiện địa lý • Dân cư • Quy luật khách quan</text><text x=\"240\" y=\"68\" fill=\"#86efac\" font-size=\"10\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">⇒ Hoạt động thực tiễn phải xuất phát từ hiện thực, không chủ quan duy ý chí</text></g></svg><figcaption>Mô hình Duy vật lịch sử: Tồn tại xã hội quyết định ý thức xã hội.</figcaption></figure>",
+    "image": "assets/images/slide20_social_science.jpg",
+    "navCategory": 3
+  },
+  {
+    "region": "Vận động của vật chất",
+    "title": [
+      "VẬN ĐỘNG",
+      "LÀ GÌ?"
+    ],
+    "description": "Theo Ăngghen, vận động bao gồm mọi sự biến đổi, là phương thức tồn tại cố hữu, tuyệt đối và vĩnh viễn của vật chất.",
+    "badge": "Trang 21/28 • Slide 21",
+    "modalHeading": "VẬN ĐỘNG LÀ GÌ?",
+    "modalContent": "<p>Định nghĩa (theo Ăngghen):<br>Vận động là phương thức tồn tại của vật chất, bao gồm mọi sự biến đổi nói chung — từ dịch chuyển vị trí đơn giản đến tư duy.</p>\n<ul><li>Vận động là thuộc tính cố hữu, gắn liền với vật chất — không tách rời vật chất</li><li>Vận động là tuyệt đối, vĩnh viễn — không có vật chất nào tồn tại mà không vận động (kể cả cái tưởng như &quot;đứng yên&quot;)</li><li>Vận động không do ai sinh ra, cũng không mất đi — chỉ chuyển hoá từ dạng này sang dạng khác</li></ul>\n<p>Ví dụ: Trái Đất quay quanh Mặt Trời, đến các thiên hà dịch chuyển trong vũ trụ — tất cả đều là vận động ở các cấp độ khác nhau</p>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 335\" role=\"img\" aria-label=\"Sơ đồ vận động quỹ đạo của 8 hành tinh quanh Mặt Trời\"><style>@keyframes spinCCW { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } } @keyframes spinCW { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } @keyframes sunGlowPulse { 0%, 100% { transform: scale(1); opacity: 0.85; } 50% { transform: scale(1.2); opacity: 1; } } @keyframes moonOrbit { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } } .sun-glow { transform-origin: 300px 166px; animation: sunGlowPulse 3.5s ease-in-out infinite; } .orbit-track { transition: stroke 0.25s ease, stroke-width 0.25s ease, opacity 0.25s ease; } .planet-card { cursor: pointer; } .planet-card rect { transition: stroke 0.25s ease, stroke-width 0.25s ease, fill 0.25s ease, filter 0.25s ease; } .planet-node { cursor: pointer; transition: filter 0.25s ease; } .orbit-group-1 { transform-origin: 300px 166px; animation: spinCCW 5s linear infinite; } .planet-upright-1 { transform-origin: 0 0; animation: spinCW 5s linear infinite; } /* Hover card -> glow box, highlight orbit & planet (NO movement) */ .card-1:hover rect, svg:has(.card-1:hover) .card-1 rect, svg:has(.node-1:hover) .card-1 rect { stroke: #94a3b8; stroke-width: 1.5px; fill: #172433; filter: drop-shadow(0 0 6px #94a3b8); } svg:has(.card-1:hover) .track-1, svg:has(.node-1:hover) .track-1 { stroke: #94a3b8; stroke-width: 2.2px; opacity: 1; filter: drop-shadow(0 0 5px #94a3b8); } svg:has(.card-1:hover) .node-1, svg:has(.node-1:hover) .node-1 { filter: drop-shadow(0 0 8px #94a3b8); } .orbit-group-2 { transform-origin: 300px 166px; animation: spinCCW 8s linear infinite; } .planet-upright-2 { transform-origin: 0 0; animation: spinCW 8s linear infinite; } /* Hover card -> glow box, highlight orbit & planet (NO movement) */ .card-2:hover rect, svg:has(.card-2:hover) .card-2 rect, svg:has(.node-2:hover) .card-2 rect { stroke: #f59e0b; stroke-width: 1.5px; fill: #172433; filter: drop-shadow(0 0 6px #f59e0b); } svg:has(.card-2:hover) .track-2, svg:has(.node-2:hover) .track-2 { stroke: #f59e0b; stroke-width: 2.2px; opacity: 1; filter: drop-shadow(0 0 5px #f59e0b); } svg:has(.card-2:hover) .node-2, svg:has(.node-2:hover) .node-2 { filter: drop-shadow(0 0 8px #f59e0b); } .orbit-group-3 { transform-origin: 300px 166px; animation: spinCCW 12s linear infinite; } .planet-upright-3 { transform-origin: 0 0; animation: spinCW 12s linear infinite; } /* Hover card -> glow box, highlight orbit & planet (NO movement) */ .card-3:hover rect, svg:has(.card-3:hover) .card-3 rect, svg:has(.node-3:hover) .card-3 rect { stroke: #38bdf8; stroke-width: 1.5px; fill: #172433; filter: drop-shadow(0 0 6px #38bdf8); } svg:has(.card-3:hover) .track-3, svg:has(.node-3:hover) .track-3 { stroke: #38bdf8; stroke-width: 2.2px; opacity: 1; filter: drop-shadow(0 0 5px #38bdf8); } svg:has(.card-3:hover) .node-3, svg:has(.node-3:hover) .node-3 { filter: drop-shadow(0 0 8px #38bdf8); } .orbit-group-4 { transform-origin: 300px 166px; animation: spinCCW 17s linear infinite; } .planet-upright-4 { transform-origin: 0 0; animation: spinCW 17s linear infinite; } /* Hover card -> glow box, highlight orbit & planet (NO movement) */ .card-4:hover rect, svg:has(.card-4:hover) .card-4 rect, svg:has(.node-4:hover) .card-4 rect { stroke: #f87171; stroke-width: 1.5px; fill: #172433; filter: drop-shadow(0 0 6px #f87171); } svg:has(.card-4:hover) .track-4, svg:has(.node-4:hover) .track-4 { stroke: #f87171; stroke-width: 2.2px; opacity: 1; filter: drop-shadow(0 0 5px #f87171); } svg:has(.card-4:hover) .node-4, svg:has(.node-4:hover) .node-4 { filter: drop-shadow(0 0 8px #f87171); } .orbit-group-5 { transform-origin: 300px 166px; animation: spinCCW 27s linear infinite; } .planet-upright-5 { transform-origin: 0 0; animation: spinCW 27s linear infinite; } /* Hover card -> glow box, highlight orbit & planet (NO movement) */ .card-5:hover rect, svg:has(.card-5:hover) .card-5 rect, svg:has(.node-5:hover) .card-5 rect { stroke: #fbbf24; stroke-width: 1.5px; fill: #172433; filter: drop-shadow(0 0 6px #fbbf24); } svg:has(.card-5:hover) .track-5, svg:has(.node-5:hover) .track-5 { stroke: #fbbf24; stroke-width: 2.2px; opacity: 1; filter: drop-shadow(0 0 5px #fbbf24); } svg:has(.card-5:hover) .node-5, svg:has(.node-5:hover) .node-5 { filter: drop-shadow(0 0 8px #fbbf24); } .orbit-group-6 { transform-origin: 300px 166px; animation: spinCCW 36s linear infinite; } .planet-upright-6 { transform-origin: 0 0; animation: spinCW 36s linear infinite; } /* Hover card -> glow box, highlight orbit & planet (NO movement) */ .card-6:hover rect, svg:has(.card-6:hover) .card-6 rect, svg:has(.node-6:hover) .card-6 rect { stroke: #e2d9b8; stroke-width: 1.5px; fill: #172433; filter: drop-shadow(0 0 6px #e2d9b8); } svg:has(.card-6:hover) .track-6, svg:has(.node-6:hover) .track-6 { stroke: #e2d9b8; stroke-width: 2.2px; opacity: 1; filter: drop-shadow(0 0 5px #e2d9b8); } svg:has(.card-6:hover) .node-6, svg:has(.node-6:hover) .node-6 { filter: drop-shadow(0 0 8px #e2d9b8); } .orbit-group-7 { transform-origin: 300px 166px; animation: spinCCW 48s linear infinite; } .planet-upright-7 { transform-origin: 0 0; animation: spinCW 48s linear infinite; } /* Hover card -> glow box, highlight orbit & planet (NO movement) */ .card-7:hover rect, svg:has(.card-7:hover) .card-7 rect, svg:has(.node-7:hover) .card-7 rect { stroke: #67e8f9; stroke-width: 1.5px; fill: #172433; filter: drop-shadow(0 0 6px #67e8f9); } svg:has(.card-7:hover) .track-7, svg:has(.node-7:hover) .track-7 { stroke: #67e8f9; stroke-width: 2.2px; opacity: 1; filter: drop-shadow(0 0 5px #67e8f9); } svg:has(.card-7:hover) .node-7, svg:has(.node-7:hover) .node-7 { filter: drop-shadow(0 0 8px #67e8f9); } .orbit-group-8 { transform-origin: 300px 166px; animation: spinCCW 60s linear infinite; } .planet-upright-8 { transform-origin: 0 0; animation: spinCW 60s linear infinite; } /* Hover card -> glow box, highlight orbit & planet (NO movement) */ .card-8:hover rect, svg:has(.card-8:hover) .card-8 rect, svg:has(.node-8:hover) .card-8 rect { stroke: #818cf8; stroke-width: 1.5px; fill: #172433; filter: drop-shadow(0 0 6px #818cf8); } svg:has(.card-8:hover) .track-8, svg:has(.node-8:hover) .track-8 { stroke: #818cf8; stroke-width: 2.2px; opacity: 1; filter: drop-shadow(0 0 5px #818cf8); } svg:has(.card-8:hover) .node-8, svg:has(.node-8:hover) .node-8 { filter: drop-shadow(0 0 8px #818cf8); } .moon-orbit-group { transform-origin: 0 0; animation: moonOrbit 2.5s linear infinite; } @media (prefers-reduced-motion: reduce) { .orbit-group-1, .orbit-group-2, .orbit-group-3, .orbit-group-4, .orbit-group-5, .orbit-group-6, .orbit-group-7, .orbit-group-8, .planet-upright-1, .planet-upright-2, .planet-upright-3, .planet-upright-4, .planet-upright-5, .planet-upright-6, .planet-upright-7, .planet-upright-8, .moon-orbit-group, .sun-glow { animation: none !important; } }</style><defs><radialGradient id=\"sunGlow\" cx=\"50%\" cy=\"50%\" r=\"50%\"><stop offset=\"0%\" stop-color=\"#fff\" stop-opacity=\"0.95\"/><stop offset=\"35%\" stop-color=\"#f59e0b\" stop-opacity=\"0.85\"/><stop offset=\"70%\" stop-color=\"#d97706\" stop-opacity=\"0.3\"/><stop offset=\"100%\" stop-color=\"#b45309\" stop-opacity=\"0\"/></radialGradient><radialGradient id=\"sunDisc\" cx=\"40%\" cy=\"40%\" r=\"60%\"><stop offset=\"0%\" stop-color=\"#fef08a\"/><stop offset=\"60%\" stop-color=\"#f59e0b\"/><stop offset=\"100%\" stop-color=\"#d97706\"/></radialGradient></defs><rect width=\"600\" height=\"335\" rx=\"12\" fill=\"#0d141f\"/><g transform=\"translate(170, 10)\"><rect width=\"260\" height=\"24\" rx=\"12\" fill=\"#131e2c\" stroke=\"#f5b731\" stroke-width=\"1.2\"/><circle cx=\"18\" cy=\"12\" r=\"5\" fill=\"#f5b731\"/><path d=\"M15 12a3 3 0 1 1 4 -2.5\" fill=\"none\" stroke=\"#131e2c\" stroke-width=\"1.2\"/><polygon points=\"19,8 20,11 17,10.5\" fill=\"#131e2c\"/><text x=\"138\" y=\"16\" fill=\"#fcd34d\" font-size=\"10.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">QUỸ ĐẠO VẬN ĐỘNG HỆ MẶT TRỜI</text></g><text x=\"18\" y=\"41\" fill=\"#67b8ef\" font-size=\"8.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" letter-spacing=\"0.4\">HÀNH TINH ĐẤT ĐÁ (VÒNG TRONG)</text><g class=\"planet-card card-1\" transform=\"translate(18, 48)\"><rect width=\"132\" height=\"32\" rx=\"6\" fill=\"#131e2c\" stroke=\"#253549\" stroke-width=\"1\"/><circle cx=\"14\" cy=\"16\" r=\"6\" fill=\"#94a3b8\"/><text x=\"14\" y=\"19\" fill=\"#0f172a\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">1</text><text x=\"26\" y=\"13\" fill=\"#f1f5f9\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">Thủy tinh</text><text x=\"26\" y=\"25\" fill=\"#cbd5e1\" font-size=\"8.5\" font-family=\"Arial,sans-serif\">v = 47.9 km/s</text></g><g class=\"planet-card card-2\" transform=\"translate(18, 86)\"><rect width=\"132\" height=\"32\" rx=\"6\" fill=\"#131e2c\" stroke=\"#253549\" stroke-width=\"1\"/><circle cx=\"14\" cy=\"16\" r=\"6\" fill=\"#f59e0b\"/><text x=\"14\" y=\"19\" fill=\"#0f172a\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">2</text><text x=\"26\" y=\"13\" fill=\"#f1f5f9\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">Kim tinh</text><text x=\"26\" y=\"25\" fill=\"#fde68a\" font-size=\"8.5\" font-family=\"Arial,sans-serif\">v = 35.0 km/s</text></g><g class=\"planet-card card-3\" transform=\"translate(18, 124)\"><rect width=\"132\" height=\"32\" rx=\"6\" fill=\"#131e2c\" stroke=\"#253549\" stroke-width=\"1\"/><circle cx=\"14\" cy=\"16\" r=\"6\" fill=\"#38bdf8\"/><text x=\"14\" y=\"19\" fill=\"#0f172a\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">3</text><text x=\"26\" y=\"13\" fill=\"#f1f5f9\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">Trái Đất</text><text x=\"26\" y=\"25\" fill=\"#7dd3fc\" font-size=\"8.5\" font-family=\"Arial,sans-serif\">v = 29.8 km/s</text></g><g class=\"planet-card card-4\" transform=\"translate(18, 162)\"><rect width=\"132\" height=\"32\" rx=\"6\" fill=\"#131e2c\" stroke=\"#253549\" stroke-width=\"1\"/><circle cx=\"14\" cy=\"16\" r=\"6\" fill=\"#f87171\"/><text x=\"14\" y=\"19\" fill=\"#0f172a\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">4</text><text x=\"26\" y=\"13\" fill=\"#f1f5f9\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">Hỏa tinh</text><text x=\"26\" y=\"25\" fill=\"#fca5a5\" font-size=\"8.5\" font-family=\"Arial,sans-serif\">v = 24.1 km/s</text></g><text x=\"450\" y=\"41\" fill=\"#fbbf24\" font-size=\"8.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" letter-spacing=\"0.4\">HÀNH TINH KHÍ (VÒNG NGOÀI)</text><g class=\"planet-card card-5\" transform=\"translate(450, 48)\"><rect width=\"132\" height=\"32\" rx=\"6\" fill=\"#131e2c\" stroke=\"#253549\" stroke-width=\"1\"/><circle cx=\"14\" cy=\"16\" r=\"7\" fill=\"#fbbf24\"/><text x=\"14\" y=\"19\" fill=\"#0f172a\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">5</text><text x=\"27\" y=\"13\" fill=\"#f1f5f9\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">Mộc tinh</text><text x=\"27\" y=\"25\" fill=\"#fef08a\" font-size=\"8.5\" font-family=\"Arial,sans-serif\">v = 13.1 km/s</text></g><g class=\"planet-card card-6\" transform=\"translate(450, 86)\"><rect width=\"132\" height=\"32\" rx=\"6\" fill=\"#131e2c\" stroke=\"#253549\" stroke-width=\"1\"/><ellipse cx=\"14\" cy=\"16\" rx=\"9\" ry=\"3.5\" fill=\"none\" stroke=\"#e2d9b8\" stroke-width=\"1.2\" transform=\"rotate(-20 14 16)\"/><circle cx=\"14\" cy=\"16\" r=\"6\" fill=\"#e2d9b8\"/><text x=\"14\" y=\"19\" fill=\"#0f172a\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">6</text><text x=\"27\" y=\"13\" fill=\"#f1f5f9\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">Thổ tinh</text><text x=\"27\" y=\"25\" fill=\"#fef9c3\" font-size=\"8.5\" font-family=\"Arial,sans-serif\">v = 9.7 km/s</text></g><g class=\"planet-card card-7\" transform=\"translate(450, 124)\"><rect width=\"132\" height=\"32\" rx=\"6\" fill=\"#131e2c\" stroke=\"#253549\" stroke-width=\"1\"/><circle cx=\"14\" cy=\"16\" r=\"6\" fill=\"#67e8f9\"/><text x=\"14\" y=\"19\" fill=\"#0f172a\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">7</text><text x=\"27\" y=\"13\" fill=\"#f1f5f9\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">Thiên Vương</text><text x=\"27\" y=\"25\" fill=\"#a5f3fc\" font-size=\"8.5\" font-family=\"Arial,sans-serif\">v = 6.8 km/s</text></g><g class=\"planet-card card-8\" transform=\"translate(450, 162)\"><rect width=\"132\" height=\"32\" rx=\"6\" fill=\"#131e2c\" stroke=\"#253549\" stroke-width=\"1\"/><circle cx=\"14\" cy=\"16\" r=\"6\" fill=\"#818cf8\"/><text x=\"14\" y=\"19\" fill=\"#0f172a\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">8</text><text x=\"27\" y=\"13\" fill=\"#f1f5f9\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">Hải Vương</text><text x=\"27\" y=\"25\" fill=\"#c7d2fe\" font-size=\"8.5\" font-family=\"Arial,sans-serif\">v = 5.4 km/s</text></g><g fill=\"none\"><circle class=\"orbit-track track-1\" cx=\"300\" cy=\"166\" r=\"24\" stroke=\"#2a3c54\" stroke-width=\"1\"/><circle class=\"orbit-track track-2\" cx=\"300\" cy=\"166\" r=\"38\" stroke=\"#2a3c54\" stroke-width=\"1\"/><circle class=\"orbit-track track-3\" cx=\"300\" cy=\"166\" r=\"52\" stroke=\"#2a3c54\" stroke-width=\"1\"/><circle class=\"orbit-track track-4\" cx=\"300\" cy=\"166\" r=\"66\" stroke=\"#2a3c54\" stroke-width=\"1\"/><circle class=\"orbit-track track-5\" cx=\"300\" cy=\"166\" r=\"84\" stroke=\"#2a3c54\" stroke-width=\"1\"/><circle class=\"orbit-track track-6\" cx=\"300\" cy=\"166\" r=\"98\" stroke=\"#2a3c54\" stroke-width=\"1\"/><circle class=\"orbit-track track-7\" cx=\"300\" cy=\"166\" r=\"110\" stroke=\"#2a3c54\" stroke-width=\"1\"/><circle class=\"orbit-track track-8\" cx=\"300\" cy=\"166\" r=\"122\" stroke=\"#2a3c54\" stroke-width=\"1\"/><circle class=\"orbit-track track-belt\" cx=\"300\" cy=\"166\" r=\"74\" stroke=\"#475569\" stroke-width=\"1\" stroke-dasharray=\"2 3\" stroke-opacity=\"0.5\"/></g><g class=\"orbit-group-belt\" style=\"transform-origin:300px 166px;animation:spinCCW 22s linear infinite;\"><circle cx=\"367.1\" cy=\"134.7\" r=\"0.9\" fill=\"#64748b\" opacity=\"0.75\"/><circle cx=\"331.3\" cy=\"98.9\" r=\"0.9\" fill=\"#64748b\" opacity=\"0.75\"/><circle cx=\"274.7\" cy=\"96.5\" r=\"0.9\" fill=\"#64748b\" opacity=\"0.75\"/><circle cx=\"230.5\" cy=\"140.7\" r=\"0.9\" fill=\"#64748b\" opacity=\"0.75\"/><circle cx=\"232.9\" cy=\"197.3\" r=\"0.9\" fill=\"#64748b\" opacity=\"0.75\"/><circle cx=\"274.7\" cy=\"235.5\" r=\"0.9\" fill=\"#64748b\" opacity=\"0.75\"/><circle cx=\"331.3\" cy=\"233.1\" r=\"0.9\" fill=\"#64748b\" opacity=\"0.75\"/><circle cx=\"369.5\" cy=\"191.3\" r=\"0.9\" fill=\"#64748b\" opacity=\"0.75\"/></g><g fill=\"none\" opacity=\"0.6\"><path d=\"M302 114 L297 114 M299 111.5 L296 114 L299 116.5\" stroke=\"#38bdf8\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M303 82 L297 82 M300 79.5 L296 82 L300 84.5\" stroke=\"#fcd34d\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M303 44 L297 44 M300 41.5 L296 44 L300 46.5\" stroke=\"#818cf8\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M298 232 L304 232 M301 229.5 L305 232 L301 234.5\" stroke=\"#f87171\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M298 264 L304 264 M301 261.5 L305 264 L301 266.5\" stroke=\"#e2d9b8\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><circle class=\"sun-glow\" cx=\"300\" cy=\"166\" r=\"22\" fill=\"url(#sunGlow)\"/><circle cx=\"300\" cy=\"166\" r=\"13\" fill=\"url(#sunDisc)\"/><text x=\"300\" y=\"169\" fill=\"#ffffff\" stroke=\"#0f172a\" stroke-width=\"2\" paint-order=\"stroke fill\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">MẶT TRỜI</text><g class=\"orbit-group-1\"><g class=\"planet-node node-1\" transform=\"translate(282, 151)\"><g class=\"planet-upright-1\"><circle cx=\"0\" cy=\"0\" r=\"3.5\" fill=\"#94a3b8\" stroke=\"#0d141f\" stroke-width=\"1.5\"/><text x=\"-8\" y=\"-2\" fill=\"#cbd5e1\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">1</text></g></g></g><g class=\"orbit-group-2\"><g class=\"planet-node node-2\" transform=\"translate(271, 190)\"><g class=\"planet-upright-2\"><circle cx=\"0\" cy=\"0\" r=\"5\" fill=\"#f59e0b\" stroke=\"#0d141f\" stroke-width=\"1.5\"/><text x=\"-8\" y=\"-2\" fill=\"#fde68a\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">2</text></g></g></g><g class=\"orbit-group-3\"><g class=\"planet-node node-3\" transform=\"translate(326, 211)\"><g class=\"planet-upright-3\"><circle cx=\"0\" cy=\"0\" r=\"6\" fill=\"#38bdf8\" stroke=\"#0d141f\" stroke-width=\"1.5\"/><text x=\"-8\" y=\"11\" fill=\"#7dd3fc\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">3</text><g class=\"moon-orbit-group\"><circle cx=\"10\" cy=\"0\" r=\"1.6\" fill=\"#e2e8f0\"/></g></g></g></g><g class=\"orbit-group-4\"><g class=\"planet-node node-4\" transform=\"translate(357, 133)\"><g class=\"planet-upright-4\"><circle cx=\"0\" cy=\"0\" r=\"4.5\" fill=\"#f87171\" stroke=\"#0d141f\" stroke-width=\"1.5\"/><text x=\"-8\" y=\"-2\" fill=\"#fca5a5\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">4</text></g></g></g><g class=\"orbit-group-5\"><g class=\"planet-node node-5\" transform=\"translate(258, 93)\"><g class=\"planet-upright-5\"><circle cx=\"0\" cy=\"0\" r=\"10.5\" fill=\"#fbbf24\" stroke=\"#0d141f\" stroke-width=\"1.5\"/><path d=\"M-9.5 -3 Q 0 -5 9.5 -3\" stroke=\"#b45309\" stroke-width=\"1.2\" fill=\"none\"/><path d=\"M-9.5 2 Q 0 0 9.5 2\" stroke=\"#b45309\" stroke-width=\"1.2\" fill=\"none\"/><circle cx=\"3.5\" cy=\"4\" r=\"1.8\" fill=\"#dc2626\"/><text x=\"14\" y=\"-2\" fill=\"#fef08a\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">5</text></g></g></g><g class=\"orbit-group-6\"><g class=\"planet-node node-6\" transform=\"translate(208, 200)\"><g class=\"planet-upright-6\"><g transform=\"rotate(-22)\"><ellipse cx=\"0\" cy=\"0\" rx=\"16\" ry=\"5\" fill=\"none\" stroke=\"#d4c79b\" stroke-width=\"2.2\" stroke-opacity=\"0.9\"/><ellipse cx=\"0\" cy=\"0\" rx=\"13\" ry=\"3.5\" fill=\"none\" stroke=\"#8c7e58\" stroke-width=\"1\" stroke-opacity=\"0.7\"/><circle cx=\"0\" cy=\"0\" r=\"8\" fill=\"#e2d9b8\" stroke=\"#0d141f\" stroke-width=\"1.5\"/></g><text x=\"16\" y=\"-3\" fill=\"#fef9c3\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">6</text></g></g></g><g class=\"orbit-group-7\"><g class=\"planet-node node-7\" transform=\"translate(395, 221)\"><g class=\"planet-upright-7\"><circle cx=\"0\" cy=\"0\" r=\"6.5\" fill=\"#67e8f9\" stroke=\"#0d141f\" stroke-width=\"1.5\"/><ellipse cx=\"0\" cy=\"0\" rx=\"10\" ry=\"2.8\" fill=\"none\" stroke=\"#a5f3fc\" stroke-width=\"1\" stroke-opacity=\"0.6\" transform=\"rotate(70)\"/><text x=\"10\" y=\"5\" fill=\"#a5f3fc\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">7</text></g></g></g><g class=\"orbit-group-8\"><g class=\"planet-node node-8\" transform=\"translate(332, 48)\"><g class=\"planet-upright-8\"><circle cx=\"0\" cy=\"0\" r=\"6\" fill=\"#818cf8\" stroke=\"#0d141f\" stroke-width=\"1.5\"/><text x=\"-8\" y=\"-2\" fill=\"#c7d2fe\" font-size=\"7.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">8</text></g></g></g><g transform=\"translate(18, 298)\"><rect width=\"564\" height=\"28\" rx=\"6\" fill=\"#131e2c\" stroke=\"#253549\" stroke-width=\"1\"/><text x=\"282\" y=\"13\" fill=\"#fcd34d\" font-size=\"9.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">VẬN ĐỘNG LÀ THUỘC TÍNH CỐ HỮU CỦA VẬT CHẤT (F. ĂNGGHEN)</text><text x=\"282\" y=\"23.5\" fill=\"#94a3b8\" font-size=\"8\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Các hành tinh chuyển động vĩnh viễn quanh Mặt Trời • Vận tốc giảm dần theo khoảng cách (từ 48 km/s xuống 5.4 km/s)</text></g></svg><figcaption>Sơ đồ 8 hành tinh chuyển động trên quỹ đạo quanh Mặt Trời — minh họa luận điểm của Ăngghen: Vận động là phương thức tồn tại cố hữu, tuyệt đối và vĩnh viễn của vật chất.</figcaption></figure>",
+    "image": "assets/images/engels_philosophy.jpg",
+    "navCategory": 4
+  },
+  {
+    "region": "Từ đơn giản đến phức tạp",
+    "title": [
+      "5 HÌNH THỨC",
+      "VẬN ĐỘNG"
+    ],
+    "description": "Cơ học, vật lý, hóa học, sinh học và xã hội: năm hình thức vận động cơ bản từ đơn giản đến phức tạp.",
+    "badge": "Trang 22/28 • Slide 22",
+    "modalHeading": "5 HÌNH THỨC VẬN ĐỘNG CƠ BẢN",
+    "modalContent": "<h3>Ăngghen phân chia vận động của vật chất thành 5 hình thức cơ bản, từ đơn giản đến phức tạp:</h3>\n<ul><li>Vận động cơ học — dịch chuyển vị trí trong không gian</li><li>Vận động vật lý — biến đổi nhiệt, điện, ánh sáng, từ trường...</li><li>Vận động hoá học — biến đổi các chất qua phản ứng hoá học</li><li>Vận động sinh học — trao đổi chất, sinh trưởng của cơ thể sống</li><li>Vận động xã hội — biến đổi trong các quá trình lịch sử, xã hội loài người</li></ul>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 240\" role=\"img\" aria-label=\"Bậc thang 5 hình thức vận động cơ bản\"><rect width=\"600\" height=\"240\" rx=\"12\" fill=\"#101827\"/><text x=\"300\" y=\"24\" fill=\"#f5b731\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">5 HÌNH THỨC VẬN ĐỘNG CƠ BẢN (F. ĂNGGHEN)</text><path d=\"M78 130 L520 34\" stroke=\"#f5b731\" stroke-width=\"2\" stroke-dasharray=\"5 3\"/><circle cx=\"78\" cy=\"130\" r=\"3\" fill=\"#f5b731\"/><polygon points=\"527,33 516,30 518,40\" fill=\"#f5b731\"/><rect x=\"26\" y=\"144\" width=\"104\" height=\"50\" rx=\"6\" fill=\"#1e293b\" stroke=\"#64748b\" stroke-width=\"1.5\"/><text x=\"78\" y=\"163\" fill=\"#94a3b8\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">1. CƠ HỌC</text><text x=\"78\" y=\"179\" fill=\"#cbd5e1\" font-size=\"9\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Dịch chuyển vị trí</text><rect x=\"137\" y=\"120\" width=\"104\" height=\"74\" rx=\"6\" fill=\"#172554\" stroke=\"#3b82f6\" stroke-width=\"1.5\"/><text x=\"189\" y=\"139\" fill=\"#60a5fa\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">2. VẬT LÝ</text><text x=\"189\" y=\"154\" fill=\"#cbd5e1\" font-size=\"9\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Nhiệt, điện, từ...</text><line x1=\"152\" y1=\"164\" x2=\"226\" y2=\"164\" stroke=\"#3b82f6\" stroke-opacity=\"0.3\" stroke-width=\"1\"/><text x=\"189\" y=\"178\" fill=\"#93c5fd\" font-size=\"8.5\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Bao hàm: 1</text><rect x=\"248\" y=\"96\" width=\"104\" height=\"98\" rx=\"6\" fill=\"#042f2e\" stroke=\"#14b8a6\" stroke-width=\"1.5\"/><text x=\"300\" y=\"115\" fill=\"#2dd4bf\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">3. HÓA HỌC</text><text x=\"300\" y=\"130\" fill=\"#cbd5e1\" font-size=\"9\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Biến đổi chất</text><line x1=\"263\" y1=\"142\" x2=\"337\" y2=\"142\" stroke=\"#14b8a6\" stroke-opacity=\"0.3\" stroke-width=\"1\"/><text x=\"300\" y=\"160\" fill=\"#5eead4\" font-size=\"8.5\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Bao hàm: 1 + 2</text><rect x=\"359\" y=\"72\" width=\"104\" height=\"122\" rx=\"6\" fill=\"#14532d\" stroke=\"#22c55e\" stroke-width=\"1.5\"/><text x=\"411\" y=\"91\" fill=\"#4ade80\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">4. SINH HỌC</text><text x=\"411\" y=\"106\" fill=\"#cbd5e1\" font-size=\"9\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Trao đổi chất, sống</text><line x1=\"374\" y1=\"120\" x2=\"448\" y2=\"120\" stroke=\"#22c55e\" stroke-opacity=\"0.3\" stroke-width=\"1\"/><text x=\"411\" y=\"140\" fill=\"#86efac\" font-size=\"8.5\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Bao hàm: 1 + 2 + 3</text><rect x=\"470\" y=\"48\" width=\"104\" height=\"146\" rx=\"6\" fill=\"#581c87\" stroke=\"#a855f7\" stroke-width=\"1.5\"/><text x=\"522\" y=\"67\" fill=\"#c084fc\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">5. XÃ HỘI</text><text x=\"522\" y=\"82\" fill=\"#cbd5e1\" font-size=\"9\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Lịch sử, con người</text><line x1=\"485\" y1=\"98\" x2=\"559\" y2=\"98\" stroke=\"#a855f7\" stroke-opacity=\"0.3\" stroke-width=\"1\"/><text x=\"522\" y=\"118\" fill=\"#f3e8ff\" font-size=\"8.5\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Trình độ cao nhất</text><text x=\"522\" y=\"136\" fill=\"#c084fc\" font-size=\"8.5\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Bao hàm: 1 + 2 + 3 + 4</text><rect x=\"30\" y=\"206\" width=\"540\" height=\"24\" rx=\"6\" fill=\"#1e293b\" fill-opacity=\"0.9\" stroke=\"#334155\" stroke-width=\"1\"/><text x=\"300\" y=\"222\" fill=\"#fcd34d\" font-size=\"10.5\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Chiều phát triển từ đơn giản đến phức tạp  •  Hình thức cao bao hàm hình thức thấp</text></svg><figcaption>Bậc thang tiến hóa của 5 hình thức vận động cơ bản từ đơn giản đến phức tạp.</figcaption></figure>",
+    "image": "assets/images/slide29_five_forms.jpg",
+    "navCategory": 4
+  },
+  {
+    "region": "Các hình thức vận động",
+    "title": [
+      "VẬN ĐỘNG",
+      "TRONG THỰC TẾ"
+    ],
+    "description": "Các hình thức vận động tồn tại đan xen; hình thức sau chứa hình thức trước nhưng không quy giản về nhau.",
+    "badge": "Trang 23/28 • Slide 23",
+    "modalHeading": "VÍ DỤ MINH HOẠ",
+    "modalContent": "<p>Cơ học | Vật lý | Hoá học | Sinh học | Xã hội</p>\n<figure class=\"lesson-figure\"><div class=\"motion-examples\"><div><svg viewBox=\"0 0 60 60\" aria-hidden=\"true\"><path d=\"M9 40h36M37 31l10 9-10 9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/><circle cx=\"23\" cy=\"23\" r=\"8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/></svg><strong>Cơ học</strong></div><div><svg viewBox=\"0 0 60 60\" aria-hidden=\"true\"><path d=\"M34 7 17 33h13l-4 20 18-29H31z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/></svg><strong>Vật lý</strong></div><div><svg viewBox=\"0 0 60 60\" aria-hidden=\"true\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"><path d=\"m19 19 22 22M19 41l22-22\"/><circle cx=\"15\" cy=\"15\" r=\"8\"/><circle cx=\"45\" cy=\"45\" r=\"8\"/><circle cx=\"15\" cy=\"45\" r=\"8\"/><circle cx=\"45\" cy=\"15\" r=\"8\"/></g></svg><strong>Hóa học</strong></div><div><svg viewBox=\"0 0 60 60\" aria-hidden=\"true\"><path d=\"M13 47c-9-21 7-35 35-35 1 29-16 44-35 35Zm1 0 27-28\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"/></svg><strong>Sinh học</strong></div><div><svg viewBox=\"0 0 60 60\" aria-hidden=\"true\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\"><circle cx=\"30\" cy=\"16\" r=\"7\"/><circle cx=\"12\" cy=\"25\" r=\"5\"/><circle cx=\"48\" cy=\"25\" r=\"5\"/><path d=\"M18 50V37c0-11 24-11 24 0v13M3 49V38c0-8 9-10 15-6m39 17V38c0-8-9-10-15-6\"/></g></svg><strong>Xã hội</strong></div></div><figcaption>Năm hình thức vận động cơ bản.</figcaption></figure>\n<p>Kết Luận: &quot;5 hình thức trên tồn tại đan xen, hình thức sau chứa hình thức trước nhưng không quy giản về nhau.&quot;</p>",
+    "image": "assets/images/slide29_five_forms.jpg",
+    "navCategory": 4
+  },
+  {
+    "region": "Cân bằng và ổn định",
+    "title": [
+      "ĐỨNG IM",
+      "LÀ TƯƠNG ĐỐI"
+    ],
+    "description": "Đứng im là trạng thái vận động trong thế cân bằng, ổn định, chỉ tương đối và tạm thời trong một quan hệ nhất định.",
+    "badge": "Trang 24/28 • Slide 24",
+    "modalHeading": "ĐỨNG IM",
+    "modalContent": "<p>Đứng im là trạng thái vận động đặc biệt — vận động trong thế cân bằng, ổn định, chưa làm thay đổi căn bản về chất của sự vật.</p>\n<ul><li>Đứng im chỉ là tương đối, tạm thời — không phải phủ định vận động, mà là một dạng vận động đặc biệt</li><li>Đứng im chỉ xảy ra trong một mối quan hệ, một hình thức vận động nhất định, không phải với mọi quan hệ</li><li>Vận động là tuyệt đối, đứng im là tương đối — đứng im chỉ là biểu hiện của trạng thái vận động trong sự ổn định tạm thời</li></ul>\n<p>Ví dụ: Một cuốn sách đặt yên trên bàn — đứng im so với mặt bàn, nhưng vẫn đang vận động cùng Trái Đất quay quanh trục và quanh Mặt Trời</p>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 240\" role=\"img\" aria-label=\"Sơ đồ đứng im là tương đối, vận động là tuyệt đối\"><rect width=\"600\" height=\"240\" rx=\"12\" fill=\"#101827\"/><text x=\"300\" y=\"26\" fill=\"#f5b731\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">TÍNH TƯƠNG ĐỐI CỦA ĐỨNG IM &amp; TÍNH TUYỆT ĐỐI CỦA VẬN ĐỘNG</text><g transform=\"translate(30, 48)\"><rect width=\"255\" height=\"140\" rx=\"10\" fill=\"#152132\" stroke=\"#67b8ef\" stroke-width=\"1.5\"/><text x=\"127\" y=\"26\" fill=\"#67b8ef\" font-size=\"12\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">HỆ QUY CHIẾU 1: MẶT BÀN</text><g transform=\"translate(127, 70)\"><rect x=\"-40\" y=\"10\" width=\"80\" height=\"8\" rx=\"2\" fill=\"#64748b\"/><rect x=\"-25\" y=\"-12\" width=\"50\" height=\"22\" rx=\"3\" fill=\"#f5b731\"/><text x=\"0\" y=\"3\" fill=\"#101827\" font-size=\"9\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">SÁCH</text></g><rect x=\"50\" y=\"98\" width=\"155\" height=\"24\" rx=\"4\" fill=\"#0284c7\" fill-opacity=\"0.2\"/><text x=\"127\" y=\"114\" fill=\"#38bdf8\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">v = 0 (ĐỨNG IM)</text><text x=\"127\" y=\"132\" fill=\"#94a3b8\" font-size=\"10\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Chỉ tạm thời trong 1 quan hệ</text></g><g transform=\"translate(315, 48)\"><rect width=\"255\" height=\"140\" rx=\"10\" fill=\"#201c36\" stroke=\"#a78bfa\" stroke-width=\"1.5\"/><text x=\"127\" y=\"26\" fill=\"#a78bfa\" font-size=\"12\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">HỆ QUY CHIẾU 2: VŨ TRỤ</text><g transform=\"translate(127, 68)\"><circle cx=\"0\" cy=\"0\" r=\"18\" fill=\"#1e3a8a\" stroke=\"#60a5fa\" stroke-width=\"1.5\"/><ellipse cx=\"0\" cy=\"0\" rx=\"24\" ry=\"7\" fill=\"none\" stroke=\"#60a5fa\" stroke-dasharray=\"2 2\"/><text x=\"0\" y=\"4\" fill=\"#fff\" font-size=\"8\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Trái Đất</text><path d=\"M22 0a22 22 0 0 1 -44 0\" fill=\"none\" stroke=\"#f5b731\" stroke-width=\"1.5\"/><polygon points=\"-22,-2 -26,2 -20,4\" fill=\"#f5b731\"/></g><rect x=\"35\" y=\"98\" width=\"185\" height=\"24\" rx=\"4\" fill=\"#7c3aed\" fill-opacity=\"0.2\"/><text x=\"127\" y=\"114\" fill=\"#c084fc\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">v = 107.000 km/h (VẬN ĐỘNG)</text><text x=\"127\" y=\"132\" fill=\"#94a3b8\" font-size=\"10\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Vận động tuyệt đối, vĩnh viễn</text></g><text x=\"300\" y=\"215\" fill=\"#f5b731\" font-size=\"11\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">⇒ Đứng im là trạng thái vận động trong thăng bằng, chỉ là tương đối và tạm thời</text></svg><figcaption>Sơ đồ hệ quy chiếu: Đứng im là tương đối, vận động là tuyệt đối.</figcaption></figure>",
+    "image": "assets/images/slide28_motion.jpg",
+    "navCategory": 4
+  },
+  {
+    "region": "Hình thức tồn tại của vật chất",
+    "title": [
+      "KHÔNG GIAN",
+      "& THỜI GIAN"
+    ],
+    "description": "Không gian thể hiện quảng tính và kết cấu; thời gian thể hiện độ dài diễn biến, trình tự trước–sau của các quá trình.",
+    "badge": "Trang 25/28 • Slide 25",
+    "modalHeading": "KHÔNG GIAN, THỜI GIAN LÀ GÌ?",
+    "modalContent": "<p>Không gian:<br>Hình thức tồn tại của vật chất, thể hiện quảng tính (chiều dài, rộng, cao), kết cấu, và sự cùng tồn tại, tách biệt giữa các sự vật.</p>\n<p>Thời gian:<br>Hình thức tồn tại của vật chất, thể hiện độ dài diễn biến, trình tự trước–sau của các quá trình.</p>\n<p>Không gian và thời gian không tồn tại độc lập, mà gắn liền với vật chất đang vận động — không có vật chất &quot;phi không gian, phi thời gian&quot;.</p>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 340\" role=\"img\" aria-label=\"Minh họa nón ánh sáng Minkowski với trục thời gian, hai trục không gian, sự kiện hiện tại và đường thế giới\"><rect width=\"600\" height=\"340\" rx=\"12\" fill=\"#101827\"/><path d=\"M300 170 210 62a90 25 0 0 1 180 0Z\" fill=\"#67b8ef\" fill-opacity=\".2\" stroke=\"#67b8ef\" stroke-width=\"1.5\"/><ellipse cx=\"300\" cy=\"62\" rx=\"90\" ry=\"25\" fill=\"none\" stroke=\"#67b8ef\" stroke-width=\"1.5\"/><path d=\"M300 170 210 278a90 25 0 0 0 180 0Z\" fill=\"#9fa3e7\" fill-opacity=\".16\" stroke=\"#9fa3e7\" stroke-width=\"1.5\"/><ellipse cx=\"300\" cy=\"278\" rx=\"90\" ry=\"25\" fill=\"none\" stroke=\"#9fa3e7\" stroke-width=\"1.5\"/><line x1=\"300\" y1=\"318\" x2=\"300\" y2=\"22\" stroke=\"#e5eaf2\" stroke-width=\"1.5\"/><polygon points=\"300,18 296,26 304,26\" fill=\"#e5eaf2\"/><text x=\"314\" y=\"25\" fill=\"#e5eaf2\" font-size=\"12\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">t — Thời gian</text><line x1=\"110\" y1=\"170\" x2=\"480\" y2=\"170\" stroke=\"#e5eaf2\" stroke-width=\"1.5\"/><polygon points=\"485,170 477,166 477,174\" fill=\"#e5eaf2\"/><text x=\"440\" y=\"192\" fill=\"#e5eaf2\" font-size=\"11.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">x — Không gian</text><line x1=\"184\" y1=\"239\" x2=\"416\" y2=\"101\" stroke=\"#e5eaf2\" stroke-width=\"1.5\"/><polygon points=\"420,99 411,100 415,107\" fill=\"#e5eaf2\"/><text x=\"426\" y=\"96\" fill=\"#e5eaf2\" font-size=\"11.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">y — Không gian</text><line x1=\"390\" y1=\"62\" x2=\"418\" y2=\"62\" stroke=\"#38bdf8\" stroke-width=\"1\" stroke-dasharray=\"2 2\"/><rect x=\"420\" y=\"50\" width=\"120\" height=\"24\" rx=\"6\" fill=\"#0284c7\" fill-opacity=\"0.25\" stroke=\"#38bdf8\" stroke-width=\"1.2\"/><text x=\"480\" y=\"66\" fill=\"#38bdf8\" font-size=\"10.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">NÓN TƯƠNG LAI</text><line x1=\"390\" y1=\"278\" x2=\"418\" y2=\"278\" stroke=\"#a5b4fc\" stroke-width=\"1\" stroke-dasharray=\"2 2\"/><rect x=\"420\" y=\"266\" width=\"120\" height=\"24\" rx=\"6\" fill=\"#4338ca\" fill-opacity=\"0.25\" stroke=\"#a5b4fc\" stroke-width=\"1.2\"/><text x=\"480\" y=\"282\" fill=\"#a5b4fc\" font-size=\"10.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">NÓN QUÁ KHỨ</text><circle cx=\"278\" cy=\"285\" r=\"2.5\" fill=\"#f5b731\"/><path d=\"M278 285q35-62 22-115t24-118\" fill=\"none\" stroke=\"#f5b731\" stroke-width=\"2.5\" stroke-dasharray=\"5 3\"/><polygon points=\"325,48 318,55 326,57\" fill=\"#f5b731\"/><circle cx=\"300\" cy=\"170\" r=\"7\" fill=\"none\" stroke=\"#38bdf8\" stroke-width=\"1.5\"/><circle cx=\"300\" cy=\"170\" r=\"4\" fill=\"#ffffff\"/><g transform=\"translate(314, 173)\"><rect x=\"0\" y=\"0\" width=\"130\" height=\"24\" rx=\"12\" fill=\"#101827\" stroke=\"#38bdf8\" stroke-width=\"1.2\"/><circle cx=\"12\" cy=\"12\" r=\"3.5\" fill=\"#38bdf8\"/><text x=\"24\" y=\"16\" fill=\"#f8fafc\" font-size=\"10.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">Hiện tại (0, 0, 0)</text></g><g transform=\"translate(30, 290)\"><rect x=\"0\" y=\"0\" width=\"165\" height=\"32\" rx=\"6\" fill=\"#1e293b\" fill-opacity=\"0.9\" stroke=\"#334155\" stroke-width=\"1\"/><line x1=\"14\" y1=\"16\" x2=\"42\" y2=\"16\" stroke=\"#f5b731\" stroke-width=\"2.5\" stroke-dasharray=\"4 2\"/><polygon points=\"46,16 40,13 40,19\" fill=\"#f5b731\"/><text x=\"54\" y=\"20\" fill=\"#fcd34d\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">Đường thế giới</text></g></svg><figcaption>Nón ánh sáng Minkowski — minh họa hai chiều của mô hình ba chiều với sự kiện hiện tại tại (0, 0, 0).</figcaption></figure>",
+    "image": "assets/images/slide32_spacetime.jpg",
+    "navCategory": 4
+  },
+  {
+    "region": "Không gian, thời gian và thực tiễn",
+    "title": [
+      "TÍNH CHẤT",
+      "& THỰC TIỄN"
+    ],
+    "description": "Không gian, thời gian gắn liền với vật chất và vận động; thuyết tương đối làm rõ sự co giãn theo vận tốc, trọng trường.",
+    "badge": "Trang 26/28 • Slide 26",
+    "modalHeading": "TÍNH CHẤT & LIÊN HỆ THỰC TIỄN",
+    "modalContent": "<h3>Tính chất:</h3>\n<ul><li>Khách quan — tồn tại độc lập với ý thức con người</li><li>Vô tận, vô hạn — không có điểm bắt đầu/kết thúc tuyệt đối</li><li>Gắn liền, không tách rời vận động của vật chất</li></ul>\n<p>Liên hệ thực tiễn:<br>Thuyết tương đối của Einstein đã chứng minh không gian và thời gian không tuyệt đối, cố định như quan niệm cổ điển (Newton), mà co giãn tuỳ theo vận tốc và trọng trường — điều này càng xác nhận luận điểm của triết học Mác-Lênin: không gian, thời gian không tách rời vật chất và vận động.</p>",
+    "image": "assets/images/slide32_spacetime.jpg",
+    "navCategory": 4
+  },
+  {
+    "region": "Một chỉnh thể thống nhất",
+    "title": [
+      "THỐNG NHẤT",
+      "VẬT CHẤT"
+    ],
+    "description": "Chỉ có một thế giới vật chất; các dạng tồn tại của vật chất liên hệ, tác động lẫn nhau và là cơ sở của ý thức.",
+    "badge": "Trang 27/28 • Slide 27",
+    "modalHeading": "TÍNH THỐNG NHẤT VẬT CHẤT CỦA THẾ GIỚI",
+    "modalContent": "<p>1. Khái niệm ngắn gọn: Thế giới tuy rất đa dạng, phong phú với vô số sự vật và hiện tượng khác nhau, nhưng tất cả đều có nguồn gốc vật chất, tồn tại khách quan và liên hệ với nhau trong một chỉnh thể thống nhất.</p>\n<h3>2. Biểu hiện của tính thống nhất vật chất của thế giới:</h3>\n<ul><li>Chỉ có một thế giới duy nhất là thế giới vật chất, không tồn tại thế giới siêu nhiên tách rời vật chất.</li><li>Mọi sự vật, hiện tượng đều là những dạng tồn tại khác nhau của vật chất, có mối liên hệ và tác động lẫn nhau.</li><li>Ý thức là sản phẩm của vật chất có tổ chức cao (bộ não con người), không phải cái có trước và sinh ra thế giới.</li></ul>\n<figure class=\"lesson-figure\"><svg viewBox=\"0 0 600 250\" role=\"img\" aria-label=\"Sơ đồ tính thống nhất vật chất của thế giới\"><rect width=\"600\" height=\"250\" rx=\"12\" fill=\"#101827\"/><text x=\"300\" y=\"26\" fill=\"#f5b731\" font-size=\"13\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">TÍNH THỐNG NHẤT VẬT CHẤT CỦA THẾ GIỚI</text><g transform=\"translate(165, 135)\"><circle cx=\"0\" cy=\"0\" r=\"96\" fill=\"#0f172a\" stroke=\"#3b82f6\" stroke-width=\"1.5\"/><rect x=\"-68\" y=\"-103\" width=\"136\" height=\"22\" rx=\"11\" fill=\"#172554\" stroke=\"#3b82f6\" stroke-width=\"1.2\"/><text x=\"0\" y=\"-88\" fill=\"#93c5fd\" font-size=\"9.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">1. TỰ NHIÊN VÔ SINH</text><text x=\"0\" y=\"80\" fill=\"#60a5fa\" font-size=\"8.5\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Giới tự nhiên chưa có sự sống</text><circle cx=\"0\" cy=\"0\" r=\"66\" fill=\"#064e3b\" stroke=\"#10b981\" stroke-width=\"1.5\"/><rect x=\"-68\" y=\"-73\" width=\"136\" height=\"22\" rx=\"11\" fill=\"#064e3b\" stroke=\"#10b981\" stroke-width=\"1.2\"/><text x=\"0\" y=\"-58\" fill=\"#6ee7b7\" font-size=\"9.5\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">2. TỰ NHIÊN HỮU SINH</text><text x=\"0\" y=\"52\" fill=\"#34d399\" font-size=\"8.5\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">Sinh vật &amp; giới hữu cơ</text><circle cx=\"0\" cy=\"0\" r=\"36\" fill=\"#581c87\" stroke=\"#c084fc\" stroke-width=\"1.5\"/><text x=\"0\" y=\"-7\" fill=\"#ffffff\" font-size=\"10\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">3. XÃ HỘI</text><text x=\"0\" y=\"7\" fill=\"#f3e8ff\" font-size=\"9\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">&amp; TƯ DUY</text><text x=\"0\" y=\"21\" fill=\"#d8b4fe\" font-size=\"7.5\" font-style=\"italic\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">(Bộ não người)</text></g><g transform=\"translate(315, 46)\"><rect width=\"255\" height=\"178\" rx=\"8\" fill=\"#15202e\" stroke=\"#2a3c54\" stroke-width=\"1.5\"/><text x=\"127.5\" y=\"24\" fill=\"#f5b731\" font-size=\"12\" font-weight=\"bold\" font-family=\"Arial,sans-serif\" text-anchor=\"middle\">3 LUẬN ĐIỂM CỐT LÕI</text><line x1=\"20\" y1=\"34\" x2=\"235\" y2=\"34\" stroke=\"#2a3c54\" stroke-width=\"1\"/><circle cx=\"20\" cy=\"56\" r=\"4\" fill=\"#3b82f6\"/><text x=\"32\" y=\"60\" fill=\"#93c5fd\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">Chỉ có 1 thế giới duy nhất</text><text x=\"32\" y=\"76\" fill=\"#cbd5e1\" font-size=\"10\" font-family=\"Arial,sans-serif\">Thế giới vật chất khách quan</text><circle cx=\"20\" cy=\"100\" r=\"4\" fill=\"#10b981\"/><text x=\"32\" y=\"104\" fill=\"#86efac\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">Mọi bộ phận liên hệ hữu cơ</text><text x=\"32\" y=\"120\" fill=\"#cbd5e1\" font-size=\"10\" font-family=\"Arial,sans-serif\">Đều cấu tạo từ các dạng vật chất</text><circle cx=\"20\" cy=\"144\" r=\"4\" fill=\"#c084fc\"/><text x=\"32\" y=\"148\" fill=\"#d8b4fe\" font-size=\"11\" font-weight=\"bold\" font-family=\"Arial,sans-serif\">Tồn tại vĩnh viễn, vô tận</text><text x=\"32\" y=\"164\" fill=\"#cbd5e1\" font-size=\"10\" font-family=\"Arial,sans-serif\">Không sinh ra, không mất đi</text></g></svg><figcaption>Mô hình chỉnh thể thống nhất: Từ tự nhiên vô sinh, hữu sinh đến xã hội và tư duy đều thống nhất ở tính vật chất.</figcaption></figure>",
+    "image": "assets/images/slide35_material_unity.jpg",
+    "navCategory": 5
+  },
+  {
+    "region": "Bài học nhận thức và thực tiễn",
+    "title": [
+      "Ý NGHĨA",
+      "& KẾT LUẬN"
+    ],
+    "description": "Nhận thức và cải tạo thế giới dựa trên quy luật khách quan; tự nhiên, xã hội và tư duy đều có cơ sở vật chất.",
+    "badge": "Trang 28/28 • Slide 28",
+    "modalHeading": "TÍNH THỐNG NHẤT VẬT CHẤT CỦA THẾ GIỚI",
+    "modalContent": "<h3>1. Ý nghĩa:</h3>\n<ul><li>Khẳng định vật chất có trước, ý thức có sau.</li><li>Giúp con người nhận thức và cải tạo thế giới dựa trên các quy luật khách quan.</li><li>Phê phán các quan điểm duy tâm cho rằng ý thức hay lực lượng siêu nhiên quyết định thế giới.</li></ul>\n<p>2. Kết luận: Theo triết học Mác - Lênin, thế giới thống nhất ở tính vật chất, nghĩa là mọi sự vật, hiện tượng từ tự nhiên, xã hội đến tư duy của con người đều có cơ sở vật chất và tồn tại trong mối liên hệ khách quan với nhau.</p>",
+    "image": "assets/images/slide35_material_unity.jpg",
+    "navCategory": 5
+  }
+];
+
+  const duration = 9000;
+  const experience = document.getElementById("experience");
+  const header = document.getElementById("site-header");
+  const track = document.getElementById("cards-track");
+  const activePhoto = document.getElementById("active-photo");
+  const copy = document.getElementById("hero-copy");
+  const region = document.getElementById("region");
+  const line1 = document.getElementById("title-line-1");
+  const line2 = document.getElementById("title-line-2");
+  const description = document.getElementById("description");
+  const bookmark = document.getElementById("bookmark");
+  const discover = document.getElementById("discover-location");
+  const counter = document.getElementById("counter-number");
+  const counterTotal = document.getElementById("counter-total");
+  const bars = [document.getElementById("top-progress-bar"), document.getElementById("line-progress")];
+  const nextButton = document.getElementById("next-slide");
+  const previousButton = document.getElementById("previous-slide");
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+
+  // Modal elements
+  const contentModal = document.getElementById("content-modal");
+  const modalClose = document.getElementById("modal-close");
+  const modalBadge = document.getElementById("modal-badge");
+  const modalTitle = document.getElementById("modal-title");
+  const modalBody = document.getElementById("modal-body");
+  const modalPrev = document.getElementById("modal-prev");
+  const modalNext = document.getElementById("modal-next");
+
+  // Search palette elements
+  const searchTrigger = document.getElementById("search-trigger");
+  const bookmarksTrigger = document.getElementById("bookmarks-trigger");
+  const searchModal = document.getElementById("search-modal");
+  const searchInput = document.getElementById("search-input");
+  const searchResults = document.getElementById("search-results");
+
+  const bookmarkStorageKey = "matter-group1-bookmarks";
+  const saved = new Set();
+  try {
+    const stored = JSON.parse(localStorage.getItem(bookmarkStorageKey) || "[]");
+    if (Array.isArray(stored)) {
+      stored.forEach((index) => {
+        if (Number.isInteger(index) && index >= 0 && index < slides.length) saved.add(index);
+      });
+    }
+  } catch {
+    // Storage may be unavailable or contain invalid data; start with an empty set.
+  }
+  const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const autoplayToggle = document.getElementById("autoplay-toggle");
+  const pauseIcon = document.getElementById("autoplay-pause-icon");
+  const playIcon = document.getElementById("autoplay-play-icon");
+  const transitionControls = [
+    nextButton, previousButton, bookmark, discover, modalPrev, modalNext,
+    searchTrigger, bookmarksTrigger, ...navLinks
+  ];
+  let activeIndex = 0;
+  let transitioning = false;
+  let userPaused = false;
+  let hoverPaused = experience.matches(":hover");
+  let focusPaused = experience.contains(document.activeElement);
+  let timer = null;
+  let timerStarted = 0;
+  let timeLeft = duration;
+  let contentReturnFocus = null;
+  let searchReturnFocus = null;
+
+  counterTotal.textContent = "/ " + String(slides.length).padStart(2, "0");
+
+  function setTransitioning(busy) {
+    transitioning = busy;
+    experience.setAttribute("aria-busy", String(busy));
+    transitionControls.forEach((control) => { control.disabled = busy; });
+    track.querySelectorAll("button").forEach((card) => { card.disabled = busy; });
+  }
+
+  function makeCard(slide, index) {
+    const item = document.createElement("article");
+    item.className = "card-item";
+    item.setAttribute("role", "listitem");
+    item.dataset.slideIndex = String(index);
+
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "destination-card";
+    card.disabled = transitioning;
+    card.setAttribute("aria-label", slide.region + ": " + slide.title.join(" "));
+
+    const photo = document.createElement("div");
+    photo.className = "card-photo";
+    photo.setAttribute("aria-hidden", "true");
+    photo.style.backgroundImage = 'url("' + slide.image + '")';
+
+    const caption = document.createElement("div");
+    caption.className = "card-caption";
+    const dash = document.createElement("span");
+    dash.className = "card-dash";
+    dash.setAttribute("aria-hidden", "true");
+
+    const label = document.createElement("span");
+    label.className = "card-region";
+    label.textContent = slide.region;
+
+    const title = document.createElement("strong");
+    title.className = "card-title";
+    slide.title.forEach((line) => {
+      const span = document.createElement("span");
+      span.textContent = line;
+      title.appendChild(span);
+    });
+
+    caption.append(dash, label, title);
+    card.append(photo, caption);
+    item.appendChild(card);
+    card.addEventListener("click", () => { void navigateToSlide(index, item); });
+    return item;
+  }
+
+  function renderCards() {
+    const cards = document.createDocumentFragment();
+    for (let step = 1; step <= 5; step++) {
+      const index = (activeIndex + step) % slides.length;
+      cards.appendChild(makeCard(slides[index], index));
+    }
+    track.replaceChildren(cards);
+  }
+
+  function renderContentModal(index) {
+    const slide = slides[index];
+    modalBadge.textContent = slide.badge;
+    modalTitle.textContent = slide.modalHeading;
+    modalBody.innerHTML = slide.modalContent;
+    contentModal.querySelector(".modal-box").scrollTop = 0;
+  }
+
+  function renderSlide(index) {
+    const slide = slides[index];
+    region.textContent = slide.region;
+    line1.textContent = slide.title[0];
+    line2.textContent = slide.title[1];
+    description.textContent = slide.description;
+    bookmark.setAttribute("aria-pressed", String(saved.has(index)));
+    bookmark.setAttribute("aria-label", (saved.has(index) ? "Bỏ lưu slide " : "Lưu slide ") + slide.title.join(" "));
+
+    navLinks.forEach((link, idx) => {
+      const isActive = idx === slide.navCategory;
+      link.classList.toggle("is-active", isActive);
+      if (isActive) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+    if (contentModal.classList.contains("is-open")) renderContentModal(index);
+  }
+
+  function paintProgress(ratio) {
+    const value = Math.max(0, Math.min(1, ratio));
+    bars.forEach((bar) => {
+      bar.style.transition = "none";
+      bar.style.transform = "scaleX(" + value + ")";
+    });
+  }
+
+  function stopAutoplay() {
+    if (timer === null) return;
+    clearTimeout(timer);
+    timer = null;
+    timeLeft = Math.max(0, timeLeft - (performance.now() - timerStarted));
+    paintProgress(1 - timeLeft / duration);
+  }
+
+  function syncAutoplay() {
+    const reduced = motionPreference.matches;
+    const explicitlyPaused = userPaused || reduced;
+    autoplayToggle.disabled = reduced;
+    autoplayToggle.setAttribute("aria-pressed", String(explicitlyPaused));
+    autoplayToggle.setAttribute("aria-label", reduced
+      ? "Tự động chuyển slide đã tắt theo tùy chọn giảm chuyển động"
+      : userPaused ? "Tiếp tục tự động chuyển slide" : "Tạm dừng tự động chuyển slide");
+    pauseIcon.style.display = explicitlyPaused ? "none" : "";
+    playIcon.style.display = explicitlyPaused ? "" : "none";
+
+    const blocked = explicitlyPaused || hoverPaused || focusPaused || document.hidden ||
+      transitioning || header.classList.contains("menu-open") ||
+      contentModal.classList.contains("is-open") || searchModal.classList.contains("is-open");
+    if (blocked) {
+      stopAutoplay();
+      return;
+    }
+    if (timer !== null) return;
+
+    paintProgress(1 - timeLeft / duration);
+    timerStarted = performance.now();
+    bars.forEach((bar) => {
+      void bar.offsetWidth;
+      bar.style.transition = "transform " + timeLeft + "ms linear";
+      bar.style.transform = "scaleX(1)";
+    });
+    timer = setTimeout(() => {
+      timer = null;
+      timeLeft = duration;
+      changeSlide(1);
+    }, timeLeft);
+  }
+
+  function waitForMotion(element, property) {
+    const animations = element.getAnimations({ subtree: true })
+      .filter((animation) => !property || animation.transitionProperty === property);
+    return Promise.all(animations.map((animation) => animation.finished.catch(() => {})));
+  }
+
+  async function updateCounter(index) {
+    counter.classList.add("is-out");
+    await waitForMotion(counter);
+    counter.textContent = String(index + 1).padStart(2, "0");
+    counter.classList.remove("is-out");
+    counter.classList.add("is-in");
+    void counter.offsetWidth;
+    counter.classList.remove("is-in");
+    await waitForMotion(counter);
+  }
+
+  async function animateCopy(index) {
+    copy.classList.add("is-outgoing");
+    await waitForMotion(copy);
+    renderSlide(index);
+    copy.classList.remove("is-outgoing");
+    copy.classList.add("is-entering");
+    void copy.offsetWidth;
+    copy.classList.add("is-visible");
+    await waitForMotion(copy);
+    copy.classList.remove("is-entering", "is-visible");
+  }
+
+  function prepareExpansion(card, reverse = false) {
+    const rect = card.getBoundingClientRect();
+    const bounds = experience.getBoundingClientRect();
+    const expansion = document.createElement("div");
+    expansion.className = "photo-expansion";
+    expansion.setAttribute("aria-hidden", "true");
+    expansion.style.backgroundImage = card.querySelector(".card-photo").style.backgroundImage;
+    expansion.style.setProperty("--start-top", (rect.top - bounds.top) + "px");
+    expansion.style.setProperty("--start-left", (rect.left - bounds.left) + "px");
+    expansion.style.setProperty("--start-width", rect.width + "px");
+    expansion.style.setProperty("--start-height", rect.height + "px");
+    if (reverse) expansion.classList.add("is-expanded");
+    experience.appendChild(expansion);
+    card.style.visibility = "hidden";
+    void expansion.offsetWidth;
+    expansion.classList.toggle("is-expanded", !reverse);
+    return expansion;
+  }
+
+  async function animateBackground(index, promoted, previousIndex) {
+    if (promoted) {
+      const stepIndex = Array.from(track.children).indexOf(promoted) + 1;
+      const expansion = prepareExpansion(promoted);
+      try {
+        if (stepIndex > 0) {
+          for (let s = 1; s <= stepIndex; s++) {
+            const incomingIndex = (previousIndex + 5 + s) % slides.length;
+            track.appendChild(makeCard(slides[incomingIndex], incomingIndex));
+          }
+          for (let i = 0; i < stepIndex - 1; i++) {
+            const preceding = track.children[i];
+            if (preceding) {
+              preceding.style.transition = "opacity .3s ease";
+              preceding.style.opacity = "0";
+            }
+          }
+          track.style.setProperty("--shift-slots", String(stepIndex));
+          void track.offsetWidth;
+          track.classList.add("is-shifting");
+        }
+        await Promise.all([waitForMotion(expansion), waitForMotion(track, "transform")]);
+        activePhoto.src = slides[index].image;
+      } finally {
+        expansion.remove();
+      }
+    } else if (index === (previousIndex - 1 + slides.length) % slides.length) {
+      // Reverse the forward transition: return the current background to the rail.
+      const returning = makeCard(slides[previousIndex], previousIndex);
+      track.prepend(returning);
+      const expansion = prepareExpansion(returning, true);
+      try {
+        activePhoto.src = slides[index].image;
+        // Keep the existing cards in place before animating them one slot right.
+        track.style.transform = "translateX(calc(-1 * var(--card-slot)))";
+        void track.offsetWidth;
+        track.classList.add("is-restoring");
+        track.style.removeProperty("transform");
+        await Promise.all([waitForMotion(expansion), waitForMotion(track, "transform")]);
+      } finally {
+        expansion.remove();
+      }
+    } else {
+      activePhoto.classList.add("is-switching");
+      await waitForMotion(activePhoto, "opacity");
+      activePhoto.src = slides[index].image;
+      activePhoto.classList.remove("is-switching");
+      await waitForMotion(activePhoto, "opacity");
+    }
+  }
+
+  async function navigateToSlide(index, promoted = null) {
+    if (transitioning || index === activeIndex || !Number.isInteger(index) ||
+        index < 0 || index >= slides.length) return;
+
+    const previousIndex = activeIndex;
+    const focusedCard = track.contains(document.activeElement);
+    setTransitioning(true);
+    stopAutoplay();
+    timeLeft = duration;
+    paintProgress(0);
+    try {
+      if (motionPreference.matches) {
+        activeIndex = index;
+        renderSlide(index);
+        counter.textContent = String(index + 1).padStart(2, "0");
+        activePhoto.src = slides[index].image;
+      } else {
+        const image = new Image();
+        image.src = slides[index].image;
+        await image.decode().catch(() => {});
+        activeIndex = index;
+        await Promise.all([
+          animateCopy(index), updateCounter(index), animateBackground(index, promoted, previousIndex)
+        ]);
+      }
+    } finally {
+      track.classList.remove("is-shifting", "is-restoring");
+      track.style.removeProperty("--shift-slots");
+      track.style.removeProperty("transform");
+      renderCards();
+      setTransitioning(false);
+      if (focusedCard) nextButton.focus({ preventScroll: true });
+      syncAutoplay();
+    }
+  }
+
+  function changeSlide(direction) {
+    const index = (activeIndex + direction + slides.length) % slides.length;
+    return navigateToSlide(index, direction > 0 ? track.firstElementChild : null);
+  }
+
+  function jumpToSlide(index) {
+    return navigateToSlide(index);
+  }
+
+  // Dialog state is also an independent reason to pause autoplay.
+  function openContentModal(index) {
+    if (transitioning) return;
+    contentReturnFocus = document.activeElement;
+    renderContentModal(index);
+    contentModal.inert = false;
+    contentModal.setAttribute("aria-hidden", "false");
+    contentModal.classList.add("is-open");
+    syncAutoplay();
+    modalClose.focus();
+  }
+
+  function closeContentModal() {
+    contentModal.classList.remove("is-open");
+    contentModal.inert = true;
+    contentModal.setAttribute("aria-hidden", "true");
+    contentReturnFocus?.focus({ preventScroll: true });
+    syncAutoplay();
+  }
+
+  function openSearchModal() {
+    if (transitioning) return;
+    searchReturnFocus = document.activeElement;
+    searchModal.inert = false;
+    searchModal.setAttribute("aria-hidden", "false");
+    searchModal.classList.add("is-open");
+    syncAutoplay();
+    searchInput.value = "";
+    renderSearchResults("");
+    searchInput.focus();
+  }
+
+  function closeSearchModal() {
+    searchModal.classList.remove("is-open");
+    searchModal.inert = true;
+    searchModal.setAttribute("aria-hidden", "true");
+    searchReturnFocus?.focus({ preventScroll: true });
+    syncAutoplay();
+  }
+
+  function normalizeSearch(text) {
+    return text.toLowerCase().normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/đ/g, "d")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function renderSearchResults(query) {
+    const q = normalizeSearch(query);
+    searchResults.innerHTML = "";
+    const filtered = slides.filter((slide) => {
+      if (!q) return true;
+      return [slide.title.join(" "), slide.region, slide.description, slide.modalContent]
+        .some((text) => normalizeSearch(text).includes(q));
+    });
+
+    if (filtered.length === 0) {
+      searchResults.innerHTML = '<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.6);font-size:13px;">Không tìm thấy slide phù hợp với từ khóa.</div>';
+      return;
+    }
+
+    filtered.forEach((slide) => {
+      const idx = slides.indexOf(slide);
+      const item = document.createElement("button");
+      item.type = "button";
+      item.className = "search-item";
+      item.innerHTML = `
+        <div class="search-item-info">
+          <span class="search-item-region">${slide.region}</span>
+          <span class="search-item-title">${slide.title.join(" ")}</span>
+        </div>
+        <span class="search-item-counter">${String(idx + 1).padStart(2, "0")} / ${slides.length}</span>
+      `;
+      item.addEventListener("click", () => {
+        closeSearchModal();
+        jumpToSlide(idx);
+      });
+      searchResults.appendChild(item);
+    });
+  }
+
+  // Event Listeners
+  nextButton.addEventListener("click", () => changeSlide(1));
+  previousButton.addEventListener("click", () => changeSlide(-1));
+
+  bookmark.addEventListener("click", () => {
+    if (saved.has(activeIndex)) saved.delete(activeIndex);
+    else saved.add(activeIndex);
+    try {
+      localStorage.setItem(bookmarkStorageKey, JSON.stringify(Array.from(saved)));
+    } catch {
+      // Keep bookmarks available for this visit when browser storage is blocked.
+    }
+    bookmark.setAttribute("aria-pressed", String(saved.has(activeIndex)));
+    bookmark.setAttribute("aria-label", (saved.has(activeIndex) ? "Bỏ lưu slide " : "Lưu slide ") + slides[activeIndex].title.join(" "));
+  });
+
+  discover.addEventListener("click", () => openContentModal(activeIndex));
+  modalClose.addEventListener("click", closeContentModal);
+  contentModal.addEventListener("click", (e) => {
+    if (e.target === contentModal) closeContentModal();
+  });
+
+  modalPrev.addEventListener("click", () => {
+    const prev = (activeIndex - 1 + slides.length) % slides.length;
+    jumpToSlide(prev);
+  });
+
+  modalNext.addEventListener("click", () => {
+    const next = (activeIndex + 1) % slides.length;
+    jumpToSlide(next);
+  });
+
+  searchTrigger.addEventListener("click", openSearchModal);
+  bookmarksTrigger.addEventListener("click", () => {
+    openSearchModal();
+    if (saved.size === 0) {
+      searchResults.innerHTML = '<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.6);font-size:13px;">Bạn chưa đánh dấu slide nào. Hãy nhấn nút bookmark tròn màu hổ phách để lưu slide yêu thích!</div>';
+    } else {
+      searchResults.innerHTML = "";
+      saved.forEach((idx) => {
+        const slide = slides[idx];
+        const item = document.createElement("button");
+        item.type = "button";
+        item.className = "search-item";
+        item.innerHTML = `
+          <div class="search-item-info">
+            <span class="search-item-region">${slide.region}</span>
+            <span class="search-item-title">${slide.title.join(" ")}</span>
+          </div>
+          <span class="search-item-counter">${String(idx + 1).padStart(2, "0")} / ${slides.length}</span>
+        `;
+        item.addEventListener("click", () => {
+          closeSearchModal();
+          jumpToSlide(idx);
+        });
+        searchResults.appendChild(item);
+      });
+    }
+  });
+
+  searchInput.addEventListener("input", () => renderSearchResults(searchInput.value));
+  searchModal.addEventListener("click", (e) => {
+    if (e.target === searchModal) closeSearchModal();
+  });
+
+  menuToggle.addEventListener("click", () => {
+    const open = menuToggle.getAttribute("aria-expanded") !== "true";
+    menuToggle.setAttribute("aria-expanded", String(open));
+    menuToggle.setAttribute("aria-label", open ? "Đóng điều hướng" : "Mở điều hướng");
+    header.classList.toggle("menu-open", open);
+    syncAutoplay();
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener("pointerdown", (e) => {
+    if (header.classList.contains("menu-open") && !header.contains(e.target)) {
+      header.classList.remove("menu-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Mở điều hướng");
+      syncAutoplay();
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      const jumpIndex = parseInt(link.dataset.jump, 10);
+      jumpToSlide(jumpIndex);
+      header.classList.remove("menu-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Mở điều hướng");
+      syncAutoplay();
+    });
+  });
+
+  // Mobile touch swipe gesture navigation
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+  let lastSwipeTime = 0;
+
+  experience.addEventListener("touchstart", (e) => {
+    if (e.touches.length !== 1) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchStartTime = performance.now();
+  }, { passive: true });
+
+  experience.addEventListener("touchend", (e) => {
+    if (e.changedTouches.length !== 1) return;
+    if (contentModal.classList.contains("is-open") ||
+        searchModal.classList.contains("is-open") ||
+        header.classList.contains("menu-open")) return;
+
+    const deltaX = e.changedTouches[0].clientX - touchStartX;
+    const deltaY = e.changedTouches[0].clientY - touchStartY;
+    const duration = performance.now() - touchStartTime;
+
+    if (Math.abs(deltaX) >= 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3 && duration < 800) {
+      lastSwipeTime = performance.now();
+      if (deltaX < 0) {
+        changeSlide(1);
+      } else {
+        changeSlide(-1);
+      }
+    }
+  }, { passive: true });
+
+  // Direct click on hero background or title area opens slide detail modal
+  experience.addEventListener("click", (e) => {
+    if (performance.now() - lastSwipeTime < 400) return;
+    if (transitioning) return;
+    if (contentModal.classList.contains("is-open") ||
+        searchModal.classList.contains("is-open") ||
+        header.classList.contains("menu-open")) return;
+
+    if (window.getSelection && window.getSelection().toString().trim().length > 0) return;
+
+    if (e.target.closest("button, a, input, select, textarea, .cards-shell, .rail-controls, .site-header")) {
+      return;
+    }
+
+    openContentModal(activeIndex);
+  });
+
+  // Interactive background parallax & ambient spotlight
+  let targetPanX = 0, targetPanY = 0;
+  let currentPanX = 0, currentPanY = 0;
+  let targetMouseX = 50, targetMouseY = 50;
+  let currentMouseX = 50, currentMouseY = 50;
+  let parallaxActive = false;
+  let bgRafId = null;
+
+  function updateBackgroundParallax() {
+    currentPanX += (targetPanX - currentPanX) * 0.08;
+    currentPanY += (targetPanY - currentPanY) * 0.08;
+    currentMouseX += (targetMouseX - currentMouseX) * 0.08;
+    currentMouseY += (targetMouseY - currentMouseY) * 0.08;
+
+    experience.style.setProperty("--bg-pan-x", `${currentPanX.toFixed(2)}px`);
+    experience.style.setProperty("--bg-pan-y", `${currentPanY.toFixed(2)}px`);
+    experience.style.setProperty("--mouse-x", `${currentMouseX.toFixed(2)}%`);
+    experience.style.setProperty("--mouse-y", `${currentMouseY.toFixed(2)}%`);
+
+    const hasDelta = Math.abs(targetPanX - currentPanX) > 0.02 ||
+                     Math.abs(targetPanY - currentPanY) > 0.02 ||
+                     Math.abs(targetMouseX - currentMouseX) > 0.02 ||
+                     Math.abs(targetMouseY - currentMouseY) > 0.02;
+
+    if (hasDelta || parallaxActive) {
+      bgRafId = requestAnimationFrame(updateBackgroundParallax);
+    } else {
+      bgRafId = null;
+    }
+  }
+
+  function kickParallax() {
+    if (!bgRafId && !motionPreference.matches) {
+      bgRafId = requestAnimationFrame(updateBackgroundParallax);
+    }
+  }
+
+  window.addEventListener("pointermove", (e) => {
+    if (e.pointerType === "touch" || motionPreference.matches) return;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    if (w <= 0 || h <= 0) return;
+
+    const normX = (e.clientX / w) - 0.5;
+    const normY = (e.clientY / h) - 0.5;
+    targetPanX = -normX * 32;
+    targetPanY = -normY * 20;
+
+    targetMouseX = (e.clientX / w) * 100;
+    targetMouseY = (e.clientY / h) * 100;
+
+    parallaxActive = true;
+    kickParallax();
+  }, { passive: true });
+
+  window.addEventListener("pointerleave", () => {
+    targetPanX = 0;
+    targetPanY = 0;
+    targetMouseX = 50;
+    targetMouseY = 50;
+    parallaxActive = false;
+    kickParallax();
+  });
+
+  autoplayToggle.addEventListener("click", () => {
+    userPaused = !userPaused;
+    syncAutoplay();
+  });
+  experience.addEventListener("pointerenter", () => {
+    hoverPaused = true;
+    syncAutoplay();
+  });
+  experience.addEventListener("pointerleave", () => {
+    hoverPaused = false;
+    syncAutoplay();
+  });
+  experience.addEventListener("focusin", () => {
+    focusPaused = true;
+    syncAutoplay();
+  });
+  experience.addEventListener("focusout", (e) => {
+    focusPaused = experience.contains(e.relatedTarget);
+    syncAutoplay();
+  });
+  document.addEventListener("visibilitychange", syncAutoplay);
+  motionPreference.addEventListener("change", syncAutoplay);
+
+  document.addEventListener("keydown", (e) => {
+    const openDialog = contentModal.classList.contains("is-open") ? contentModal
+      : searchModal.classList.contains("is-open") ? searchModal : null;
+    if (e.key === "Tab" && openDialog) {
+      const controls = Array.from(openDialog.querySelectorAll("button:not(:disabled), input:not(:disabled)"));
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (first && (!openDialog.contains(document.activeElement) ||
+          (e.shiftKey ? document.activeElement === first : document.activeElement === last))) {
+        e.preventDefault();
+        (e.shiftKey ? last : first).focus();
+      }
+      return;
+    }
+    if (e.key === "Escape") {
+      if (contentModal.classList.contains("is-open")) closeContentModal();
+      else if (searchModal.classList.contains("is-open")) closeSearchModal();
+      else if (header.classList.contains("menu-open")) {
+        header.classList.remove("menu-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        syncAutoplay();
+      }
+    } else if (!contentModal.classList.contains("is-open") && !searchModal.classList.contains("is-open")) {
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        changeSlide(e.key === "ArrowRight" ? 1 : -1);
+      }
+    }
+  });
+
+  // Initialize without animation timers that could outlive a later transition.
+  async function initialize() {
+    setTransitioning(true);
+    renderCards();
+    renderSlide(activeIndex);
+    new Set(slides.map((slide) => slide.image)).forEach((src) => {
+      const image = new Image();
+      image.src = src;
+      void image.decode().catch(() => {});
+    });
+    if (!motionPreference.matches) {
+      void copy.offsetWidth;
+      copy.classList.add("is-visible");
+      await waitForMotion(copy);
+    }
+    copy.classList.remove("is-entering", "is-visible");
+    setTransitioning(false);
+    syncAutoplay();
+  }
+  void initialize();
+})();
+</script>
+</body>
+</html>
