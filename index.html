@@ -164,7 +164,40 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 .nav-link:hover,.nav-link.is-active{color:#fff}
 .nav-link.is-active::after{transform:scaleX(1)}
 
-.nav-tools{display:flex;align-items:center;gap:14px}
+.nav-tools{display:flex;align-items:center;gap:12px}
+.deck-switch-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:5px 11px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:#fff;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:999px;
+  transition:all .2s ease;
+  white-space:nowrap;
+}
+.deck-switch-btn:hover{
+  background:rgba(255,255,255,0.16);
+  border-color:#fff;
+  transform:translateY(-1px);
+}
+.deck-btn-editorial{
+  color:#FF6B78;
+  border-color:rgba(214,32,46,0.45);
+  background:rgba(214,32,46,0.12);
+}
+.deck-btn-editorial:hover{
+  background:#D6202E;
+  color:#fff;
+  border-color:#D6202E;
+  box-shadow:0 0 12px rgba(214,32,46,0.5);
+}
 .icon-button,.menu-toggle{
   display:grid;
   width:32px;
@@ -825,6 +858,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     </nav>
 
     <div class="nav-tools">
+      <a href="hub.html" class="deck-switch-btn" title="Trở về Menu chọn phương thức">
+        <span>☰</span> MENU
+      </a>
+      <a href="editorial.html" class="deck-switch-btn deck-btn-editorial" title="Chuyển sang bản Tạp chí Persona 5">
+        <span>★</span> BẢN EDITORIAL
+      </a>
       <button class="icon-button" id="autoplay-toggle" type="button" aria-label="Tạm dừng tự động chuyển slide" aria-pressed="false">
         <svg id="autoplay-pause-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 4h3v12H5zm7 0h3v12h-3z"/></svg>
         <svg id="autoplay-play-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" style="display:none"><path d="m6 3 11 7-11 7z"/></svg>

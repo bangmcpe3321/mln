@@ -1,0 +1,3754 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#15151A">
+  <title>VẬT CHẤT &amp; VẬN ĐỘNG — NHÓM 1</title>
+  <meta name="description"
+    content="Vật chất là gì dưới góc độ triết học? Vận động, đứng im, không gian, thời gian là gì? — Báo cáo Triết học Mác - Lênin Nhóm 1.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,600;0,700;0,800;0,900;1,900&family=Space+Grotesk:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root,
+    [data-theme="dark"] {
+      --bg: #15151A;
+      --bg-alt: #1C1C22;
+      --text: #F2F2F2;
+      --text-muted: #9E9EA8;
+      --red: #D6202E;
+      --red-hover: #b81724;
+      --black: #0A0A0D;
+      --card-bg: #1E1E26;
+      --border: #353542;
+      --border-light: rgba(242, 242, 242, 0.18);
+      --code-bg: #09090C;
+      --dot-color: rgba(255, 255, 255, 0.09);
+      --safe-padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+      padding: var(--safe-padding);
+      transition: background-color 0.35s ease, color 0.35s ease;
+      position: relative;
+    }
+
+    /* Selection */
+    ::selection {
+      background: var(--red);
+      color: #FFF;
+    }
+
+    /* Fixed Left Sidebar Menu — Persona 5 Phantom Thieves Style */
+    .sidebar-nav {
+      position: fixed;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      pointer-events: auto;
+      width: 205px;
+    }
+
+    /* P5 Calling Card Header */
+    .p5-hud-header {
+      margin-bottom: 8px;
+      user-select: none;
+      transform: skewX(-9deg) rotate(-1.5deg);
+    }
+
+    .p5-header-banner {
+      background: #000000;
+      color: #FFFFFF;
+      border: 2px solid var(--red);
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 4px 4px 0px var(--red);
+    }
+
+    .p5-header-star {
+      color: var(--red);
+      font-size: 13px;
+      animation: p5StarSpin 4s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes p5StarSpin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .p5-header-title {
+      font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .p5-header-sub {
+      font-family: monospace;
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--red);
+      margin-left: auto;
+    }
+
+    .p5-hazard-strip {
+      height: 4px;
+      margin-top: 3px;
+      background: repeating-linear-gradient(-45deg,
+          var(--red),
+          var(--red) 7px,
+          #000000 7px,
+          #000000 14px);
+      box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    /* P5 Slanted Rail List */
+    .sidebar-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    /* Persona 5 Angular Cutout Banner Item */
+    .sidebar-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 10px 7px 8px;
+      text-decoration: none;
+      color: #FFFFFF;
+      background: #0E0E14;
+      border: 1.8px solid #22222E;
+      transform: skewX(-9deg);
+      transform-origin: left center;
+      box-shadow: 3px 3px 0px #000000, 5px 5px 0px rgba(214, 32, 46, 0.45);
+      transition: transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.22s ease;
+      cursor: pointer;
+    }
+
+
+    /* Left Red Jagged Notch */
+    .btn-indicator {
+      position: absolute;
+      left: -2px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: transparent;
+      transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-text-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      min-width: 0;
+      transform: skewX(9deg);
+      /* Unskew text for maximum readability */
+    }
+
+    .btn-primary-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    /* Comic Cutout Number Badge */
+    .sidebar-btn .btn-num {
+      font-family: 'Space Grotesk', monospace, sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      color: #FFFFFF;
+      background: var(--red);
+      padding: 1px 5px;
+      border: 1px solid #000000;
+      line-height: 1.1;
+      box-shadow: 1.5px 1.5px 0px #000000;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-btn .btn-title {
+      font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+      font-size: 10.5px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.1;
+    }
+
+    .sidebar-btn .btn-sub-row {
+      font-family: monospace, sans-serif;
+      font-size: 7.8px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888898;
+      line-height: 1.1;
+      margin-left: 2px;
+      transition: color 0.2s ease;
+    }
+
+    /* P5 Star Motif Indicator */
+    .btn-arrow {
+      font-size: 12px;
+      color: var(--red);
+      opacity: 0;
+      transform: skewX(9deg) translateX(-4px);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      line-height: 1;
+    }
+
+    /* Hover State (Comic Shimmer / Burst) */
+    .sidebar-btn:hover {
+      transform: skewX(-9deg) translateX(8px);
+      background: #FFFFFF;
+      color: #000000;
+      border-color: #000000;
+      box-shadow: 4px 4px 0px #000000, 8px 8px 0px var(--red);
+    }
+
+    .sidebar-btn:hover .btn-indicator {
+      background: var(--red);
+      box-shadow: 0 0 8px var(--red);
+    }
+
+    .sidebar-btn:hover .btn-num {
+      background: #000000;
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+
+    .sidebar-btn:hover .btn-title {
+      color: #000000;
+    }
+
+    .sidebar-btn:hover .btn-sub-row {
+      color: var(--red);
+      font-weight: 800;
+    }
+
+    .sidebar-btn:hover .btn-arrow {
+      opacity: 1;
+      transform: skewX(9deg) translateX(0) scale(1.15);
+    }
+
+    /* Active State (Iconic Persona 5 All-Out Crimson Burst) */
+    .sidebar-btn.active {
+      background: var(--red) !important;
+      color: #FFFFFF !important;
+      border: 2px solid #FFFFFF !important;
+      transform: skewX(-9deg) translateX(12px) scale(1.04);
+      box-shadow: 4px 4px 0px #000000, 8px 8px 0px #FFFFFF, 12px 12px 0px rgba(0, 0, 0, 0.6);
+      z-index: 10;
+    }
+
+    .sidebar-btn.active .btn-indicator {
+      background: #FFFFFF;
+      box-shadow: 0 0 10px #FFFFFF;
+    }
+
+    .sidebar-btn.active .btn-num {
+      background: #000000;
+      color: #FFFFFF;
+      border: 1px solid #FFFFFF;
+      box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+    }
+
+    .sidebar-btn.active .btn-title {
+      color: #FFFFFF !important;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .sidebar-btn.active .btn-sub-row {
+      color: #FFE6E8 !important;
+      font-weight: 800;
+      opacity: 1;
+    }
+
+    .sidebar-btn.active .btn-arrow {
+      opacity: 1;
+      transform: skewX(9deg) translateX(0) rotate(15deg) scale(1.25);
+      color: #FFFFFF;
+      text-shadow: 0 0 6px #FFFFFF;
+    }
+
+    /* Vertical Rotated Right Text Edge */
+    .vertical-tag-edge {
+      position: fixed;
+      right: 18px;
+      top: 25%;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      z-index: 990;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      pointer-events: none;
+      user-select: none;
+      animation: driftVertical 6s ease-in-out infinite alternate;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .vertical-tag-edge::before {
+      content: "";
+      width: 1px;
+      height: 48px;
+      background: var(--red);
+    }
+
+    .vertical-tag-edge::after {
+      content: "";
+      width: 1px;
+      height: 48px;
+      background: var(--text-muted);
+      opacity: 0.4;
+    }
+
+    @keyframes driftVertical {
+      0% {
+        transform: translateY(-12px);
+      }
+
+      100% {
+        transform: translateY(12px);
+      }
+    }
+
+    /* Concentric Target Icon / Go-To-Top Button (Bottom Right) */
+    .concentric-target {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 68px;
+      height: 68px;
+      z-index: 990;
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      pointer-events: auto;
+      user-select: none;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(16px) scale(0.9);
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.25s ease;
+    }
+
+    .concentric-target.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .concentric-target:hover {
+      transform: translateY(-4px) scale(1.12);
+      filter: drop-shadow(0 0 12px var(--red));
+    }
+
+    .concentric-target:active {
+      transform: translateY(0) scale(0.95);
+    }
+
+    .concentric-target svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .target-radar-rings {
+      transform-origin: 34px 34px;
+      animation: rotateTarget 14s linear infinite;
+      transition: animation-duration 0.3s ease;
+    }
+
+    .concentric-target:hover .target-radar-rings {
+      animation-duration: 4s;
+    }
+
+    .target-arrow {
+      fill: var(--red);
+      transition: fill 0.2s ease, transform 0.2s ease;
+    }
+
+    .concentric-target:hover .target-arrow {
+      fill: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    /* Persona 5 Tooltip Tag */
+    .concentric-target .target-tooltip {
+      position: absolute;
+      bottom: 74px;
+      right: 0;
+      background: var(--black);
+      color: #FFFFFF;
+      border: 1px solid var(--red);
+      font-family: 'Space Grotesk', monospace, sans-serif;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      white-space: nowrap;
+      transform: skewX(-9deg) translateY(6px);
+      opacity: 0;
+      pointer-events: none;
+      box-shadow: 3px 3px 0px var(--red);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .concentric-target:hover .target-tooltip {
+      opacity: 1;
+      transform: skewX(-9deg) translateY(0);
+    }
+
+    @keyframes rotateTarget {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes pulseCenterDot {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.9;
+      }
+
+      50% {
+        transform: scale(1.4);
+        opacity: 1;
+      }
+    }
+
+    /* Top Utility Bar */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 44px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border-light);
+      z-index: 995;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .top-badge-red {
+      background: var(--red);
+      color: #FFF;
+      padding: 2px 7px;
+      font-size: 10px;
+      border-radius: 2px;
+    }
+
+    .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .top-switch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #CBD5E1;
+      background: #181C26;
+      border: 1px solid #334155;
+      border-radius: 3px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .top-switch-btn:hover {
+      color: #FFFFFF;
+      background: #232B3E;
+      border-color: #64748B;
+      transform: translateY(-1px);
+    }
+
+    .top-btn-deck {
+      color: var(--amber, #F5B731);
+      border-color: rgba(245, 183, 49, 0.4);
+      background: rgba(245, 183, 49, 0.08);
+    }
+
+    .top-btn-deck:hover {
+      background: #F5B731;
+      color: #000000;
+      border-color: #F5B731;
+      box-shadow: 0 0 10px rgba(245, 183, 49, 0.45);
+    }
+
+    .top-badge-dark {
+      background: #1C1C22;
+      color: #9E9EA8;
+      border: 1px solid #353542;
+      padding: 2px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 2px;
+      letter-spacing: 0.12em;
+    }
+
+    /* Section Container & Diagonal Bands */
+    main {
+      position: relative;
+      width: 100%;
+      padding-left: 200px;
+      /* Space for sidebar */
+      padding-right: 60px;
+      /* Space for vertical text */
+    }
+
+    .section {
+      position: relative;
+      padding: 100px 36px 120px 36px;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Diagonal Red Band */
+    .diagonal-band {
+      position: absolute;
+      top: 5%;
+      left: -25%;
+      width: 150%;
+      height: 480px;
+      background: var(--red);
+      transform: skewY(-14deg) scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.35s ease-out;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.92;
+    }
+
+    .section.is-visible .diagonal-band {
+      transform: skewY(-14deg) scaleX(1);
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Manga Screentone Halftone Dot Matrix Overlay */
+    .manga-screentone-bg {
+      position: fixed;
+      top: -10px;
+      left: -10px;
+      width: calc(100vw + 20px);
+      height: calc(100vh + 20px);
+      background-image:
+        radial-gradient(circle, var(--dot-color) 1.2px, transparent 1.2px),
+        radial-gradient(circle, var(--dot-color) 1.2px, transparent 1.2px);
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.9;
+      transition: transform 0.15s ease-out;
+      will-change: transform;
+    }
+
+    /* Interactive Persona 5 Mouse Torch / Crimson Spotlight Glow */
+    .cursor-spotlight-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(550px circle at var(--mouse-x, -600px) var(--mouse-y, -600px),
+          rgba(214, 32, 46, 0.16) 0%,
+          rgba(214, 32, 46, 0.05) 50%,
+          transparent 80%);
+      mix-blend-mode: screen;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      will-change: background;
+    }
+
+
+    body.has-mouse-moved .cursor-spotlight-glow {
+      opacity: 1;
+    }
+
+    /* Alternate Red Section */
+    .section.section-red-bg {
+      background-color: var(--red);
+      background-image:
+        radial-gradient(circle, rgba(0, 0, 0, 0.13) 1.2px, transparent 1.2px),
+        radial-gradient(circle, rgba(0, 0, 0, 0.13) 1.2px, transparent 1.2px);
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px;
+      color: #FFFFFF;
+    }
+
+    .section.section-red-bg .diagonal-band {
+      background: var(--black);
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1080px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Crosshairs (+ + + +) */
+    .crosshairs {
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.6em;
+      color: #FFFFFF;
+      user-select: none;
+      margin-bottom: 12px;
+      display: block;
+      animation: blinkCrosshairs 2.4s ease-in-out infinite;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .section.section-red-bg .crosshairs {
+      color: #FFFFFF;
+    }
+
+    @keyframes blinkCrosshairs {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.35;
+      }
+    }
+
+    /* Section Subtitle / Metadata Tag */
+    .section-pretitle {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .section.section-red-bg .section-pretitle {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .section-pretitle::after {
+      content: "";
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    /* Big Heavy Titles */
+    h1,
+    h2 {
+      font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+      font-size: clamp(34px, 5.4vw, 70px);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      color: #FFFFFF;
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.28);
+    }
+
+    .section.section-red-bg h1,
+    .section.section-red-bg h2 {
+      color: #FFFFFF;
+    }
+
+    .hero-title-line-1 {
+      display: block;
+      color: #FFFFFF;
+      font-size: clamp(36px, 5.8vw, 76px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-title-line-2 {
+      display: block;
+      color: #FFFFFF;
+      font-size: clamp(24px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+      margin-top: 12px;
+      white-space: nowrap;
+      opacity: 0.95;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    @media (max-width: 680px) {
+      .hero-title-line-2 {
+        white-space: normal;
+      }
+    }
+
+    .title-accent-red {
+      color: #FFFFFF !important;
+      display: inline;
+      opacity: 0.96;
+    }
+
+    .section.section-red-bg .title-accent-red {
+      color: #FFFFFF;
+      display: inline;
+    }
+
+    h3 {
+      font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+
+    .section.section-red-bg h3 {
+      color: #FFFFFF;
+    }
+
+    /* Lead paragraph */
+    .lead-text {
+      font-size: clamp(17px, 1.8vw, 22px);
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 36px;
+      max-width: 880px;
+      color: #FFFFFF;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.22);
+    }
+
+    .section.section-red-bg .lead-text {
+      color: #FFFFFF;
+    }
+
+    /* Key Takeaway Black Label Bar */
+    .takeaway-bar {
+      background: var(--black);
+      color: #FFFFFF;
+      border-left: 6px solid var(--red);
+      padding: 16px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin: 28px 0;
+      box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.18);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .takeaway-badge {
+      background: var(--red);
+      color: #FFF;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 1px;
+      white-space: nowrap;
+    }
+
+    /* Content Cards (White with 1px black border & thick red left stripe) */
+    .editorial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--red);
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 4px 4px 0px var(--border);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .editorial-card {
+      transition: transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        box-shadow 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        border-color 0.2s ease !important;
+    }
+
+    .editorial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 5px 5px 0px var(--red), 9px 9px 0px var(--border);
+      border-color: var(--red);
+    }
+
+    .editorial-card:has(.table-container):hover {
+      transform: none;
+      box-shadow: 4px 4px 0px var(--border), 6px 6px 0px rgba(214, 32, 46, 0.35);
+      border-color: var(--border);
+    }
+
+    .section.section-red-bg .editorial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 5px 5px 0px #FFFFFF, 9px 9px 0px #000000;
+      border-color: #FFFFFF;
+    }
+
+    .section.section-red-bg .editorial-card {
+      background: var(--black);
+      color: #FFFFFF;
+      border-color: #000000;
+      border-left-color: #FFFFFF;
+      box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-meta {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+
+    .section.section-red-bg .card-meta {
+      color: #FF6B6B;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin: 24px 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin: 28px 0;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 16px;
+      margin: 28px 0;
+    }
+
+    @media (min-width: 1024px) {
+      .grid-5 {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    /* 5 Motion Forms Interactive Cards */
+    .motion-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--red);
+      padding: 16px 14px 18px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 2px 2px 0px var(--border);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+    }
+
+    .motion-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 4px 6px 0px var(--red), 6px 8px 0px var(--border);
+      border-color: var(--red);
+      background: var(--card-bg);
+    }
+
+    .motion-canvas-wrap {
+      width: 100%;
+      height: 54px;
+      background: #0A0D14;
+      border: 1px solid #1E293B;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .motion-card:hover .motion-canvas-wrap {
+      border-color: rgba(214, 32, 46, 0.5);
+    }
+
+    .motion-card-tier {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #94A3B8;
+      margin-bottom: 4px;
+    }
+
+    .motion-card-title {
+      font-weight: 800;
+      color: var(--red);
+      font-size: 13.5px;
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    .motion-card p {
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .motion-card:hover p {
+      color: var(--text);
+    }
+
+    /* Keyframe Animations for 5 Motion SVGs */
+    /* 1. Cơ học: Con lắc đơn dao động */
+    @keyframes pendulumSwing {
+
+      0%,
+      100% {
+        transform: rotate(-24deg);
+      }
+
+      50% {
+        transform: rotate(24deg);
+      }
+    }
+
+    .anim-pendulum-arm {
+      transform-origin: 40px 8px;
+      animation: pendulumSwing 1.8s ease-in-out infinite;
+    }
+
+    .motion-card:hover .anim-pendulum-arm {
+      animation-duration: 1.1s;
+    }
+
+    /* 2. Vật lý: Sóng điện từ chạy & hạt dao động */
+    @keyframes waveDash {
+      to {
+        stroke-dashoffset: -32;
+      }
+    }
+
+    @keyframes waveParticle {
+
+      0%,
+      100% {
+        cy: 16px;
+        opacity: 0.8;
+      }
+
+      50% {
+        cy: 32px;
+        opacity: 1;
+      }
+    }
+
+    .anim-wave-line {
+      stroke-dasharray: 6 3;
+      animation: waveDash 1.2s linear infinite;
+    }
+
+    .anim-wave-dot {
+      animation: waveParticle 1.2s ease-in-out infinite;
+    }
+
+    .motion-card:hover .anim-wave-line {
+      animation-duration: 0.6s;
+    }
+
+    /* 3. Hóa học: Phản ứng va chạm & tạo liên kết */
+    @keyframes chemCollideA {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      40%,
+      60% {
+        transform: translateX(8px);
+      }
+    }
+
+    @keyframes chemCollideB {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      40%,
+      60% {
+        transform: translateX(-8px);
+      }
+    }
+
+    @keyframes chemBondFlash {
+
+      0%,
+      30%,
+      70%,
+      100% {
+        opacity: 0.15;
+        stroke-width: 1;
+      }
+
+      45%,
+      55% {
+        opacity: 1;
+        stroke-width: 2.5;
+        stroke: #FCD34D;
+      }
+    }
+
+    .anim-chem-atom-a {
+      animation: chemCollideA 2.2s ease-in-out infinite;
+    }
+
+    .anim-chem-atom-b {
+      animation: chemCollideB 2.2s ease-in-out infinite;
+    }
+
+    .anim-chem-bond {
+      animation: chemBondFlash 2.2s ease-in-out infinite;
+    }
+
+    .motion-card:hover .anim-chem-atom-a,
+    .motion-card:hover .anim-chem-atom-b,
+    .motion-card:hover .anim-chem-bond {
+      animation-duration: 1.2s;
+    }
+
+    /* 4. Sinh học: Chuỗi xoắn kép ADN xoay nhịp nhàng */
+    @keyframes dnaNode1 {
+
+      0%,
+      100% {
+        cy: 12px;
+        r: 3.5px;
+        opacity: 1;
+      }
+
+      50% {
+        cy: 36px;
+        r: 2.2px;
+        opacity: 0.45;
+      }
+    }
+
+    @keyframes dnaNode2 {
+
+      0%,
+      100% {
+        cy: 36px;
+        r: 2.2px;
+        opacity: 0.45;
+      }
+
+      50% {
+        cy: 12px;
+        r: 3.5px;
+        opacity: 1;
+      }
+    }
+
+    @keyframes dnaRung {
+
+      0%,
+      100% {
+        y1: 12px;
+        y2: 36px;
+        stroke-width: 1.5;
+        opacity: 0.8;
+      }
+
+      50% {
+        y1: 36px;
+        y2: 12px;
+        stroke-width: 1;
+        opacity: 0.4;
+      }
+    }
+
+    .anim-dna-node-a {
+      animation: dnaNode1 2s ease-in-out infinite;
+    }
+
+    .anim-dna-node-b {
+      animation: dnaNode2 2s ease-in-out infinite;
+    }
+
+    .anim-dna-rung {
+      animation: dnaRung 2s ease-in-out infinite;
+    }
+
+    .motion-card:hover .anim-dna-node-a,
+    .motion-card:hover .anim-dna-node-b,
+    .motion-card:hover .anim-dna-rung {
+      animation-duration: 1.1s;
+    }
+
+    /* 5. Xã hội: Mạng lưới tiến bộ & truyền tín hiệu */
+    @keyframes socialFlow {
+      to {
+        stroke-dashoffset: -24;
+      }
+    }
+
+    @keyframes socialNodePulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.28);
+      }
+    }
+
+    .anim-social-link {
+      stroke-dasharray: 4 3;
+      animation: socialFlow 1.6s linear infinite;
+    }
+
+    .anim-social-node {
+      transform-origin: center;
+      animation: socialNodePulse 2.4s ease-in-out infinite;
+    }
+
+    .motion-card:hover .anim-social-link {
+      animation-duration: 0.8s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .anim-pendulum-arm,
+      .anim-wave-line,
+      .anim-wave-dot,
+      .anim-chem-atom-a,
+      .anim-chem-atom-b,
+      .anim-chem-bond,
+      .anim-dna-node-a,
+      .anim-dna-node-b,
+      .anim-dna-rung,
+      .anim-social-link,
+      .anim-social-node {
+        animation: none !important;
+      }
+    }
+
+    /* Bullet Lists */
+    .editorial-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+    }
+
+    .editorial-list li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .editorial-list li::before {
+      content: "■";
+      position: absolute;
+      left: 0;
+      top: 0px;
+      font-size: 10px;
+      color: var(--red);
+    }
+
+    .section.section-red-bg .editorial-list li::before {
+      color: #FFFFFF;
+    }
+
+    /* Tables */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin: 28px 0;
+      border: 1px solid var(--border);
+      box-shadow: 4px 4px 0px var(--border);
+      background: var(--card-bg);
+      scrollbar-width: thin;
+      scrollbar-color: var(--red) transparent;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .table-container:hover {
+      border-color: rgba(214, 32, 46, 0.6);
+      box-shadow: 4px 4px 0px var(--red);
+    }
+
+    .table-container::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    .table-container::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .table-container::-webkit-scrollbar-thumb {
+      background: var(--red);
+      border-radius: 3px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    thead tr {
+      background: var(--red);
+      color: #FFFFFF;
+    }
+
+    th {
+      padding: 14px 18px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+      border: 1px solid var(--red);
+    }
+
+    td {
+      padding: 14px 18px;
+      border: 1px solid var(--border-light);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    tbody tr {
+      transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    tbody tr:hover {
+      background: rgba(214, 32, 46, 0.18) !important;
+      box-shadow: inset 4px 0 0 var(--red);
+    }
+
+    .table-highlight-col {
+      font-weight: 700;
+      color: #FF6B78;
+      transition: color 0.18s ease, text-shadow 0.18s ease;
+    }
+
+    tbody tr:hover .table-highlight-col {
+      color: #FFFFFF;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
+    }
+
+    /* Lenin Definition Quote Block */
+    .lenin-quote-block {
+      background: var(--black);
+      color: #FFFFFF;
+      border-left: 8px solid var(--red);
+      border: 1px solid var(--black);
+      border-left-width: 8px;
+      padding: 36px 40px;
+      margin: 36px 0;
+      box-shadow: 6px 6px 0px var(--red);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+    }
+
+    .lenin-quote-block:hover {
+      transform: translateY(-3px);
+      box-shadow: 8px 8px 0px var(--red), 14px 14px 0px rgba(0, 0, 0, 0.6);
+    }
+
+    .lenin-quote-block .p5-scanline {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--red), #FFFFFF, var(--red), transparent);
+      opacity: 0.75;
+      animation: sweepScanline 3.2s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sweepScanline {
+      0% {
+        top: 0%;
+        opacity: 0;
+      }
+
+      12% {
+        opacity: 0.85;
+      }
+
+      88% {
+        opacity: 0.85;
+      }
+
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+    }
+
+    .target-tag {
+      font-family: monospace, sans-serif;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .target-blinker {
+      color: #FF3344;
+      animation: blinkCrosshairs 1s infinite;
+    }
+
+    .corner-bracket {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-color: var(--red);
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .cb-tl {
+      top: 8px;
+      left: 8px;
+      border-top: 2px solid;
+      border-left: 2px solid;
+    }
+
+    .cb-tr {
+      top: 8px;
+      right: 8px;
+      border-top: 2px solid;
+      border-right: 2px solid;
+    }
+
+    .cb-bl {
+      bottom: 8px;
+      left: 8px;
+      border-bottom: 2px solid;
+      border-left: 2px solid;
+    }
+
+    .cb-br {
+      bottom: 8px;
+      right: 8px;
+      border-bottom: 2px solid;
+      border-right: 2px solid;
+    }
+
+    .lenin-quote-block:hover .cb-tl {
+      transform: translate(-3px, -3px);
+    }
+
+    .lenin-quote-block:hover .cb-tr {
+      transform: translate(3px, -3px);
+    }
+
+    .lenin-quote-block:hover .cb-bl {
+      transform: translate(-3px, 3px);
+    }
+
+    .lenin-quote-block:hover .cb-br {
+      transform: translate(3px, 3px);
+    }
+
+    .lenin-quote-block blockquote {
+      font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+      font-size: clamp(20px, 2.4vw, 28px);
+      font-weight: 700;
+      line-height: 1.45;
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    .quote-author {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quote-author::before {
+      content: "";
+      width: 32px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    /* Timeline Container */
+    .timeline {
+      position: relative;
+      margin: 36px 0;
+      padding-left: 32px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--red);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+    }
+
+    .timeline-item {
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .timeline-item:hover {
+      transform: translateX(6px);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -32px;
+      top: 5px;
+      width: 16px;
+      height: 16px;
+      background: var(--bg);
+      border: 3px solid var(--red);
+      border-radius: 50%;
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .timeline-item:hover .timeline-dot {
+      background: var(--red);
+      box-shadow: 0 0 14px var(--red);
+      transform: scale(1.3);
+    }
+
+    .timeline-item:hover .timeline-year {
+      text-shadow: 0 0 10px rgba(214, 32, 46, 0.6);
+    }
+
+    .timeline-year {
+      font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--red);
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .timeline-content {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Hero Section Specifics */
+    .hero-metadata-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-meta-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .hero-meta-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Stagger Animation Targets (Bi-directional Scroll) */
+    .reveal-fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+      transition-delay: 0s !important;
+      will-change: opacity, transform;
+    }
+
+    .reveal-fade-up.is-revealed,
+    .section.is-visible>.section-content>.reveal-fade-up {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Stagger Delays */
+    .delay-1 {
+      transition-delay: 0.12s;
+    }
+
+    .delay-2 {
+      transition-delay: 0.24s;
+    }
+
+    .delay-3 {
+      transition-delay: 0.36s;
+    }
+
+    .delay-4 {
+      transition-delay: 0.48s;
+    }
+
+    .delay-5 {
+      transition-delay: 0.60s;
+    }
+
+    /* Typewriter Text */
+    .typewriter-cursor {
+      display: inline-block;
+      width: 14px;
+      height: 1.1em;
+      background: var(--red);
+      vertical-align: middle;
+      margin-left: 6px;
+      animation: blinkCursor 0.8s infinite;
+    }
+
+    @keyframes blinkCursor {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* High-contrast Graphic / Diagram Box */
+    .graphic-frame {
+      border: 1px solid var(--border);
+      background: #0B0E14;
+      padding: 20px;
+      margin: 24px 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 4px 4px 0px var(--border);
+    }
+
+    .graphic-frame svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Section Footnotes / Barcode */
+    .section-footer-bar {
+      margin-top: 48px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .section.section-red-bg .section-footer-bar {
+      border-top-color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Mobile Responsive Breakpoints (< 820px) */
+    @media (max-width: 820px) {
+      .sidebar-nav {
+        display: none;
+      }
+
+      .vertical-tag-edge {
+        display: none;
+      }
+
+      .concentric-target {
+        width: 52px;
+        height: 52px;
+        right: 14px;
+        bottom: 14px;
+      }
+
+      main {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .section {
+        padding: 80px 20px 80px 20px;
+        min-height: auto;
+      }
+
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .lenin-quote-block {
+        padding: 24px 20px;
+      }
+
+      .editorial-card {
+        padding: 20px;
+      }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      ::before,
+      ::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .diagonal-band {
+        transform: skewY(-14deg) scaleX(1) !important;
+      }
+
+      .reveal-fade-up {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      html {
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Persona 5 Manga Screentone Halftone Dot Matrix Background -->
+  <div class="manga-screentone-bg" aria-hidden="true"></div>
+  <!-- Interactive Crimson Mouse Spotlight Glow -->
+  <div class="cursor-spotlight-glow" aria-hidden="true"></div>
+
+  <!-- Top Utility Bar -->
+  <header class="top-bar">
+    <div class="top-bar-left">
+      <span class="top-badge-red">MLN // 2026</span>
+      <span>TRIẾT HỌC MÁC – LÊNIN • NHÓM 1</span>
+    </div>
+    <div class="top-bar-right">
+      <a href="hub.html" class="top-switch-btn" title="Trở về Menu chọn phương thức">
+        <span>☰</span> MENU
+      </a>
+      <a href="index.html" class="top-switch-btn top-btn-deck" title="Chuyển sang 3D Slide Deck">
+        <span>✦</span> 3D SLIDE DECK
+      </a>
+      <span class="top-badge-dark">EDITORIAL</span>
+    </div>
+  </header>
+
+  <!-- Fixed Left Sidebar Menu -->
+  <nav class="sidebar-nav" aria-label="Điều hướng các phần">
+    <!-- Persona 5 Calling Card Header -->
+    <div class="p5-hud-header">
+      <div class="p5-header-banner">
+        <span class="p5-header-star">★</span>
+        <span class="p5-header-title">NAVIGATION</span>
+        <span class="p5-header-sub">目次</span>
+      </div>
+      <div class="p5-hazard-strip" aria-hidden="true"></div>
+    </div>
+
+    <!-- P5 Slanted Rail List -->
+    <div class="sidebar-rail">
+      <a href="#sec-hero" class="sidebar-btn active" data-sec="sec-hero">
+        <div class="btn-indicator"></div>
+        <div class="btn-text-wrap">
+          <div class="btn-primary-row">
+            <span class="btn-num">00</span>
+            <span class="btn-title">KHỞI ĐẦU</span>
+          </div>
+          <div class="btn-sub-row">TAKE YOUR HEART // 序章</div>
+        </div>
+        <span class="btn-arrow" aria-hidden="true">★</span>
+      </a>
+
+      <a href="#sec-ancient" class="sidebar-btn" data-sec="sec-ancient">
+        <div class="btn-indicator"></div>
+        <div class="btn-text-wrap">
+          <div class="btn-primary-row">
+            <span class="btn-num">01</span>
+            <span class="btn-title">CỔ ĐẠI &amp; CẬN ĐẠI</span>
+          </div>
+          <div class="btn-sub-row">ANCIENT ROOTS // 古代</div>
+        </div>
+        <span class="btn-arrow" aria-hidden="true">★</span>
+      </a>
+
+      <a href="#sec-crisis" class="sidebar-btn" data-sec="sec-crisis">
+        <div class="btn-indicator"></div>
+        <div class="btn-text-wrap">
+          <div class="btn-primary-row">
+            <span class="btn-num">02</span>
+            <span class="btn-title">KHỦNG HOẢNG KHTN</span>
+          </div>
+          <div class="btn-sub-row">CRISIS PALACE // 危機</div>
+        </div>
+        <span class="btn-arrow" aria-hidden="true">★</span>
+      </a>
+
+      <a href="#sec-definition" class="sidebar-btn" data-sec="sec-definition">
+        <div class="btn-indicator"></div>
+        <div class="btn-text-wrap">
+          <div class="btn-primary-row">
+            <span class="btn-num">03</span>
+            <span class="btn-title">ĐỊNH NGHĨA VẬT CHẤT</span>
+          </div>
+          <div class="btn-sub-row">AWAKEN TRUTH // 定義</div>
+        </div>
+        <span class="btn-arrow" aria-hidden="true">★</span>
+      </a>
+
+      <a href="#sec-significance" class="sidebar-btn" data-sec="sec-significance">
+        <div class="btn-indicator"></div>
+        <div class="btn-text-wrap">
+          <div class="btn-primary-row">
+            <span class="btn-num">04</span>
+            <span class="btn-title">Ý NGHĨA ĐỊNH NGHĨA</span>
+          </div>
+          <div class="btn-sub-row">ALL-OUT ATTACK // 意義</div>
+        </div>
+        <span class="btn-arrow" aria-hidden="true">★</span>
+      </a>
+
+      <a href="#sec-motion" class="sidebar-btn" data-sec="sec-motion">
+        <div class="btn-indicator"></div>
+        <div class="btn-text-wrap">
+          <div class="btn-primary-row">
+            <span class="btn-num">05</span>
+            <span class="btn-title">VẬN ĐỘNG &amp; ĐỨNG IM</span>
+          </div>
+          <div class="btn-sub-row">METAVERSE MOTION // 運動</div>
+        </div>
+        <span class="btn-arrow" aria-hidden="true">★</span>
+      </a>
+
+      <a href="#sec-spacetime" class="sidebar-btn" data-sec="sec-spacetime">
+        <div class="btn-indicator"></div>
+        <div class="btn-text-wrap">
+          <div class="btn-primary-row">
+            <span class="btn-num">06</span>
+            <span class="btn-title">KHÔNG GIAN – THỜI GIAN</span>
+          </div>
+          <div class="btn-sub-row">4D SPACETIME // 時空</div>
+        </div>
+        <span class="btn-arrow" aria-hidden="true">★</span>
+      </a>
+
+      <a href="#sec-unity" class="sidebar-btn" data-sec="sec-unity">
+        <div class="btn-indicator"></div>
+        <div class="btn-text-wrap">
+          <div class="btn-primary-row">
+            <span class="btn-num">07</span>
+            <span class="btn-title">TÍNH THỐNG NHẤT</span>
+          </div>
+          <div class="btn-sub-row">MATERIAL UNITY // 統一</div>
+        </div>
+        <span class="btn-arrow" aria-hidden="true">★</span>
+      </a>
+
+      <a href="#sec-thanks" class="sidebar-btn" data-sec="sec-thanks">
+        <div class="btn-indicator"></div>
+        <div class="btn-text-wrap">
+          <div class="btn-primary-row">
+            <span class="btn-num">08</span>
+            <span class="btn-title">KẾT THÚC</span>
+          </div>
+          <div class="btn-sub-row">MISSION CLEAR // 終章</div>
+        </div>
+        <span class="btn-arrow" aria-hidden="true">★</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Vertical Rotated Tag (Right Edge) -->
+  <aside class="vertical-tag-edge" aria-hidden="true">
+    <span>PHẠM TRÙ TRIẾT HỌC — BẢN THỂ LUẬN &amp; NHẬN THỨC LUẬN</span>
+    <span>GROUP 01 • MARXIST-LENINIST PHILOSOPHY</span>
+  </aside>
+
+  <!-- Concentric Target Icon / Go-To-Top Button (Bottom Right) -->
+  <button class="concentric-target" id="back-to-top" type="button" aria-label="Cuộn lên đầu trang (Top of Page)">
+    <span class="target-tooltip" aria-hidden="true">TOP ▲ VỀ ĐẦU</span>
+    <svg viewBox="0 0 68 68" fill="none">
+      <!-- Rotating Outer Radar Rings -->
+      <g class="target-radar-rings">
+        <circle cx="34" cy="34" r="30" stroke="#D6202E" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.6" />
+        <circle cx="34" cy="34" r="22" stroke="#D6202E" stroke-width="1.5" />
+        <circle cx="34" cy="34" r="14" stroke="#D6202E" stroke-width="1" stroke-dasharray="2 2" opacity="0.8" />
+        <line x1="34" y1="4" x2="34" y2="12" stroke="#D6202E" stroke-width="1.5" />
+        <line x1="34" y1="56" x2="34" y2="64" stroke="#D6202E" stroke-width="1.5" />
+        <line x1="4" y1="34" x2="12" y2="34" stroke="#D6202E" stroke-width="1.5" />
+        <line x1="56" y1="34" x2="64" y2="34" stroke="#D6202E" stroke-width="1.5" />
+      </g>
+      <!-- Fixed Upward Arrow (Always Points Up) -->
+      <path class="target-arrow" d="M34 24 L26 34 L31 34 L31 43 L37 43 L37 34 L42 34 Z" />
+    </svg>
+  </button>
+
+  <!-- Main Content Sections -->
+  <main>
+
+    <!-- SECTION 00: HERO -->
+    <section class="section" id="sec-hero">
+      <div class="diagonal-band"></div>
+      <div class="section-content">
+        <span class="crosshairs">+ + + + + + + +</span>
+        <div class="section-pretitle">PHÂN ĐOẠN 00 // KHỞI ĐẦU CHUYÊN ĐỀ</div>
+        <h1 class="reveal-fade-up">
+          <span class="hero-title-line-1">VẬT CHẤT LÀ GÌ</span>
+          <span class="hero-title-line-2">DƯỚI GÓC ĐỘ TRIẾT HỌC?</span>
+        </h1>
+        <p class="lead-text reveal-fade-up delay-1">
+          Vận động, đứng im, không gian, thời gian là gì? — Toàn cảnh hệ thống lý luận bản thể luận và nhận thức luận
+          duy vật biện chứng.
+        </p>
+
+        <div class="takeaway-bar reveal-fade-up delay-2">
+          <span class="takeaway-badge">NHÓM 1</span>
+          <span>Báo cáo nghiên cứu triết học Mác – Lênin về phạm trù vật chất và các phương thức tồn tại của vật
+            chất.</span>
+        </div>
+
+        <div class="hero-metadata-grid reveal-fade-up delay-3">
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">CHỦ ĐỀ NGHIÊN CỨU</span>
+            <span class="hero-meta-val">Vật chất, Vận động &amp; Không – Thời gian</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">ĐƠN VỊ THỰC HIỆN</span>
+            <span class="hero-meta-val">Nhóm 1 — Khóa 2026</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">CƠ SỞ LÝ LUẬN</span>
+            <span class="hero-meta-val">V.I. Lênin &amp; F. Ăngghen</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">PHẠM VI NỘI DUNG</span>
+            <span class="hero-meta-val">28 Phân đoạn Nội dung Toàn diện</span>
+          </div>
+        </div>
+
+        <div class="section-footer-bar">
+          <span>SPEC: EDITORIAL JAPANESE POSTER</span>
+          <span>SECTION NO. 00</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 01: CỔ ĐẠI & CẬN ĐẠI -->
+    <section class="section" id="sec-ancient">
+      <div class="diagonal-band"></div>
+      <div class="section-content">
+        <span class="crosshairs">+ + + + + + + +</span>
+        <div class="section-pretitle">PHÂN ĐOẠN 01 // TIẾN TRÌNH LỊCH SỬ TƯ DUY</div>
+        <h2 class="reveal-fade-up">QUAN ĐIỂM CỔ ĐẠI <br>&amp; CẬN ĐẠI</h2>
+        <p class="lead-text reveal-fade-up delay-1">
+          Từ những quan niệm mộc mạc, chất phác ban đầu đến sự phát triển của chủ nghĩa duy vật siêu hình, cơ học trong
+          thời kỳ cách mạng khoa học châu Âu.
+        </p>
+
+        <!-- Slide 2: Quan điểm Cổ đại -->
+        <div class="editorial-card reveal-fade-up delay-2">
+          <div class="card-meta">THỜI KỲ CỔ ĐẠI (TK VIII – III TCN)</div>
+          <h3>Quan điểm về vật chất thời kỳ Cổ đại</h3>
+          <p><strong>Bối cảnh:</strong> Khoảng thế kỷ VIII–III trước Công nguyên. Triết học hình thành ở Hy Lạp, Ấn Độ
+            và Trung Hoa. Con người dần chuyển từ việc giải thích thế giới bằng thần thoại sang giải thích bằng tự nhiên
+            và lý trí.</p>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Khu vực / triết gia</th>
+                  <th>Quan điểm về vật chất</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="table-highlight-col">Thales (Hy Lạp)</td>
+                  <td>Nước là bản nguyên của vạn vật.</td>
+                </tr>
+                <tr>
+                  <td class="table-highlight-col">Heraclitus (Hy Lạp)</td>
+                  <td>Lửa là bản nguyên; mọi sự vật luôn vận động và biến đổi.</td>
+                </tr>
+                <tr>
+                  <td class="table-highlight-col">Democritus (Hy Lạp)</td>
+                  <td>Thế giới cấu tạo từ nguyên tử và khoảng không.</td>
+                </tr>
+                <tr>
+                  <td class="table-highlight-col">Trâu Diễn (Trung Hoa cổ đại)</td>
+                  <td>Thuyết Ngũ hành: Kim, Mộc, Thủy, Hỏa, Thổ là các yếu tố tạo thành và chi phối vạn vật.</td>
+                </tr>
+                <tr>
+                  <td class="table-highlight-col">Kanada / Charvaka (Ấn Độ cổ đại)</td>
+                  <td>Một số trường phái nêu quan niệm về hạt vật chất cực nhỏ, thường được gọi là nguyên tử.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Slide 3: Đặc điểm Cổ đại -->
+        <div class="grid-2 reveal-fade-up delay-3">
+          <div class="editorial-card">
+            <div class="card-meta">ĐÁNH GIÁ</div>
+            <h3>Ưu điểm Duy vật Cổ đại</h3>
+            <ul class="editorial-list">
+              <li>Giải thích tự nhiên bằng chính tự nhiên; hạn chế dựa vào thần thoại hoặc lực lượng siêu nhiên.</li>
+              <li>Đặt nền móng cho tư duy khoa học và chủ nghĩa duy vật sau này.</li>
+              <li>Có mầm mống tư duy biện chứng, đặc biệt ở Heraclitus khi ông nhấn mạnh sự vận động và biến đổi.</li>
+              <li>Tìm kiếm một bản nguyên chung, qua đó nhìn nhận thế giới có tính thống nhất.</li>
+            </ul>
+          </div>
+
+          <div class="editorial-card">
+            <div class="card-meta">ĐÁNH GIÁ</div>
+            <h3>Hạn chế Duy vật Cổ đại</h3>
+            <ul class="editorial-list">
+              <li>Còn chất phác, trực quan và phỏng đoán.</li>
+              <li>Dựa phần lớn vào quan sát cảm tính; chưa có thực nghiệm khoa học hiện đại.</li>
+              <li>Chưa phân biệt rõ vật chất với các dạng tồn tại cụ thể của vật chất.</li>
+              <li>Ví dụ: vì nước thiết yếu đối với đời sống, Thales suy ra nước là bản nguyên của mọi vật.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Slide 4: Quan điểm Cận đại -->
+        <div class="editorial-card reveal-fade-up delay-2">
+          <div class="card-meta">THỜI KỲ CẬN ĐẠI (TK XVI – XVIII)</div>
+          <h3>Quan điểm về vật chất thời kỳ Cận đại</h3>
+          <p><strong>Bối cảnh lịch sử:</strong> Từ khoảng thế kỷ XVI đến XVIII. Cách mạng khoa học ở châu Âu phát triển:
+            thiên văn học, toán học, cơ học và phương pháp thực nghiệm. Sự hình thành, phát triển của chủ nghĩa tư bản
+            làm tăng nhu cầu chinh phục và giải thích tự nhiên. Chủ nghĩa duy vật trở thành một công cụ tư tưởng để phê
+            phán thần học và quyền lực của Giáo hội.</p>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nhà tư tưởng</th>
+                  <th>Quan điểm liên quan đến vật chất</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="table-highlight-col">Galileo Galilei</td>
+                  <td>Nghiên cứu tự nhiên bằng quan sát, thực nghiệm và toán học; nhấn mạnh tính quy luật của vận động.
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table-highlight-col">Francis Bacon</td>
+                  <td>Đề cao kinh nghiệm và phương pháp quy nạp; tri thức phải dựa vào việc nghiên cứu tự nhiên.</td>
+                </tr>
+                <tr>
+                  <td class="table-highlight-col">René Descartes</td>
+                  <td>Thuộc tính cơ bản của vật chất là quảng tính: có chiều dài, chiều rộng và chiều sâu.</td>
+                </tr>
+                <tr>
+                  <td class="table-highlight-col">Baruch Spinoza</td>
+                  <td>Vật chất và tinh thần là hai thuộc tính của một thực thể duy nhất.</td>
+                </tr>
+                <tr>
+                  <td class="table-highlight-col">Julien Offray de La Mettrie</td>
+                  <td>Giải thích con người theo lối duy vật cơ học; nổi tiếng với hình ảnh "con người là một cỗ máy".
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Slide 5: Đặc điểm Cận đại -->
+        <div class="grid-2 reveal-fade-up delay-3">
+          <div class="editorial-card">
+            <div class="card-meta">ĐÁNH GIÁ</div>
+            <h3>Ưu điểm Duy vật Cận đại</h3>
+            <ul class="editorial-list">
+              <li>Có cơ sở vững hơn từ khoa học tự nhiên, đặc biệt là toán học, thiên văn học và cơ học.</li>
+              <li>Đề cao quan sát, thực nghiệm, lý trí và tính quy luật.</li>
+              <li>Khẳng định thế giới vật chất tồn tại khách quan, không phụ thuộc vào ý thức con người.</li>
+              <li>Góp phần chống thần học, giải phóng nghiên cứu khoa học khỏi sự chi phối của Giáo hội.</li>
+            </ul>
+          </div>
+
+          <div class="editorial-card">
+            <div class="card-meta">ĐÁNH GIÁ</div>
+            <h3>Hạn chế: Tính siêu hình &amp; cơ học</h3>
+            <ul class="editorial-list">
+              <li>Đồng nhất vật chất chủ yếu với những thuộc tính cơ học như khối lượng, hình dạng, vị trí và chuyển
+                động.</li>
+              <li>Xem vận động chủ yếu là sự dịch chuyển cơ học trong không gian.</li>
+              <li>Có xu hướng nhìn thế giới như một cỗ máy lớn gồm các bộ phận tách rời, vận hành theo quy luật cố định.
+              </li>
+              <li>Chưa nhận thức đầy đủ các dạng vận động và phát triển phức tạp: hóa học, sinh học, xã hội.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Slide 6: Bảng so sánh tổng kết -->
+        <div class="editorial-card reveal-fade-up delay-4">
+          <div class="card-meta">BẢNG TỔNG HỢP SO SÁNH &amp; KẾT LUẬN</div>
+          <h3>So sánh Duy vật Cổ đại và Cận đại</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tiêu chí</th>
+                  <th>Duy vật cổ đại</th>
+                  <th>Duy vật cận đại</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="table-highlight-col">Bối cảnh</td>
+                  <td>Xã hội cổ đại; tri thức khoa học còn sơ khai</td>
+                  <td>Cách mạng khoa học và sự phát triển của xã hội tư bản ở châu Âu</td>
+                </tr>
+                <tr>
+                  <td class="table-highlight-col">Cơ sở nhận thức</td>
+                  <td>Quan sát trực tiếp, trực giác, suy đoán</td>
+                  <td>Thực nghiệm, toán học, cơ học</td>
+                </tr>
+                <tr>
+                  <td class="table-highlight-col">Cách hiểu vật chất</td>
+                  <td>Nước, lửa, nguyên tử, Ngũ hành…</td>
+                  <td>Quảng tính, khối lượng, vật thể vận động cơ học</td>
+                </tr>
+                <tr>
+                  <td class="table-highlight-col">Ưu điểm</td>
+                  <td>Chống thần thoại; đặt nền móng duy vật; có mầm mống biện chứng</td>
+                  <td>Có cơ sở khoa học hơn; góp phần chống thần học và phát triển khoa học</td>
+                </tr>
+                <tr>
+                  <td class="table-highlight-col">Hạn chế</td>
+                  <td>Chất phác, trực quan, chưa kiểm chứng</td>
+                  <td>Siêu hình, cơ học, chưa thấy đầy đủ sự phát triển và liên hệ</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section-footer-bar">
+          <span>HISTORICAL PHASES: ANCIENT &amp; MODERN</span>
+          <span>SECTION NO. 01</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 02: KHỦNG HOẢNG KHTN (FULL RED SECTION) -->
+    <section class="section section-red-bg" id="sec-crisis">
+      <div class="diagonal-band"></div>
+      <div class="section-content">
+        <span class="crosshairs">+ + + + + + + +</span>
+        <div class="section-pretitle">PHÂN ĐOẠN 02 // BƯỚC NGOẶT KHOA HỌC TỰ NHIÊN</div>
+        <h2 class="reveal-fade-up">LÊNIN &amp; CUỘC KHỦNG HOẢNG <br>VẬT LÝ HỌC</h2>
+        <p class="lead-text reveal-fade-up delay-1">
+          Cuộc cách mạng trong khoa học tự nhiên cuối thế kỷ XIX – đầu thế kỷ XX đã làm sụp đổ quan niệm duy vật siêu
+          hình cũ và tạo nên cuộc khủng hoảng thế giới quan sâu sắc.
+        </p>
+
+        <!-- Slide 7 & 8: Timeline phát minh -->
+        <div class="editorial-card reveal-fade-up delay-2">
+          <div class="card-meta">NIÊN BIỂU CÁC PHÁT MINH VẠCH THỜI ĐẠI</div>
+          <h3>1. Cuộc cách mạng trong Khoa học Tự nhiên cuối TK XIX – đầu TK XX</h3>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">1895</div>
+              <div class="timeline-content"><strong>W.C. Roentgen</strong> phát hiện ra tia X — mở ra kỷ nguyên nghiên
+                cứu các bức xạ xuyên thấu và cấu trúc vi mô.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">1896</div>
+              <div class="timeline-content"><strong>H. Becquerel</strong> phát hiện ra hiện tượng phóng xạ của nguyên tố
+                urani — chứng minh nguyên tử không bất biến mà có thể biến đổi.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">1897</div>
+              <div class="timeline-content"><strong>J.J. Thomson</strong> phát hiện ra điện tử (electron) — chứng minh
+                nguyên tử có cấu tạo phức tạp từ các hạt nhỏ hơn.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">1905, 1916</div>
+              <div class="timeline-content"><strong>Albert Einstein</strong> đưa ra Thuyết tương đối hẹp (1905) và
+                Thuyết tương đối rộng (1916) — chứng minh khối lượng biến thiên theo vận tốc ($E = mc^2$), không gian và
+                thời gian co giãn tùy theo hệ quy chiếu.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 9, 10, 11: Hậu quả & Khủng hoảng thế giới quan -->
+        <div class="grid-2 reveal-fade-up delay-3">
+          <div class="editorial-card">
+            <div class="card-meta">HẬU QUẢ KHOA HỌC</div>
+            <h3>Sự phá sản của CNDV siêu hình cũ</h3>
+            <p><strong>Nguyên tử không phải là phần tử nhỏ nhất không thể phân chia, và khối lượng không phải là bất
+                biến.</strong></p>
+            <p style="margin-top: 10px;">Vì vậy đã giáng một đòn chí mạng, làm sụp đổ hoàn toàn quan niệm của chủ nghĩa
+              duy vật siêu hình vốn đồng nhất vật chất với nguyên tử hay khối lượng cơ học suốt nhiều thế kỷ. Quan niệm
+              duy vật siêu hình cũ bị phá sản.</p>
+          </div>
+
+          <div class="editorial-card">
+            <div class="card-meta">KHỦNG HOẢNG THẾ GIỚI QUAN</div>
+            <h3>Sự tấn công của Chủ nghĩa Duy tâm</h3>
+            <p>Do chịu ảnh hưởng nặng nề của phương pháp tư duy siêu hình, khi thấy nguyên tử bị phân rã và khối lượng
+              thay đổi, nhiều nhà vật lý học đã rơi vào hoang mang, dao động, hoài nghi tính đúng đắn của chủ nghĩa duy
+              vật.</p>
+            <p style="margin-top: 10px;"><strong>Chủ nghĩa duy tâm thừa cơ tấn công:</strong> Lợi dụng tình hình khủng
+              hoảng này, các nhà triết học duy tâm (đặc biệt là phái Makhơ – chủ nghĩa kinh nghiệm phê phán) lớn tiếng
+              rêu rao rằng: <em>"Vật chất biến mất", "Nguyên tử bị tiêu tan", "Hiện thực khách quan đã tiêu tan, chỉ còn
+                lại cảm giác của con người".</em></p>
+          </div>
+        </div>
+
+        <!-- High Contrast Physics Revolution Diagram Graphic (Symmetrical Quantum Atomic Radar HUD) -->
+        <div class="graphic-frame reveal-fade-up delay-3">
+          <svg viewBox="0 0 720 280" role="img"
+            aria-label="Sơ đồ lượng tử nguyên tử và các phát minh khoa học 1895-1897">
+            <defs>
+              <radialGradient id="nucGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+                <stop offset="35%" stop-color="#D6202E" stop-opacity="0.9" />
+                <stop offset="100%" stop-color="#D6202E" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <style>
+              @keyframes nucPulse {
+
+                0%,
+                100% {
+                  transform: scale(1);
+                  opacity: 0.85;
+                }
+
+                50% {
+                  transform: scale(1.22);
+                  opacity: 1;
+                }
+              }
+
+              @keyframes decayWave {
+                0% {
+                  r: 18px;
+                  opacity: 0.9;
+                  stroke-width: 1.6;
+                }
+
+                100% {
+                  r: 140px;
+                  opacity: 0;
+                  stroke-width: 0.4;
+                }
+              }
+
+              .nuc-pulsing {
+                transform-origin: 360px 135px;
+                animation: nucPulse 2.4s ease-in-out infinite;
+              }
+
+              .decay-wave-1 {
+                animation: decayWave 3s ease-out infinite;
+              }
+
+              .decay-wave-2 {
+                animation: decayWave 3s ease-out infinite 1.5s;
+              }
+
+              @media (prefers-reduced-motion: reduce) {
+
+                .nuc-pulsing,
+                .decay-wave-1,
+                .decay-wave-2 {
+                  animation: none !important;
+                }
+              }
+            </style>
+            <rect width="720" height="280" fill="#0A0D14" />
+
+            <!-- Center Subatomic Radar Grid -->
+            <g stroke="#1E293B" stroke-width="0.8" fill="none">
+              <line x1="360" y1="20" x2="360" y2="242" stroke-dasharray="3 4" opacity="0.6" />
+              <line x1="160" y1="135" x2="560" y2="135" stroke-dasharray="3 4" opacity="0.6" />
+              <circle cx="360" cy="135" r="50" opacity="0.5" />
+              <circle cx="360" cy="135" r="95" stroke-dasharray="2 4" opacity="0.4" />
+              <circle cx="360" cy="135" r="140" stroke-dasharray="4 6" opacity="0.25" />
+            </g>
+
+            <!-- Expanding Radioactive Decay Wave Rings -->
+            <circle class="decay-wave-1" cx="360" cy="135" r="18" fill="none" stroke="#D6202E" />
+            <circle class="decay-wave-2" cx="360" cy="135" r="18" fill="none" stroke="#D6202E" />
+
+            <!-- Orbit 1: Horizontal (0 deg) -->
+            <path id="atomOrbA" d="M 235,135 a 125,42 0 1,0 250,0 a 125,42 0 1,0 -250,0" fill="none" stroke="#334155"
+              stroke-width="1.2" />
+            <circle r="4.5" fill="#38bdf8" stroke="#0A0D14" stroke-width="1.5">
+              <animateMotion dur="3.6s" repeatCount="indefinite"
+                path="M 235,135 a 125,42 0 1,0 250,0 a 125,42 0 1,0 -250,0" />
+            </circle>
+
+            <!-- Orbit 2: Tilted (+60 deg) -->
+            <g transform="rotate(60 360 135)">
+              <path d="M 235,135 a 125,42 0 1,0 250,0 a 125,42 0 1,0 -250,0" fill="none" stroke="#334155"
+                stroke-width="1.2" />
+              <circle r="4.5" fill="#fbbf24" stroke="#0A0D14" stroke-width="1.5">
+                <animateMotion dur="4.8s" repeatCount="indefinite"
+                  path="M 235,135 a 125,42 0 1,0 250,0 a 125,42 0 1,0 -250,0" />
+              </circle>
+            </g>
+
+            <!-- Orbit 3: Tilted (-60 deg) -->
+            <g transform="rotate(-60 360 135)">
+              <path d="M 235,135 a 125,42 0 1,0 250,0 a 125,42 0 1,0 -250,0" fill="none" stroke="#334155"
+                stroke-width="1.2" />
+              <circle r="4.5" fill="#f87171" stroke="#0A0D14" stroke-width="1.5">
+                <animateMotion dur="6.2s" repeatCount="indefinite"
+                  path="M 235,135 a 125,42 0 1,0 250,0 a 125,42 0 1,0 -250,0" />
+              </circle>
+            </g>
+
+            <!-- Nucleus (Proton / Neutron Cluster) -->
+            <circle class="nuc-pulsing" cx="360" cy="135" r="22" fill="url(#nucGlow)" />
+            <circle cx="356" cy="131" r="5.5" fill="#D6202E" stroke="#0A0D14" stroke-width="1" />
+            <circle cx="364" cy="132" r="5.5" fill="#E2E8F0" stroke="#0A0D14" stroke-width="1" />
+            <circle cx="357" cy="139" r="5.5" fill="#E2E8F0" stroke="#0A0D14" stroke-width="1" />
+            <circle cx="364" cy="138" r="5.5" fill="#D6202E" stroke="#0A0D14" stroke-width="1" />
+            <text x="360" y="106" fill="#CBD5E1" font-size="7.5" font-family="'Be Vietnam Pro',sans-serif"
+              font-weight="800" letter-spacing="0.1em" text-anchor="middle">HẠT NHÂN NGUYÊN TỬ</text>
+
+            <!-- 4 Corner HUD Telemetry Callouts -->
+            <!-- Top-Left: Science Overview -->
+            <text x="32" y="32" fill="#D6202E" font-size="11.5" font-weight="900"
+              font-family="'Be Vietnam Pro',sans-serif" letter-spacing="0.12em">CẤU TRÚC VI MÔ NGUYÊN TỬ</text>
+            <text x="32" y="48" fill="#94A3B8" font-size="8.8" font-family="'Be Vietnam Pro',sans-serif">Mô hình hóa
+              bước ngoặt khoa học tự nhiên 1895–1897</text>
+            <text x="32" y="64" fill="#64748B" font-size="8" font-family="monospace">R_nguyên_tử ≈ 10⁻¹⁰ m • R_hạt_nhân
+              ≈ 10⁻¹⁵ m</text>
+
+            <!-- Top-Right: Discoveries 1895 & 1896 -->
+            <text x="688" y="32" fill="#38bdf8" font-size="9.5" font-weight="bold"
+              font-family="'Be Vietnam Pro',sans-serif" text-anchor="end">1895: TIA X (W.C. ROENTGEN)</text>
+            <text x="688" y="46" fill="#94A3B8" font-size="8" font-family="'Be Vietnam Pro',sans-serif"
+              text-anchor="end">Bức xạ điện từ xuyên thấu vật chất</text>
+            <text x="688" y="62" fill="#D6202E" font-size="9.5" font-weight="bold"
+              font-family="'Be Vietnam Pro',sans-serif" text-anchor="end">1896: PHÓNG XẠ (H. BECQUEREL)</text>
+            <text x="688" y="76" fill="#94A3B8" font-size="8" font-family="'Be Vietnam Pro',sans-serif"
+              text-anchor="end">Nguyên tử Urani tự biến đổi &amp; phân rã</text>
+
+            <!-- Bottom-Left: Discovery 1897 -->
+            <text x="32" y="196" fill="#fbbf24" font-size="9.5" font-weight="bold"
+              font-family="'Be Vietnam Pro',sans-serif">1897: ĐIỆN TỬ e⁻ (J.J. THOMSON)</text>
+            <text x="32" y="210" fill="#94A3B8" font-size="8" font-family="'Be Vietnam Pro',sans-serif">Cấu trúc vi mô:
+              hạt nhỏ hơn cấu thành nguyên tử</text>
+            <text x="32" y="224" fill="#64748B" font-size="7.8" font-family="monospace">m_e ≈ 9.109 × 10⁻³¹ kg • q =
+              -1.602 × 10⁻¹⁹ C</text>
+
+            <!-- Bottom-Right: Lenin's Epistemological Thesis -->
+            <text x="688" y="196" fill="#F1F5F9" font-size="9.5" font-weight="800"
+              font-family="'Be Vietnam Pro',sans-serif" text-anchor="end">LUẬN ĐIỂM CỦA V.I. LÊNIN (1908)</text>
+            <text x="688" y="210" fill="#94A3B8" font-size="8" font-family="'Be Vietnam Pro',sans-serif"
+              text-anchor="end">"Điện tử cũng vô cùng tận như nguyên tử"</text>
+            <text x="688" y="224" fill="#64748B" font-size="7.8" font-family="monospace" text-anchor="end">Vật chất vô
+              tận về chiều sâu cấu trúc</text>
+
+            <!-- Bottom Panoramic Status Banner -->
+            <g transform="translate(32, 246)">
+              <rect width="656" height="24" rx="3" fill="#131e2c" stroke="#253549" stroke-width="1" />
+              <text x="328" y="13" fill="#FCD34D" font-size="8.8" font-weight="bold"
+                font-family="'Be Vietnam Pro',sans-serif" text-anchor="middle">VẬT CHẤT KHÔNG HỀ TIÊU TAN — CHỈ CÓ GIỚI
+                HẠN HIỂU BIẾT CŨ BỊ VƯỢT QUA</text>
+              <text x="328" y="21.5" fill="#94A3B8" font-size="7.2" font-family="'Be Vietnam Pro',sans-serif"
+                text-anchor="middle">Chủ nghĩa duy vật biện chứng vượt qua khủng hoảng của chủ nghĩa duy vật siêu hình
+                cũ</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Slide 11 quote + Slide 12-14: Bảo vệ chủ nghĩa Mác -->
+        <div class="takeaway-bar reveal-fade-up delay-4" style="background:#000; border-left-color: #FFF;">
+          <span class="takeaway-badge" style="background:#FFF; color:#000;">LUẬN ĐIỂM CỐT LÕI</span>
+          <span>Lênin đã vạch rõ: <strong>"Không phải vật chất biến mất, mà chỉ có 'giới hạn hiểu biết cũ' của con người
+              biến mất."</strong></span>
+        </div>
+
+        <div class="editorial-card reveal-fade-up delay-5">
+          <div class="card-meta">BẢO VỆ CHỦ NGHĨA MÁC</div>
+          <h3>3. Yêu cầu bảo vệ chủ nghĩa Mác và tìm phương pháp định nghĩa mới</h3>
+          <ul class="editorial-list">
+            <li>Đầu thế kỷ XX, chủ nghĩa tư bản chuyển sang giai đoạn đế quốc chủ nghĩa; mâu thuẫn giai cấp sâu sắc dẫn
+              đến phong trào cách mạng vô sản bùng nổ, mà nước Nga là tâm điểm.</li>
+            <li>Một số phần tử cơ hội, xét lại nhân danh chủ nghĩa Mác nhưng lại câu kết với phái Makhơ để tước bỏ thế
+              giới quan duy vật của giai cấp công nhân.</li>
+            <li><strong>Tác phẩm lịch sử năm 1908:</strong> Như vậy, để giải quyết cuộc khủng hoảng trong vật lý học,
+              đập tan sự công kích của chủ nghĩa duy tâm, và khắc phục sự bế tắc của chủ nghĩa duy vật cũ, năm 1908 V.I.
+              Lênin đã viết tác phẩm <em>'Chủ nghĩa duy vật và chủ nghĩa kinh nghiệm phê phán'</em>, chính thức đưa ra
+              một định nghĩa triết học mới, hoàn chỉnh và kinh điển về vật chất.</li>
+          </ul>
+        </div>
+
+        <div class="section-footer-bar">
+          <span>THE CRISIS IN PHYSICS // 1895–1908</span>
+          <span>SECTION NO. 02</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03: ĐỊNH NGHĨA VẬT CHẤT -->
+    <section class="section" id="sec-definition">
+      <div class="diagonal-band"></div>
+      <div class="section-content">
+        <span class="crosshairs">+ + + + + + + +</span>
+        <div class="section-pretitle">PHÂN ĐOẠN 03 // ĐỊNH NGHĨA KINH ĐIỂN CỦA V.I. LÊNIN</div>
+        <h2 class="reveal-fade-up">ĐỊNH NGHĨA <br><span class="title-accent-red">VẬT CHẤT</span></h2>
+        <p class="lead-text reveal-fade-up delay-1">
+          Định nghĩa triết học kinh điển của V.I. Lênin giải quyết triệt để vấn đề cơ bản của triết học và phân biệt rõ
+          ràng giữa phạm trù triết học với các dạng vật chất cụ thể của khoa học tự nhiên.
+        </p>
+
+        <!-- Slide 15: Định nghĩa Lenin -->
+        <div class="lenin-quote-block reveal-fade-up delay-2">
+          <!-- Persona 5 Cybernetic HUD Targeting Frame -->
+          <div class="p5-scanline" aria-hidden="true"></div>
+          <div class="corner-bracket cb-tl" aria-hidden="true"></div>
+          <div class="corner-bracket cb-tr" aria-hidden="true"></div>
+          <div class="corner-bracket cb-bl" aria-hidden="true"></div>
+          <div class="corner-bracket cb-br" aria-hidden="true"></div>
+
+          <div class="target-tag">
+            <span class="target-blinker">● REC</span>
+            <span>[TARGET LOCKED // BẢN THỂ LUẬN DUY VẬT BIỆN CHỨNG]</span>
+            <span style="margin-left:auto; opacity:0.8;">SPEC: 1908-LENIN</span>
+          </div>
+
+          <blockquote>
+            "Vật chất là một phạm trù triết học dùng để chỉ thực tại khách quan được đem lại cho con người trong cảm
+            giác, được cảm giác của chúng ta chép lại, chụp lại, phản ánh và tồn tại không lệ thuộc vào cảm giác."
+          </blockquote>
+          <div class="quote-author">V.I. LÊNIN — 'CHỦ NGHĨA DUY VẬT VÀ CHỦ NGHĨA KINH NGHIỆM PHÊ PHÁN' (1908)</div>
+        </div>
+
+        <!-- Slide 15: Vật chất vs Vật thể -->
+        <div class="grid-2 reveal-fade-up delay-3">
+          <div class="editorial-card">
+            <div class="card-meta">PHÂN BIỆT BẢN THỂ</div>
+            <h3>Vật chất (Dưới góc độ Triết học)</h3>
+            <ul class="editorial-list">
+              <li>Là cái chung, phổ quát, vô hạn và vĩnh cửu.</li>
+              <li>Không bao giờ sinh ra và không bao giờ mất đi.</li>
+              <li>Chỉ thực tại khách quan tồn tại độc lập với ý thức con người.</li>
+            </ul>
+          </div>
+
+          <div class="editorial-card">
+            <div class="card-meta">PHÂN BIỆT BẢN THỂ</div>
+            <h3>Vật thể / Dạng vật chất (Khoa học tự nhiên)</h3>
+            <ul class="editorial-list">
+              <li>Là những cái riêng, cụ thể (như nguyên tử, điện tử, hạt vi mô, trường vật chất…).</li>
+              <li>Có giới hạn về không gian, khối lượng, quy mô.</li>
+              <li>Có sinh ra và mất đi để chuyển hóa thành dạng vật chất khác.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Slide 16 & 17: Thuộc tính & Khả năng nhận thức -->
+        <div class="grid-2 reveal-fade-up delay-4">
+          <div class="editorial-card">
+            <div class="card-meta">THUỘC TÍNH KHÁCH QUAN</div>
+            <h3>Thuộc tính khách quan</h3>
+            <ul class="editorial-list">
+              <li><strong>Tồn tại khách quan:</strong> Vật chất là cái có trước, tồn tại độc lập ở bên ngoài, không phụ
+                thuộc vào ý muốn, cảm xúc hay ý chí của con người.</li>
+              <li><strong>Bất kể sự nhận thức:</strong> Dù con người đã nhận thức được hay chưa nhận thức được thì chúng
+                vẫn âm thầm tồn tại.</li>
+            </ul>
+          </div>
+
+          <div class="editorial-card">
+            <div class="card-meta">MỐI QUAN HỆ &amp; NHẬN THỨC</div>
+            <h3>Quan hệ Vật chất – Ý thức &amp; Nhận thức</h3>
+            <ul class="editorial-list">
+              <li><strong>Vật chất có trước, gây nên cảm giác:</strong> Khi trực tiếp hoặc gián tiếp tác động lên giác
+                quan con người, vật chất sẽ đem lại cảm giác, nhận thức. Vật chất là tính thứ nhất, là nguyên nhân,
+                nguồn gốc khách quan của cảm giác.</li>
+              <li><strong>Cảm giác, tư duy chỉ là sự phản ánh:</strong> Con người có thể "chép lại, chụp lại, phản ánh"
+                hiện thực khách quan => Khẳng định con người có khả năng nhận thức được thế giới vật chất khách quan.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-footer-bar">
+          <span>LENIN'S CANONICAL DEFINITION // 1908</span>
+          <span>SECTION NO. 03</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04: Ý NGHĨA CỦA ĐỊNH NGHĨA -->
+    <section class="section" id="sec-significance">
+      <div class="diagonal-band"></div>
+      <div class="section-content">
+        <span class="crosshairs">+ + + + + + + +</span>
+        <div class="section-pretitle">PHÂN ĐOẠN 04 // GIÁ TRỊ LÝ LUẬN &amp; THỰC TIỄN</div>
+        <h2 class="reveal-fade-up">Ý NGHĨA CỦA <br><span class="title-accent-red">ĐỊNH NGHĨA VẬT CHẤT</span></h2>
+        <p class="lead-text reveal-fade-up delay-1">
+          Định nghĩa của Lênin có ý nghĩa nền tảng đối với sự phát triển của Triết học, mở đường cho Khoa học Tự nhiên
+          và đặt cơ sở cho Khoa học Xã hội.
+        </p>
+
+        <!-- Slide 18, 19, 20: 3 Cards -->
+        <div class="grid-3 reveal-fade-up delay-2">
+          <!-- Card 1: Triết học -->
+          <div class="editorial-card">
+            <div class="card-meta">BẢN THỂ LUẬN &amp; NHẬN THỨC LUẬN</div>
+            <h3>1. Đối với Triết học</h3>
+            <p><strong>Giải quyết triệt để hai mặt vấn đề cơ bản của triết học:</strong></p>
+            <ul class="editorial-list">
+              <li><em>Mặt thứ nhất (Bản thể luận):</em> Khẳng định vật chất có trước, ý thức có sau, vật chất quyết định
+                ý thức => Phủ định hoàn toàn chủ nghĩa duy tâm.</li>
+              <li><em>Mặt thứ hai (Nhận thức luận):</em> Khẳng định ý thức có thể phản ánh đúng hiện thực khách quan =>
+                Phủ nhận Thuyết bất khả tri và chủ nghĩa hoài nghi.</li>
+            </ul>
+            <p style="margin-top: 14px;"><strong>Khắc phục triệt để các hạn chế của CNDV trước Marx:</strong> CNDV cổ
+              đại đồng nhất vật chất với vật thể cụ thể (nước, lửa, nguyên tử...); CNDV cận đại đồng nhất với khối lượng
+              và mang tính siêu hình, máy móc. Định nghĩa của Lênin chỉ ra: Vật chất là thực tại khách quan, không phụ
+              thuộc vào trạng thái cấu tạo hay khối lượng cụ thể nào.</p>
+          </div>
+
+          <!-- Card 2: KHTN -->
+          <div class="editorial-card">
+            <div class="card-meta">KIM CHỈ NAM KHOA HỌC</div>
+            <h3>2. Đối với Khoa học Tự nhiên</h3>
+            <ul class="editorial-list">
+              <li><strong>Chấm dứt "cuộc khủng hoảng vật lý học" đầu thế kỷ XX:</strong> Giúp các nhà khoa học hiểu đúng
+                rằng: Khi phát hiện ra điện tử, hiện tượng phóng xạ, hay khối lượng biến thiên theo vận tốc... chỉ có
+                giới hạn hiểu biết cũ của con người về nguyên tử bị phá vỡ, chứ vật chất không hề mất đi.</li>
+              <li><strong>Định hướng cho khoa học tiếp tục phát triển:</strong> Định nghĩa đóng vai trò là "kim chỉ
+                nam", cổ vũ các nhà khoa học tự nhiên tự tin đi sâu khám phá các hạt vi mô, các trường vật chất mới,
+                không gian vũ trụ... mà không bao giờ lo sợ rơi vào cái bẫy "vật chất tiêu tan" của chủ nghĩa duy tâm.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card 3: KHXH -->
+          <div class="editorial-card">
+            <div class="card-meta">DUY VẬT LỊCH SỬ</div>
+            <h3>3. Đối với Khoa học Xã hội</h3>
+            <ul class="editorial-list">
+              <li><strong>Đặt nền tảng lý luận để xây dựng Chủ nghĩa duy vật lịch sử:</strong> Giúp nhận diện được: Cái
+                gì là vật chất trong đời sống xã hội? Đó chính là tồn tại xã hội, phương thức sản xuất, điều kiện kinh
+                tế, quy luật khách quan.</li>
+              <li><strong>Bác bỏ quan điểm duy tâm về lịch sử:</strong> Khẳng định nguyên nhân sâu xa của mọi biến đổi
+                lịch sử bắt nguồn từ sự phát triển của sản xuất vật chất.</li>
+              <li><strong>Ý nghĩa phương pháp luận trong thực tiễn:</strong> Đòi hỏi con người trong mọi hoạt động (học
+                tập, làm việc, hoạch định chính sách) phải xuất phát từ hiện thực, tôn trọng quy luật khách quan, không
+                được lấy ý muốn chủ quan áp đặt cho thực tế.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-footer-bar">
+          <span>PHILOSOPHICAL, NATURAL &amp; SOCIAL IMPACT</span>
+          <span>SECTION NO. 04</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 05: VẬN ĐỘNG & ĐỨNG IM -->
+    <section class="section" id="sec-motion">
+      <div class="diagonal-band"></div>
+      <div class="section-content">
+        <span class="crosshairs">+ + + + + + + +</span>
+        <div class="section-pretitle">PHÂN ĐOẠN 05 // PHƯƠNG THỨC TỒN TẠI CỦA VẬT CHẤT</div>
+        <h2 class="reveal-fade-up">VẬN ĐỘNG <br><span class="title-accent-red">&amp; ĐỨNG IM</span></h2>
+        <p class="lead-text reveal-fade-up delay-1">
+          Theo F. Ăngghen: Vận động là phương thức tồn tại cố hữu, tuyệt đối và vĩnh viễn của vật chất. Đứng im chỉ là
+          trạng thái vận động đặc biệt trong sự cân bằng tạm thời.
+        </p>
+
+        <!-- Slide 21: Định nghĩa Vận động -->
+        <div class="editorial-card reveal-fade-up delay-2">
+          <div class="card-meta">QUAN ĐIỂM F. ĂNGGHEN</div>
+          <h3>Vận động là gì?</h3>
+          <p><strong>Định nghĩa (theo Ăngghen):</strong> Vận động là phương thức tồn tại của vật chất, bao gồm mọi sự
+            biến đổi nói chung — từ dịch chuyển vị trí đơn giản đến tư duy.</p>
+          <ul class="editorial-list">
+            <li><strong>Vận động là thuộc tính cố hữu, gắn liền với vật chất:</strong> Không tách rời vật chất.</li>
+            <li><strong>Vận động là tuyệt đối, vĩnh viễn:</strong> Không có vật chất nào tồn tại mà không vận động (kể
+              cả cái tưởng như "đứng yên").</li>
+            <li><strong>Không do ai sinh ra, cũng không mất đi:</strong> Chỉ chuyển hoá từ dạng này sang dạng khác.</li>
+            <li><strong>Ví dụ:</strong> Trái Đất quay quanh Mặt Trời, đến các thiên hà dịch chuyển trong vũ trụ — tất cả
+              đều là vận động ở các cấp độ khác nhau.</li>
+          </ul>
+
+          <!-- High Contrast Cosmic Diagram Graphic (Animated Kepler Orbiting System) -->
+          <div class="graphic-frame">
+            <svg viewBox="0 0 720 320" role="img"
+              aria-label="Sơ đồ vận động Hệ Mặt Trời chuyển động theo quy luật Kepler">
+              <defs>
+                <radialGradient id="solGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#FFFBEB" stop-opacity="1" />
+                  <stop offset="35%" stop-color="#FDE047" stop-opacity="0.9" />
+                  <stop offset="65%" stop-color="#F59E0B" stop-opacity="0.45" />
+                  <stop offset="100%" stop-color="#F59E0B" stop-opacity="0" />
+                </radialGradient>
+                <radialGradient id="solBody" cx="38%" cy="38%" r="62%">
+                  <stop offset="0%" stop-color="#FEF08A" />
+                  <stop offset="55%" stop-color="#FBBF24" />
+                  <stop offset="100%" stop-color="#D97706" />
+                </radialGradient>
+              </defs>
+              <style>
+                @keyframes spinOrbitCCW {
+                  from {
+                    transform: rotate(0deg);
+                  }
+
+                  to {
+                    transform: rotate(-360deg);
+                  }
+                }
+
+                @keyframes spinPlanetCW {
+                  from {
+                    transform: rotate(0deg);
+                  }
+
+                  to {
+                    transform: rotate(360deg);
+                  }
+                }
+
+                @keyframes solPulse {
+
+                  0%,
+                  100% {
+                    transform: scale(1);
+                    opacity: 0.8;
+                  }
+
+                  50% {
+                    transform: scale(1.22);
+                    opacity: 1;
+                  }
+                }
+
+                @keyframes moonRev {
+                  from {
+                    transform: rotate(0deg);
+                  }
+
+                  to {
+                    transform: rotate(-360deg);
+                  }
+                }
+
+                .sol-glow {
+                  transform-origin: 360px 160px;
+                  animation: solPulse 3s ease-in-out infinite;
+                }
+
+                .p-node {
+                  cursor: pointer;
+                  transition: filter 0.2s ease;
+                }
+
+                .p-node:hover {
+                  filter: drop-shadow(0 0 8px #FFF);
+                }
+
+                .p-orbit-1 {
+                  transform-origin: 360px 160px;
+                  animation: spinOrbitCCW 5s linear infinite;
+                }
+
+                .p-upright-1 {
+                  transform-origin: 0 0;
+                  animation: spinPlanetCW 5s linear infinite;
+                }
+
+                .p-orbit-2 {
+                  transform-origin: 360px 160px;
+                  animation: spinOrbitCCW 8s linear infinite;
+                }
+
+                .p-upright-2 {
+                  transform-origin: 0 0;
+                  animation: spinPlanetCW 8s linear infinite;
+                }
+
+                .p-orbit-3 {
+                  transform-origin: 360px 160px;
+                  animation: spinOrbitCCW 12s linear infinite;
+                }
+
+                .p-upright-3 {
+                  transform-origin: 0 0;
+                  animation: spinPlanetCW 12s linear infinite;
+                }
+
+                .p-orbit-4 {
+                  transform-origin: 360px 160px;
+                  animation: spinOrbitCCW 17s linear infinite;
+                }
+
+                .p-upright-4 {
+                  transform-origin: 0 0;
+                  animation: spinPlanetCW 17s linear infinite;
+                }
+
+                .p-orbit-5 {
+                  transform-origin: 360px 160px;
+                  animation: spinOrbitCCW 27s linear infinite;
+                }
+
+                .p-upright-5 {
+                  transform-origin: 0 0;
+                  animation: spinPlanetCW 27s linear infinite;
+                }
+
+                .p-orbit-6 {
+                  transform-origin: 360px 160px;
+                  animation: spinOrbitCCW 36s linear infinite;
+                }
+
+                .p-upright-6 {
+                  transform-origin: 0 0;
+                  animation: spinPlanetCW 36s linear infinite;
+                }
+
+                .p-orbit-7 {
+                  transform-origin: 360px 160px;
+                  animation: spinOrbitCCW 48s linear infinite;
+                }
+
+                .p-upright-7 {
+                  transform-origin: 0 0;
+                  animation: spinPlanetCW 48s linear infinite;
+                }
+
+                .p-orbit-8 {
+                  transform-origin: 360px 160px;
+                  animation: spinOrbitCCW 60s linear infinite;
+                }
+
+                .p-upright-8 {
+                  transform-origin: 0 0;
+                  animation: spinPlanetCW 60s linear infinite;
+                }
+
+                .moon-spin {
+                  transform-origin: 0 0;
+                  animation: moonRev 2.5s linear infinite;
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+
+                  .p-orbit-1,
+                  .p-orbit-2,
+                  .p-orbit-3,
+                  .p-orbit-4,
+                  .p-orbit-5,
+                  .p-orbit-6,
+                  .p-orbit-7,
+                  .p-orbit-8,
+                  .p-upright-1,
+                  .p-upright-2,
+                  .p-upright-3,
+                  .p-upright-4,
+                  .p-upright-5,
+                  .p-upright-6,
+                  .p-upright-7,
+                  .p-upright-8,
+                  .sol-glow,
+                  .moon-spin {
+                    animation: none !important;
+                  }
+                }
+              </style>
+              <rect width="720" height="320" fill="#0A0D14" />
+              <!-- Orbit Tracks -->
+              <g fill="none">
+                <circle cx="360" cy="160" r="26" stroke="#1E293B" stroke-width="1" />
+                <circle cx="360" cy="160" r="40" stroke="#1E293B" stroke-width="1" />
+                <circle cx="360" cy="160" r="54" stroke="#1E293B" stroke-width="1" />
+                <circle cx="360" cy="160" r="68" stroke="#1E293B" stroke-width="1" />
+                <circle cx="360" cy="160" r="88" stroke="#1E293B" stroke-width="1" />
+                <circle cx="360" cy="160" r="106" stroke="#1E293B" stroke-width="1" />
+                <circle cx="360" cy="160" r="122" stroke="#1E293B" stroke-width="1" />
+                <circle cx="360" cy="160" r="136" stroke="#1E293B" stroke-width="1" />
+                <circle cx="360" cy="160" r="78" stroke="#334155" stroke-width="1" stroke-dasharray="2 3"
+                  opacity="0.6" />
+              </g>
+              <g style="transform-origin:360px 160px;animation:spinOrbitCCW 22s linear infinite;">
+                <circle cx="433.3" cy="133.3" r="0.8" fill="#64748B" opacity="0.75" />
+                <circle cx="386.7" cy="86.7" r="0.8" fill="#64748B" opacity="0.75" />
+                <circle cx="327.0" cy="89.3" r="0.8" fill="#64748B" opacity="0.75" />
+                <circle cx="282.3" cy="153.2" r="0.8" fill="#64748B" opacity="0.75" />
+                <circle cx="309.9" cy="219.8" r="0.8" fill="#64748B" opacity="0.75" />
+                <circle cx="373.5" cy="236.8" r="0.8" fill="#64748B" opacity="0.75" />
+                <circle cx="430.7" cy="193.0" r="0.8" fill="#64748B" opacity="0.75" />
+              </g>
+              <g fill="none" opacity="0.65">
+                <path d="M362 106 L357 106 M360 103.5 L356 106 L360 108.5" stroke="#38bdf8" stroke-width="1.2"
+                  stroke-linecap="round" />
+                <path d="M362 72 L357 72 M360 69.5 L356 72 L360 74.5" stroke="#fbbf24" stroke-width="1.2"
+                  stroke-linecap="round" />
+                <path d="M358 228 L363 228 M360 225.5 L364 228 L360 230.5" stroke="#f87171" stroke-width="1.2"
+                  stroke-linecap="round" />
+              </g>
+              <circle class="sol-glow" cx="360" cy="160" r="25" fill="url(#solGlow)" />
+              <circle cx="360" cy="160" r="13" fill="url(#solBody)" stroke="#FEF08A" stroke-width="0.8" />
+              <g class="p-orbit-1">
+                <g class="p-node" transform="translate(340, 143)">
+                  <g class="p-upright-1">
+                    <circle cx="0" cy="0" r="3.5" fill="#94a3b8" stroke="#0A0D14" stroke-width="1.2" />
+                  </g>
+                </g>
+              </g>
+              <g class="p-orbit-2">
+                <g class="p-node" transform="translate(329, 186)">
+                  <g class="p-upright-2">
+                    <circle cx="0" cy="0" r="4.8" fill="#f59e0b" stroke="#0A0D14" stroke-width="1.2" />
+                  </g>
+                </g>
+              </g>
+              <g class="p-orbit-3">
+                <g class="p-node" transform="translate(387, 207)">
+                  <g class="p-upright-3">
+                    <circle cx="0" cy="0" r="5.5" fill="#38bdf8" stroke="#0A0D14" stroke-width="1.2" />
+                    <g class="moon-spin">
+                      <circle cx="10" cy="0" r="1.6" fill="#E2E8F0" />
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g class="p-orbit-4">
+                <g class="p-node" transform="translate(412, 116)">
+                  <g class="p-upright-4">
+                    <circle cx="0" cy="0" r="4.2" fill="#f87171" stroke="#0A0D14" stroke-width="1.2" />
+                  </g>
+                </g>
+              </g>
+              <g class="p-orbit-5">
+                <g class="p-node" transform="translate(303, 93)">
+                  <g class="p-upright-5">
+                    <circle cx="0" cy="0" r="9.5" fill="#fbbf24" stroke="#0A0D14" stroke-width="1.2" />
+                    <path d="M-8 -2 Q 0 -4 8 -2" stroke="#b45309" stroke-width="1" fill="none" />
+                    <circle cx="3" cy="3" r="1.5" fill="#dc2626" />
+                  </g>
+                </g>
+              </g>
+              <g class="p-orbit-6">
+                <g class="p-node" transform="translate(268, 213)">
+                  <g class="p-upright-6">
+                    <g transform="rotate(-22)">
+                      <ellipse cx="0" cy="0" rx="15" ry="4.8" fill="none" stroke="#d4c79b" stroke-width="1.8"
+                        opacity="0.85" />
+                      <circle cx="0" cy="0" r="7.5" fill="#e2d9b8" stroke="#0A0D14" stroke-width="1.2" />
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g class="p-orbit-7">
+                <g class="p-node" transform="translate(466, 221)">
+                  <g class="p-upright-7">
+                    <circle cx="0" cy="0" r="6" fill="#67e8f9" stroke="#0A0D14" stroke-width="1.2" />
+                  </g>
+                </g>
+              </g>
+              <g class="p-orbit-8">
+                <g class="p-node" transform="translate(384, 26)">
+                  <g class="p-upright-8">
+                    <circle cx="0" cy="0" r="5.5" fill="#818cf8" stroke="#0A0D14" stroke-width="1.2" />
+                  </g>
+                </g>
+              </g>
+              <text x="28" y="32" fill="#D6202E" font-size="12" font-weight="900"
+                font-family="'Be Vietnam Pro',sans-serif" letter-spacing="0.1em">QUỸ ĐẠO VẬN ĐỘNG VĨNH CỬU</text>
+              <text x="28" y="52" fill="#94A3B8" font-size="9.5" font-family="'Be Vietnam Pro',sans-serif">8 hành tinh
+                chuyển động theo quy luật Kepler quanh Mặt Trời</text>
+              <text x="28" y="70" fill="#64748B" font-size="9" font-family="monospace">VẬN TỐC: 48 km/s (Thủy tinh) ➔
+                5.4 km/s (Hải Vương)</text>
+
+              <text x="510" y="32" fill="#F2F2F2" font-size="10.5" font-weight="800"
+                font-family="'Be Vietnam Pro',sans-serif">CHU KỲ VẬN ĐỘNG (T)</text>
+              <text x="510" y="50" fill="#94A3B8" font-size="9" font-family="monospace">Thủy tinh: 5s • Trái Đất:
+                12s</text>
+              <text x="510" y="66" fill="#94A3B8" font-size="9" font-family="monospace">Mộc tinh: 27s • Thổ tinh:
+                36s</text>
+
+              <g transform="translate(28, 280)">
+                <rect width="664" height="26" rx="4" fill="#131e2c" stroke="#253549" stroke-width="1" />
+                <text x="332" y="14" fill="#fcd34d" font-size="9.5" font-weight="bold"
+                  font-family="'Be Vietnam Pro',sans-serif" text-anchor="middle">VẬN ĐỘNG LÀ THUỘC TÍNH CỐ HỮU CỦA VẬT
+                  CHẤT (F. ĂNGGHEN)</text>
+                <text x="332" y="23" fill="#94a3b8" font-size="7.5" font-family="'Be Vietnam Pro',sans-serif"
+                  text-anchor="middle">Chuyển động vĩnh viễn trong không gian và thời gian • Vận tốc giảm dần theo
+                  khoảng cách từ Mặt Trời</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Slide 22 & 23: 5 hình thức vận động cơ bản -->
+        <div class="editorial-card reveal-fade-up delay-3">
+          <div class="card-meta">PHÂN LOẠI HỆ THỐNG</div>
+          <h3>5 Hình thức vận động cơ bản (Ăngghen)</h3>
+          <p>Ăngghen phân chia vận động của vật chất thành 5 hình thức cơ bản, từ đơn giản đến phức tạp:</p>
+
+          <div class="grid-5" style="margin-top: 18px;">
+            <!-- 1. CƠ HỌC -->
+            <div class="motion-card">
+              <div class="motion-canvas-wrap">
+                <svg viewBox="0 0 80 48" width="100%" height="48" role="img"
+                  aria-label="Minh họa chuyển động cơ học con lắc">
+                  <line x1="16" y1="8" x2="64" y2="8" stroke="#475569" stroke-width="1.2" stroke-dasharray="2 3"
+                    opacity="0.6" />
+                  <circle cx="40" cy="8" r="2.5" fill="#94A3B8" />
+                  <path d="M 22 36 A 32 32 0 0 0 58 36" fill="none" stroke="#64748B" stroke-width="0.8"
+                    stroke-dasharray="2 2" opacity="0.4" />
+                  <g class="anim-pendulum-arm">
+                    <line x1="40" y1="8" x2="40" y2="38" stroke="var(--red)" stroke-width="1.8" />
+                    <circle cx="40" cy="38" r="5.5" fill="var(--red)" stroke="#FFFFFF" stroke-width="1.2" />
+                    <circle cx="40" cy="38" r="1.8" fill="#FFFFFF" />
+                  </g>
+                </svg>
+              </div>
+              <div class="motion-card-tier">CẤP ĐỘ 1 • ĐƠN GIẢN NHẤT</div>
+              <div class="motion-card-title">1. CƠ HỌC</div>
+              <p>Dịch chuyển vị trí trong không gian của các vật thể.</p>
+            </div>
+
+            <!-- 2. VẬT LÝ -->
+            <div class="motion-card">
+              <div class="motion-canvas-wrap">
+                <svg viewBox="0 0 80 48" width="100%" height="48" role="img"
+                  aria-label="Minh họa sóng vật lý và hạt dao động">
+                  <line x1="6" y1="24" x2="74" y2="24" stroke="#475569" stroke-width="0.8" stroke-dasharray="2 3"
+                    opacity="0.4" />
+                  <path class="anim-wave-line" d="M 6 24 Q 15 10, 23 24 T 40 24 T 57 24 T 74 24" fill="none"
+                    stroke="#38BDF8" stroke-width="2" />
+                  <path d="M 6 24 Q 15 34, 23 24 T 40 24 T 57 24 T 74 24" fill="none" stroke="#818CF8" stroke-width="1"
+                    stroke-dasharray="3 3" opacity="0.5" />
+                  <circle class="anim-wave-dot" cx="40" cy="24" r="4" fill="#FCD34D" stroke="#0A0D14"
+                    stroke-width="1" />
+                </svg>
+              </div>
+              <div class="motion-card-tier">CẤP ĐỘ 2 • VI MÔ &amp; TRƯỜNG</div>
+              <div class="motion-card-title">2. VẬT LÝ</div>
+              <p>Vận động của các phân tử, điện tử, hạt cơ bản, nhiệt, điện, ánh sáng, từ trường…</p>
+            </div>
+
+            <!-- 3. HÓA HỌC -->
+            <div class="motion-card">
+              <div class="motion-canvas-wrap">
+                <svg viewBox="0 0 80 48" width="100%" height="48" role="img"
+                  aria-label="Minh họa phản ứng hóa học liên kết phân tử">
+                  <line x1="16" y1="24" x2="64" y2="24" stroke="#475569" stroke-width="0.8" stroke-dasharray="2 3"
+                    opacity="0.4" />
+                  <line class="anim-chem-bond" x1="28" y1="24" x2="52" y2="24" stroke="#FCD34D" stroke-width="2.5"
+                    stroke-linecap="round" />
+                  <g class="anim-chem-atom-a">
+                    <circle cx="24" cy="24" r="8" fill="var(--red)" stroke="#FFFFFF" stroke-width="1.2" />
+                    <text x="24" y="27" fill="#FFFFFF" font-size="7.5" font-weight="900"
+                      font-family="'Space Grotesk',sans-serif" text-anchor="middle">A</text>
+                  </g>
+                  <g class="anim-chem-atom-b">
+                    <circle cx="56" cy="24" r="8" fill="#38BDF8" stroke="#FFFFFF" stroke-width="1.2" />
+                    <text x="56" y="27" fill="#FFFFFF" font-size="7.5" font-weight="900"
+                      font-family="'Space Grotesk',sans-serif" text-anchor="middle">B</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="motion-card-tier">CẤP ĐỘ 3 • BIẾN ĐỔI CHẤT</div>
+              <div class="motion-card-title">3. HÓA HỌC</div>
+              <p>Sự biến đổi của các chất qua các phản ứng hóa học (phân giải, hóa hợp).</p>
+            </div>
+
+            <!-- 4. SINH HỌC -->
+            <div class="motion-card">
+              <div class="motion-canvas-wrap">
+                <svg viewBox="0 0 80 48" width="100%" height="48" role="img"
+                  aria-label="Minh họa chuỗi xoắn ADN sinh học">
+                  <line class="anim-dna-rung" style="animation-delay: 0s;" x1="16" y1="12" x2="16" y2="36"
+                    stroke="#64748B" />
+                  <circle class="anim-dna-node-a" style="animation-delay: 0s;" cx="16" cy="12" r="3" fill="#4ADE80" />
+                  <circle class="anim-dna-node-b" style="animation-delay: 0s;" cx="16" cy="36" r="3" fill="#38BDF8" />
+
+                  <line class="anim-dna-rung" style="animation-delay: 0.4s;" x1="28" y1="12" x2="28" y2="36"
+                    stroke="#64748B" />
+                  <circle class="anim-dna-node-a" style="animation-delay: 0.4s;" cx="28" cy="12" r="3" fill="#4ADE80" />
+                  <circle class="anim-dna-node-b" style="animation-delay: 0.4s;" cx="28" cy="36" r="3" fill="#38BDF8" />
+
+                  <line class="anim-dna-rung" style="animation-delay: 0.8s;" x1="40" y1="12" x2="40" y2="36"
+                    stroke="#64748B" />
+                  <circle class="anim-dna-node-a" style="animation-delay: 0.8s;" cx="40" cy="12" r="3" fill="#4ADE80" />
+                  <circle class="anim-dna-node-b" style="animation-delay: 0.8s;" cx="40" cy="36" r="3" fill="#38BDF8" />
+
+                  <line class="anim-dna-rung" style="animation-delay: 1.2s;" x1="52" y1="12" x2="52" y2="36"
+                    stroke="#64748B" />
+                  <circle class="anim-dna-node-a" style="animation-delay: 1.2s;" cx="52" cy="12" r="3" fill="#4ADE80" />
+                  <circle class="anim-dna-node-b" style="animation-delay: 1.2s;" cx="52" cy="36" r="3" fill="#38BDF8" />
+
+                  <line class="anim-dna-rung" style="animation-delay: 1.6s;" x1="64" y1="12" x2="64" y2="36"
+                    stroke="#64748B" />
+                  <circle class="anim-dna-node-a" style="animation-delay: 1.6s;" cx="64" cy="12" r="3" fill="#4ADE80" />
+                  <circle class="anim-dna-node-b" style="animation-delay: 1.6s;" cx="64" cy="36" r="3" fill="#38BDF8" />
+                </svg>
+              </div>
+              <div class="motion-card-tier">CẤP ĐỘ 4 • CƠ THỂ SỐNG</div>
+              <div class="motion-card-title">4. SINH HỌC</div>
+              <p>Sự trao đổi chất, sinh trưởng, biến dị, di truyền của cơ thể sống.</p>
+            </div>
+
+            <!-- 5. XÃ HỘI -->
+            <div class="motion-card">
+              <div class="motion-canvas-wrap">
+                <svg viewBox="0 0 80 48" width="100%" height="48" role="img"
+                  aria-label="Minh họa mạng lưới xã hội loài người">
+                  <line class="anim-social-link" x1="18" y1="34" x2="34" y2="16" stroke="#F43F5E" stroke-width="1.5" />
+                  <line class="anim-social-link" x1="34" y1="16" x2="48" y2="36" stroke="#FB7185" stroke-width="1.5" />
+                  <line class="anim-social-link" x1="48" y1="36" x2="64" y2="18" stroke="#F43F5E" stroke-width="1.5" />
+                  <line class="anim-social-link" x1="34" y1="16" x2="64" y2="18" stroke="#E11D48" stroke-width="1.2"
+                    opacity="0.6" />
+
+                  <path d="M 64 18 L 74 12 M 74 12 L 67 11 M 74 12 L 73 17" fill="none" stroke="#FCD34D"
+                    stroke-width="1.5" stroke-linecap="round" />
+
+                  <circle class="anim-social-node" cx="18" cy="34" r="3.5" fill="#E2E8F0" stroke="#E11D48"
+                    stroke-width="1.5" />
+                  <circle class="anim-social-node" cx="34" cy="16" r="4" fill="#FCD34D" stroke="#0A0D14"
+                    stroke-width="1.2" />
+                  <circle class="anim-social-node" cx="48" cy="36" r="3.5" fill="#E2E8F0" stroke="#E11D48"
+                    stroke-width="1.5" />
+                  <circle class="anim-social-node" cx="64" cy="18" r="4.5" fill="var(--red)" stroke="#FFFFFF"
+                    stroke-width="1.5" />
+                </svg>
+              </div>
+              <div class="motion-card-tier">CẤP ĐỘ 5 • CAO NHẤT</div>
+              <div class="motion-card-title">5. XÃ HỘI</div>
+              <p>Sự biến đổi, phát triển trong các quá trình lịch sử, xã hội loài người.</p>
+            </div>
+          </div>
+
+          <div class="takeaway-bar" style="margin-top: 20px;">
+            <span class="takeaway-badge">KẾT LUẬN</span>
+            <span>"5 hình thức trên tồn tại đan xen, hình thức sau chứa hình thức trước nhưng không quy giản về
+              nhau."</span>
+          </div>
+        </div>
+
+        <!-- Slide 24: Đứng im -->
+        <div class="editorial-card reveal-fade-up delay-4">
+          <div class="card-meta">TRẠNG THÁI CÂN BẰNG TẠM THỜI</div>
+          <h3>Đứng im là gì?</h3>
+          <p><strong>Đứng im là trạng thái vận động đặc biệt — vận động trong thế cân bằng, ổn định, chưa làm thay đổi
+              căn bản về chất của sự vật.</strong></p>
+          <ul class="editorial-list" style="margin-top: 14px;">
+            <li><strong>Đứng im chỉ là tương đối, tạm thời:</strong> Không phải phủ định vận động, mà là một dạng vận
+              động đặc biệt.</li>
+            <li><strong>Chỉ xảy ra trong một mối quan hệ, một hình thức nhất định:</strong> Không phải với mọi quan hệ.
+            </li>
+            <li><strong>Vận động là tuyệt đối, đứng im là tương đối:</strong> Đứng im chỉ là biểu hiện của trạng thái
+              vận động trong sự ổn định tạm thời.</li>
+            <li><strong>Ví dụ:</strong> Một cuốn sách đặt yên trên bàn — đứng im so với mặt bàn, nhưng vẫn đang vận động
+              cùng Trái Đất quay quanh trục và quanh Mặt Trời.</li>
+          </ul>
+        </div>
+
+        <div class="section-footer-bar">
+          <span>ENGELS' THEORY OF MOTION &amp; REST</span>
+          <span>SECTION NO. 05</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06: KHÔNG GIAN VÀ THỜI GIAN -->
+    <section class="section" id="sec-spacetime">
+      <div class="diagonal-band"></div>
+      <div class="section-content">
+        <span class="crosshairs">+ + + + + + + +</span>
+        <div class="section-pretitle">PHÂN ĐOẠN 06 // HÌNH THỨC TỒN TẠI CỦA VẬT CHẤT</div>
+        <h2 class="reveal-fade-up">KHÔNG GIAN <br><span class="title-accent-red">&amp; THỜI GIAN</span></h2>
+        <p class="lead-text reveal-fade-up delay-1">
+          Không gian và thời gian là các hình thức tồn tại khách quan, không thể tách rời của vật chất đang vận động —
+          không có vật chất phi không gian, phi thời gian.
+        </p>
+
+        <!-- Slide 25: Định nghĩa Không gian, Thời gian -->
+        <div class="grid-2 reveal-fade-up delay-2">
+          <div class="editorial-card">
+            <div class="card-meta">KHÔNG GIAN</div>
+            <h3>Không gian là gì?</h3>
+            <p>Hình thức tồn tại của vật chất, thể hiện <strong>quảng tính (chiều dài, rộng, cao)</strong>, kết cấu, và
+              sự cùng tồn tại, tách biệt giữa các sự vật, hiện tượng.</p>
+          </div>
+
+          <div class="editorial-card">
+            <div class="card-meta">THỜI GIAN</div>
+            <h3>Thời gian là gì?</h3>
+            <p>Hình thức tồn tại của vật chất, thể hiện <strong>độ dài diễn biến</strong>, trình tự trước–sau của các
+              quá trình vận động và phát triển.</p>
+          </div>
+        </div>
+
+        <div class="takeaway-bar reveal-fade-up delay-3">
+          <span class="takeaway-badge">LUẬN ĐIỂM DUY VẬT BIỆN CHỨNG</span>
+          <span>Không gian và thời gian không tồn tại độc lập, mà gắn liền với vật chất đang vận động — <strong>không có
+              vật chất "phi không gian, phi thời gian"</strong>.</span>
+        </div>
+
+        <!-- High-contrast Minkowski & 4D Spacetime Dynamic Graphic (Symmetrical 4D Spacetime HUD) -->
+        <div class="graphic-frame reveal-fade-up delay-3">
+          <svg viewBox="0 0 720 320" role="img"
+            aria-label="Mô hình nón ánh sáng Minkowski 3D và không thời gian 4 chiều đối xứng">
+            <defs>
+              <linearGradient id="futureConeGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#D6202E" stop-opacity="0.08" />
+                <stop offset="60%" stop-color="#D6202E" stop-opacity="0.28" />
+                <stop offset="100%" stop-color="#D6202E" stop-opacity="0.45" />
+              </linearGradient>
+              <linearGradient id="pastConeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.08" />
+                <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.25" />
+                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.42" />
+              </linearGradient>
+              <radialGradient id="eventGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+                <stop offset="40%" stop-color="#FCD34D" stop-opacity="0.8" />
+                <stop offset="100%" stop-color="#D6202E" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <style>
+              @keyframes futureWave {
+                0% {
+                  rx: 16px;
+                  ry: 3.5px;
+                  cy: 135px;
+                  opacity: 0.9;
+                  stroke-width: 1.5;
+                }
+
+                100% {
+                  rx: 75px;
+                  ry: 16px;
+                  cy: 55px;
+                  opacity: 0;
+                  stroke-width: 0.4;
+                }
+              }
+
+              @keyframes pastWave {
+                0% {
+                  rx: 16px;
+                  ry: 3.5px;
+                  cy: 165px;
+                  opacity: 0.9;
+                  stroke-width: 1.5;
+                }
+
+                100% {
+                  rx: 75px;
+                  ry: 16px;
+                  cy: 245px;
+                  opacity: 0;
+                  stroke-width: 0.4;
+                }
+              }
+
+              @keyframes photonLaser {
+                from {
+                  stroke-dashoffset: 32;
+                }
+
+                to {
+                  stroke-dashoffset: 0;
+                }
+              }
+
+              @keyframes eventPulse {
+
+                0%,
+                100% {
+                  r: 5px;
+                  opacity: 1;
+                }
+
+                50% {
+                  r: 7.5px;
+                  opacity: 0.85;
+                }
+              }
+
+              @keyframes ringRipple {
+                0% {
+                  r: 10px;
+                  opacity: 0.9;
+                }
+
+                100% {
+                  r: 28px;
+                  opacity: 0;
+                }
+              }
+
+              .anim-wave-future-1 {
+                animation: futureWave 2.8s ease-out infinite;
+              }
+
+              .anim-wave-future-2 {
+                animation: futureWave 2.8s ease-out infinite 1.4s;
+              }
+
+              .anim-wave-past-1 {
+                animation: pastWave 2.8s ease-out infinite;
+              }
+
+              .anim-wave-past-2 {
+                animation: pastWave 2.8s ease-out infinite 1.4s;
+              }
+
+              .anim-photon-ray {
+                animation: photonLaser 0.9s linear infinite;
+              }
+
+              .anim-event-dot {
+                animation: eventPulse 2s ease-in-out infinite;
+              }
+
+              .anim-event-ripple {
+                animation: ringRipple 2s ease-out infinite;
+              }
+
+              @media (prefers-reduced-motion: reduce) {
+
+                .anim-wave-future-1,
+                .anim-wave-future-2,
+                .anim-wave-past-1,
+                .anim-wave-past-2,
+                .anim-photon-ray,
+                .anim-event-dot,
+                .anim-event-ripple {
+                  animation: none !important;
+                }
+              }
+            </style>
+            <rect width="720" height="320" fill="#0A0D14" />
+
+            <!-- Subtle Polar Reference Circles -->
+            <g stroke="#1E293B" stroke-width="0.8" fill="none" opacity="0.3">
+              <circle cx="360" cy="150" r="45" stroke-dasharray="2 4" />
+              <circle cx="360" cy="150" r="85" stroke-dasharray="3 5" />
+            </g>
+
+            <!-- Coordinate Axes -->
+            <!-- Horizontal Space Axis (x, y) -->
+            <line x1="60" y1="150" x2="660" y2="150" stroke="#475569" stroke-width="1.2" />
+            <polygon points="666,150 656,146 656,154" fill="#64748B" />
+            <polygon points="54,150 64,146 64,154" fill="#64748B" />
+
+            <!-- Vertical Time Axis (ct) -->
+            <line x1="360" y1="20" x2="360" y2="280" stroke="#D6202E" stroke-width="1.5" />
+            <polygon points="360,12 355,22 365,22" fill="#D6202E" />
+            <polygon points="360,288 355,278 365,278" fill="#38BDF8" />
+
+            <!-- 1. PAST LIGHT CONE (Bottom, t < 0, Blue/Cyan) -->
+            <!-- Shaded Cone Volume with curved base seam -->
+            <path d="M 360,150 L 285,245 A 75,16 0 0,1 435,245 Z" fill="url(#pastConeGrad)" />
+            <!-- 3D Base Ellipse -->
+            <ellipse cx="360" cy="245" rx="75" ry="16" fill="url(#pastConeGrad)" stroke="#38BDF8" stroke-width="1.2" />
+            <!-- Animated Inward/Outward Wavefronts -->
+            <ellipse class="anim-wave-past-1" cx="360" cy="205" rx="40" ry="8.5" fill="none" stroke="#38BDF8" />
+            <ellipse class="anim-wave-past-2" cx="360" cy="205" rx="40" ry="8.5" fill="none" stroke="#38BDF8" />
+
+            <!-- 2. FUTURE LIGHT CONE (Top, t > 0, Red/Amber) -->
+            <!-- Shaded Cone Volume with curved base seam -->
+            <path d="M 360,150 L 285,55 A 75,16 0 0,0 435,55 Z" fill="url(#futureConeGrad)" />
+            <!-- 3D Base Ellipse -->
+            <ellipse cx="360" cy="55" rx="75" ry="16" fill="url(#futureConeGrad)" stroke="#D6202E" stroke-width="1.2" />
+            <!-- Animated Expanding Wavefronts -->
+            <ellipse class="anim-wave-future-1" cx="360" cy="95" rx="40" ry="8.5" fill="none" stroke="#D6202E" />
+            <ellipse class="anim-wave-future-2" cx="360" cy="95" rx="40" ry="8.5" fill="none" stroke="#D6202E" />
+
+            <!-- Photon Worldlines (Continuous 45° Speed of Light Lines) -->
+            <line class="anim-photon-ray" x1="285" y1="245" x2="435" y2="55" stroke="#FFFFFF" stroke-width="1.8"
+              stroke-dasharray="6 4" />
+            <line class="anim-photon-ray" x1="435" y1="245" x2="285" y2="55" stroke="#FFFFFF" stroke-width="1.8"
+              stroke-dasharray="6 4" />
+
+            <!-- Center Event Point: HERE AND NOW (x=0, t=0) -->
+            <circle class="anim-event-ripple" cx="360" cy="150" r="14" fill="none" stroke="#FFFFFF" stroke-width="1"
+              stroke-dasharray="2 3" />
+            <circle class="anim-event-dot" cx="360" cy="150" r="5.5" fill="url(#eventGlow)" stroke="#FFFFFF"
+              stroke-width="1.5" />
+
+            <!-- Center Event Badge (Centered on x=360, below event dot with indicator pin) -->
+            <line x1="360" y1="156" x2="360" y2="168" stroke="#FCD34D" stroke-width="1" />
+            <g transform="translate(310, 168)">
+              <rect width="100" height="22" rx="3" fill="#0A0D14" stroke="#D6202E" stroke-width="1" />
+              <text x="50" y="9.5" fill="#FFFFFF" font-size="7.2" font-weight="800"
+                font-family="'Be Vietnam Pro',sans-serif" text-anchor="middle">SỰ KIỆN HIỆN TẠI</text>
+              <text x="50" y="17.5" fill="#FCD34D" font-size="6.5" font-family="monospace" text-anchor="middle">x = 0, y
+                = 0, t = 0</text>
+            </g>
+
+            <!-- Flank Labels with Protected Opaque Badges (Symmetric layout around x=360) -->
+            <!-- Left Flank Badge -->
+            <g transform="translate(80, 137)">
+              <rect width="154" height="26" rx="4" fill="#0A0D14" stroke="#334155" stroke-width="0.9" />
+              <text x="77" y="11.5" fill="#94A3B8" font-size="7.5" font-weight="bold"
+                font-family="'Be Vietnam Pro',sans-serif" text-anchor="middle">VÙNG NGOÀI NÓN (ELSEWHERE)</text>
+              <text x="77" y="21" fill="#64748B" font-size="6.8" font-family="monospace" text-anchor="middle">ds² &lt; 0
+                • Không có quan hệ nhân quả</text>
+            </g>
+
+            <!-- Right Flank Badge -->
+            <g transform="translate(486, 137)">
+              <rect width="154" height="26" rx="4" fill="#0A0D14" stroke="#334155" stroke-width="0.9" />
+              <text x="77" y="11.5" fill="#94A3B8" font-size="7.5" font-weight="bold"
+                font-family="'Be Vietnam Pro',sans-serif" text-anchor="middle">GIỚI HẠN VẬN TỐC ÁNH SÁNG</text>
+              <text x="77" y="21" fill="#64748B" font-size="6.8" font-family="monospace" text-anchor="middle">Vận tốc v
+                &gt; c là bất khả thi</text>
+            </g>
+
+            <!-- 4 CORNER HUD TELEMETRY CALLOUTS (Cleanly spaced & multi-line wrapped) -->
+            <!-- Top-Left: Science Overview & Title -->
+            <text x="24" y="28" fill="#D6202E" font-size="11" font-weight="900"
+              font-family="'Be Vietnam Pro',sans-serif" letter-spacing="0.08em">NÓN ÁNH SÁNG MINKOWSKI</text>
+            <text x="24" y="44" fill="#CBD5E1" font-size="8.2" font-family="'Be Vietnam Pro',sans-serif">Mô hình Không –
+              Thời gian 4 chiều</text>
+            <text x="24" y="57" fill="#94A3B8" font-size="7.5" font-family="'Be Vietnam Pro',sans-serif">Hình học hóa
+              Thuyết tương đối Einstein</text>
+            <text x="24" y="72" fill="#64748B" font-size="7.5" font-family="monospace">ds² = c²dt² - (dx² + dy² +
+              dz²)</text>
+
+            <!-- Top-Right: Time Axis & Future Cone -->
+            <text x="696" y="28" fill="#D6202E" font-size="9.5" font-weight="900"
+              font-family="'Be Vietnam Pro',sans-serif" text-anchor="end">TRỤC THỜI GIAN ct ▲</text>
+            <text x="696" y="44" fill="#FCD34D" font-size="8.8" font-weight="bold"
+              font-family="'Be Vietnam Pro',sans-serif" text-anchor="end">TƯƠNG LAI TUYỆT ĐỐI (t &gt; 0)</text>
+            <text x="696" y="57" fill="#CBD5E1" font-size="7.5" font-family="'Be Vietnam Pro',sans-serif"
+              text-anchor="end">Vùng các biến cố có thể chịu tác động</text>
+            <text x="696" y="70" fill="#94A3B8" font-size="7.5" font-family="'Be Vietnam Pro',sans-serif"
+              text-anchor="end">nhân quả phát xuất từ Sự kiện Hiện tại</text>
+
+            <!-- Bottom-Left: Space Axis & Physical Constant -->
+            <text x="24" y="234" fill="#38BDF8" font-size="9.5" font-weight="bold"
+              font-family="'Be Vietnam Pro',sans-serif">TRỤC KHÔNG GIAN (x, y) ►</text>
+            <text x="24" y="248" fill="#CBD5E1" font-size="7.5" font-family="'Be Vietnam Pro',sans-serif">Đường biên nón
+              = Quỹ đạo tia sáng c</text>
+            <text x="24" y="261" fill="#94A3B8" font-size="7.5" font-family="'Be Vietnam Pro',sans-serif">Góc mở 45°
+              trong hệ tọa độ chuẩn ct</text>
+            <text x="24" y="274" fill="#64748B" font-size="7.2" font-family="monospace">c ≈ 300.000 km/s • Giới hạn vũ
+              trụ</text>
+
+            <!-- Bottom-Right: Past Cone -->
+            <text x="696" y="234" fill="#38BDF8" font-size="9.5" font-weight="bold"
+              font-family="'Be Vietnam Pro',sans-serif" text-anchor="end">QUÁ KHỨ TUYỆT ĐỐI (t &lt; 0) ▼</text>
+            <text x="696" y="248" fill="#CBD5E1" font-size="7.5" font-family="'Be Vietnam Pro',sans-serif"
+              text-anchor="end">Vùng các biến cố trong quá khứ</text>
+            <text x="696" y="261" fill="#94A3B8" font-size="7.5" font-family="'Be Vietnam Pro',sans-serif"
+              text-anchor="end">có thể tác động nhân quả tới Hiện tại</text>
+            <text x="696" y="274" fill="#64748B" font-size="7.2" font-family="monospace" text-anchor="end">Quan hệ nhân
+              quả được bảo toàn</text>
+
+            <!-- Bottom Panoramic Status Banner -->
+            <g transform="translate(28, 286)">
+              <rect width="664" height="24" rx="3" fill="#131e2c" stroke="#253549" stroke-width="1" />
+              <text x="332" y="12.5" fill="#FCD34D" font-size="8.8" font-weight="bold"
+                font-family="'Be Vietnam Pro',sans-serif" text-anchor="middle">KHÔNG GIAN VÀ THỜI GIAN LÀ PHƯƠNG THỨC
+                TỒN TẠI CỦA VẬT CHẤT (F. ĂNGGHEN &amp; A. EINSTEIN)</text>
+              <text x="332" y="21" fill="#94A3B8" font-size="7.2" font-family="'Be Vietnam Pro',sans-serif"
+                text-anchor="middle">Vật lý hiện đại bác bỏ quan niệm siêu hình của Newton coi không gian, thời gian là
+                cái hộp rỗng độc lập</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Slide 26: Tính chất & Liên hệ thực tiễn -->
+        <div class="grid-2 reveal-fade-up delay-4">
+          <div class="editorial-card">
+            <div class="card-meta">TÍNH CHẤT NỀN TẢNG</div>
+            <h3>Tính chất của Không gian &amp; Thời gian</h3>
+            <ul class="editorial-list">
+              <li><strong>Khách quan:</strong> Tồn tại độc lập với ý thức con người.</li>
+              <li><strong>Vô tận, vô hạn:</strong> Không có điểm bắt đầu hay kết thúc tuyệt đối trong toàn thể thế giới
+                vật chất.</li>
+              <li><strong>Gắn liền, không tách rời:</strong> Luôn gắn liền với sự vận động và biến đổi không ngừng của
+                vật chất.</li>
+            </ul>
+          </div>
+
+          <div class="editorial-card">
+            <div class="card-meta">LIÊN HỆ KHOA HỌC HIỆN ĐẠI</div>
+            <h3>Liên hệ Thuyết tương đối Einstein</h3>
+            <p><strong>Thuyết tương đối của Einstein</strong> đã chứng minh không gian và thời gian không tuyệt đối, cố
+              định như quan niệm cổ điển của Newton, mà co giãn tuỳ theo vận tốc và trọng trường.</p>
+            <p style="margin-top: 10px;">Điều này càng xác nhận luận điểm của triết học Mác-Lênin: <em>không gian và
+                thời gian không tách rời vật chất và vận động.</em></p>
+          </div>
+        </div>
+
+        <div class="section-footer-bar">
+          <span>SPACETIME IN MARXIST PHILOSOPHY // RELATIVITY</span>
+          <span>SECTION NO. 06</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 07: TÍNH THỐNG NHẤT VẬT CHẤT CỦA THẾ GIỚI -->
+    <section class="section" id="sec-unity">
+      <div class="diagonal-band"></div>
+      <div class="section-content">
+        <span class="crosshairs">+ + + + + + + +</span>
+        <div class="section-pretitle">PHÂN ĐOẠN 07 // NGUYÊN LÝ CHỈNH THỂ VŨ TRỤ</div>
+        <h2 class="reveal-fade-up">TÍNH THỐNG NHẤT <br><span class="title-accent-red">VẬT CHẤT CỦA THẾ GIỚI</span></h2>
+        <p class="lead-text reveal-fade-up delay-1">
+          Thế giới vô cùng đa dạng và phong phú, nhưng chỉ có một thế giới duy nhất — thế giới thống nhất ở tính vật
+          chất của nó.
+        </p>
+
+        <!-- Slide 27: Khái niệm & Biểu hiện -->
+        <div class="grid-2 reveal-fade-up delay-2">
+          <div class="editorial-card">
+            <div class="card-meta">KHÁI NIỆM NGẮN GỌN</div>
+            <h3>1. Khái niệm</h3>
+            <p>Thế giới tuy rất đa dạng, phong phú với vô số sự vật và hiện tượng khác nhau, nhưng tất cả đều có
+              <strong>nguồn gốc vật chất</strong>, tồn tại khách quan và liên hệ với nhau trong một chỉnh thể thống
+              nhất.</p>
+          </div>
+
+          <div class="editorial-card">
+            <div class="card-meta">BIỂU HIỆN</div>
+            <h3>2. Biểu hiện của tính thống nhất</h3>
+            <ul class="editorial-list">
+              <li>Chỉ có <strong>một thế giới duy nhất là thế giới vật chất</strong>, không tồn tại thế giới siêu nhiên
+                tách rời vật chất.</li>
+              <li>Mọi sự vật, hiện tượng đều là những <strong>dạng tồn tại khác nhau của vật chất</strong>, có mối liên
+                hệ và tác động qua lại lẫn nhau.</li>
+              <li><strong>Ý thức là sản phẩm của vật chất có tổ chức cao</strong> (bộ não con người), không phải cái có
+                trước và sinh ra thế giới.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Slide 28: Ý nghĩa & Kết luận -->
+        <div class="editorial-card reveal-fade-up delay-3">
+          <div class="card-meta">Ý NGHĨA &amp; KẾT LUẬN TOÀN CHUYÊN ĐỀ</div>
+          <h3>1. Ý nghĩa thế giới quan và phương pháp luận</h3>
+          <ul class="editorial-list">
+            <li>Khẳng định <strong>vật chất có trước, ý thức có sau</strong>.</li>
+            <li>Giúp con người <strong>nhận thức và cải tạo thế giới dựa trên các quy luật khách quan</strong>.</li>
+            <li>Phê phán các quan điểm duy tâm cho rằng ý thức hay lực lượng siêu nhiên quyết định thế giới.</li>
+          </ul>
+
+          <div class="takeaway-bar" style="margin-top: 24px;">
+            <span class="takeaway-badge">KẾT LUẬN TOÀN CHUYÊN ĐỀ</span>
+            <span>"Theo triết học Mác - Lênin, thế giới thống nhất ở tính vật chất, nghĩa là mọi sự vật, hiện tượng từ
+              tự nhiên, xã hội đến tư duy của con người đều có cơ sở vật chất và tồn tại trong mối liên hệ khách quan
+              với nhau."</span>
+          </div>
+        </div>
+
+        <div class="section-footer-bar">
+          <span>THE MATERIAL UNITY OF THE UNIVERSE</span>
+          <span>SECTION NO. 07</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 08: THANK YOU (FULL RED SECTION) -->
+    <section class="section section-red-bg" id="sec-thanks">
+      <div class="diagonal-band"></div>
+      <div class="section-content" style="text-align: center;">
+        <span class="crosshairs" style="justify-content: center; display: flex;">+ + + + + + + + + + + +</span>
+        <div class="section-pretitle" style="justify-content: center;">PHÂN ĐOẠN 08 // LỜI CẢM ƠN &amp; HOÀN THÀNH BÁO
+          CÁO</div>
+
+        <h2 style="font-size: clamp(48px, 9vw, 110px); margin-bottom: 20px;">
+          <span id="typewriter-target"></span><span class="typewriter-cursor"></span>
+        </h2>
+
+        <p class="lead-text" style="margin: 0 auto 36px auto; max-width: 680px; color: #FFF;">
+          Cảm ơn Thầy Cô và các bạn đã chú ý lắng nghe bài thuyết trình chuyên đề Triết học Mác – Lênin của Nhóm 1!
+        </p>
+
+        <div class="editorial-card"
+          style="max-width: 600px; margin: 0 auto; text-align: left; background: #0A0A0D; color: #FFF; border-color: #000; border-left-color: #FFF;">
+          <div class="card-meta" style="color: #FF6B6B;">THÔNG TIN THỰC HIỆN BÁO CÁO</div>
+          <p><strong>Chuyên đề:</strong> Vật chất là gì dưới góc độ triết học? Vận động, đứng im, không gian, thời gian
+            là gì?</p>
+          <p style="margin-top: 8px;"><strong>Nhóm phụ trách:</strong> Nhóm 1</p>
+          <p style="margin-top: 8px;"><strong>Học phần:</strong> Triết học Mác – Lênin</p>
+          <p style="margin-top: 8px;"><strong>Phong cách thiết kế:</strong> Modern Japanese Editorial / Anime-Poster
+            Layout</p>
+        </div>
+
+        <div class="section-footer-bar" style="margin-top: 60px; justify-content: center; gap: 32px;">
+          <span>GROUP 01 • MARXIST-LENINIST PHILOSOPHY</span>
+          <span>COMPLETED 2026</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Enforce Permanent Dark Theme
+    const root = document.documentElement;
+    root.setAttribute('data-theme', 'dark');
+
+    // IntersectionObserver for Section Diagonal Band Wipes and Active Sidebar State
+    const sections = document.querySelectorAll('.section');
+    const sidebarBtns = document.querySelectorAll('.sidebar-btn');
+
+    // Trigger hero entrance sweep visibly on initial load
+    function activateHero() {
+      const heroSec = document.getElementById('sec-hero');
+      if (heroSec) {
+        requestAnimationFrame(() => {
+          heroSec.classList.add('is-visible');
+          heroSec.querySelectorAll('.reveal-fade-up').forEach(el => el.classList.add('is-revealed'));
+        });
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', () => setTimeout(activateHero, 80));
+    } else {
+      setTimeout(activateHero, 80);
+    }
+
+    // Bi-directional Active Sidebar Tracker
+    function updateActiveSidebar() {
+      const viewportPoint = window.innerHeight * 0.38;
+      let activeId = null;
+
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top <= viewportPoint && rect.bottom >= viewportPoint) {
+          activeId = sec.id;
+        }
+      });
+
+      if (!activeId && window.scrollY < 120) {
+        activeId = 'sec-hero';
+      }
+
+      if (activeId) {
+        sidebarBtns.forEach(btn => {
+          if (btn.getAttribute('data-sec') === activeId) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      requestAnimationFrame(updateActiveSidebar);
+    }, { passive: true });
+
+    // Bi-directional Section Observer for Diagonal Band Wipes
+    const observerOptions = {
+      root: null,
+      threshold: 0.04,
+      rootMargin: "0px 0px 0px 0px"
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+
+          if (entry.target.id === 'sec-thanks') {
+            startTypewriter();
+          }
+        } else {
+          // Reset when scrolling away (both up and down) so it sweeps cleanly on re-entry!
+          entry.target.classList.remove('is-visible');
+          if (entry.target.id === 'sec-thanks') {
+            typewriterStarted = false;
+          }
+        }
+      });
+      updateActiveSidebar();
+    }, observerOptions);
+
+    // Observe all sections for diagonal band entrance
+    setTimeout(() => {
+      sections.forEach(sec => sectionObserver.observe(sec));
+      updateActiveSidebar();
+    }, 120);
+
+    // Bi-directional Card & Element Reveal Observer
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+        } else {
+          // Off-screen reset allows re-entrance in both scroll directions!
+          entry.target.classList.remove('is-revealed');
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.06,
+      rootMargin: "24px 0px 24px 0px"
+    });
+
+    document.querySelectorAll('.editorial-card, .table-container, .timeline-item, .takeaway-bar, .graphic-frame, .hero-metadata-grid, .lenin-quote-block, .grid-5 > div').forEach((el, index) => {
+      el.classList.add('reveal-fade-up');
+      if (!el.classList.contains('delay-1') && !el.classList.contains('delay-2') && !el.classList.contains('delay-3')) {
+        el.style.transitionDelay = ((index % 3) * 0.1) + 's';
+      }
+      revealObserver.observe(el);
+    });
+
+    // Typewriter effect for THANK YOU (Bi-directional retrigger)
+    let typewriterStarted = false;
+    let typewriterInterval = null;
+
+    function startTypewriter() {
+      if (typewriterStarted) return;
+      typewriterStarted = true;
+      const target = document.getElementById('typewriter-target');
+      if (!target) return;
+      const text = "THANK YOU!";
+      let idx = 0;
+      target.textContent = "";
+      clearInterval(typewriterInterval);
+
+      typewriterInterval = setInterval(() => {
+        if (idx < text.length) {
+          target.textContent += text[idx];
+          idx++;
+        } else {
+          clearInterval(typewriterInterval);
+        }
+      }, 110);
+    }
+
+    // Go To Top Button (Concentric Radar Target)
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (backToTopBtn) {
+      function checkBackToTop() {
+        if (window.scrollY > 240) {
+          backToTopBtn.classList.add('is-active');
+        } else {
+          backToTopBtn.classList.remove('is-active');
+        }
+      }
+
+      window.addEventListener('scroll', () => {
+        requestAnimationFrame(checkBackToTop);
+      }, { passive: true });
+
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+
+      checkBackToTop();
+    }
+
+    // Interactive Persona 5 Mouse Spotlight & Screentone Parallax
+    let targetMouseX = window.innerWidth / 2;
+    let targetMouseY = window.innerHeight / 2;
+    let currentMouseX = targetMouseX;
+    let currentMouseY = targetMouseY;
+    let mouseRafId = null;
+
+    function animateMouseGlow() {
+      currentMouseX += (targetMouseX - currentMouseX) * 0.15;
+      currentMouseY += (targetMouseY - currentMouseY) * 0.15;
+
+      document.documentElement.style.setProperty('--mouse-x', `${currentMouseX.toFixed(1)}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${currentMouseY.toFixed(1)}px`);
+
+      // Subtle 3D comic parallax on the screentone dots
+      const shiftX = -((currentMouseX / window.innerWidth - 0.5) * 8).toFixed(1);
+      const shiftY = -((currentMouseY / window.innerHeight - 0.5) * 8).toFixed(1);
+      const screentoneEl = document.querySelector('.manga-screentone-bg');
+      if (screentoneEl) {
+        screentoneEl.style.transform = `translate(${shiftX}px, ${shiftY}px)`;
+      }
+
+      if (Math.abs(targetMouseX - currentMouseX) > 0.2 || Math.abs(targetMouseY - currentMouseY) > 0.2) {
+        mouseRafId = requestAnimationFrame(animateMouseGlow);
+      } else {
+        mouseRafId = null;
+      }
+    }
+
+    window.addEventListener('pointermove', (e) => {
+      document.body.classList.add('has-mouse-moved');
+      targetMouseX = e.clientX;
+      targetMouseY = e.clientY;
+      if (!mouseRafId) {
+        mouseRafId = requestAnimationFrame(animateMouseGlow);
+      }
+    }, { passive: true });
+  </script>
+</body>
+
+</html>
