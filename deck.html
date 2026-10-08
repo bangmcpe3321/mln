@@ -832,9 +832,30 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     animation:none!important;
   }
 }
+
+.page-transition-curtain{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .38s cubic-bezier(0.16,1,0.3,1);
+  will-change:opacity;
+}
+.page-transition-curtain.theme-red{
+  background:radial-gradient(circle at 80% 20%, rgba(214,32,46,0.45) 0%, rgba(10,10,13,0.95) 60%, #0A0A0D 100%);
+}
+.page-transition-curtain.theme-hub{
+  background:#0A0D14;
+}
+.page-transition-curtain.is-active{
+  pointer-events:auto;
+  opacity:1;
+}
 </style>
 </head>
 <body>
+<div class="page-transition-curtain" id="page-curtain" aria-hidden="true"></div>
 <div class="experience" id="experience" title="Nhấn vào ảnh để xem nội dung chi tiết">
   <div class="top-progress" aria-hidden="true"><span id="top-progress-bar"></span></div>
   <div class="backdrop" aria-hidden="true"><img id="active-photo" src="assets/images/slide01_cover.jpg" alt="Minh họa các dạng tồn tại và vận động của vật chất"></div>
@@ -866,7 +887,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
       <a href="index.html" class="deck-switch-btn" title="Trở về Menu chọn phương thức">
         <span>☰</span> MENU
       </a>
-      <a href="editorial.html" class="deck-switch-btn deck-btn-editorial" title="Chuyển sang bản Tạp chí Persona 5">
+      <a href="editorial.html" class="deck-switch-btn deck-btn-editorial" title="Chuyển sang bản Tạp chí Modern Editorial">
         <span>★</span> BẢN EDITORIAL
       </a>
       <button class="icon-button" id="autoplay-toggle" type="button" aria-label="Tạm dừng tự động chuyển slide" aria-pressed="false">
@@ -2063,6 +2084,27 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
     syncAutoplay();
   }
   void initialize();
+  // Themed Page Switcher Transitions
+  const pageCurtain = document.getElementById("page-curtain");
+  document.querySelectorAll(".deck-switch-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const href = btn.getAttribute("href");
+      const isEditorial = btn.classList.contains("deck-btn-editorial");
+      if (pageCurtain) {
+        pageCurtain.className = "page-transition-curtain " + (isEditorial ? "theme-red" : "theme-hub") + " is-active";
+      }
+      setTimeout(() => {
+        window.location.href = href;
+      }, 380);
+    });
+  });
+  window.addEventListener("pageshow", (e) => {
+    if (e.persisted && pageCurtain) {
+      pageCurtain.className = "page-transition-curtain";
+    }
+  });
+
 })();
 </script>
 </body>
