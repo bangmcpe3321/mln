@@ -1,0 +1,41 @@
+## Chủ đề
+"Độc quyền" trong kinh tế thị trường: cách độc quyền hình thành, lợi ích và tác hại của nó, và vai trò của cạnh tranh, người tiêu dùng và Nhà nước. Game phải lồng ghép kiến thức một cách tự nhiên (độc quyền tư nhân, độc quyền nhà nước, lợi nhuận độc quyền, thôn tính và sáp nhập, thao túng giá, luật chống độc quyền), không giảng bài khô khan.
+
+## Cốt truyện
+Người chơi là nhà sáng lập một startup nhỏ ở Việt Nam (ví dụ: chuỗi cà phê, ứng dụng gọi xe, hoặc hãng nước giải khát). Trong 12 chương, người chơi phát triển công ty từ một cửa hàng nhỏ thành tập đoàn lớn. Mỗi chương có một tình huống kịch tính: đối thủ đòi sáp nhập, nhà cung cấp độc quyền ép giá, cơ quan quản lý vào cuộc, báo chí điều tra, nhân viên đình công...
+
+## Cách chơi
+- Game chọn lựa theo lượt: mỗi chương có đoạn văn tường thuật, sau đó 2–4 lựa chọn.
+- Các chỉ số hiển thị liên tục (0–100): Vốn, Thị phần, Uy tín thương hiệu, Niềm tin người tiêu dùng, Quan hệ chính quyền, Áp lực pháp lý.
+- Mỗi lựa chọn thay đổi các chỉ số và có thể mở hoặc khoá nhánh truyện sau này.
+- Có các "thẻ kiến thức" ngắn (1–2 câu) bật ra sau những quyết định quan trọng, giải thích khái niệm kinh tế liên quan. Thẻ đã mở được lưu trong một mục "Sổ tay".
+
+## Các ending (ít nhất 6, phụ thuộc vào chỉ số và các lựa chọn then chốt)
+1. Đế chế độc quyền: thống trị thị trường, giá cao, người tiêu dùng chịu thiệt.
+2. Bị chia tách: cơ quan chống độc quyền can thiệp, công ty bị buộc tách nhỏ.
+3. Phá sản: mở rộng quá nhanh hoặc bị đối thủ thôn tính.
+4. Dẫn đầu nhờ đổi mới: giữ vị thế bằng cạnh tranh lành mạnh, không lạm dụng sức mạnh.
+5. Bị tẩy chay: mất niềm tin người tiêu dùng sau scandal thao túng giá.
+6. Ending bí mật: cần điều kiện đặc biệt (ví dụ: hợp tác với Nhà nước và đối thủ để lập mô hình mới có lợi cho cộng đồng).
+Mỗi ending có màn hình kết riêng gồm lời bình, tóm tắt hành trình và bài học kinh tế rút ra.
+
+## Chế độ nhiều người chơi (2–4 người)
+- Menu đầu game cho chọn "Một người" hoặc "Nhiều người". Ở chế độ nhiều người, mỗi người điều hành một công ty cạnh tranh trên cùng một thị trường. Có thể thêm vai tuỳ chọn "Cơ quan quản lý" cho người thứ 4.
+- Mỗi chương diễn ra theo vòng: mọi người chơi chọn quyết định một cách bí mật, sau đó cùng công bố. Kết quả được tính đồng thời.
+- Thị phần là tổng không đổi, nên thị phần của người này tăng thì người kia giảm. Chỉ số "Áp lực pháp lý" và "Niềm tin người tiêu dùng" của thị trường là chỉ số chung.
+- Các lựa chọn tương tác giữa người chơi: chiến tranh giá, thôn tính, đề nghị sáp nhập, bắt tay ngầm thoả thuận giá (cartel), vận động chính sách. Nếu bị phát hiện cấu kết, cơ quan quản lý phạt cả nhóm. Thẻ kiến thức về cartel bật ra ở thời điểm đó.
+- Ending gồm ending cá nhân (theo chỉ số từng người) và ending chung của thị trường: một người thống trị, cả nhóm bị phạt vì cấu kết, thị trường cạnh tranh lành mạnh, hoặc ending bí mật khi mọi người cùng hợp tác.
+- Cách kết nối, không dùng server:
+  1. Hot-seat: một thiết bị, có màn hình che "Chuyển máy cho [tên người chơi]" mỗi khi đổi lượt để không lộ lựa chọn.
+  2. Online 2 người: dùng WebRTC, trao đổi mã kết nối bằng cách sao chép và dán thủ công (không cần máy chủ).
+- Trạng thái game của mọi người chơi nằm trong một object duy nhất, tách khỏi phần giao diện, để việc đồng bộ qua WebRTC đơn giản.
+
+## Yêu cầu kỹ thuật
+- Một file HTML duy nhất, dùng HTML/CSS/JS thuần, không thư viện ngoài, chạy được trên điện thoại và máy tính.
+- Giao diện tối giản, hiện đại, có hiệu ứng chuyển cảnh nhẹ, thanh chỉ số trực quan.
+- Dữ liệu truyện tách thành một object JSON riêng ở đầu file để dễ chỉnh sửa.
+- Có nút "Chơi lại" và hiển thị ending đã mở (x/6).
+- Toàn bộ văn bản bằng tiếng Việt tự nhiên, có dấu, giọng văn hấp dẫn.
+
+## Cách làm việc
+Hãy viết trọn vẹn code của game, không bỏ dở và không để chỗ trống kiểu "tự thêm phần còn lại".

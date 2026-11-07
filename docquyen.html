@@ -1,0 +1,2447 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0c10">
+<meta name="description" content="Độc quyền — Quyền lực và cái giá: game nhập vai kinh tế 12 chương về cạnh tranh, độc quyền và người tiêu dùng.">
+<title>Độc quyền — Quyền lực &amp; cái giá</title>
+<style>
+  :root{
+    --bg:#0a0c10;
+    --panel:#12161e;
+    --panel-2:#171c26;
+    --panel-3:#1c222e;
+    --line:#242c3a;
+    --line-soft:#1b2230;
+    --ink:#f1f4f9;
+    --muted:#9aa6b8;
+    --faint:#667388;
+    --gold:#e7c489;
+    --jade:#7fd3ba;
+    --blue:#8db8ec;
+    --violet:#b7a7ee;
+    --danger:#e58e83;
+    --gold-soft:rgba(231,196,137,.12);
+    --jade-soft:rgba(127,211,186,.12);
+    --blue-soft:rgba(141,184,236,.12);
+    --violet-soft:rgba(183,167,238,.12);
+    --danger-soft:rgba(229,142,131,.12);
+    --radius:20px;
+    --radius-sm:13px;
+    --shadow:0 24px 70px rgba(0,0,0,.42);
+    --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;min-height:100vh;background:var(--bg);color:var(--ink);
+    font-family:var(--font);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(900px 620px at 8% -12%,rgba(231,196,137,.085),transparent 62%),
+      radial-gradient(800px 560px at 96% 4%,rgba(229,142,131,.062),transparent 60%),
+      radial-gradient(1000px 760px at 52% 112%,rgba(127,211,186,.055),transparent 65%),
+      linear-gradient(180deg,#0a0c10,#080a0e 60%,#0a0c10);
+    background-attachment:fixed;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.35;
+    background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse at 50% 20%,black 30%,transparent 78%);
+    -webkit-mask-image:radial-gradient(ellipse at 50% 20%,black 30%,transparent 78%);
+  }
+  h1,h2,h3,h4,p{margin:0}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+
+  .app{max-width:1180px;margin:0 auto;padding:20px 18px 56px}
+  .screen{display:none;animation:screenIn .42s cubic-bezier(.2,.7,.2,1)}
+  .screen.active{display:block}
+  @keyframes screenIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes pop{0%{transform:scale(.92);opacity:0}60%{transform:scale(1.02)}100%{transform:scale(1);opacity:1}}
+  @keyframes glowPulse{0%,100%{opacity:.5}50%{opacity:1}}
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  }
+
+  .kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .serif{font-family:var(--serif)}
+  .muted{color:var(--muted)}
+  .faint{color:var(--faint)}
+
+  /* ---------- top bar ---------- */
+  .topbar{display:flex;align-items:center;gap:14px;justify-content:space-between;padding:6px 2px 18px}
+  .brand{display:flex;align-items:center;gap:11px;min-width:0}
+  .brand-mark{
+    width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex:0 0 auto;
+    background:linear-gradient(145deg,rgba(231,196,137,.2),rgba(231,196,137,.04));
+    border:1px solid rgba(231,196,137,.34);color:var(--gold);text-decoration:none;
+    font-family:var(--serif);font-size:19px;font-weight:700;transition:background .18s,border-color .18s;
+  }
+  .brand-mark:hover{background:rgba(231,196,137,.16);border-color:rgba(231,196,137,.6)}
+  .brand-txt{min-width:0}
+  .brand-txt b{display:block;font-size:15px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-txt span{font-size:11px;color:var(--faint);letter-spacing:.14em;text-transform:uppercase}
+  .top-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+  .icon-btn{
+    display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:10px;
+    border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--muted);text-decoration:none;
+    font-size:12.5px;font-weight:600;transition:background .18s,border-color .18s,color .18s;
+  }
+  .icon-btn:hover{background:rgba(255,255,255,.05);border-color:#333e50;color:var(--ink)}
+  .icon-btn[aria-pressed="true"]{background:var(--gold-soft);border-color:rgba(231,196,137,.4);color:var(--gold)}
+  .badge-count{font-variant-numeric:tabular-nums;color:var(--gold)}
+
+  /* ---------- title screen ---------- */
+  .hero{
+    position:relative;border:1px solid var(--line);border-radius:26px;overflow:hidden;
+    background:linear-gradient(150deg,rgba(231,196,137,.07),rgba(18,22,30,.6) 45%,rgba(127,211,186,.05));
+    box-shadow:var(--shadow);padding:clamp(26px,5vw,64px);
+  }
+  .hero::after{
+    content:"";position:absolute;width:520px;height:520px;right:-160px;top:-220px;border-radius:50%;
+    background:radial-gradient(circle,rgba(231,196,137,.14),transparent 68%);pointer-events:none;
+  }
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(22px,4vw,52px);align-items:center}
+  @media(max-width:820px){.hero-grid{grid-template-columns:1fr}}
+  .hero h1{
+    font-family:var(--serif);font-weight:600;line-height:1.04;letter-spacing:-.015em;
+    font-size:clamp(38px,6.6vw,72px);margin:14px 0 0;
+  }
+  .hero h1 em{font-style:italic;color:var(--gold)}
+  .hero-lede{margin-top:18px;max-width:52ch;color:var(--muted);font-size:clamp(15px,1.6vw,17px)}
+  .hero-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    font-size:11.5px;letter-spacing:.06em;padding:5px 10px;border-radius:999px;
+    border:1px solid var(--line);background:rgba(255,255,255,.025);color:var(--muted);
+  }
+  .hero-panel{border:1px solid var(--line);border-radius:18px;background:rgba(9,12,17,.55);padding:22px;backdrop-filter:blur(8px)}
+  .hero-panel h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);font-weight:700}
+  .mode-btn{
+    display:flex;width:100%;text-align:left;gap:13px;align-items:flex-start;
+    border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:11px;
+    background:rgba(255,255,255,.015);transition:transform .18s,border-color .18s,background .18s;
+    color:inherit;text-decoration:none;
+  }
+  .mode-btn:hover{transform:translateY(-2px);border-color:rgba(231,196,137,.45);background:rgba(231,196,137,.06)}
+  .mode-ico{width:36px;height:36px;flex:0 0 auto;border-radius:10px;display:grid;place-items:center;font-size:17px;background:var(--gold-soft);color:var(--gold);border:1px solid rgba(231,196,137,.24)}
+  .mode-btn b{display:block;font-size:14.5px}
+  .mode-btn small{display:block;color:var(--faint);font-size:12px;line-height:1.45;margin-top:2px}
+  .continue-row{margin-top:15px;padding-top:15px;border-top:1px dashed var(--line)}
+  .link-btn{font-size:12.5px;color:var(--gold);font-weight:600;letter-spacing:.02em}
+  .link-btn:hover{text-decoration:underline}
+
+  .ending-strip{margin-top:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--faint)}
+  .ending-dots{display:flex;gap:5px}
+  .ending-dots i{width:8px;height:8px;border-radius:50%;background:#2a3242;display:block}
+  .ending-dots i.on{background:var(--gold);box-shadow:0 0 10px rgba(231,196,137,.6)}
+
+  /* ---------- HUD ---------- */
+  .hud{
+    position:sticky;top:0;z-index:40;margin:0 -18px 22px;padding:12px 18px;
+    background:rgba(9,12,17,.83);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .hud-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .hud-chapter{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:9px;min-width:0}
+  .hud-chapter b{color:var(--ink);font-size:12.5px;letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .round-pill{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--gold-soft);color:var(--gold);border:1px solid rgba(231,196,137,.28);white-space:nowrap}
+  .hud-btns{display:flex;gap:6px}
+  .hud-btns .icon-btn{padding:6px 10px;font-size:11.5px}
+  .stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px 14px;margin-top:11px}
+  @media(max-width:900px){.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(max-width:460px){.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px}}
+  .stat{min-width:0}
+  .stat-head{display:flex;align-items:baseline;justify-content:space-between;gap:6px}
+  .stat-name{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .stat-val{font-size:12px;font-variant-numeric:tabular-nums;color:var(--muted);font-weight:700}
+  .bar{height:5px;border-radius:99px;background:#1c2330;margin-top:5px;overflow:hidden;position:relative}
+  .bar>span{display:block;height:100%;border-radius:99px;transition:width .6s cubic-bezier(.2,.7,.2,1);background:var(--gold)}
+  .stat[data-k="capital"] .bar>span{background:linear-gradient(90deg,#c79a54,#e7c489)}
+  .stat[data-k="share"] .bar>span{background:linear-gradient(90deg,#5f9fdc,#8db8ec)}
+  .stat[data-k="brand"] .bar>span{background:linear-gradient(90deg,#9b87dd,#b7a7ee)}
+  .stat[data-k="trust"] .bar>span{background:linear-gradient(90deg,#58bda4,#7fd3ba)}
+  .stat[data-k="gov"] .bar>span{background:linear-gradient(90deg,#a9a2c9,#c8c2e6)}
+  .stat[data-k="legal"] .bar>span{background:linear-gradient(90deg,#d4796c,#e58e83)}
+  .stat.delta-up .stat-val{color:var(--jade)}
+  .stat.delta-down .stat-val{color:var(--danger)}
+  .stat.delta-up .bar>span,.stat.delta-down .bar>span{box-shadow:0 0 12px currentColor}
+  .float-delta{
+    position:fixed;z-index:90;pointer-events:none;font-size:12px;font-weight:800;
+    color:var(--jade);animation:floatUp 1.15s ease-out forwards;white-space:nowrap;
+    text-shadow:0 2px 10px rgba(0,0,0,.7);
+  }
+  @keyframes floatUp{0%{opacity:0;transform:translateY(4px)}18%{opacity:1}100%{opacity:0;transform:translateY(-34px)}}
+
+  /* ---------- chapter card ---------- */
+  .chapter-wrap{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:22px;align-items:start}
+  @media(max-width:980px){.chapter-wrap{grid-template-columns:1fr}}
+  .card{
+    border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(170deg,var(--panel),rgba(12,15,21,.9));
+    box-shadow:var(--shadow);padding:clamp(20px,3vw,34px);animation:fadeUp .4s ease-out;
+  }
+  .ch-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .ch-num{font-family:var(--serif);font-size:clamp(30px,4vw,44px);line-height:1;color:rgba(231,196,137,.3);font-weight:600}
+  .ch-title{font-family:var(--serif);font-size:clamp(22px,3vw,32px);line-height:1.18;font-weight:600;margin-top:6px;letter-spacing:-.01em}
+  .ch-loc{font-size:12px;color:var(--faint);margin-top:6px;letter-spacing:.04em}
+  .divider{height:1px;background:linear-gradient(90deg,var(--line),transparent);margin:20px 0}
+  .story p{margin:0 0 13px;color:#d3dae5;font-size:15.5px;line-height:1.72}
+  .story p:last-child{margin-bottom:0}
+  .story .say{border-left:2px solid rgba(231,196,137,.45);padding:2px 0 2px 14px;color:var(--gold);font-style:italic}
+  .who{display:block;font-style:normal;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:3px}
+
+  .choices{margin-top:24px;display:grid;gap:11px}
+  .choice{
+    display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;
+    padding:15px 16px;border-radius:15px;border:1px solid var(--line);
+    background:linear-gradient(160deg,rgba(255,255,255,.028),rgba(255,255,255,.008));
+    transition:transform .16s,border-color .16s,background .16s,box-shadow .16s;
+  }
+  .choice:hover:not(:disabled){transform:translateY(-2px);border-color:rgba(231,196,137,.5);background:rgba(231,196,137,.055);box-shadow:0 12px 30px rgba(0,0,0,.28)}
+  .choice:active:not(:disabled){transform:translateY(0)}
+  .choice:disabled{opacity:.45;cursor:not-allowed}
+  .choice-key{
+    flex:0 0 auto;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+    background:var(--panel-3);border:1px solid var(--line);font-size:11.5px;font-weight:800;color:var(--gold);
+    font-variant-numeric:tabular-nums;
+  }
+  .choice-body{min-width:0;flex:1}
+  .choice-body b{display:block;font-size:14.5px;font-weight:650;letter-spacing:.005em}
+  .choice-body small{display:block;color:var(--faint);font-size:12.5px;line-height:1.5;margin-top:3px}
+  .choice-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+  .tag{
+    font-size:10px;letter-spacing:.05em;padding:2px 7px;border-radius:5px;
+    background:rgba(255,255,255,.045);color:var(--muted);border:1px solid var(--line-soft);
+  }
+  .tag.locked{color:var(--danger);border-color:rgba(229,142,131,.3);background:var(--danger-soft)}
+  .tag.special{color:var(--violet);border-color:rgba(183,167,238,.3);background:var(--violet-soft)}
+
+  /* ---------- side ---------- */
+  .side{display:grid;gap:14px;position:sticky;top:150px}
+  @media(max-width:980px){.side{position:static}}
+  .panel{border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--panel);padding:16px}
+  .panel h3{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:700;margin-bottom:10px}
+  .log{display:grid;gap:9px;max-height:250px;overflow:auto;padding-right:4px}
+  .log-item{font-size:12.2px;color:var(--muted);line-height:1.45;padding-left:12px;position:relative}
+  .log-item::before{content:"";position:absolute;left:0;top:7px;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:.6}
+  .log-item b{color:var(--ink);font-weight:600}
+  .log-empty{font-size:12px;color:var(--faint);font-style:italic}
+  .roster{display:grid;gap:8px}
+  .roster-row{display:flex;align-items:center;gap:9px;font-size:12.5px}
+  .avatar{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:10.5px;font-weight:800;background:var(--panel-3);color:var(--gold);border:1px solid var(--line);flex:0 0 auto}
+  .roster-row .nm{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .roster-row .sh{font-variant-numeric:tabular-nums;color:var(--muted);font-size:11.5px}
+  .roster-row.me .nm{color:var(--gold)}
+
+  /* ---------- modal / notebook / results ---------- */
+  .overlay{
+    position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:18px;
+    background:rgba(4,6,9,.78);backdrop-filter:blur(6px);animation:fadeUp .22s ease-out;
+  }
+  .overlay[hidden]{display:none}
+  .modal{
+    width:min(680px,100%);max-height:min(86vh,860px);overflow:auto;
+    border:1px solid var(--line);border-radius:22px;background:linear-gradient(165deg,#141922,#0d1117);
+    box-shadow:var(--shadow);padding:clamp(20px,3vw,32px);animation:pop .3s cubic-bezier(.2,.8,.2,1);
+  }
+  .modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:16px}
+  .modal-head h2{font-family:var(--serif);font-size:clamp(21px,3vw,27px);font-weight:600;line-height:1.2}
+  .close-btn{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;border:1px solid var(--line);color:var(--muted);flex:0 0 auto}
+  .close-btn:hover{background:rgba(255,255,255,.05);color:var(--ink)}
+  .notebook{display:grid;gap:10px}
+  .note{border:1px solid var(--line-soft);border-radius:12px;padding:13px 14px;background:rgba(255,255,255,.02)}
+  .note .nt-t{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:5px}
+  .note p{font-size:13.5px;color:#cfd7e2;line-height:1.6}
+  .note.locked p{color:var(--faint);font-style:italic}
+  .note-detail{margin-top:8px;font-size:12.5px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--line);padding-top:8px}
+
+  .result-banner{
+    display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;margin-bottom:18px;
+    border:1px solid rgba(231,196,137,.25);background:var(--gold-soft);
+  }
+  .result-banner .big{font-size:25px;line-height:1}
+  .result-banner b{display:block;font-size:14px}
+  .result-banner small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+  .deltas{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .delta-chip{font-size:11.5px;padding:4px 9px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-variant-numeric:tabular-nums}
+  .delta-chip.up{color:var(--jade);border-color:rgba(127,211,186,.32);background:var(--jade-soft)}
+  .delta-chip.down{color:var(--danger);border-color:rgba(229,142,131,.32);background:var(--danger-soft)}
+  .consequence{font-size:14px;color:#cdd5e0;line-height:1.7;margin-top:2px}
+  .consequence p{margin:0 0 10px}
+  .unlock{margin-top:14px;padding:12px 14px;border-radius:12px;border:1px dashed rgba(183,167,238,.35);background:var(--violet-soft);font-size:12.5px;color:#d6cef6}
+  .unlock b{color:var(--violet)}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:12px;
+    font-weight:700;font-size:13.5px;letter-spacing:.01em;transition:transform .16s,box-shadow .16s,background .16s;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:linear-gradient(140deg,#e7c489,#c79a54);color:#1a1305;box-shadow:0 10px 26px rgba(231,196,137,.18)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(231,196,137,.27)}
+  .btn-ghost{border-color:var(--line);color:var(--muted);background:rgba(255,255,255,.03)}
+  .btn-ghost:hover{color:var(--ink);border-color:#36445a;background:rgba(255,255,255,.06)}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .foot-note{font-size:11.5px;color:var(--faint);margin-top:14px;line-height:1.5}
+  /* ---------- setup ---------- */
+  .setup-wrap{max-width:720px;margin:0 auto;animation:fadeUp .35s ease-out}
+  .setup-head{display:flex;align-items:center;gap:18px;margin-bottom:20px}
+  .setup-head h1{font-size:clamp(24px,3.6vw,34px);font-weight:600;line-height:1.15;margin-top:3px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);font-weight:700;margin-bottom:7px}
+  .field small{display:block;font-size:12px;color:var(--faint);margin-top:6px;line-height:1.5}
+  input[type=text],input:not([type]),textarea{
+    width:100%;padding:11px 13px;border-radius:11px;border:1px solid var(--line);
+    background:rgba(4,6,10,.5);color:var(--ink);font:inherit;font-size:14px;
+    transition:border-color .16s,background .16s;
+  }
+  input:focus,textarea:focus{outline:none;border-color:rgba(231,196,137,.55);background:rgba(4,6,10,.75);box-shadow:0 0 0 3px rgba(231,196,137,.09)}
+  textarea{resize:vertical;min-height:60px}
+  textarea.code{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace;font-size:11px;line-height:1.5;height:130px;word-break:break-all}
+  .seg{display:flex;gap:8px;flex-wrap:wrap}
+  .seg-btn{padding:9px 16px;border-radius:10px;border:1px solid var(--line);color:var(--muted);font-size:13px;font-weight:600;background:rgba(255,255,255,.02);transition:all .16s}
+  .seg-btn:hover{border-color:#3a465c;color:var(--ink)}
+  .seg-btn.on{background:var(--gold-soft);border-color:rgba(231,196,137,.5);color:var(--gold)}
+  .mp-list{display:grid;gap:9px;margin-bottom:16px}
+  .mp-row{display:grid;grid-template-columns:34px 1fr 1.2fr;gap:8px;align-items:center}
+  .mp-row.off{opacity:.4}
+  .mp-row .avatar{width:30px;height:30px}
+  .check{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted);margin:6px 0 18px;cursor:pointer}
+  .check input{width:17px;height:17px;accent-color:#e7c489}
+  .hint-box{font-size:12.5px;line-height:1.6;color:var(--faint);border:1px dashed var(--line);border-radius:11px;padding:11px 13px;margin-top:4px}
+  .err{margin-top:12px;padding:10px 13px;border-radius:10px;background:var(--danger-soft);border:1px solid rgba(229,142,131,.32);color:var(--danger);font-size:12.5px;line-height:1.5}
+  .small{font-size:12px}
+
+  /* ---------- handoff / waiting ---------- */
+  .handoff{text-align:center;padding:clamp(30px,6vw,56px) clamp(20px,4vw,40px)}
+  .handoff h2{font-size:clamp(23px,3.4vw,32px);font-weight:600;margin:10px 0 12px}
+  .handoff .muted{max-width:46ch;margin:0 auto}
+  .avatar.big{width:74px;height:74px;border-radius:20px;font-size:28px;margin:24px auto 6px;border-width:1.5px}
+  .center-card{text-align:center;padding:clamp(34px,6vw,60px)}
+  .wait-dots{display:flex;gap:7px;justify-content:center;margin-top:22px}
+  .wait-dots i{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:glowPulse 1.2s ease-in-out infinite}
+  .wait-dots i:nth-child(2){animation-delay:.18s}
+  .wait-dots i:nth-child(3){animation-delay:.36s}
+
+  /* ---------- toast ---------- */
+  .toast{
+    position:fixed;left:50%;bottom:26px;z-index:200;transform:translate(-50%,20px);
+    width:min(440px,calc(100vw - 32px));padding:14px 16px;border-radius:14px;
+    border:1px solid rgba(183,167,238,.4);background:linear-gradient(160deg,#1a1930,#121322);
+    box-shadow:0 20px 55px rgba(0,0,0,.5);opacity:0;transition:opacity .3s,transform .3s;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  .toast-k{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--violet);font-weight:800;margin-bottom:4px}
+  .toast b{display:block;font-size:14px;margin-bottom:2px}
+  .toast p{font-size:12.5px;color:var(--muted);line-height:1.5}
+
+  /* ---------- reveal rows ---------- */
+  .pick-list{display:grid;gap:10px}
+  .pick-row{display:flex;gap:11px;align-items:flex-start;padding:11px 12px;border-radius:12px;background:rgba(255,255,255,.022);border:1px solid var(--line-soft)}
+  .pick-body{min-width:0;flex:1}
+  .pick-body>b{display:block;font-size:13px}
+  .pick-body>small{display:block;font-size:12px;color:var(--muted);margin-top:1px}
+  .pick-body .deltas{margin-top:6px}
+
+  /* ---------- ending ---------- */
+  .ending{max-width:1020px;margin:0 auto;animation:fadeUp .45s ease-out}
+  .end-hero{text-align:center;padding:clamp(30px,6vw,64px) 20px clamp(26px,5vw,48px);position:relative}
+  .end-hero::before{
+    content:"";position:absolute;inset:0;z-index:-1;border-radius:28px;
+    background:radial-gradient(ellipse at 50% 0%,color-mix(in srgb,var(--tone) 12%,transparent),transparent 68%);
+  }
+  .end-emoji{font-size:30px;line-height:1}
+  .end-emoji.big{font-size:52px;margin-bottom:16px;filter:drop-shadow(0 0 24px currentColor)}
+  .end-hero h1{font-size:clamp(31px,5.4vw,56px);font-weight:600;line-height:1.08;margin:10px 0 0;letter-spacing:-.015em}
+  .end-quote{max-width:56ch;margin:18px auto 0;font-family:var(--serif);font-style:italic;font-size:clamp(14px,1.7vw,17px);color:var(--muted);line-height:1.65}
+  .end-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px;align-items:start}
+  @media(max-width:820px){.end-grid{grid-template-columns:1fr}}
+  .end-h{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px}
+  .end-p{font-size:14.5px;line-height:1.78;color:#cfd7e2;margin:0 0 12px}
+  .end-p:last-child{margin-bottom:0}
+  .journey{display:grid;gap:2px;padding-right:4px}
+  .journey-step{display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--line-soft)}
+  .journey-step span{font-size:10.5px;color:var(--faint);font-variant-numeric:tabular-nums}
+  .journey-step b{font-size:12.8px;font-weight:600;color:#dbe2ec}
+  .journey-step small{grid-column:2;font-size:11px;color:var(--faint)}
+  .journey-step small.did{color:#9fb3cc;margin-top:2px}
+  .end-list{display:grid;gap:9px}
+  .end-card{display:flex;gap:13px;align-items:flex-start;padding:13px;border-radius:13px;background:rgba(255,255,255,.022);border:1px solid var(--line)}
+  .end-info{min-width:0}
+  .end-info>b{display:block;font-size:14px;margin:2px 0 1px}
+  .end-info>small{display:block;font-size:11.5px;color:var(--faint);margin-bottom:7px}
+  .market-card{background:linear-gradient(160deg,rgba(127,211,186,.05),rgba(18,22,30,.92))}
+  .menu-list{display:grid;gap:9px}
+
+  /* Trong ván chơi, HUD đã có nút Sổ tay và Menu: ẩn cụm nút trùng lặp ở thanh trên. */
+  body.in-game .top-actions{display:none}
+
+  @media(max-width:520px){
+    .topbar{padding-bottom:14px;gap:8px}
+    .brand-long{display:none}
+    .brand-txt b{font-size:13px}
+    .brand-txt span{display:none}
+    .icon-btn{padding:7px 10px;font-size:11.5px}
+    .hero{padding:24px 18px 26px;border-radius:20px}
+    .app{padding:14px 14px 44px}
+    .hud{margin:0 -14px 18px;padding:10px 14px}
+    .card{border-radius:16px}
+    .mp-row{grid-template-columns:28px 1fr;gap:7px}
+    .mp-row input{grid-column:2}
+    .ch-head{flex-direction:column;align-items:flex-start;gap:5px}
+    .choice{padding:13px 13px;gap:11px}
+  }
+
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <a class="brand-mark" href="index.html" aria-label="Về trang chủ" title="Về trang chủ">←</a>
+      <div class="brand-txt">
+        <b>Độc quyền<span class="brand-long"> — Quyền lực &amp; cái giá</span></b>
+        <span id="topSub">Mô phỏng kinh tế · 12 chương</span>
+      </div>
+    </div>
+    <div class="top-actions">
+      <a class="icon-btn" href="index.html">← Trang chủ</a>
+      <button class="icon-btn" id="btnNotebook" data-act="notebook" type="button">📓 Sổ tay <span class="badge-count" id="noteCount">0</span></button>
+      <button class="icon-btn" id="btnMenu" data-act="menu" type="button">☰ Menu</button>
+    </div>
+  </header>
+  <main id="main"></main>
+</div>
+<div id="overlayRoot"></div>
+<div id="deltaRoot" aria-hidden="true"></div>
+<script>
+/* ===== 01-data-a.js ===== */
+/* =====================================================================
+   ĐỘC QUYỀN — QUYỀN LỰC & CÁI GIÁ
+   Dữ liệu truyện tách riêng để dễ chỉnh sửa.
+   ===================================================================== */
+const STORY = {
+  meta: {
+    title: 'Độc quyền — Quyền lực & cái giá',
+    subtitle: 'Mô phỏng kinh tế · 12 chương',
+    company: 'Trà Mộc',
+    startYear: 2019
+  },
+
+  stats: {
+    capital: { name: 'Vốn', short: 'Vốn', icon: '₫', hint: 'Nguồn lực tài chính để mở rộng, chịu lỗ và đầu tư.' },
+    share: { name: 'Thị phần', short: 'Thị phần', icon: '％', hint: 'Tỷ lệ khách hàng hoặc doanh thu của bạn trên thị trường.' },
+    brand: { name: 'Uy tín thương hiệu', short: 'Uy tín', icon: '◈', hint: 'Mức độ nhận diện và thiện cảm của thương hiệu.' },
+    trust: { name: 'Niềm tin người tiêu dùng', short: 'Niềm tin', icon: '♡', hint: 'Kỳ vọng của khách hàng rằng bạn bán đúng giá trị.' },
+    gov: { name: 'Quan hệ chính quyền', short: 'Chính quyền', icon: '⌂', hint: 'Mức độ tin cậy và hợp tác với cơ quan quản lý.' },
+    legal: { name: 'Áp lực pháp lý', short: 'Pháp lý', icon: '§', hint: 'Càng cao càng gần một cuộc điều tra hoặc lệnh trừng phạt.' }
+  },
+
+  cards: {
+    canhtranh: {
+      title: 'Cạnh tranh',
+      short: 'Cạnh tranh là việc các doanh nghiệp cùng giành khách hàng bằng giá, chất lượng và dịch vụ. Cạnh tranh lành mạnh thường mang lại giá thấp hơn và nhiều lựa chọn hơn cho người tiêu dùng.',
+      detail: 'Khi nhiều doanh nghiệp cùng bán một loại hàng hoá, người mua có quyền chọn. Doanh nghiệp muốn thắng phải liên tục cải thiện sản phẩm hoặc giảm chi phí. Đó là động lực khiến thị trường vận động, dù quá trình này luôn có người thua.'
+    },
+    'chien-tranh-gia': {
+      title: 'Chiến tranh giá',
+      short: 'Giảm giá để giành thị phần có thể mở rộng khách hàng, nhưng nếu kéo dài dưới chi phí, doanh nghiệp đốt vốn và dễ biến thành bán phá giá.',
+      detail: 'Chiến tranh giá thường bắt đầu như một chiêu khuyến mãi. Nếu cả hai bên cùng giảm, lợi ích ngắn hạn thuộc về người tiêu dùng, nhưng doanh nghiệp yếu vốn sẽ bị loại khỏi cuộc chơi. Khi đối thủ biến mất, người thắng có động cơ nâng giá trở lại.'
+    },
+    'doc-quyen-tu-nhan': {
+      title: 'Độc quyền tư nhân',
+      short: 'Một doanh nghiệp tư nhân nắm phần lớn thị trường hoặc nguồn cung, có thể tự đặt giá và gây sức ép lên đối tác.',
+      detail: 'Độc quyền tư nhân hình thành nhờ lợi thế công nghệ, vốn, thương hiệu hoặc bằng cách mua lại đối thủ. Nó không tự động bất hợp pháp, nhưng khi doanh nghiệp lạm dụng để loại đối thủ hoặc bóp người tiêu dùng, pháp luật cạnh tranh sẽ vào cuộc.'
+    },
+    'doc-quyen-nha-nuoc': {
+      title: 'Độc quyền nhà nước',
+      short: 'Nhà nước nắm giữ hoặc bảo hộ một lĩnh vực then chốt. Có thể ổn định an sinh, nhưng thiếu cạnh tranh dễ làm giá cao và dịch vụ chậm đổi mới.',
+      detail: 'Một số ngành như điện, nước, đường sắt được Nhà nước độc quyền vì lợi ích công cộng và chi phí hạ tầng lớn. Vấn đề là thiết kế cơ chế giám sát để doanh nghiệp nhà nước không lạm dụng vị thế, và để khu vực tư nhân được tham gia ở phần có thể cạnh tranh.'
+    },
+    'loi-nhuan-doc-quyen': {
+      title: 'Lợi nhuận độc quyền',
+      short: 'Là phần lợi nhuận vượt mức cạnh tranh nhờ vị thế thị trường: giá bán cao hơn chi phí biên đáng kể mà không bị đối thủ kéo xuống.',
+      detail: 'Trong cạnh tranh, lợi nhuận cao sẽ hút thêm doanh nghiệp gia nhập và dần bị san phẳng. Với độc quyền, rào cản gia nhập giữ lợi nhuận siêu ngạch lại trong tay một số ít. Phần chênh lệch đó thường do người tiêu dùng trả.'
+    },
+    'thon-tinh-sap-nhap': {
+      title: 'Thôn tính & sáp nhập',
+      short: 'Mua lại hoặc hợp nhất doanh nghiệp khác giúp mở rộng thị phần nhanh, nhưng có thể tạo vị thế thống lĩnh và bị cơ quan cạnh tranh xem xét.',
+      detail: 'Sáp nhập có thể mang lại hiệu quả kinh tế thật: giảm chi phí, chia sẻ công nghệ, cứu doanh nghiệp đang chết. Nhưng nếu một thương vụ khiến thị trường chỉ còn vài người chơi hoặc đẩy đối thủ nhỏ ra ngoài, nó trở thành vấn đề cạnh tranh.'
+    },
+    'thao-tung-gia': {
+      title: 'Thao túng giá',
+      short: 'Găm hàng, tung tin thất thiệt hoặc bắt tay đẩy giá lên là hành vi bóp méo thị trường, gây thiệt hại trực tiếp cho người tiêu dùng.',
+      detail: 'Thao túng giá tạo ra khan hiếm giả. Người mua phải trả nhiều hơn trong khi lượng hàng thật không đổi. Khi bị phát hiện, doanh nghiệp đối diện xử phạt, bồi thường và mất niềm tin — thứ khó mua lại hơn tiền.'
+    },
+    'luat-chong-doc-quyen': {
+      title: 'Luật chống độc quyền',
+      short: 'Pháp luật cạnh tranh cấm lạm dụng vị thế thống lĩnh, thoả thuận hạn chế cạnh tranh và sáp nhập gây hại cho thị trường.',
+      detail: 'Luật không trừng phạt việc thành công. Luật trừng phạt việc dùng thành công để chặn đường người khác. Các công cụ thường gặp: điều tra, phạt tiền, buộc chia tách, cấm sáp nhập hoặc yêu cầu mở hạ tầng cho đối thủ.'
+    },
+    cartel: {
+      title: 'Cartel',
+      short: 'Các đối thủ bí mật bắt tay giữ giá hoặc chia thị trường. Đây là thoả thuận hạn chế cạnh tranh, bị phạt nặng khi bị phát hiện.',
+      detail: 'Cartel nguy hiểm vì nó giả lập một thị trường ổn định nhưng lấy đi lợi ích của người mua. Mỗi doanh nghiệp tham gia đều có động cơ phá cam kết để giành khách, nên cartel thường mong manh và cần cơ chế trừng phạt nội bộ — dấu hiệu dễ bị phát hiện.'
+    },
+    'thi-phan': {
+      title: 'Thị phần',
+      short: 'Tỷ lệ doanh thu hoặc sản lượng của doanh nghiệp trên toàn thị trường. Thị phần cao tạo quyền lực thị trường nhưng không đồng nghĩa với độc quyền.',
+      detail: 'Thị phần chỉ là một thước đo. Một doanh nghiệp có thể có thị phần lớn nhờ sản phẩm tốt mà không lạm dụng. Ngược lại, thị phần vừa phải nhưng kiểm soát nguyên liệu đầu vào vẫn có thể gây sức ép độc quyền.'
+    },
+    'ban-pha-gia': {
+      title: 'Bán phá giá',
+      short: 'Bán dưới chi phí để loại đối thủ rồi nâng giá sau đó. Hành vi này bị coi là cạnh tranh không lành mạnh khi nhằm mục đích loại bỏ đối thủ.',
+      detail: 'Bán lỗ không phải lúc nào cũng xấu: khuyến mãi, xả hàng tồn kho là bình thường. Ranh giới nằm ở ý định và khả năng bù lỗ kéo dài. Nếu doanh nghiệp có tiềm lực tài chính lớn dùng giá thấp để đẩy đối thủ ra, người tiêu dùng hưởng lợi ngắn hạn nhưng mất lựa chọn dài hạn.'
+    },
+    'niem-tin': {
+      title: 'Niềm tin người tiêu dùng',
+      short: 'Là tài sản vô hình. Một scandal giá hoặc lao động có thể xoá sổ nhiều năm xây dựng thương hiệu.',
+      detail: 'Niềm tin không nằm trên bảng cân đối kế toán nhưng quyết định việc khách có quay lại hay không. Khi khách nghi ngờ, họ không chỉ bỏ đi — họ còn kể cho người khác. Chi phí giành lại niềm tin thường cao hơn chi phí phòng ngừa rất nhiều.'
+    },
+    'doi-moi': {
+      title: 'Đổi mới sáng tạo',
+      short: 'Cách bền vững nhất để giữ vị thế là làm sản phẩm tốt hơn, chứ không phải dựng rào cản để chặn đối thủ.',
+      detail: 'Đổi mới tạo ra giá trị mới thay vì chia lại miếng bánh cũ. Nó cũng là lý do chính đáng để doanh nghiệp lớn có lợi nhuận cao: họ đã đầu tư và chấp nhận rủi ro. Cạnh tranh bằng đổi mới thường không cần Nhà nước phải can thiệp.'
+    },
+    'trach-nhiem': {
+      title: 'Trách nhiệm xã hội',
+      short: 'Doanh nghiệp lớn phải cân bằng lợi nhuận với người lao động và cộng đồng; mất cân bằng sẽ tạo áp lực pháp lý và uy tín.',
+      detail: 'Trách nhiệm xã hội không chỉ là thiện nguyện. Nó là cách quản trị rủi ro: điều kiện lao động tốt giảm đình công, chuỗi cung ứng minh bạch giảm scandal, và cộng đồng địa phương trở thành người ủng hộ thay vì người phản đối.'
+    },
+    'chia-tach': {
+      title: 'Chia tách doanh nghiệp',
+      short: 'Biện pháp cơ cấu lại khi một doanh nghiệp quá lớn hoặc lạm dụng vị thế, nhằm khôi phục cạnh tranh.',
+      detail: 'Chia tách là công cụ mạnh và hiếm dùng. Nó có thể phá huỷ hiệu quả kinh tế có thật, nên cơ quan quản lý thường ưu tiên biện pháp nhẹ hơn: buộc mở hạ tầng, cấm hành vi, phạt tiền. Chia tách chỉ hợp lý khi cấu trúc thị trường tự nó chặn cạnh tranh.'
+    },
+    'lien-minh': {
+      title: 'Liên minh cạnh tranh',
+      short: 'Hợp tác giữa doanh nghiệp, hợp tác xã và người tiêu dùng có thể tạo giá trị chung mà không cần thao túng thị trường.',
+      detail: 'Liên minh khác cartel ở chỗ nó mở rộng giá trị thay vì giới hạn cạnh tranh: chia sẻ hạ tầng, cùng xây tiêu chuẩn, cùng mua nguyên liệu minh bạch. Khi lợi ích được chia sẻ công khai, người tiêu dùng cũng là một bên thắng.'
+    },
+    'nguoi-tieu-dung': {
+      title: 'Người tiêu dùng',
+      short: 'Người mua là bên cuối cùng trả giá cho mọi quyết định thị trường. Bảo vệ lựa chọn và thông tin của họ là nền tảng của cạnh tranh.',
+      detail: 'Người tiêu dùng không chỉ là người mua. Họ là người bỏ phiếu bằng ví tiền mỗi ngày. Khi thông tin minh bạch và quyền lựa chọn được bảo vệ, doanh nghiệp phải cạnh tranh bằng giá trị thật. Khi thông tin bị bóp méo, cả thị trường cùng trả giá.'
+    },
+    'hien-chuong': {
+      title: 'Hiến chương thị trường',
+      short: 'Một mô hình đồng thuận: doanh nghiệp tự nguyện giới hạn quyền lực, chia sẻ hạ tầng, Nhà nước giám sát minh bạch, người tiêu dùng có tiếng nói.',
+      detail: 'Đây không phải một văn bản pháp luật cứng nhắc mà là cam kết nhiều bên. Doanh nghiệp lớn mở hạ tầng cho đối thủ nhỏ với giá hợp lý; Nhà nước đặt chuẩn giám sát và công bố dữ liệu; người tiêu dùng có kênh phản hồi thực chất. Lợi nhuận vẫn tồn tại, nhưng không đến từ việc chặn người khác.'
+    }
+  },
+
+  endings: {
+    empire: {
+      title: 'Đế chế độc quyền',
+      tag: 'KẾT THÚC 01 · QUYỀN LỰC',
+      emoji: '♛',
+      tone: '#e7c489',
+      quote: '“Khi không còn ai dám cạnh tranh, giá cả không còn là câu chuyện của thị trường — nó là câu chuyện của một người.”',
+      commentary: [
+        '{T} trở thành cái tên mặc định. Mười năm sau, mỗi cốc trà ở Việt Nam đều đi qua một cánh cửa của bạn. Nhà đầu tư ca ngợi “hiệu quả quy mô”; khách hàng thì quen dần với việc trả nhiều hơn mà không còn lựa chọn nào khác.',
+        'Bạn đã thắng. Nhưng thị trường không còn là nơi thử thách ý tưởng mới, mà là một hành lang chỉ có một lối vào. Những quán nhỏ từng là đối thủ giờ trở thành khách thuê mặt bằng của bạn. Cái giá của đế chế không nằm trên hoá đơn — nó nằm ở việc không ai còn dám thử.'
+      ],
+      lesson: 'Độc quyền có thể tạo lợi nhuận bền vững cho một doanh nghiệp, nhưng khi quyền lực thị trường bị lạm dụng, người tiêu dùng mất lựa chọn và nền kinh tế mất động lực đổi mới. Thành công không tự động là lạm dụng — nhưng cần cơ chế để thành công không chặn đường người khác.'
+    },
+    breakup: {
+      title: 'Ngày công ty bị chia tách',
+      tag: 'KẾT THÚC 02 · PHÁP LÝ',
+      emoji: '⚖',
+      tone: '#8db8ec',
+      quote: '“Luật không trừng phạt việc bạn lớn. Luật trừng phạt việc bạn dùng cái lớn để không ai được lớn.”',
+      commentary: [
+        'Bản án dài hơn bạn tưởng. Ủy ban Cạnh tranh kết luận {T} lạm dụng vị thế thống lĩnh, chặn đối thủ tiếp cận nguồn nguyên liệu và phân phối. Công ty phải tách mảng bán lẻ, mảng nguyên liệu và nền tảng giao hàng thành ba pháp nhân độc lập.',
+        'Ngày chia tách, bạn đứng giữa văn phòng trống. Ba công ty mới vẫn mang những cái tên quen thuộc, nhưng không còn là đế chế của bạn. Thị trường thở lại. Ba năm sau, một trong những công ty tách ra tung ra sản phẩm mà {T} cũ chưa từng nghĩ tới — vì ngày đó, không ai còn sợ phải khác bạn.'
+      ],
+      lesson: 'Luật chống độc quyền không nhằm làm doanh nghiệp yếu đi, mà để bảo vệ khả năng cạnh tranh. Các biện pháp từ phạt tiền đến chia tách nhằm khôi phục lựa chọn cho thị trường. Phòng ngừa bằng hành vi đúng luôn rẻ hơn đối phó với điều tra.'
+    },
+    bankrupt: {
+      title: 'Khi két sắt trống rỗng',
+      tag: 'KẾT THÚC 03 · SINH TỒN',
+      emoji: '◌',
+      tone: '#e58e83',
+      quote: '“Một công ty có thể chết vì thiếu khách. Nhiều công ty chết vì quá tin rằng mình không thể chết.”',
+      commentary: [
+        'Những chi nhánh mở quá nhanh, những hợp đồng thuê mặt bằng mười năm, những đợt khuyến mãi để đè đối thủ — tất cả đến hạn cùng lúc. Dòng tiền mỏng như tờ giấy. Khi nhà cung cấp ngừng giao hàng vì công nợ, chuỗi {T} dừng lại giữa một buổi sáng bình thường.',
+        'Bạn học được bài học cuối cùng: thị phần không trả được lương. Niềm tin của khách có thể xây lại, nhưng một doanh nghiệp không còn tiền để qua tháng thì không còn cơ hội thử. Người mua thiệt, nhân viên mất việc, và đối thủ tiếp quản những gì còn lại.'
+      ],
+      lesson: 'Tăng trưởng phải đi cùng khả năng chịu đựng tài chính. Mở rộng quá nhanh, đốt vốn để giành thị phần, hoặc phụ thuộc vào một nhà cung cấp đều là rủi ro sống còn. Cạnh tranh là cuộc chạy dài, không phải một cú nước rút.'
+    },
+    innovation: {
+      title: 'Dẫn đầu nhờ đổi mới',
+      tag: 'KẾT THÚC 04 · BỀN VỮNG',
+      emoji: '✦',
+      tone: '#7fd3ba',
+      quote: '“Bạn không cần chặn người khác để dẫn đầu. Bạn chỉ cần chạy nhanh hơn theo cách chưa ai từng chạy.”',
+      commentary: [
+        '{T} không phải công ty lớn nhất, nhưng là công ty được nhắc đến nhiều nhất mỗi khi có một sản phẩm mới. Bạn giữ vị thế bằng vùng nguyên liệu minh bạch, công thức độc quyền có thời hạn và một nền tảng mở cho quán nhỏ cùng dùng. Đối thủ vẫn cạnh tranh — và chính điều đó khiến bạn không ngủ quên.',
+        'Mười năm sau, bạn không sở hữu toàn bộ thị trường. Bạn sở hữu thứ khó hơn: sự tôn trọng. Khách hàng chọn bạn vì bạn tốt hơn, không phải vì họ không còn ai khác. Các nhà đầu tư gọi đó là “lợi thế cạnh tranh bền vững”. Bạn gọi đó là lý do mình vẫn còn tò mò mỗi sáng.'
+      ],
+      lesson: 'Lợi thế cạnh tranh bền vững đến từ năng lực đổi mới và niềm tin, không từ việc khoá đường người khác. Độc quyền có thể đến từ đổi mới hợp pháp, nhưng phải chịu áp lực của người tiêu dùng và pháp luật để không biến thành rào cản.'
+    },
+    boycott: {
+      title: 'Bị tẩy chay',
+      tag: 'KẾT THÚC 05 · NIỀM TIN',
+      emoji: '✕',
+      tone: '#e58e83',
+      quote: '“Giá có thể giảm trong một ngày. Niềm tin mất đi thì phải mua lại bằng nhiều năm — nếu còn mua được.”',
+      commentary: [
+        'Câu chuyện bắt đầu từ một tấm ảnh chụp bảng giá và một đoạn video trong kho hàng. Trong hai ngày, hashtag #TràMộcTăngGiá lan khắp mạng. Khách quay lưng không phải vì giá cao, mà vì cảm giác bị lừa. Các đối thủ không cần làm gì — họ chỉ cần đứng yên và mở cửa.',
+        'Bạn thuê công ty truyền thông, xin lỗi, giảm giá trở lại. Nhưng niềm tin không phải một cái công tắc. Doanh thu hồi phục chậm; nhân viên mất tinh thần; đối tác đòi điều khoản chặt hơn. Công ty vẫn tồn tại, nhưng cái tên {T} giờ luôn đi kèm một dấu hỏi.'
+      ],
+      lesson: 'Niềm tin người tiêu dùng là tài sản chiến lược. Thao túng giá có thể tạo lợi nhuận ngắn hạn nhưng đánh đổi bằng uy tín dài hạn. Khi người tiêu dùng có thông tin và lựa chọn, họ sẽ trừng phạt hành vi bóp méo thị trường nhanh hơn bất kỳ cơ quan nào.'
+    },
+    secret: {
+      title: 'Hiến chương Mộc',
+      tag: 'KẾT THÚC 06 · BÍ MẬT',
+      emoji: '❖',
+      tone: '#b7a7ee',
+      quote: '“Thị trường tốt nhất không phải nơi không có người thắng. Mà là nơi người thắng phải mở cửa cho người đến sau.”',
+      commentary: [
+        'Bạn không chọn bán công ty, cũng không chọn nuốt toàn bộ thị trường. Cùng với Nhà nước, các đối thủ nhỏ và đại diện người tiêu dùng, bạn ký một hiến chương thị trường: hạ tầng phân phối mở với giá hợp lý, dữ liệu giá công khai, quỹ đổi mới dành cho quán nhỏ, và một cơ chế giám sát có người tiêu dùng ngồi cùng bàn.',
+        'Không ai hoàn toàn hài lòng — đó là dấu hiệu nó thật. {T} vẫn có lợi nhuận, nhưng không còn đến từ việc chặn đường người khác. Mười năm sau, thị trường trà Việt Nam có nhiều thương hiệu hơn, giá minh bạch hơn và một câu chuyện mới: doanh nghiệp lớn có thể lớn mà không cần ai phải nhỏ lại.'
+      ],
+      lesson: 'Cạnh tranh và hợp tác không loại trừ nhau. Một thị trường lành mạnh cần doanh nghiệp, Nhà nước và người tiêu dùng cùng thiết kế luật chơi. Độc quyền bị giới hạn không chỉ bằng hình phạt, mà bằng thể chế minh bạch và quyền lựa chọn thực chất.'
+    }
+  },
+
+  chapters: []
+};
+
+/* ---------------------------------------------------------------------
+   CHƯƠNG 1–6 (phần dữ liệu truyện)
+   --------------------------------------------------------------------- */
+STORY.chapters.push(
+  {
+    id: 1,
+    act: 'Khởi nghiệp',
+    title: 'Quán nhỏ bên dốc',
+    location: 'Đà Nẵng · 2019',
+    story: [
+      { t: 'p', x: 'Quán {T} rộng mười hai mét vuông, nằm cuối con dốc gần trường đại học. Bạn tự pha trà, tự giao hàng, tự trả lời tin nhắn lúc mười một giờ đêm. Doanh thu tháng đầu đủ trả tiền điện và một bữa ăn.' },
+      { t: 'p', x: 'Sáng nay, Chuỗi Trà Vương treo băng rôn khai trương ngay bên kia đường: mua một tặng một, giảm giá 50% trong ba ngày. Nhân viên của họ đứng phát tờ rơi trước cửa quán bạn.' },
+      { t: 'say', who: 'Chủ nhà', x: '“Bên kia trả giá thuê gấp đôi đấy. Cô tính sao? Không thì tôi cho họ thuê cả dãy.”' }
+    ],
+    choices: [
+      {
+        id: 'c1a', label: 'Giữ giá, chăm khách quen', hint: 'Chất lượng và sự thân thuộc là lợi thế nhỏ nhưng bền.',
+        effects: { capital: -3, share: 2, brand: 4, trust: 5, gov: 1, legal: -1 },
+        card: 'canhtranh', flags: {},
+        result: 'Bạn không giảm giá. Thay vào đó, bạn mời khách quen nếm thử công thức trà mới và viết tên họ lên ly. Ba ngày sau, mấy bạn sinh viên quay lại, mang theo bạn cùng phòng. Trà Vương đông hơn, nhưng quán bạn vẫn có hàng ghế của riêng nó.'
+      },
+      {
+        id: 'c1b', label: 'Đốt tiền khuyến mãi đến cùng', hint: 'Dùng vốn ít ỏi để giành sự chú ý trước đối thủ lớn.',
+        effects: { capital: -10, share: 8, brand: 1, trust: 2, gov: 0, legal: 1 },
+        card: 'chien-tranh-gia', flags: { aggressive: true },
+        result: 'Bạn dán tờ rơi “mua một tặng một” trước cửa, rồi nâng lên “mua một tặng hai” vào ngày cuối. Quán chật kín, doanh thu ghi nhận tăng vọt — nhưng mỗi ly bán ra đều lỗ. Đối thủ vẫn đứng đó, và bạn biết mình không thể đốt tiền mãi.'
+      },
+      {
+        id: 'c1c', label: 'Bắt tay quán ăn bên cạnh làm combo', hint: 'Hai doanh nghiệp nhỏ cùng giành khách theo cách ít tốn kém.',
+        effects: { capital: -2, share: 3, brand: 3, trust: 3, gov: 2, legal: 0 },
+        card: 'canhtranh', flags: {},
+        result: 'Bạn sang quán cơm bên cạnh, đề nghị combo “một suất cơm, một ly trà”. Chủ quán cười, đồng ý sau mười phút. Khách không phải chọn giữa hai chỗ nữa — họ đến cả hai. Doanh thu tăng mà không cần giảm giá.'
+      }
+    ]
+  },
+
+  {
+    id: 2,
+    act: 'Chuỗi cung ứng',
+    title: 'Lá trà và cái giá',
+    location: 'Thái Nguyên · 2020',
+    story: [
+      { t: 'p', x: '{T} mở chi nhánh thứ tư thì nhà cung cấp gọi điện. Công ty Nguyên liệu Phương Nam kiểm soát gần 80% vùng trà chất lượng cao mà bạn đang dùng. Họ tăng giá 35%, kèm một hợp đồng độc quyền ba năm: bạn chỉ được mua từ họ, đổi lại được giá “ưu đãi”.' },
+      { t: 'p', x: 'Nếu không ký, nguồn trà của bạn có thể cạn trong hai tuần. Nếu ký, mọi công thức mới sẽ phụ thuộc vào một cái gật đầu của người khác.' },
+      { t: 'say', who: 'Giám đốc Phương Nam', x: '“Cô là khách hàng lớn của chúng tôi. Tôi không muốn ai khác chen vào. Hợp đồng này tốt cho cả hai.”' }
+    ],
+    choices: [
+      {
+        id: 'c2a', label: 'Ký hợp đồng độc quyền ba năm', hint: 'Giữ nguồn hàng ổn định, đổi lại mất quyền tự do chọn nhà cung cấp.',
+        effects: { capital: 4, share: 3, brand: 0, trust: -3, gov: 1, legal: 4 },
+        card: 'doc-quyen-tu-nhan', flags: { supplierLock: true },
+        result: 'Bạn ký. Giá trà tăng nhưng nguồn hàng ổn định, các chi nhánh không phải đóng cửa. Một tháng sau, khi một hợp tác xã nhỏ muốn bán trà cho bạn với giá tốt hơn, bạn phải từ chối vì điều khoản độc quyền. Bạn bắt đầu hiểu vì sao người ta gọi đó là “quyền lực của người nắm cửa”.'
+      },
+      {
+        id: 'c2b', label: 'Đầu tư vùng trồng riêng', hint: 'Tốn vốn trước mắt nhưng giảm phụ thuộc về sau.',
+        effects: { capital: -10, share: 2, brand: 5, trust: 4, gov: 0, legal: -2 },
+        card: 'doc-quyen-tu-nhan', flags: { ownSupply: true },
+        result: 'Bạn về Thái Nguyên, thuê một quản lý vùng trồng và hợp tác với ba hộ nông dân. Chi phí ban đầu lớn, nhưng hợp đồng ghi rõ giá sàn và chia sẻ rủi ro. Phương Nam gọi lại, giọng bớt cứng hơn. Bạn vẫn mua của họ — nhưng không còn phải ký bất cứ điều gì.'
+      },
+      {
+        id: 'c2c', label: 'Công khai tố cáo, tìm nguồn thay thế', hint: 'Biến sức ép thành câu chuyện công chúng, nhưng đối đầu với người nắm nguồn.',
+        effects: { capital: -5, share: 1, brand: 2, trust: 5, gov: -3, legal: 3 },
+        card: 'doc-quyen-tu-nhan', flags: { supplierCritic: true },
+        result: 'Bạn đăng bài viết về việc một nhà cung cấp nắm 80% vùng nguyên liệu và ép giá. Báo địa phương gọi lại. Khách ủng hộ bạn, nhưng Phương Nam gửi thư cảnh báo và tạm dừng giao hàng. Bạn phải chạy đua tìm nguồn mới trong mười ngày — vừa đủ để nhận ra tự do có giá của nó.'
+      }
+    ]
+  },
+
+  {
+    id: 3,
+    act: 'Thương vụ',
+    title: 'Lời đề nghị từ Trà Vương',
+    location: 'TP. Hồ Chí Minh · 2021',
+    story: [
+      { t: 'p', x: '{T} có mười hai chi nhánh và một dòng khách trung thành. Trà Vương — đối thủ năm xưa — giờ là chuỗi lớn thứ hai cả nước. CEO của họ hẹn bạn ở một khách sạn, mang theo một tập hồ sơ dày.' },
+      { t: 'p', x: 'Lời đề nghị: họ mua 70% cổ phần, bạn giữ ghế CEO ba năm. Bạn có thể rời đi với số tiền đủ để không phải làm gì nữa. Hoặc họ sẽ tiếp tục mở chi nhánh sát bên bạn cho đến khi một trong hai phải bán.' },
+      { t: 'say', who: 'CEO Trà Vương', x: '“Cô đang thắng ở một thị trường nhỏ. Tôi đang mời cô thắng ở một thị trường lớn. Đừng để cái tôi trả giá thay cô.”' }
+    ],
+    choices: [
+      {
+        id: 'c3a', label: 'Bán 70% cổ phần, giữ ghế CEO', hint: 'Đổi quyền kiểm soát lấy vốn và quy mô.',
+        effects: { capital: 25, share: 10, brand: -2, trust: -2, gov: 3, legal: 0 },
+        card: 'thon-tinh-sap-nhap', flags: { soldStake: true },
+        result: 'Bạn ký. Tài khoản có thêm một con số mà trước đây bạn chỉ thấy trong phim. {T} được đổi tên thành “{T} by Trà Vương”. Bạn vẫn ngồi ghế CEO, nhưng mọi quyết định lớn phải qua hội đồng. Cảm giác vừa thắng vừa mất một thứ gì đó rất khó gọi tên.'
+      },
+      {
+        id: 'c3b', label: 'Từ chối, gọi vốn đầu tư mạo hiểm', hint: 'Giữ quyền tự quyết, đổi lại áp lực tăng trưởng.',
+        effects: { capital: 8, share: 4, brand: 4, trust: 2, gov: -1, legal: 1 },
+        card: 'thon-tinh-sap-nhap', flags: { independent: true },
+        result: 'Bạn từ chối. Ba tháng sau, một quỹ đầu tư rót vốn với điều kiện doanh thu phải tăng gấp ba trong hai năm. Bạn có tiền, có tự do — và một cái deadline dài hơn, khó hơn. Trà Vương vẫn là đối thủ. Nhưng giờ bạn có vốn để không phải sợ họ mỗi ngày.'
+      },
+      {
+        id: 'c3c', label: 'Đề nghị sáp nhập ngược, giữ thương hiệu', hint: 'Cần Uy tín thương hiệu ≥ 18 để đàm phán từ vị thế cân bằng.',
+        req: { stat: 'brand', min: 18 }, reqText: 'Cần Uy tín ≥ 18',
+        effects: { capital: -6, share: 12, brand: 2, trust: 1, gov: 2, legal: 3 },
+        card: 'thon-tinh-sap-nhap', flags: { reverseMerger: true },
+        result: 'Bạn đẩy tập hồ sơ về phía họ và đề nghị ngược lại: sáp nhập, nhưng thương hiệu mẹ là {T}, ban điều hành do bạn chọn. Họ cười, tưởng bạn đùa. Ba tuần đàm phán sau, họ đồng ý một phiên bản thu nhỏ của đề nghị đó. Bạn lớn hơn, nhưng vẫn là chính mình — ít nhất là trên giấy tờ.'
+      }
+    ]
+  },
+
+  {
+    id: 4,
+    act: 'Giá và thị phần',
+    title: 'Cuộc chiến một nghìn đồng',
+    location: 'Hà Nội · 2022',
+    story: [
+      { t: 'p', x: 'Một chuỗi mới tên “Trà 24h” mở mười chi nhánh trong ba tháng, bán ly trà 19.000 đồng trong khi chi phí nguyên liệu đã là 22.000. Họ gọi đó là “giá khai trương dài hạn”. Khách xếp hàng. Doanh thu của bạn giảm 18% trong hai tuần.' },
+      { t: 'p', x: 'Nhân viên hỏi bạn có giảm giá theo không. Kế toán trưởng đưa ra hai tờ giấy: một là phương án cắt lỗ, một là phương án đốt vốn để giữ khách. Cả hai đều có chữ ký của bạn ở cuối.' },
+      { t: 'say', who: 'Quản lý chi nhánh', x: '“Khách không quan tâm ai bền hơn. Họ chỉ nhìn bảng giá.”' }
+    ],
+    choices: [
+      {
+        id: 'c4a', label: 'Giảm còn 19.000 đồng', hint: 'Giữ khách bằng giá, chấp nhận biên lợi nhuận âm.',
+        effects: { capital: -8, share: 6, brand: 0, trust: 2, gov: 0, legal: 2 },
+        card: 'chien-tranh-gia', flags: { priceWar: true },
+        result: 'Bạn hạ giá. Khách quay lại, hàng xếp dài, nhưng mỗi ly bán ra lỗ ba nghìn. Tháng đầu, bạn gọi đó là “đầu tư thị phần”. Tháng thứ ba, bạn bắt đầu tự hỏi ai đang thắng trong cuộc chiến mà cả hai bên đều đang chảy máu.'
+      },
+      {
+        id: 'c4b', label: 'Giữ giá, nâng trải nghiệm', hint: 'Cạnh tranh bằng thứ không nằm trên bảng giá.',
+        effects: { capital: -2, share: 2, brand: 6, trust: 5, gov: 1, legal: -1 },
+        card: 'canhtranh', flags: { quality: true },
+        result: 'Bạn giữ giá 29.000, thêm không gian đọc sách, wifi ổn định và một góc làm việc. Khách của Trà 24h vẫn ghé, nhưng nhóm sinh viên cần ngồi lâu quay lại với bạn. Bạn không thắng trong cuộc đua giá — bạn rời khỏi nó.'
+      },
+      {
+        id: 'c4c', label: 'Bán dưới giá thành tại ba quận của đối thủ', hint: 'Cần Vốn ≥ 40. Đòn nặng, nhưng rất dễ bị soi.',
+        req: { stat: 'capital', min: 40 }, reqText: 'Cần Vốn ≥ 40',
+        effects: { capital: -14, share: 9, brand: -2, trust: -2, gov: 0, legal: 8 },
+        card: 'ban-pha-gia', flags: { predatory: true },
+        result: 'Bạn chọn ba quận quanh chi nhánh của Trà 24h và bán dưới giá thành trong sáu tuần. Họ rút khỏi hai trong ba điểm. Bạn thắng trận địa bàn, nhưng một luật sư của hiệp hội bảo vệ người tiêu dùng đã bắt đầu thu thập hoá đơn của bạn.'
+      }
+    ]
+  },
+
+  {
+    id: 5,
+    act: 'Công chúng',
+    title: 'Bài báo lúc sáu giờ sáng',
+    location: 'Đà Nẵng · 2022',
+    story: [
+      { t: 'p', x: 'Sáu giờ sáng, một bài điều tra lên trang nhất: “{T} và những hợp đồng bóp nghẹt nông dân”. Bài báo dẫn hợp đồng độc quyền với Phương Nam, mức lương của công nhân đóng gói và việc một số hộ trồng trà bị ép giá.' },
+      { t: 'p', x: 'Điện thoại bạn rung liên tục. Có người gọi hỏi có đúng không. Có người chỉ gửi một dấu chấm hỏi. Đến trưa, tên {T} lên top tìm kiếm — theo cách không ai muốn.' },
+      { t: 'say', who: 'Trưởng phòng truyền thông', x: '“Mình có ba lựa chọn: nói thật, mua truyền thông, hoặc đánh vào tờ báo. Chị chọn đi. Nhưng nhớ, cái gì cũng để lại dấu.”' }
+    ],
+    choices: [
+      {
+        id: 'c5a', label: 'Minh bạch hợp đồng, xin lỗi công khai', hint: 'Nhận sai trước công chúng, sửa điều khoản bất công.',
+        effects: { capital: -5, share: 0, brand: 3, trust: 8, gov: 5, legal: -2 },
+        card: 'niem-tin', flags: { transparent: true },
+        result: 'Bạn công bố toàn bộ hợp đồng, thừa nhận điều khoản ép giá và cam kết sửa trong ba mươi ngày. Bài báo thứ hai gay gắt không kém, nhưng lần này có thêm câu: “{T} đã phản hồi”. Một số khách vẫn quay lưng. Nhưng những người ở lại biết vì sao họ ở lại.'
+      },
+      {
+        id: 'c5b', label: 'Thuê công ty truyền thông dẫn dắt dư luận', hint: 'Dập lửa bằng tiền, không giải quyết gốc rễ.',
+        effects: { capital: -7, share: 1, brand: 0, trust: -5, gov: 2, legal: 4 },
+        card: 'niem-tin', flags: { coverup: true },
+        result: 'Một công ty PR nhận việc. Họ viết lại câu chuyện, mua bài, thuê người bình luận. Trong hai tuần, sóng gió lắng xuống. Nhưng hợp đồng với nông dân vẫn còn đó, và một phóng viên đang lưu lại mọi thứ bạn xoá.'
+      },
+      {
+        id: 'c5c', label: 'Kiện tờ báo, cáo buộc đối thủ giật dây', hint: 'Chuyển cuộc chiến sang pháp lý, đặt cược vào niềm tin công chúng.',
+        effects: { capital: -4, share: 0, brand: -2, trust: -4, gov: -4, legal: 6 },
+        card: 'niem-tin', flags: { suePress: true },
+        result: 'Bạn gửi công văn khởi kiện, nói tờ báo bị đối thủ mua chuộc. Một số người tin bạn. Nhiều người thấy bạn đang đánh vào người kể sự thật thay vì sửa sự thật. Vụ kiện kéo dài, và mỗi phiên toà lại nhắc công chúng nhớ vì sao nó bắt đầu.'
+      }
+    ]
+  },
+
+  {
+    id: 6,
+    act: 'Nhà nước',
+    title: 'Cánh cửa mở từ Nhà nước',
+    location: 'Hà Nội · 2023',
+    story: [
+      { t: 'p', x: 'Một lá thư từ Tổng công ty Phân phối Quốc gia: họ muốn đưa {T} vào hệ thống bốn trăm trường học và khu công nghiệp. Điều kiện: Nhà nước nắm 51% cổ phần, giá bán bị giới hạn bởi giá trần, và bạn trở thành đối tác độc quyền trong hệ thống đó.' },
+      { t: 'p', x: 'Đây là cơ hội mà nhiều doanh nghiệp mơ. Cũng là lần đầu bạn được mời ngồi vào bàn với tư cách một phần của bộ máy. Ranh giới giữa “được bảo hộ” và “bị ràng buộc” rất mỏng.' },
+      { t: 'say', who: 'Vị đại diện', x: '“Chúng tôi không cần cô nhỏ lại. Chúng tôi cần cô ổn định. Nhà nước chịu trách nhiệm với hàng triệu người, cô hiểu chứ?”' }
+    ],
+    choices: [
+      {
+        id: 'c6a', label: 'Chấp nhận trở thành đối tác độc quyền', hint: 'Đổi quyền tự chủ lấy thị trường được bảo hộ.',
+        effects: { capital: 15, share: 12, brand: 2, trust: 2, gov: 12, legal: -6 },
+        card: 'doc-quyen-nha-nuoc', flags: { statePartner: true },
+        result: 'Bạn ký. {T} có mặt trong bốn trăm trường học chỉ sau một học kỳ. Doanh thu tăng vọt, nhưng mọi bảng giá phải qua một hội đồng, mọi thay đổi thực đơn phải chờ phê duyệt. Bạn có một thị trường khổng lồ — và một người đồng sở hữu rất khó thuyết phục.'
+      },
+      {
+        id: 'c6b', label: 'Từ chối, tự xây kênh phân phối', hint: 'Giữ tự chủ, chấp nhận chậm hơn và tốn hơn.',
+        effects: { capital: -8, share: 2, brand: 5, trust: 3, gov: -4, legal: 0 },
+        card: 'doc-quyen-nha-nuoc', flags: { independentChannel: true },
+        result: 'Bạn từ chối. Tổng công ty chọn một đối thủ khác làm đối tác trong hệ thống trường học. Bạn mất một thị trường lớn nhưng giữ được quyền quyết định. Bạn mở mười cửa hàng nhượng quyền, chậm hơn kế hoạch, nhưng mỗi quyết định vẫn là của bạn.'
+      },
+      {
+        id: 'c6c', label: 'Đàm phán hợp đồng có giá trần và điều khoản minh bạch', hint: 'Cần Quan hệ chính quyền ≥ 45 để có ghế tại bàn đàm phán.',
+        req: { stat: 'gov', min: 45 }, reqText: 'Cần Chính quyền ≥ 45',
+        effects: { capital: 6, share: 8, brand: 3, trust: 5, gov: 6, legal: -3 },
+        card: 'doc-quyen-nha-nuoc', flags: { statePartner: true, fairDeal: true },
+        result: 'Bạn không nói “có” cũng không nói “không”. Bạn mang theo một bản hợp đồng mẫu: giá trần theo chi phí công bố, điều khoản thoát sau hai năm, và một cơ chế giám sát độc lập. Sau bốn vòng đàm phán, họ đồng ý phần lớn. Bạn vào hệ thống — với một cánh cửa vẫn mở phía sau.'
+      }
+    ]
+  }
+);
+
+
+/* ===== 02-data-b.js ===== */
+/* ---------------------------------------------------------------------
+   CHƯƠNG 7–12
+   --------------------------------------------------------------------- */
+STORY.chapters.push(
+  {
+    id: 7,
+    act: 'Lao động',
+    title: 'Tiếng trống trước cổng nhà máy',
+    location: 'Bình Dương · 2023',
+    story: [
+      { t: 'p', x: 'Nhà máy đóng gói của {T} chạy ba ca. Đơn hàng tăng, nhưng lương công nhân vẫn đứng yên từ năm trước. Sáng nay, bốn trăm người ngồi trước cổng, không hô khẩu hiệu, chỉ im lặng. Im lặng nghe còn khó chịu hơn ồn ào.' },
+      { t: 'p', x: 'Công đoàn đưa ra yêu cầu: tăng lương 15%, bảo hiểm đầy đủ cho lao động thời vụ, và một khu nghỉ trưa có mái che. Bộ phận tài chính nói chi phí này sẽ ăn vào phần lớn lợi nhuận quý.' },
+      { t: 'say', who: 'Đại diện công đoàn', x: '“Chúng tôi không đòi công ty nhỏ lại. Chúng tôi chỉ muốn phần lớn lên đó cũng đến được với người làm ra nó.”' }
+    ],
+    choices: [
+      {
+        id: 'c7a', label: 'Chấp nhận toàn bộ yêu cầu', hint: 'Giữ ổn định sản xuất, giảm lợi nhuận quý này.',
+        effects: { capital: -9, share: 1, brand: 4, trust: 6, gov: 3, legal: -3 },
+        card: 'trach-nhiem', flags: { fairLabor: true },
+        result: 'Bạn ký thoả thuận ngay trong buổi chiều. Chi phí tăng, lợi nhuận quý giảm, nhưng nhà máy chạy đúng hạn. Ba tháng sau, tỷ lệ nghỉ việc giảm một nửa và một nhóm công nhân tự quay video giới thiệu sản phẩm — thứ bạn không thể mua bằng quảng cáo.'
+      },
+      {
+        id: 'c7b', label: 'Tăng lương một phần, hứa xem lại sau', hint: 'Cân bằng chi phí và áp lực, nhưng niềm tin chỉ được vá tạm.',
+        effects: { capital: -3, share: 0, brand: 0, trust: -2, gov: 0, legal: 2 },
+        card: 'trach-nhiem', flags: { halfLabor: true },
+        result: 'Bạn tăng 6%, hứa sẽ xem lại vào cuối năm. Cuộc đình công kết thúc, nhưng không khí trong nhà máy không trở lại như cũ. Một nhóm công nhân bắt đầu liên hệ với báo. Bạn biết “xem lại sau” là câu nói mà ai cũng đã từng nghe.'
+      },
+      {
+        id: 'c7c', label: 'Từ chối, thuê lao động thời vụ thay thế', hint: 'Giữ chi phí thấp, đối mặt rủi ro pháp lý và uy tín.',
+        effects: { capital: -1, share: 0, brand: -5, trust: -8, gov: -5, legal: 7 },
+        card: 'trach-nhiem', flags: { strikeBreak: true },
+        result: 'Bạn thuê một nhà thầu lao động và mở lại dây chuyền sau bốn ngày. Đơn hàng vẫn giao, nhưng hình ảnh công nhân cũ ngồi ngoài cổng lan khắp mạng. Một đoàn kiểm tra lao động đặt lịch làm việc vào tuần sau. Bạn tiết kiệm được tiền lương — và mua vào một khoản nợ khó trả hơn.'
+      }
+    ]
+  },
+
+  {
+    id: 8,
+    act: 'Nền tảng',
+    title: 'Ứng dụng của ai?',
+    location: 'TP. Hồ Chí Minh · 2024',
+    story: [
+      { t: 'p', x: '{T} ra mắt ứng dụng đặt hàng riêng, rồi mở cho các quán nhỏ dùng chung. Chỉ sau một năm, 70% quán trà trong thành phố dùng nền tảng của bạn. Bạn không chỉ bán trà — bạn kiểm soát cánh cửa mà khách đi qua để mua trà.' },
+      { t: 'p', x: 'Một quán nhỏ tên “Hạt Mầm” kiện bạn: thuật toán của nền tảng đẩy quán họ xuống cuối danh sách, đồng thời đẩy quán của chính {T} lên đầu. Họ nói đó là độc quyền số. Bạn nói đó là “tối ưu trải nghiệm khách hàng”.' },
+      { t: 'say', who: 'Chủ quán Hạt Mầm', x: '“Tôi trả phí để được bán. Nhưng cái cửa cô mở ra lại chỉ dẫn khách về phía cô.”' }
+    ],
+    choices: [
+      {
+        id: 'c8a', label: 'Công khai thuật toán, tách quán mình khỏi ưu tiên', hint: 'Giảm lợi thế ngắn hạn, xây niềm tin nền tảng.',
+        effects: { capital: -6, share: -3, brand: 5, trust: 7, gov: 4, legal: -4 },
+        card: 'doc-quyen-tu-nhan', flags: { openPlatform: true },
+        result: 'Bạn công bố tiêu chí xếp hạng và gỡ mọi ưu tiên cho quán của mình. Doanh thu ứng dụng giảm 12%, nhưng số quán đăng ký tăng. Hạt Mầm rút đơn kiện. Một chuyên gia cạnh tranh gọi đây là “quyền lực được kiểm soát trước khi bị kiểm soát”.'
+      },
+      {
+        id: 'c8b', label: 'Giữ nguyên, tăng phí để “tối ưu hơn nữa”', hint: 'Tối đa hoá lợi nhuận từ vị thế nền tảng.',
+        effects: { capital: 10, share: 4, brand: -2, trust: -5, gov: -3, legal: 7 },
+        card: 'doc-quyen-tu-nhan', flags: { platformAbuse: true },
+        result: 'Bạn tăng phí hoa hồng và giữ nguyên thuật toán. Lợi nhuận nền tảng tăng vọt. Nhưng mỗi tháng có thêm quán rời bỏ, và một nhóm chủ quán bắt đầu họp nhau ở một quán cà phê để soạn đơn khiếu nại tập thể.'
+      },
+      {
+        id: 'c8c', label: 'Mua lại Hạt Mầm để “giải quyết”', hint: 'Dập tắt vụ kiện bằng tiền, nhưng cái cửa càng hẹp hơn.',
+        effects: { capital: -8, share: 3, brand: 0, trust: -3, gov: -2, legal: 6 },
+        card: 'thon-tinh-sap-nhap', flags: { buyComplainant: true },
+        result: 'Bạn đề nghị mua Hạt Mầm với giá cao. Chủ quán do dự rồi đồng ý — vụ kiện biến mất. Nhưng câu chuyện còn lại thì không: “Nền tảng mua luôn người tố cáo mình.” Các quán khác hiểu thông điệp. Họ ở lại, nhưng không còn ai lên tiếng nữa.'
+      }
+    ]
+  },
+
+  {
+    id: 9,
+    act: 'Cấu kết',
+    title: 'Bữa tối ở phòng kín',
+    location: 'Đà Lạt · 2024',
+    story: [
+      { t: 'p', x: 'Ba chuỗi trà lớn nhất nước ngồi cùng một bàn trong một nhà hàng riêng. Không có thư ký, không có điện thoại. Một người mở lời: “Giá trà đang quá thấp. Chúng ta cùng giữ mức 35.000 đồng. Ai phá giá, người đó phá thị trường.”' },
+      { t: 'p', x: 'Đề nghị này không cần chữ ký. Chỉ cần một cái gật đầu và một bữa tối không ai kể lại. Nếu tất cả đồng ý, lợi nhuận của cả ba tăng trong vài tháng. Nếu bị phát hiện, cả ba cùng bị phạt.' },
+      { t: 'say', who: 'CEO một chuỗi đối thủ', x: '“Không ai thiệt cả. Chỉ là ba người lớn ngồi lại với nhau thôi.”' }
+    ],
+    choices: [
+      {
+        id: 'c9a', label: 'Đồng ý, giữ giá chung', hint: 'Lợi nhuận ngắn hạn cao, rủi ro pháp lý rất lớn.',
+        effects: { capital: 12, share: 2, brand: -2, trust: -8, gov: -4, legal: 12 },
+        card: 'cartel', flags: { cartel: true },
+        result: 'Bạn gật đầu. Ba tháng sau, giá trà đồng loạt tăng, lợi nhuận đẹp như một báo cáo mẫu. Nhưng một nhân viên của đối thủ giữ lại tin nhắn nội bộ. Và trong một bữa tối khác, người ta bắt đầu hỏi nhau: “Ai sẽ là người đầu tiên phá giá?”'
+      },
+      {
+        id: 'c9b', label: 'Từ chối, rời bàn sớm', hint: 'Giữ tay sạch, chấp nhận đối thủ có lợi thế ngắn hạn.',
+        effects: { capital: 0, share: -2, brand: 3, trust: 4, gov: 3, legal: -3 },
+        card: 'cartel', flags: { refusedCartel: true },
+        result: 'Bạn đứng dậy, cảm ơn bữa tối và rời đi. Ba tháng sau, hai chuỗi kia cùng giữ giá 35.000, khách bắt đầu so sánh. Bạn giữ giá cũ và nói thật lý do trong một bài phỏng vấn. Không phải ai cũng tin, nhưng ít nhất bạn không phải nhớ mình đã nói gì trong phòng kín.'
+      },
+      {
+        id: 'c9c', label: 'Đồng ý bề ngoài, ghi âm lại', hint: 'Cần Niềm tin ≥ 50. Tố cáo để ghi điểm với cơ quan quản lý.',
+        req: { stat: 'trust', min: 50 }, reqText: 'Cần Niềm tin ≥ 50',
+        effects: { capital: -3, share: 1, brand: 1, trust: 3, gov: 10, legal: -5 },
+        card: 'cartel', flags: { whistleblower: true },
+        result: 'Bạn gật đầu, để họ nói hết, rồi gửi bản ghi âm cho Ủy ban Cạnh tranh kèm một lá thư. Hai chuỗi kia bị điều tra. Bạn không xuất hiện trong danh sách bị phạt, nhưng cũng không ai còn mời bạn đi ăn tối. Đôi khi làm đúng nghĩa là mất một số bàn.'
+      }
+    ]
+  },
+
+  {
+    id: 10,
+    act: 'Điều tra',
+    title: 'Cuộc gọi từ Ủy ban',
+    location: 'Hà Nội · 2025',
+    story: [
+      { t: 'p', x: 'Ủy ban Cạnh tranh Quốc gia mở điều tra chính thức. Đoàn kiểm tra đến văn phòng lúc tám giờ sáng, mang theo lệnh thu thập dữ liệu. Họ hỏi về thị phần, về hợp đồng độc quyền, về cách nền tảng xếp hạng quán.' },
+      { t: 'p', x: 'Luật sư của bạn nói có hai cách: hợp tác toàn bộ và xin giảm nhẹ, hoặc kéo dài bằng thủ tục. Cách thứ hai mua được thời gian, nhưng thời gian không mua được thiện chí.' },
+      { t: 'say', who: 'Trưởng đoàn điều tra', x: '“Chúng tôi không tìm cách phá doanh nghiệp. Chúng tôi đang kiểm tra xem cạnh tranh còn thở được không.”' }
+    ],
+    choices: [
+      {
+        id: 'c10a', label: 'Hợp tác toàn bộ, tự nguyện sửa sai', hint: 'Giảm nhẹ hình phạt, chấp nhận mất một phần lợi nhuận.',
+        effects: { capital: -10, share: -3, brand: 2, trust: 5, gov: 9, legal: -12 },
+        card: 'luat-chong-doc-quyen', flags: { cooperated: true },
+        result: 'Bạn mở toàn bộ dữ liệu, tự nguyện chấm dứt ba điều khoản độc quyền và nộp phạt theo mức giảm nhẹ. Một phần lợi nhuận biến mất. Nhưng khi đoàn kiểm tra rời đi, trưởng đoàn nói một câu bạn nhớ lâu: “Cô là người đầu tiên không bắt chúng tôi chờ.”'
+      },
+      {
+        id: 'c10b', label: 'Kéo dài thủ tục, thuê luật sư giỏi nhất', hint: 'Mua thời gian, tăng rủi ro và chi phí.',
+        effects: { capital: -12, share: 0, brand: -3, trust: -4, gov: -6, legal: 8 },
+        card: 'luat-chong-doc-quyen', flags: { obstructed: true },
+        result: 'Bạn nộp đơn xin gia hạn, rồi xin gia hạn lần nữa. Vụ việc kéo dài mười tám tháng. Một số nhân chứng mất kiên nhẫn. Báo chí viết về “doanh nghiệp né tránh điều tra”. Cuối cùng bạn vẫn phải nộp phạt — cộng thêm một khoản mà luật không ghi: mất thiện chí.'
+      },
+      {
+        id: 'c10c', label: 'Chủ động đề xuất cam kết cạnh tranh', hint: 'Cần Quan hệ chính quyền ≥ 55. Thoả thuận thay vì đối đầu.',
+        req: { stat: 'gov', min: 55 }, reqText: 'Cần Chính quyền ≥ 55',
+        effects: { capital: -6, share: -1, brand: 3, trust: 4, gov: 8, legal: -10 },
+        card: 'luat-chong-doc-quyen', flags: { commitment: true },
+        result: 'Bạn đề nghị một gói cam kết: mở API cho đối thủ nhỏ, giới hạn phí nền tảng trong ba năm, và báo cáo thị phần định kỳ. Ủy ban chấp nhận, vụ điều tra khép lại mà không cần bản án. Bạn giữ được công ty — và học được rằng luật chơi có thể đàm phán trước khi nó đóng lại.'
+      }
+    ]
+  },
+
+  {
+    id: 11,
+    act: 'Ngã rẽ',
+    title: 'Lời mời từ phía bên kia',
+    location: 'Hà Nội · 2025',
+    story: [
+      { t: 'p', x: 'Sau điều tra, một vị đại diện của cơ quan quản lý hẹn gặp riêng. Không phải để cảnh báo. Ông đặt lên bàn một bản dự thảo mang tên “Hiến chương thị trường trà”: khung giá minh bạch, hạ tầng phân phối mở, và một quỹ hỗ trợ quán nhỏ chuyển đổi số.' },
+      { t: 'p', x: 'Đổi lại, {T} phải tự nguyện giới hạn thị phần ở mức 45%, chia sẻ dữ liệu giá và chấp nhận một đại diện người tiêu dùng trong hội đồng giám sát. Đây là lần đầu bạn được mời thiết kế luật chơi thay vì chỉ tuân theo.' },
+      { t: 'say', who: 'Vị đại diện', x: '“Cô có thể tiếp tục lớn cho đến khi có người chặn cô. Hoặc cô có thể giúp viết cái hàng rào mà sau này chính cô cũng muốn sống bên trong.”' }
+    ],
+    choices: [
+      {
+        id: 'c11a', label: 'Ký hiến chương, tự giới hạn quyền lực', hint: 'Đặt nền cho một mô hình thị trường mới.',
+        effects: { capital: -5, share: -6, brand: 6, trust: 9, gov: 10, legal: -8 },
+        card: 'hien-chuong', flags: { charter: true },
+        result: 'Bạn ký. Ngày hôm sau, báo chí gọi đó là “canh bạc của người thắng”. Cổ phiếu giảm, nhưng các quán nhỏ bắt đầu đăng ký dùng hạ tầng mở. Người tiêu dùng có một trang web so sánh giá do Nhà nước công bố. Bạn mất một phần thị phần, được một chỗ ngồi ở bàn thiết kế tương lai.'
+      },
+      {
+        id: 'c11b', label: 'Từ chối, tiếp tục mở rộng', hint: 'Giữ đà tăng trưởng, đối mặt giới hạn của luật.',
+        effects: { capital: 8, share: 8, brand: -1, trust: -4, gov: -6, legal: 8 },
+        card: 'luat-chong-doc-quyen', flags: { expandAnyway: true },
+        result: 'Bạn cảm ơn và từ chối. {T} mở thêm sáu mươi chi nhánh trong sáu tháng. Thị phần vượt 60%. Ủy ban mở lại hồ sơ với một mục mới: “hành vi chống cạnh tranh sau điều tra”. Bạn đang chạy nhanh hơn — nhưng không còn chắc mình đang chạy về đâu.'
+      },
+      {
+        id: 'c11c', label: 'Đề nghị mở rộng hiến chương cho cả đối thủ', hint: 'Cần Uy tín ≥ 40 và Niềm tin ≥ 60. Mô hình đồng thuận thật sự.',
+        req: { stat: 'brand', min: 40, all: [{ stat: 'trust', min: 60 }] }, reqText: 'Cần Uy tín ≥ 40 · Niềm tin ≥ 60',
+        effects: { capital: -4, share: -3, brand: 7, trust: 11, gov: 12, legal: -9 },
+        card: 'lien-minh', flags: { charter: true, coalition: true },
+        result: 'Bạn đồng ý ký — với một điều kiện: hiến chương phải mở cho tất cả, kể cả những đối thủ từng kiện bạn. Buổi họp kéo dài đến nửa đêm. Sáng hôm sau, ba chuỗi trà và bốn hợp tác xã cùng đặt bút. Bạn không còn là người duy nhất ngồi ở bàn, nhưng lần đầu tiên cái bàn đủ rộng.'
+      }
+    ]
+  },
+
+  {
+    id: 12,
+    act: 'Quyết định cuối',
+    title: 'Mười hai năm, một cái tên',
+    location: 'Việt Nam · 2026',
+    story: [
+      { t: 'p', x: '{T} bước vào năm thứ mười hai. Bạn có hàng trăm cửa hàng, một nền tảng, một vùng nguyên liệu và một hồ sơ pháp lý dày hơn tóc. Trên bàn là ba bản kế hoạch cho mười năm tới.' },
+      { t: 'p', x: 'Bản thứ nhất: mua lại mọi đối thủ còn lại, đàm phán lại với Nhà nước từ vị thế không thể thay thế. Bản thứ hai: thu hẹp, bán bớt, tập trung vào sản phẩm tốt nhất. Bản thứ ba: biến {T} thành hạ tầng chung, nơi đối thủ cũng có thể lớn.' },
+      { t: 'p', x: 'Ngoài cửa sổ, một quán trà nhỏ mới mở. Người chủ đang dán bảng giá bằng tay. Bạn nhớ mình đã từng như thế. Câu hỏi không còn là bạn muốn lớn đến đâu — mà là bạn muốn để lại một thị trường như thế nào.' }
+    ],
+    choices: [
+      {
+        id: 'c12a', label: 'Thâu tóm phần còn lại của thị trường', hint: 'Đường đến đế chế. Cái giá là lựa chọn của người khác.',
+        effects: { capital: -10, share: 15, brand: 2, trust: -10, gov: -5, legal: 10 },
+        card: 'thon-tinh-sap-nhap', flags: { finalEmpire: true },
+        result: 'Bạn ký ba hợp đồng mua lại trong một tuần. Thị trường còn lại hai cái tên, và một trong đó là của bạn. Nhà đầu tư vỗ tay. Khách hàng không phản đối ngay — họ chỉ trả nhiều hơn một chút, rồi nhiều hơn nữa. Bạn đứng trên đỉnh, và đỉnh thì rất yên tĩnh.'
+      },
+      {
+        id: 'c12b', label: 'Thu hẹp, quay về sản phẩm tốt nhất', hint: 'Từ bỏ quy mô để giữ phần tinh tuý.',
+        effects: { capital: 6, share: -8, brand: 8, trust: 8, gov: 2, legal: -5 },
+        card: 'doi-moi', flags: { finalCraft: true },
+        result: 'Bạn bán mảng nền tảng, đóng hai mươi chi nhánh yếu và dồn toàn bộ nguồn lực vào một dòng trà duy nhất. Doanh thu giảm, nhưng mỗi ly bán ra đều có lời và mỗi khách đều biết vì sao họ chọn bạn. Bạn nhỏ hơn — và lần đầu tiên sau nhiều năm, bạn ngủ đủ giấc.'
+      },
+      {
+        id: 'c12c', label: 'Mở hạ tầng, cùng đối thủ xây thị trường', hint: 'Con đường của hiến chương. Cần nền tảng tin cậy.',
+        req: { stat: 'trust', min: 55, all: [{ stat: 'gov', min: 50 }] }, reqText: 'Cần Niềm tin ≥ 55 · Chính quyền ≥ 50',
+        effects: { capital: -8, share: -5, brand: 6, trust: 10, gov: 8, legal: -6 },
+        card: 'hien-chuong', flags: { finalOpen: true },
+        result: 'Bạn mở kho lạnh, hệ thống đặt hàng và vùng nguyên liệu cho bất kỳ quán nào đăng ký. Đối thủ đầu tiên ký hợp đồng là người từng kiện bạn. Bạn không còn kiểm soát cánh cửa — bạn trở thành con đường. Doanh thu từ hạ tầng thấp hơn từ bán lẻ, nhưng nó không phụ thuộc vào việc ai phải thua.'
+      }
+    ]
+  }
+);
+
+
+/* ===== 10-engine.js ===== */
+/* =====================================================================
+   ĐỘC QUYỀN — QUYỀN LỰC & CÁI GIÁ · engine
+   Toàn bộ trạng thái game nằm trong một object duy nhất, tách khỏi UI.
+   ===================================================================== */
+'use strict';
+
+const SAVE_KEY = 'dq_save_v1';
+const CARDS_KEY = 'dq_cards_v1';
+const ENDINGS_KEY = 'dq_endings_v1';
+
+const MP_ACTIONS = [
+  { id: 'price', name: 'Chiến tranh giá', icon: '↘',
+    hint: 'Giảm giá sâu để giành khách. Biên lợi nhuận mỏng đi, áp lực pháp lý tăng.',
+    eff: { capital: -6, share: 6, brand: -1, trust: -2, legal: 2 }, card: 'chien-tranh-gia',
+    res: 'Bạn hạ giá để giành khách. Doanh số tăng, nhưng biên lợi nhuận mỏng đi.' },
+  { id: 'innovate', name: 'Đầu tư đổi mới', icon: '✦',
+    hint: 'Dồn tiền vào sản phẩm và trải nghiệm. Chậm hơn, nhưng khó bị sao chép.',
+    eff: { capital: -5, share: 2, brand: 5, trust: 3, legal: -1 }, card: 'doi-moi',
+    res: 'Bạn chi tiền cho một công thức mới. Khách nhận ra sự khác biệt.' },
+  { id: 'acquire', name: 'Thôn tính đối thủ', icon: '⊕',
+    hint: 'Mua lại một đối thủ yếu hơn để lấy thị phần. Tốn vốn, dễ bị soi.',
+    eff: { capital: -8, share: 4, brand: 1, trust: -1, legal: 5 }, card: 'thon-tinh-sap-nhap',
+    res: 'Bạn mua lại một đối thủ nhỏ. Thị phần tăng, nhưng cơ quan quản lý ghi nhận thương vụ.' },
+  { id: 'merge', name: 'Đề nghị sáp nhập', icon: '⇄',
+    hint: 'Ngỏ lời hợp nhất với đối thủ lớn nhất. Chỉ thành công khi cả hai cùng đồng ý — và cơ quan quản lý sẽ soi rất kỹ.',
+    eff: { capital: -5, share: 0, brand: 1, trust: -1, legal: 4 }, card: 'thon-tinh-sap-nhap',
+    res: 'Bạn gửi đề nghị sáp nhập. Nếu phía bên kia cũng đồng ý, hai công ty sẽ hợp nhất thành một nhóm lớn hơn.' },
+  { id: 'lobby', name: 'Vận động chính sách', icon: '⌂',
+    hint: 'Xây quan hệ với cơ quan quản lý. Có thể đổi được cách luật được áp dụng.',
+    eff: { capital: -3, share: 0, brand: 1, trust: -1, gov: 7, legal: 2 }, card: 'doc-quyen-nha-nuoc',
+    res: 'Bạn dành thời gian gặp gỡ các cơ quan. Quan hệ tốt hơn, nhưng công chúng bắt đầu đặt câu hỏi.' },
+  { id: 'cartel', name: 'Bắt tay giữ giá', icon: '⚭',
+    hint: 'Ngầm đề nghị các đối thủ cùng giữ giá. Lãi lớn nếu không ai phá, nhưng rất dễ bị phát hiện.',
+    eff: { capital: 8, share: 0, brand: -1, trust: -6, legal: 9 }, card: 'cartel',
+    res: 'Bạn gửi tín hiệu về một mức giá chung. Nếu có người đồng ý, thị trường bớt cạnh tranh.' },
+  { id: 'open', name: 'Mở hạ tầng hợp tác', icon: '⊗',
+    hint: 'Chia sẻ hạ tầng cho đối thủ nhỏ. Mất một phần thị phần, được niềm tin.',
+    eff: { capital: -4, share: -2, brand: 4, trust: 6, gov: 3, legal: -4 }, card: 'lien-minh',
+    res: 'Bạn mở kho lạnh và hệ thống đặt hàng cho các quán nhỏ. Thị phần giảm nhẹ, niềm tin tăng.' }
+];
+
+const REG_ACTIONS = [
+  { id: 'investigate', name: 'Điều tra thị trường', icon: '§',
+    hint: 'Soi dấu hiệu cấu kết và lạm dụng vị thế. Làm căng thẳng thị trường nhưng bảo vệ cạnh tranh.' },
+  { id: 'protect', name: 'Bảo vệ người tiêu dùng', icon: '♡',
+    hint: 'Công bố thông tin giá và mở kênh phản hồi. Niềm tin tăng, áp lực pháp lý giảm nhẹ.' },
+  { id: 'support', name: 'Hỗ trợ doanh nghiệp nhỏ', icon: '⇡',
+    hint: 'Chuyển một phần thị phần về phía người yếu thế. Cân bằng lại sân chơi.' },
+  { id: 'wait', name: 'Quan sát thêm', icon: '◌',
+    hint: 'Chưa can thiệp. Giữ trung lập, nhưng thị trường có thể tự lệch thêm.' }
+];
+
+const MP_COLORS = ['#e7c489', '#7fd3ba', '#8db8ec', '#b7a7ee'];
+const PLAYER_DEFAULT_COMPANIES = ['Trà Mộc', 'Trà Vương', 'Trà 24h', 'Hạt Mầm'];
+
+/* ---------------- tên thương hiệu trong truyện ----------------
+   Dữ liệu truyện dùng {T} làm chỗ đứng cho tên công ty của người chơi,
+   để cùng một câu chuyện hoạt động với bất kỳ tên nào họ đặt.
+   Việc thay tên diễn ra lúc hiển thị, dữ liệu gốc giữ nguyên. */
+const fillT = (s, company) => String(s == null ? '' : s).split('{T}').join(company || STORY.meta.company || 'Trà Mộc');
+
+/* ---------------- utilities ---------------- */
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+const clamp = (n, lo = 0, hi = 100) => Math.max(lo, Math.min(hi, Math.round(n)));
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const signed = (n) => (n > 0 ? '+' : '') + n;
+
+function loadJSON(key, fallback) {
+  try { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; }
+  catch (e) { return fallback; }
+}
+function saveJSON(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* chế độ riêng tư */ }
+}
+function loadSet(key) {
+  const v = loadJSON(key, []);
+  return new Set(Array.isArray(v) ? v : []);
+}
+function saveSet(key, set) { saveJSON(key, Array.from(set)); }
+
+const unlockedCards = loadSet(CARDS_KEY);
+const unlockedEndings = loadSet(ENDINGS_KEY);
+
+function unlockCard(id) {
+  if (!id || !STORY.cards[id]) return false;
+  const isNew = !unlockedCards.has(id);
+  unlockedCards.add(id);
+  saveSet(CARDS_KEY, unlockedCards);
+  if (isNew) toastCard(id);
+  return isNew;
+}
+function unlockEnding(id) {
+  if (!STORY.endings[id]) return false;
+  const isNew = !unlockedEndings.has(id);
+  unlockedEndings.add(id);
+  saveSet(ENDINGS_KEY, unlockedEndings);
+  return isNew;
+}
+function hasSave() {
+  const s = loadJSON(SAVE_KEY, null);
+  return !!(s && s.state && s.state.screen === 'play');
+}
+
+/* ---------------- state factory ---------------- */
+function makePlayer(id, name, company, color, opts = {}) {
+  return {
+    id, name: name || 'Nhà sáng lập',
+    company: company || PLAYER_DEFAULT_COMPANIES[0],
+    color, regulator: !!opts.regulator,
+    stats: { capital: 20, share: 8, brand: 12, gov: 35 },
+    flags: {}, choiceId: null, done: false
+  };
+}
+
+function baseState(mode) {
+  return {
+    v: 1, mode, screen: 'play', chapter: 0, phase: 'choose', turn: 0,
+    players: [], regulator: null,
+    market: { trust: 55, legal: 8 },
+    log: [], cartelEver: false, lastReveal: null,
+    ending: null, youAre: null
+  };
+}
+
+function startSolo(name, company) {
+  const st = baseState('solo');
+  st.players = [makePlayer('p1', name, company, MP_COLORS[0])];
+  st.youAre = 'p1';
+  st.log = [{ chapter: 0, text: 'Năm 2019, <b>' + esc(company) + '</b> mở cửa hàng đầu tiên.' }];
+  return st;
+}
+
+function startHotseat(names, companies, withRegulator) {
+  const st = baseState('hotseat');
+  st.players = names.map((n, i) => makePlayer('p' + (i + 1), n, companies[i], MP_COLORS[i]));
+  const n = st.players.length;
+  const each = Math.floor(100 / n);
+  st.players.forEach((p, i) => {
+    p.stats.capital = 24;
+    p.stats.share = i === 0 ? 100 - each * (n - 1) : each;
+    p.stats.brand = 14;
+    p.stats.gov = 35;
+  });
+  normalizeShares(st);
+  if (withRegulator) {
+    st.regulator = {
+      id: 'reg', name: 'Cơ quan quản lý', company: 'Cơ quan quản lý',
+      color: '#c8c2e6', regulator: true, choiceId: null, done: false
+    };
+  }
+  st.phase = 'handoff';
+  st.turn = 0;
+  st.log = [{ chapter: 0, text: 'Thị trường mở màn với ' + n + ' doanh nghiệp cùng cạnh tranh.' }];
+  return st;
+}
+
+function cloneState(st) { return JSON.parse(JSON.stringify(st)); }
+
+/* ---------------- requirements & effects ---------------- */
+function statValue(st, p, key) {
+  if (key === 'trust') return st.market.trust;
+  if (key === 'legal') return st.market.legal;
+  if (p && p.stats && key in p.stats) return p.stats[key];
+  return 0;
+}
+
+function meetsReq(st, p, choice) {
+  if (!choice || !choice.req) return true;
+  const req = choice.req;
+  const checks = [];
+  if (req.stat) checks.push({ stat: req.stat, min: req.min || 0 });
+  if (Array.isArray(req.all)) req.all.forEach((c) => checks.push(c));
+  const okStats = checks.every((c) => statValue(st, p, c.stat) >= c.min);
+  const okFlag = !req.flag || !!(p && p.flags && p.flags[req.flag]);
+  return okStats && okFlag;
+}
+
+function mergedStats(st, p) {
+  if (!p || p.regulator) return { capital: 0, share: 0, brand: 0, gov: 0, trust: st.market.trust, legal: st.market.legal };
+  return { capital: p.stats.capital, share: p.stats.share, brand: p.stats.brand, gov: p.stats.gov, trust: st.market.trust, legal: st.market.legal };
+}
+
+function applyEffectsToPlayer(st, p, eff, opts = {}) {
+  const deltas = {};
+  if (!p || !p.stats) return deltas;
+  ['capital', 'share', 'brand', 'gov'].forEach((k) => {
+    if (typeof eff[k] !== 'number') return;
+    const before = p.stats[k];
+    p.stats[k] = clamp(before + eff[k]);
+    deltas[k] = p.stats[k] - before;
+  });
+  ['trust', 'legal'].forEach((k) => {
+    if (typeof eff[k] !== 'number') return;
+    // Trong chế độ nhiều người, chỉ số chung được áp dụng một lần theo mức
+    // trung bình của cả vòng (xem applyAverageMarket) để bốn quyết định
+    // không cộng dồn thành bốn lần thay đổi.
+    if (opts.deferMarket) { deltas[k] = eff[k]; return; }
+    const before = st.market[k];
+    st.market[k] = clamp(before + eff[k]);
+    deltas[k] = st.market[k] - before;
+  });
+  return deltas;
+}
+
+function applyAverageMarket(st, deltasList) {
+  if (!deltasList.length) return {};
+  const out = {};
+  ['trust', 'legal'].forEach((k) => {
+    const sum = deltasList.reduce((a, d) => a + (d[k] || 0), 0);
+    const avg = Math.round(sum / deltasList.length);
+    const before = st.market[k];
+    st.market[k] = clamp(before + avg);
+    out[k] = st.market[k] - before;
+  });
+  return out;
+}
+
+function normalizeShares(st) {
+  const companies = st.players.filter((p) => !p.regulator);
+  if (!companies.length) return;
+  const safe = companies.map((p) => Math.max(2, p.stats.share));
+  const total = safe.reduce((a, b) => a + b, 0);
+  companies.forEach((p, i) => { p.stats.share = clamp(safe[i] / total * 100, 2, 100); });
+  const drift = 100 - companies.reduce((a, p) => a + p.stats.share, 0);
+  if (drift) {
+    const lead = companies.slice().sort((a, b) => b.stats.share - a.stats.share)[0];
+    lead.stats.share = clamp(lead.stats.share + drift, 2, 100);
+  }
+}
+
+/* ---------------- endings ---------------- */
+function determineEnding(st, p) {
+  const s = p.stats;
+  const m = st.market;
+  const f = p.flags || {};
+
+  if (s.capital <= 8) return 'bankrupt';
+
+  // Hiến chương chung: kết thúc bí mật chỉ mở khi cả nhóm cùng ký hiến chương
+  // (hoặc người chơi đơn tự nguyện chọn mô hình mở ở chương cuối). Một mình ký
+  // không đủ — đó là bài học về cạnh tranh lành mạnh.
+  const allCharter = st.players.filter((x) => !x.regulator).every((x) => x.flags && x.flags.charter);
+  const charterOpen = f.charter && (f.coalition || f.finalOpen || (st.mode !== 'solo' && allCharter));
+  if (charterOpen && m.trust >= 55 && s.gov >= 50) return 'secret';
+  if (s.capital <= 14 && s.share <= 12 && m.trust <= 45) return 'bankrupt';
+
+  if (m.legal >= 72) return 'breakup';
+  if (f.cartel && m.legal >= 58 && m.trust <= 42) return 'breakup';
+  if (m.trust <= 24) return 'boycott';
+  if (s.share >= 62) return 'empire';
+
+  const scores = {
+    empire: s.share * 1.35 + (100 - m.trust) * 0.4 + (100 - m.legal) * 0.2 + (f.finalEmpire ? 12 : 0),
+    innovation: s.brand * 0.85 + m.trust * 0.5 + (100 - m.legal) * 0.25 + (f.finalCraft ? 10 : 0),
+    boycott: (100 - m.trust) * 1.1 + (f.coverup ? 8 : 0) + m.legal * 0.15,
+    breakup: m.legal * 1.25 + (s.share >= 50 ? 12 : 0)
+  };
+  return ['empire', 'innovation', 'boycott', 'breakup'].sort((a, b) => scores[b] - scores[a])[0];
+}
+
+function marketOutcome(st) {
+  const companies = st.players.filter((p) => !p.regulator);
+  const leader = companies.slice().sort((a, b) => b.stats.share - a.stats.share)[0];
+  if (st.cartelEver && st.market.legal >= 65) return 'cartel-fine';
+  if (companies.length > 1 && companies.every((p) => p.flags.charter)) return 'charter';
+  if (leader && leader.stats.share >= 62) return 'dominant';
+  if (st.market.legal <= 32 && st.market.trust >= 60) return 'healthy';
+  return 'fragile';
+}
+
+const MARKET_OUTCOME = {
+  'cartel-fine': { title: 'Cả nhóm bị phạt vì cấu kết', text: 'Cơ quan cạnh tranh kết luận các doanh nghiệp đã phối hợp giữ giá. Cả nhóm bị phạt và buộc cam kết cạnh tranh. Thị trường không còn ai tin vào những bữa tối kín.' },
+  charter: { title: 'Thị trường đồng thuận', text: 'Các doanh nghiệp cùng ký hiến chương: hạ tầng mở, giá minh bạch, người tiêu dùng có tiếng nói. Không ai độc quyền, và cả nhóm cùng có lợi trong dài hạn.' },
+  dominant: { title: 'Một người thống trị', text: 'Một doanh nghiệp chiếm phần lớn thị trường. Những người còn lại thu hẹp hoặc rời đi. Thị trường vẫn vận hành, nhưng chỉ còn một cánh cửa.' },
+  healthy: { title: 'Cạnh tranh lành mạnh', text: 'Nhiều doanh nghiệp cùng sống, giá minh bạch, người tiêu dùng có lựa chọn thật. Đây là kết cục hiếm và đáng giữ nhất.' },
+  fragile: { title: 'Thị trường mong manh', text: 'Không ai thắng tuyệt đối, nhưng niềm tin và luật chơi vẫn chưa đủ vững. Một cú sốc tiếp theo có thể đẩy cả nhóm về phía xấu hơn.' }
+};
+
+
+/* ===== 05-mpdata.js ===== */
+/* ---------------------------------------------------------------------
+   MULTIPLAYER · biến cố thị trường chung và hành động của doanh nghiệp
+   --------------------------------------------------------------------- */
+const MP_EVENTS = [
+  { act: 'Mở màn', title: 'Một con dốc, bốn tấm biển', text: 'Thị trường trà vừa mở cửa cho một làn sóng quán mới. Các doanh nghiệp cùng đứng trên một con dốc, mỗi người một tấm biển. Khách hàng bắt đầu so sánh.' },
+  { act: 'Chuỗi cung ứng', title: 'Vùng trà bị giữ giá', text: 'Một nhà cung cấp kiểm soát phần lớn vùng nguyên liệu và tăng giá. Cả thị trường cùng cảm thấy sức ép — ai cũng phải chọn cách phản ứng.' },
+  { act: 'Mở rộng', title: 'Cuộc đua mở chi nhánh', text: 'Vốn rẻ, mặt bằng trống, khách đang quen với trà ngoài đường. Mọi doanh nghiệp nhìn thấy cùng một cơ hội — và cùng một cái bẫy.' },
+  { act: 'Giá', title: 'Bảng giá lúc nửa đêm', text: 'Một đối thủ âm thầm hạ giá. Sáng hôm sau, cả thị trường tỉnh dậy với doanh thu giảm. Ai cũng tự hỏi: giảm theo, hay đứng yên?' },
+  { act: 'Công chúng', title: 'Bài báo không hẹn trước', text: 'Một phóng viên gọi điện hỏi về hợp đồng nguyên liệu và điều kiện lao động. Câu trả lời của mỗi doanh nghiệp sẽ thành câu chuyện của cả thị trường.' },
+  { act: 'Nhà nước', title: 'Hợp đồng bốn trăm trường học', text: 'Nhà nước mở gói cung ứng cho trường học và khu công nghiệp. Đây là miếng bánh lớn — nhưng đi kèm giá trần và giám sát.' },
+  { act: 'Lao động', title: 'Bốn trăm người ngồi im', text: 'Công nhân một nhà máy ngừng làm việc. Tiếng im lặng lan sang các nhà máy khác. Cả thị trường nhìn vào cách từng doanh nghiệp xử lý.' },
+  { act: 'Nền tảng', title: 'Ai kiểm soát cánh cửa?', text: 'Một nền tảng đặt hàng chiếm phần lớn lưu lượng khách. Doanh nghiệp nào kiểm soát thuật toán, người đó kiểm soát cánh cửa. Những người còn lại bắt đầu lo.' },
+  { act: 'Bữa tối kín', title: 'Một lời đề nghị không giấy tờ', text: 'Tin đồn về một bữa tối giữa các doanh nghiệp lớn lan ra. Không ai xác nhận. Nhưng giá trà trên thị trường bắt đầu nhích lên cùng một lúc.' },
+  { act: 'Điều tra', title: 'Đoàn kiểm tra gõ cửa', text: 'Cơ quan cạnh tranh mở điều tra toàn thị trường. Ai hợp tác, ai kéo dài, ai im lặng — mỗi lựa chọn đều để lại dấu.' },
+  { act: 'Ngã rẽ', title: 'Bản dự thảo hiến chương', text: 'Một bản dự thảo hiến chương thị trường được đưa ra: hạ tầng mở, giá minh bạch, người tiêu dùng có tiếng nói. Ký hay không, và ký một mình hay cùng nhau?' },
+  { act: 'Mười hai năm', title: 'Thị trường này sẽ là gì?', text: 'Mười hai năm trôi qua. Mỗi doanh nghiệp đứng trước lựa chọn cuối: thâu tóm phần còn lại, thu hẹp để giữ tinh tuý, hay mở hạ tầng cho tất cả.' }
+];
+
+function mpEvent() { return MP_EVENTS[Math.min(state.chapter, MP_EVENTS.length - 1)]; }
+
+function mpChoices() {
+  return MP_ACTIONS.map((a) => ({
+    id: a.id, label: a.name, hint: a.hint, effects: a.eff,
+    card: a.card, flags: {}, result: a.res, icon: a.icon
+  }));
+}
+
+
+/* ===== 20-ui-a.js ===== */
+/* =====================================================================
+   UI · tiêu đề, thiết lập, kết nối
+   ===================================================================== */
+let state = null;
+let pending = null;
+let NET = { role: null, pc: null, dc: null, connected: false, offer: '', answer: '', guestName: '', guestCompany: '' };
+let remotePick = null;
+
+const mainEl = () => $('#main');
+const overlayEl = () => $('#overlayRoot');
+const currentChapter = () => STORY.chapters[state.chapter];
+const isOnline = () => !!(state && state.mode === 'online');
+const isHost = () => !isOnline() || NET.role === 'host';
+function youPlayer() {
+  if (!state || !state.players) return null;
+  if (state.mode === 'solo') return state.players[0];
+  const me = state.youAre || (state.mode === 'hotseat' ? state.players[Math.min(state.turn || 0, state.players.length - 1)].id : 'p1');
+  return state.players.find((p) => p.id === me) || state.players[0];
+}
+
+function saveGame() {
+  if (!state) return;
+  if (state.screen === 'ending') { saveJSON(SAVE_KEY, null); return; }
+  if (state.mode === 'online') return;
+  const copy = cloneState(state);
+  copy.lastReveal = null;
+  if (copy.phase === 'result' || copy.phase === 'reveal' || copy.phase === 'waiting') copy.phase = copy.mode === 'hotseat' ? 'handoff' : 'choose';
+  saveJSON(SAVE_KEY, { state: copy });
+}
+function loadSaved() {
+  const saved = loadJSON(SAVE_KEY, null);
+  if (!saved || !saved.state) { renderTitle(mainEl()); return; }
+  state = saved.state;
+  state.screen = 'play';
+  if (!state.turn) state.turn = 0;
+  if (state.phase === 'result' || state.phase === 'reveal' || state.phase === 'waiting') state.phase = state.mode === 'hotseat' ? 'handoff' : 'choose';
+  render();
+}
+
+function toastCard(cardId) {
+  if (!cardId || !STORY.cards[cardId]) return;
+  const c = STORY.cards[cardId];
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.innerHTML = '<div class="toast-k">Thẻ kiến thức mới</div><b>' + esc(c.title) + '</b><p>' + esc(c.short) + '</p>';
+  document.body.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('show'));
+  setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 400); }, 4600);
+}
+
+function statLabel(key) { return (STORY.stats[key] && STORY.stats[key].short) || key; }
+
+function deltasHTML(deltas) {
+  const parts = [];
+  Object.keys(STORY.stats).forEach((k) => {
+    const d = deltas[k];
+    if (!d) return;
+    parts.push('<span class="delta-chip ' + (d > 0 ? 'up' : 'down') + '">' + esc(statLabel(k)) + ' ' + signed(d) + '</span>');
+  });
+  return parts.join('');
+}
+
+/* ---------------- title ---------------- */
+function renderTitle(root) {
+  state = null;
+  document.body.classList.remove('in-game');
+  document.title = STORY.meta.title;
+  const sub = $('#topSub'); if (sub) sub.textContent = STORY.meta.subtitle;
+  const cont = hasSave();
+  const dots = Object.keys(STORY.endings).map((id) => '<i class="' + (unlockedEndings.has(id) ? 'on' : '') + '"></i>').join('');
+  root.innerHTML = [
+    '<section class="screen active"><div class="hero"><div class="hero-grid">',
+      '<div>',
+        '<div class="kicker">Mô phỏng kinh tế · 12 chương</div>',
+        '<h1>Độc quyền<br><em>Quyền lực &amp; cái giá</em></h1>',
+        '<p class="hero-lede">Bạn bắt đầu với một quán trà nhỏ. Mười hai năm sau, thị trường này có thể là đế chế của bạn, một sân chơi công bằng hơn — hoặc một bài học đắt giá. Mỗi quyết định đều có người trả giá.</p>',
+        '<div class="hero-meta">',
+          '<span class="chip">6 kết thúc</span>',
+          '<span class="chip">Sổ tay kiến thức</span>',
+          '<span class="chip">1–4 người chơi</span>',
+          '<span class="chip">Cùng máy hoặc P2P</span>',
+        '</div>',
+        '<div class="ending-strip"><span>Kết thúc đã mở</span><span class="ending-dots">' + dots + '</span><span>' + unlockedEndings.size + '/6</span></div>',
+      '</div>',
+      '<div class="hero-panel">',
+        '<h2>Bắt đầu</h2>',
+        '<button class="mode-btn" data-act="mode" data-mode="solo" type="button"><span class="mode-ico">◈</span><span><b>Một người</b><small>12 chương, 6 kết thúc. Tự quyết định con đường của công ty.</small></span></button>',
+        '<button class="mode-btn" data-act="mode" data-mode="hotseat" type="button"><span class="mode-ico">⇄</span><span><b>Nhiều người · cùng máy</b><small>2–4 người, chuyền máy. Có thể thêm vai Cơ quan quản lý.</small></span></button>',
+        '<button class="mode-btn" data-act="mode" data-mode="online" type="button"><span class="mode-ico">⌁</span><span><b>Nhiều người · trực tuyến</b><small>2 người qua WebRTC, trao đổi mã kết nối thủ công, không cần máy chủ.</small></span></button>',
+        cont ? '<div class="continue-row"><button class="link-btn" data-act="continue-save" type="button">Tiếp tục ván đang chơi →</button></div>' : '',
+      '</div>',
+    '</div></div></section>'
+  ].join('');
+}
+
+/* ---------------- setup ---------------- */
+function openSetup(mode) {
+  pending = {
+    mode, role: 'host', count: 3,
+    names: ['Bạn', 'Người chơi 2', 'Người chơi 3', 'Người chơi 4'],
+    companies: ['Trà Mộc', 'Trà Vương', 'Trà 24h', 'Hạt Mầm'],
+    withRegulator: false, name: 'Bạn', company: 'Trà Mộc',
+    onlineStage: null, error: ''
+  };
+  state = { screen: 'setup' };
+  closeOverlay();
+  render();
+}
+
+function renderSetup(root) {
+  const m = pending.mode;
+  const head = m === 'solo' ? 'Một người' : m === 'hotseat' ? 'Nhiều người · cùng máy' : 'Nhiều người · trực tuyến';
+  if (m === 'online' && pending.onlineStage) { renderOnlinePanel(root); return; }
+
+  let body = '';
+  if (m === 'solo') {
+    body = [
+      '<div class="field"><label for="fName">Tên của bạn</label><input id="fName" data-field="name" maxlength="24" value="' + esc(pending.name) + '" autocomplete="nickname"></div>',
+      '<div class="field"><label for="fCompany">Tên công ty</label><input id="fCompany" data-field="company" maxlength="28" value="' + esc(pending.company) + '"><small>Bạn sẽ điều hành công ty này từ một cửa hàng nhỏ.</small></div>',
+      '<div class="hint-box">Mỗi chương có 2–4 lựa chọn. Chỉ số thay đổi ngay và một số nhánh sẽ mở hoặc khoá về sau. Thẻ kiến thức xuất hiện sau các quyết định quan trọng.</div>'
+    ].join('');
+  } else if (m === 'hotseat') {
+    const rows = [];
+    for (let i = 0; i < 4; i++) {
+      const on = i < pending.count;
+      rows.push(
+        '<div class="mp-row' + (on ? '' : ' off') + '">' +
+          '<span class="avatar" style="color:' + MP_COLORS[i] + ';border-color:' + MP_COLORS[i] + '55">' + (i + 1) + '</span>' +
+          '<input data-field="name" data-i="' + i + '" maxlength="18" value="' + esc(pending.names[i]) + '" aria-label="Tên người chơi ' + (i + 1) + '"' + (on ? '' : ' disabled') + '>' +
+          '<input data-field="company" data-i="' + i + '" maxlength="22" value="' + esc(pending.companies[i]) + '" aria-label="Công ty người chơi ' + (i + 1) + '"' + (on ? '' : ' disabled') + '>' +
+        '</div>'
+      );
+    }
+    body = [
+      '<div class="field"><label>Số người chơi</label><div class="seg" role="group">',
+        [2, 3, 4].map((n) => '<button type="button" class="seg-btn' + (pending.count === n ? ' on' : '') + '" data-act="mp-count" data-n="' + n + '">' + n + ' người</button>').join(''),
+      '</div></div>',
+      '<div class="mp-list">' + rows.join('') + '</div>',
+      '<label class="check"><input type="checkbox" data-field="regulator"' + (pending.withRegulator ? ' checked' : '') + (pending.count >= 4 ? ' disabled' : '') + '> Thêm vai Cơ quan quản lý (người thứ ' + (pending.count + 1) + ')</label>',
+      '<div class="hint-box">Mỗi vòng, mọi người chọn bí mật trên cùng một máy rồi cùng công bố. Thị phần là tổng không đổi; Niềm tin và Áp lực pháp lý là chỉ số chung của thị trường.</div>'
+    ].join('');
+  } else {
+    body = [
+      '<div class="field"><label>Vai trò</label><div class="seg">',
+        '<button type="button" class="seg-btn' + (pending.role === 'host' ? ' on' : '') + '" data-act="online-role" data-role="host">Tạo phòng</button>',
+        '<button type="button" class="seg-btn' + (pending.role === 'guest' ? ' on' : '') + '" data-act="online-role" data-role="guest">Vào phòng</button>',
+      '</div></div>',
+      '<div class="field"><label for="fName">Tên của bạn</label><input id="fName" data-field="name" maxlength="24" value="' + esc(pending.name) + '"></div>',
+      '<div class="field"><label for="fCompany">Tên công ty</label><input id="fCompany" data-field="company" maxlength="28" value="' + esc(pending.company) + '"></div>',
+      '<div class="hint-box">Hai người chơi kết nối trực tiếp qua WebRTC. Không có máy chủ: bạn sẽ sao chép một đoạn mã và gửi cho người kia bằng bất kỳ kênh nào.</div>'
+    ].join('');
+  }
+
+  const startLabel = m === 'online' ? (pending.role === 'host' ? 'Tạo mã kết nối' : 'Vào phòng') : 'Bắt đầu';
+  root.innerHTML = [
+    '<section class="screen active"><div class="setup-wrap">',
+      '<div class="setup-head"><button class="icon-btn" data-act="home" type="button">← Về menu</button><div><div class="kicker">Thiết lập ván chơi</div><h1 class="serif">' + head + '</h1></div></div>',
+      '<div class="card">', body,
+        pending.error ? '<div class="err">' + esc(pending.error) + '</div>' : '',
+        '<div class="btn-row"><button class="btn btn-primary" data-act="start" type="button">' + startLabel + '</button><button class="btn btn-ghost" data-act="home" type="button">Huỷ</button></div>',
+      '</div>',
+    '</div></section>'
+  ].join('');
+}
+
+function renderOnlinePanel(root) {
+  const back = '<button class="icon-btn" data-act="home" type="button">← Về menu</button>';
+  if (pending.onlineStage === 'host-offer') {
+    root.innerHTML = '<section class="screen active"><div class="setup-wrap">' +
+      '<div class="setup-head">' + back + '<div><div class="kicker">Kết nối trực tiếp</div><h1 class="serif">Mã mời</h1></div></div>' +
+      '<div class="card"><p class="muted">1. Sao chép đoạn mã dưới đây và gửi cho người chơi thứ hai.</p>' +
+      '<textarea class="code" id="offerOut" readonly>' + esc(NET.offer) + '</textarea>' +
+      '<div class="btn-row"><button class="btn btn-primary" data-act="copy-offer" type="button">Sao chép mã mời</button></div>' +
+      '<div class="divider"></div>' +
+      '<p class="muted">2. Dán đoạn mã trả lời của họ vào đây rồi bấm kết nối.</p>' +
+      '<textarea class="code" id="answerIn" placeholder="Dán mã trả lời..."></textarea>' +
+      '<div class="btn-row"><button class="btn btn-primary" data-act="host-accept" type="button">Kết nối</button><span class="muted small" id="netStatus">Đang chờ người chơi thứ hai…</span></div>' +
+      '</div></div></section>';
+    return;
+  }
+  if (pending.onlineStage === 'guest-input') {
+    root.innerHTML = '<section class="screen active"><div class="setup-wrap">' +
+      '<div class="setup-head">' + back + '<div><div class="kicker">Kết nối trực tiếp</div><h1 class="serif">Vào phòng</h1></div></div>' +
+      '<div class="card"><p class="muted">Dán mã mời mà chủ phòng gửi cho bạn.</p>' +
+      '<textarea class="code" id="offerIn" placeholder="Dán mã mời..."></textarea>' +
+      (pending.error ? '<div class="err">' + esc(pending.error) + '</div>' : '') +
+      '<div class="btn-row"><button class="btn btn-primary" data-act="guest-join" type="button">Tạo mã trả lời</button></div>' +
+      '</div></div></section>';
+    return;
+  }
+  root.innerHTML = '<section class="screen active"><div class="setup-wrap">' +
+    '<div class="setup-head">' + back + '<div><div class="kicker">Kết nối trực tiếp</div><h1 class="serif">Gửi mã trả lời</h1></div></div>' +
+    '<div class="card"><p class="muted">Sao chép đoạn mã này và gửi lại cho chủ phòng. Khi họ kết nối, ván chơi sẽ bắt đầu.</p>' +
+    '<textarea class="code" id="answerOut" readonly>' + esc(NET.answer) + '</textarea>' +
+    '<div class="btn-row"><button class="btn btn-primary" data-act="copy-answer" type="button">Sao chép mã trả lời</button><span class="muted small" id="netStatus">Đang chờ chủ phòng…</span></div>' +
+    '</div></div></section>';
+}
+
+
+/* ===== 21-flow.js ===== */
+/* =====================================================================
+   FLOW · một đường chạy chung cho solo / hot-seat / online
+   ===================================================================== */
+
+function chapterChoices() {
+  if (!state) return [];
+  return state.mode === 'solo' ? currentChapter().choices : mpChoices();
+}
+
+function chooserList() {
+  if (!state) return [];
+  const list = state.players.filter((p) => !p.regulator);
+  if (state.regulator) list.push(state.regulator);
+  return list;
+}
+function currentChooser() { return chooserList()[state.turn || 0] || chooserList()[0]; }
+function isRegTurn() { return !!(state && state.regulator && currentChooser() === state.regulator); }
+
+/* ---------------- HUD ---------------- */
+function renderHUD() {
+  const p = youPlayer();
+  const st = p ? mergedStats(state, p) : { capital: 0, share: 0, brand: 0, gov: 0, trust: state.market.trust, legal: state.market.legal };
+  const ch = currentChapter();
+  const modeTag = state.mode === 'solo' ? 'Một người' : state.mode === 'hotseat' ? 'Cùng máy' : 'Trực tuyến';
+  const stats = Object.keys(STORY.stats).map((k) => {
+    const meta = STORY.stats[k];
+    const v = st[k] || 0;
+    return '<div class="stat" data-k="' + k + '"><div class="stat-head"><span class="stat-name" title="' + esc(meta.hint) + '">' + esc(meta.short) + '</span><span class="stat-val">' + v + '</span></div><div class="bar"><span style="width:' + v + '%"></span></div></div>';
+  }).join('');
+
+  let rosterHTML = '';
+  if (state.mode !== 'solo') {
+    rosterHTML = '<div class="panel"><h3>Bảng thị phần</h3><div class="roster">' + state.players.filter((x) => !x.regulator).map((x) => {
+      const lead = x.stats.share >= 62;
+      return '<div class="roster-row' + (p && x.id === p.id ? ' me' : '') + '"><span class="avatar" style="color:' + x.color + ';border-color:' + x.color + '66">' + esc(x.company.slice(0, 1).toUpperCase()) + '</span><span class="nm">' + esc(x.company) + (lead ? ' ♛' : '') + '</span><span class="sh">' + x.stats.share + '%</span></div>';
+    }).join('') + (state.regulator ? '<div class="roster-row"><span class="avatar" style="color:' + state.regulator.color + ';border-color:' + state.regulator.color + '66">§</span><span class="nm">Cơ quan quản lý</span><span class="sh">—</span></div>' : '') + '</div>' +
+      '<div class="divider" style="margin:12px 0"></div><div class="roster-row"><span class="nm faint">Niềm tin thị trường</span><span class="sh">' + state.market.trust + '</span></div><div class="roster-row"><span class="nm faint">Áp lực pháp lý</span><span class="sh">' + state.market.legal + '</span></div></div>';
+  }
+
+  const logItems = state.log.slice(-6).reverse().map((l) => '<div class="log-item">' + l.text + '</div>').join('');
+
+  const hudTitle = state.mode === 'solo'
+    ? (ch ? fillT(ch.title, (p && p.company) || '') : 'Hành trình')
+    : mpEvent().title;
+  return [
+    '<div class="hud">',
+      '<div class="hud-top">',
+        '<div class="hud-chapter"><span class="round-pill">' + modeTag + '</span><b>Ch.' + (state.chapter + 1) + '/12 · ' + esc(hudTitle) + '</b></div>',
+        '<div class="hud-btns"><button class="icon-btn" data-act="notebook" type="button">📓 Sổ tay <span class="badge-count">' + unlockedCards.size + '</span></button><button class="icon-btn" data-act="menu" type="button">☰</button></div>',
+      '</div>',
+      '<div class="stats">' + stats + '</div>',
+    '</div>',
+    '<div class="chapter-wrap">',
+      '<div id="stage"></div>',
+      '<aside class="side">' + rosterHTML +
+        '<div class="panel"><h3>Nhật ký</h3><div class="log">' + (logItems || '<div class="log-empty">Chưa có quyết định nào.</div>') + '</div></div>' +
+      '</aside>',
+    '</div>'
+  ].join('');
+}
+
+/* ---------------- chapter ---------------- */
+function renderChapter() {
+  const root = mainEl();
+  if (!state) { renderTitle(root); return; }
+  const ch = currentChapter();
+  if (!ch) { finishGame(); return; }
+  root.innerHTML = '<section class="screen active">' + renderHUD() + '</section>';
+  const stage = $('#stage');
+
+  if (state.phase === 'handoff') { renderHandoff(stage); return; }
+  if (state.phase === 'waiting') { renderWaiting(stage); return; }
+  if (state.mode !== 'solo' && isRegTurn()) { renderRegulatorTurn(stage, ch); return; }
+
+  const solo = state.mode === 'solo';
+  const turnPlayer = solo ? youPlayer() : currentChooser();
+  const brand = (turnPlayer && turnPlayer.company) || (youPlayer() && youPlayer().company) || 'Trà Mộc';
+  const ev = solo ? null : mpEvent();
+  const storyHTML = solo
+    ? ch.story.map((s) => s.t === 'say' ? '<p class="say"><span class="who">' + esc(fillT(s.who, brand)) + '</span>' + esc(fillT(s.x, brand)) + '</p>' : '<p>' + esc(fillT(s.x, brand)) + '</p>').join('')
+    : '<p>' + esc(ev.text) + '</p><p class="say"><span class="who">' + esc(turnPlayer ? turnPlayer.company : '') + '</span>“Thị trường này đủ chỗ cho tất cả — nếu chúng ta không tự đóng cửa của nhau.”</p>';
+
+  const choices = chapterChoices().map((c, i) => {
+    const ok = meetsReq(state, turnPlayer || youPlayer(), c);
+    const icon = c.icon ? c.icon + ' ' : '';
+    return '<button class="choice" type="button" data-act="choose" data-id="' + c.id + '"' + (ok ? '' : ' disabled') + '>' +
+      '<span class="choice-key">' + (i + 1) + '</span>' +
+      '<span class="choice-body"><b>' + icon + esc(fillT(c.label, brand)) + '</b><small>' + esc(fillT(c.hint, brand)) + '</small>' +
+      '<span class="choice-tags">' + (c.req ? '<span class="tag ' + (ok ? '' : 'locked') + '">' + esc(c.reqText || 'Cần điều kiện') + '</span>' : '') +
+      (c.id === 'cartel' ? '<span class="tag special">cấu kết</span>' : '') +
+      (c.flags && (c.flags.predatory || c.flags.platformAbuse) ? '<span class="tag">rủi ro pháp lý</span>' : '') +
+      '</span></span></button>';
+  }).join('');
+
+  const whoLine = solo
+    ? '<p class="foot-note">Chỉ số thay đổi ngay sau khi chọn. Bạn có thể mở Sổ tay bất cứ lúc nào.</p>'
+    : '<p class="foot-note">Lượt của <b style="color:' + (turnPlayer ? turnPlayer.color : '#fff') + '">' + esc(turnPlayer ? turnPlayer.company : '') + '</b>. Thị phần là tổng không đổi: người này tăng thì người kia giảm. Lựa chọn được giữ kín đến khi công bố.</p>';
+
+  stage.innerHTML = '<article class="card">' +
+    '<div class="ch-head"><div><div class="ch-num">' + String(ch.id).padStart(2, '0') + '</div><div class="kicker">' + esc(solo ? fillT(ch.act, brand) : ev.act) + '</div></div><div class="ch-loc">' + esc(solo ? fillT(ch.location, brand) : 'Vòng ' + (state.chapter + 1) + ' · Thị trường chung') + '</div></div>' +
+    '<h2 class="ch-title">' + esc(solo ? fillT(ch.title, brand) : ev.title) + '</h2>' +
+    '<div class="divider"></div>' +
+    '<div class="story">' + storyHTML + '</div>' +
+    '<div class="choices">' + choices + '</div>' + whoLine +
+  '</article>';
+}
+
+function renderRegulatorTurn(stage, ch) {
+  const reg = state.regulator;
+  const ev = mpEvent();
+  const choices = REG_ACTIONS.map((a, i) =>
+    '<button class="choice" type="button" data-act="reg-choose" data-id="' + a.id + '">' +
+      '<span class="choice-key">' + (i + 1) + '</span>' +
+      '<span class="choice-body"><b>' + a.icon + ' ' + esc(a.name) + '</b><small>' + esc(a.hint) + '</small></span></button>'
+  ).join('');
+  stage.innerHTML = '<article class="card">' +
+    '<div class="ch-head"><div><div class="ch-num">§</div><div class="kicker">Lượt cơ quan quản lý</div></div><div class="ch-loc">Ch.' + (state.chapter + 1) + '</div></div>' +
+    '<h2 class="ch-title">Bàn điều tiết</h2>' +
+    '<div class="divider"></div>' +
+    '<div class="story"><p>Bạn ngồi ở phía bên kia bàn. Biến cố vòng này: <b>' + esc(ev.title) + '</b>. Các doanh nghiệp vừa gửi quyết định của họ. Bạn có một hành động trước khi kết quả được công bố.</p></div>' +
+    '<div class="choices">' + choices + '</div>' +
+    '<p class="foot-note">Lượt của <b style="color:' + reg.color + '">Cơ quan quản lý</b>. Hành động này ảnh hưởng đến chỉ số chung của thị trường.</p>' +
+  '</article>';
+}
+
+function renderHandoff(stage) {
+  const next = currentChooser();
+  const isReg = next === state.regulator;
+  stage.innerHTML = '<article class="card handoff">' +
+    '<div class="kicker">Chuyển máy</div>' +
+    '<h2 class="serif">Chuyển cho ' + esc(isReg ? 'Cơ quan quản lý' : (next ? next.name : 'người chơi')) + '</h2>' +
+    '<p class="muted">Đảm bảo người chơi trước đã rời màn hình. Lựa chọn của mỗi người chỉ hiện sau khi tất cả đã quyết định.</p>' +
+    '<div class="avatar big" style="color:' + (next ? next.color : '#fff') + ';border-color:' + (next ? next.color : '#fff') + '66">' + (isReg ? '§' : (next ? esc(next.company.slice(0, 1).toUpperCase()) : '?')) + '</div>' +
+    '<div class="btn-row" style="justify-content:center"><button class="btn btn-primary" data-act="reveal-hand" type="button">Tôi là ' + esc(isReg ? 'Cơ quan quản lý' : (next ? next.name : '')) + ' →</button></div>' +
+  '</article>';
+}
+
+function renderWaiting(stage) {
+  const remote = isOnline() && !isHost();
+  stage.innerHTML = '<article class="card center-card"><div class="kicker">Đang chờ</div><h2 class="serif">Đã ghi nhận lựa chọn</h2>' +
+    '<p class="muted">' + (remote ? 'Đang chờ chủ phòng công bố kết quả. Lựa chọn của bạn được giữ kín.' : 'Đang chờ người chơi còn lại. Màn hình này không tiết lộ lựa chọn của bạn.') + '</p>' +
+    '<div class="wait-dots"><i></i><i></i><i></i></div></article>';
+}
+
+/* ---------------- choose ---------------- */
+function choose(choiceId) {
+  if (!state || state.phase !== 'choose') return;
+  if (state.mode === 'solo') { resolveSolo(choiceId); return; }
+  if (state.mode === 'hotseat') { chooseHotseat(choiceId); return; }
+  chooseOnline(choiceId);
+}
+
+function chooseHotseat(choiceId) {
+  const chooser = currentChooser();
+  if (!chooser) return;
+  if (isRegTurn()) {
+    if (!REG_ACTIONS.some((r) => r.id === choiceId)) return;
+    chooser.choiceId = choiceId;
+    state.turn = 99;
+    state.phase = 'reveal';
+    resolveRound();
+    return;
+  }
+  const c = chapterChoices().find((x) => x.id === choiceId);
+  if (!c || !meetsReq(state, chooser, c)) return;
+  chooser.choiceId = choiceId;
+  const list = chooserList();
+  if (state.turn < list.length - 1) {
+    state.turn += 1;
+    state.phase = 'handoff';
+    render();
+    return;
+  }
+  state.phase = 'reveal';
+  resolveRound();
+}
+
+function resolveSolo(choiceId) {
+  const ch = currentChapter();
+  const p = youPlayer();
+  const choice = ch.choices.find((c) => c.id === choiceId);
+  if (!choice || !meetsReq(state, p, choice)) return;
+  const before = new Set(unlockedCards);
+  const deltas = applyEffectsToPlayer(state, p, choice.effects);
+
+  // Doanh thu vận hành: thị phần hiện có nuôi lại vốn, như ở chế độ nhiều người.
+  const income = Math.round(p.stats.share * 0.18);
+  if (income) {
+    const capBefore = p.stats.capital;
+    p.stats.capital = clamp(p.stats.capital + income);
+    deltas.capital = (deltas.capital || 0) + (p.stats.capital - capBefore);
+  }
+
+  Object.assign(p.flags, choice.flags || {});
+  p.history = (p.history || []).concat([{ chapter: state.chapter, label: choice.label }]);
+  state.lastReveal = {
+    kind: 'solo', chapter: state.chapter,
+    choiceLabel: choice.label, result: choice.result, deltas,
+    card: choice.card || null, market: {}
+  };
+  if (choice.card) unlockCard(choice.card);
+  contextCards(state, p);
+  state.lastReveal.newCards = Array.from(unlockedCards).filter((id) => !before.has(id));
+  state.log.push({ chapter: state.chapter, text: '<b>Ch.' + (state.chapter + 1) + ':</b> ' + esc(choice.label) });
+  state.phase = 'result';
+  saveGame();
+  render();
+  openResult();
+}
+
+/* Thẻ kiến thức mở theo bối cảnh — chỉ xuất hiện đúng lúc chỉ số chạm ngưỡng. */
+function contextCards(st, p) {
+  if (!p) return;
+  if (st.market.legal >= 55) unlockCard('chia-tach');
+  if (p.stats.share >= 35) unlockCard('thi-phan');
+  if (p.stats.share >= 55) unlockCard('loi-nhuan-doc-quyen');
+  if (st.market.trust <= 40) unlockCard('nguoi-tieu-dung');
+  if (p.flags && (p.flags.cartel || p.flags.predatory)) unlockCard('thao-tung-gia');
+}
+
+function resolveRound() {
+  const companies = state.players.filter((p) => !p.regulator);
+  const deltasByPlayer = {};
+  const picks = [];
+  const choices = chapterChoices();
+  const beforeCards = new Set(unlockedCards);
+
+  companies.forEach((p) => {
+    const c = choices.find((x) => x.id === p.choiceId) || choices[0];
+    const d = applyEffectsToPlayer(state, p, c.effects, { deferMarket: true });
+    Object.assign(p.flags, c.flags || {});
+    p.history = (p.history || []).concat([{ chapter: state.chapter, label: c.label }]);
+    if (c.id === 'cartel' || (c.flags && c.flags.cartel)) state.cartelEver = true;
+
+    // Doanh thu vận hành theo thị phần: thị phần lớn nuôi được nhiều chi nhánh hơn.
+    const income = Math.round(p.stats.share * 0.18);
+    if (income) {
+      const before = p.stats.capital;
+      p.stats.capital = clamp(p.stats.capital + income);
+      d.capital = (d.capital || 0) + (p.stats.capital - before);
+    }
+
+    if (state.mode !== 'solo' && c.id === 'acquire') {
+      const rival = companies.filter((x) => x.id !== p.id).sort((a, b) => b.stats.share - a.stats.share)[0];
+      if (rival) {
+        const take = Math.max(1, Math.min(4, rival.stats.share - 2));
+        rival.stats.share = clamp(rival.stats.share - take);
+        p.stats.share = clamp(p.stats.share + take);
+      }
+    }
+    if (state.mode !== 'solo' && c.id === 'open') p.flags.charter = true;
+    deltasByPlayer[p.id] = d;
+    picks.push({ p, c, d });
+  });
+
+  const cartelCount = picks.filter((x) => x.c.id === 'cartel' || (x.c.flags && x.c.flags.cartel)).length;
+  const priceWarCount = picks.filter((x) => x.c.id === 'price' || (x.c.flags && x.c.flags.priceWar)).length;
+  let extra = {};
+  if (cartelCount >= 2) {
+    companies.forEach((p) => { p.stats.capital = clamp(p.stats.capital + 5); });
+    state.market.trust = clamp(state.market.trust - 10);
+    state.market.legal = clamp(state.market.legal + 14);
+    state.cartelEver = true;
+    extra.cartelDetected = true;
+    // thẻ kiến thức về cấu kết xuất hiện đúng lúc bị phát hiện
+    unlockCard('cartel');
+    unlockCard('thao-tung-gia');
+  }
+  if (priceWarCount >= 2) {
+    companies.forEach((p) => { p.stats.capital = clamp(p.stats.capital - 4); });
+    state.market.trust = clamp(state.market.trust + 3);
+    extra.priceWar = true;
+  }
+
+  // Sáp nhập chỉ thành công khi hai bên cùng nhắm vào nhau trong cùng một vòng.
+  // Bên lớn giữ thương hiệu mẹ; bên nhỏ thành thương hiệu con với phần thị phần
+  // được giữ lại, nên không ai bị loại khỏi ván chơi.
+  const mergerPicks = picks.filter((x) => x.c.id === 'merge');
+  const merged = [];
+  const mergedIds = new Set();
+  if (mergerPicks.length >= 2) {
+    // Mỗi lời đề nghị nhắm tới đối thủ lớn nhất của mình. Chỉ khi hai bên cùng
+    // nhắm vào nhau thì thương vụ mới thành.
+    const target = (p) => companies
+      .filter((x) => x.id !== p.id)
+      .sort((a, b) => b.stats.share - a.stats.share)[0];
+    mergerPicks.forEach((a) => {
+      if (mergedIds.has(a.p.id)) return;
+      const b = mergerPicks.find((x) => !mergedIds.has(x.p.id) && x.p.id !== a.p.id && target(a.p) === x.p && target(x.p) === a.p);
+      if (!b) return;
+      mergedIds.add(a.p.id); mergedIds.add(b.p.id);
+      const big = a.p.stats.share >= b.p.stats.share ? a.p : b.p;
+      const small = big === a.p ? b.p : a.p;
+      const carve = 8;
+      const freed = Math.max(1, small.stats.share - carve);
+      small.stats.share = clamp(carve);
+      big.stats.share = clamp(big.stats.share + freed);
+      big.stats.brand = clamp(big.stats.brand + 2);
+      small.stats.brand = clamp(small.stats.brand + 1);
+      big.flags.merged = true;
+      small.flags.mergedInto = big.id;
+      big.stats.capital = clamp(big.stats.capital + 2);
+      small.stats.capital = clamp(small.stats.capital + 4);
+      merged.push({ big: big.company, small: small.company });
+      deltasByPlayer[big.id].share = (deltasByPlayer[big.id].share || 0) + freed;
+      deltasByPlayer[small.id].share = -freed;
+    });
+    if (merged.length) { extra.merged = merged; unlockCard('thon-tinh-sap-nhap'); }
+  }
+  const failedMerges = mergerPicks.filter((x) => !mergedIds.has(x.p.id));
+  if (failedMerges.length) {
+    // Đề nghị không được đáp lại: mất thời gian, bị soi, không có thương vụ.
+    failedMerges.forEach((x) => {
+      x.p.stats.capital = clamp(x.p.stats.capital - 2);
+      deltasByPlayer[x.p.id].capital = (deltasByPlayer[x.p.id].capital || 0) - 2;
+    });
+    state.market.legal = clamp(state.market.legal + 2);
+    extra.mergeFailed = failedMerges.length;
+  }
+
+  let regAction = null;
+  if (state.regulator && state.regulator.choiceId) {
+    regAction = REG_ACTIONS.find((r) => r.id === state.regulator.choiceId) || null;
+    applyRegulator(regAction, companies, extra);
+  }
+
+  const avg = applyAverageMarket(state, companies.map((p) => deltasByPlayer[p.id]));
+  normalizeShares(state);
+
+  picks.forEach((x) => {
+    const note = (x.c.id === 'cartel' || (x.c.flags && x.c.flags.cartel)) ? ' <span class="tag special">cấu kết</span>' : '';
+    state.log.push({ chapter: state.chapter, text: '<b>' + esc(x.p.company) + ':</b> ' + esc(x.c.label) + note });
+  });
+
+  const you = youPlayer();
+  picks.forEach((x) => {
+    if (state.mode === 'hotseat') { if (x.c.card) unlockCard(x.c.card); contextCards(state, x.p); }
+    else if (you && x.p.id === you.id) { if (x.c.card) unlockCard(x.c.card); contextCards(state, x.p); }
+  });
+  const newCards = Array.from(unlockedCards).filter((id) => !beforeCards.has(id));
+
+  state.lastReveal = {
+    kind: 'multi', chapter: state.chapter,
+    picks: picks.map((x) => ({ id: x.p.id, company: x.p.company, color: x.p.color, label: x.c.label, deltas: deltasByPlayer[x.p.id], card: x.c.card || null })),
+    market: avg, extra, regAction: regAction ? regAction.name : null, newCards
+  };
+  if (regAction) state.log.push({ chapter: state.chapter, text: '<b>Cơ quan quản lý:</b> ' + esc(regAction.name) });
+  companies.forEach((p) => { p.done = false; p.choiceId = null; p.targetId = null; });
+  if (state.regulator) { state.regulator.done = false; state.regulator.choiceId = null; }
+
+  state.phase = 'reveal';
+  if (isOnline() && isHost()) broadcastState();
+  render();
+  openReveal();
+}
+
+function applyRegulator(action, companies, extra) {
+  if (!action) return;
+  if (action.id === 'investigate') {
+    state.market.legal = clamp(state.market.legal + 8);
+    if (extra) extra.investigated = true;
+  } else if (action.id === 'protect') {
+    state.market.trust = clamp(state.market.trust + 7);
+    state.market.legal = clamp(state.market.legal - 3);
+  } else if (action.id === 'support') {
+    const sorted = companies.slice().sort((a, b) => b.stats.share - a.stats.share);
+    sorted.forEach((p, i) => { p.stats.share = clamp(p.stats.share + (i === 0 ? -3 : 3)); });
+    state.market.trust = clamp(state.market.trust + 3);
+    if (extra) extra.supported = true;
+  } else if (action.id === 'wait') {
+    const lead = companies.slice().sort((a, b) => b.stats.share - a.stats.share)[0];
+    if (lead) lead.stats.share = clamp(lead.stats.share + 2);
+  }
+}
+
+/* ---------------- result ---------------- */
+function cardUnlockHTML(ids) {
+  const list = (ids || []).filter((id) => STORY.cards[id]);
+  if (!list.length) return '';
+  return list.map((id) => {
+    const c = STORY.cards[id];
+    return '<div class="unlock"><b>Thẻ kiến thức · ' + esc(c.title) + '</b><br>' + esc(c.short) + '</div>';
+  }).join('');
+}
+
+function openResult() {
+  const r = state.lastReveal;
+  if (!r) return;
+  const p = youPlayer() || state.players[0];
+  const cards = r.newCards && r.newCards.length ? r.newCards : (r.card ? [r.card] : []);
+  const isLast = state.chapter >= STORY.chapters.length - 1;
+  overlayEl().innerHTML = '<div class="overlay" data-overlay="result"><div class="modal" role="dialog" aria-modal="true" aria-label="Kết quả quyết định">' +
+    '<div class="result-banner"><span class="big">◈</span><div><b>' + esc(fillT(r.choiceLabel, p.company)) + '</b><small>Chương ' + (state.chapter + 1) + ' · ' + esc(state.mode === 'solo' ? fillT(currentChapter().title, p.company) : mpEvent().title) + '</small></div></div>' +
+    '<div class="deltas">' + deltasHTML(r.deltas) + '</div>' +
+    '<div class="consequence" style="margin-top:16px"><p>' + esc(fillT(r.result, p.company)) + '</p></div>' +
+    cardUnlockHTML(cards) +
+    '<div class="btn-row"><button class="btn btn-primary" data-act="continue" type="button">' + (isLast ? 'Xem kết thúc →' : 'Chương tiếp theo →') + '</button>' +
+    (cards.length ? '<button class="btn btn-ghost" data-act="notebook" type="button">Mở Sổ tay</button>' : '') + '</div>' +
+  '</div></div>';
+}
+
+function openReveal() {
+  const r = state.lastReveal;
+  if (!r) return;
+  const picks = r.picks.map((x) => '<div class="pick-row"><span class="avatar" style="color:' + x.color + ';border-color:' + x.color + '66">' + esc(x.company.slice(0, 1).toUpperCase()) + '</span><div class="pick-body"><b>' + esc(x.company) + '</b><small>' + esc(fillT(x.label, x.company)) + '</small><div class="deltas">' + deltasHTML(x.deltas) + '</div></div></div>').join('');
+  const extra = (r.extra && r.extra.cartelDetected ? '<div class="err">Cấu kết bị phát hiện: cả nhóm bị điều tra, Áp lực pháp lý tăng mạnh và niềm tin thị trường giảm.</div>' : '') +
+    (r.extra && r.extra.priceWar ? '<div class="unlock"><b>Chiến tranh giá:</b> cả nhóm cùng hạ giá — người tiêu dùng được lợi trước mắt, nhưng biên lợi nhuận của tất cả đều mỏng đi.</div>' : '') +
+    (r.extra && r.extra.merged && r.extra.merged.length ? '<div class="unlock"><b>Sáp nhập thành công:</b> ' + r.extra.merged.map((m) => esc(m.small) + ' hợp nhất vào ' + esc(m.big)).join(' · ') + '. Công ty nhỏ trở thành thương hiệu con, không bị loại khỏi thị trường.</div>' : '') +
+    (r.extra && r.extra.mergeFailed ? '<div class="unlock"><b>Đề nghị sáp nhập không có hồi âm:</b> phía bên kia không đồng ý. Bạn mất một vòng và cơ quan quản lý đã ghi nhận.</div>' : '');
+  overlayEl().innerHTML = '<div class="overlay" data-overlay="result"><div class="modal" role="dialog" aria-modal="true" aria-label="Công bố quyết định">' +
+    '<div class="modal-head"><div><div class="kicker">Công bố đồng thời</div><h2 class="serif">Chương ' + (state.chapter + 1) + ' · ' + esc(mpEvent().title) + '</h2></div></div>' +
+    '<div class="pick-list">' + picks + '</div>' + extra +
+    (r.regAction ? '<div class="unlock"><b>Cơ quan quản lý:</b> ' + esc(r.regAction) + '</div>' : '') +
+    (Object.keys(r.market || {}).length ? '<div class="deltas" style="margin-top:14px">' + deltasHTML(r.market) + '<span class="tag">chỉ số chung</span></div>' : '') +
+    cardUnlockHTML(r.newCards) +
+    '<div class="btn-row"><button class="btn btn-primary" data-act="continue" type="button">' + (state.chapter >= STORY.chapters.length - 1 ? 'Xem kết thúc →' : 'Chương tiếp theo →') + '</button></div>' +
+  '</div></div>';
+}
+
+function continueGame() {
+  closeOverlay();
+  if (isOnline() && !isHost()) {
+    // Khách không tự sang chương: chủ phòng quyết định nhịp và sẽ gửi trạng thái mới.
+    state.phase = 'waiting';
+    render();
+    return;
+  }
+  if (state.chapter >= STORY.chapters.length - 1) { finishGame(); return; }
+  state.chapter += 1;
+  state.phase = state.mode === 'hotseat' ? 'handoff' : 'choose';
+  state.turn = 0;
+  state.players.forEach((p) => { p.done = false; p.choiceId = null; });
+  if (state.regulator) { state.regulator.done = false; state.regulator.choiceId = null; }
+  if (isOnline() && isHost()) broadcastState();
+  saveGame();
+  render();
+}
+
+/* ---------------- notebook / menu ---------------- */
+function openNotebook() {
+  const list = Object.keys(STORY.cards).map((id) => {
+    const c = STORY.cards[id];
+    const open = unlockedCards.has(id);
+    return '<div class="note' + (open ? '' : ' locked') + '"><div class="nt-t">' + (open ? 'Thẻ kiến thức' : 'Chưa mở') + '</div><b>' + (open ? esc(c.title) : '••••••') + '</b><p>' + (open ? esc(c.short) : 'Xuất hiện sau một quyết định quan trọng.') + '</p>' + (open ? '<div class="note-detail">' + esc(c.detail) + '</div>' : '') + '</div>';
+  }).join('');
+  overlayEl().innerHTML = '<div class="overlay" data-overlay="notebook"><div class="modal" role="dialog" aria-modal="true" aria-label="Sổ tay kiến thức">' +
+    '<div class="modal-head"><div><div class="kicker">Sổ tay</div><h2>Kiến thức đã mở · ' + unlockedCards.size + '/' + Object.keys(STORY.cards).length + '</h2></div><button class="close-btn" data-act="close" type="button" aria-label="Đóng">✕</button></div>' +
+    '<div class="notebook">' + list + '</div>' +
+  '</div></div>';
+}
+
+function openMenu() {
+  if (!state) return;
+  const endingDots = Object.keys(STORY.endings).map((id) => '<i class="' + (unlockedEndings.has(id) ? 'on' : '') + '"></i>').join('');
+  overlayEl().innerHTML = '<div class="overlay" data-overlay="menu"><div class="modal" role="dialog" aria-modal="true" aria-label="Menu">' +
+    '<div class="modal-head"><div><div class="kicker">Tạm dừng</div><h2>Menu</h2></div><button class="close-btn" data-act="close" type="button" aria-label="Đóng">✕</button></div>' +
+    '<div class="ending-strip" style="margin:0 0 16px"><span>Kết thúc đã mở</span><span class="ending-dots">' + endingDots + '</span><span>' + unlockedEndings.size + '/6</span></div>' +
+    '<div class="menu-list">' +
+      '<button class="mode-btn" data-act="notebook" type="button"><span class="mode-ico">📓</span><span><b>Sổ tay kiến thức</b><small>Đã mở ' + unlockedCards.size + ' thẻ.</small></span></button>' +
+      '<button class="mode-btn" data-act="restart" type="button"><span class="mode-ico">↺</span><span><b>Chơi lại từ đầu</b><small>Bắt đầu ván mới với cùng chế độ.</small></span></button>' +
+      '<a class="mode-btn" href="index.html"><span class="mode-ico">⌂</span><span><b>Về trang chủ</b><small>Quay lại trang giới thiệu game.</small></span></a>' +
+      '<button class="mode-btn" data-act="home" type="button"><span class="mode-ico">◊</span><span><b>Về màn hình chính</b><small>Tiến trình hiện tại vẫn được lưu.</small></span></button>' +
+    '</div>' +
+  '</div></div>';
+}
+
+function closeOverlay() { overlayEl().innerHTML = ''; }
+
+
+/* ===== 22-ui-c.js ===== */
+/* =====================================================================
+   UI · màn hình kết thúc
+   ===================================================================== */
+function finishGame() {
+  const companies = state.players.filter((p) => !p.regulator);
+  const results = companies.map((p) => {
+    const id = determineEnding(state, p);
+    unlockEnding(id);
+    return { p, ending: STORY.endings[id], id };
+  });
+  const you = youPlayer();
+  const yourResult = results.find((r) => you && r.p.id === you.id) || results[0];
+  if (state.mode === 'solo') unlockEnding(yourResult.id);
+  state.ending = { id: yourResult.id, results, market: marketOutcome(state) };
+  state.screen = 'ending';
+  saveJSON(SAVE_KEY, null);
+  if (isOnline() && isHost()) broadcastState();
+  render();
+}
+
+function renderEnding(root) {
+  const e = state.ending;
+  if (!e) { renderTitle(root); return; }
+  const main = e.results.find((r) => e.results.length === 1 || r.p.id === (youPlayer() || {}).id) || e.results[0];
+  // In hot-seat everyone reads the same screen: anchor it on the first company
+  // instead of whoever happened to hold the last turn.
+  const hero = state.mode === 'hotseat' ? e.results[0] : main;
+  const ed = hero.ending;
+  const brand = hero.p.company;
+  const journey = e.results.map((r) => {
+    const edd = r.ending;
+    return '<div class="end-card" style="border-color:' + edd.tone + '33">' +
+      '<div class="end-emoji" style="color:' + edd.tone + '">' + edd.emoji + '</div>' +
+      '<div class="end-info"><div class="kicker" style="color:' + edd.tone + '">' + esc(edd.tag) + '</div><b>' + esc(edd.title) + '</b><small>' + esc(r.p.company) + ' · ' + esc(r.p.name) + '</small>' +
+      '<div class="deltas"><span class="tag">Vốn ' + r.p.stats.capital + '</span><span class="tag">Thị phần ' + r.p.stats.share + '%</span><span class="tag">Uy tín ' + r.p.stats.brand + '</span></div>' +
+      '</div></div>';
+  }).join('');
+
+  const market = MARKET_OUTCOME[e.market] || MARKET_OUTCOME.fragile;
+  const journeySteps = STORY.chapters.map((ch, i) => {
+    const t = state.mode === 'solo' ? fillT(ch.title, brand) : (MP_EVENTS[i] || ch).title;
+    const a = state.mode === 'solo' ? fillT(ch.act, brand) : (MP_EVENTS[i] || ch).act;
+    const made = (hero.p.history || []).find((h) => h.chapter === i);
+    const note = made ? '<small class="did">↳ ' + esc(fillT(made.label, brand)) + '</small>' : '';
+    return '<div class="journey-step"><span>' + String(i + 1).padStart(2, '0') + '</span><b>' + esc(t) + '</b><small>' + esc(a) + '</small>' + note + '</div>';
+  }).join('');
+
+  root.innerHTML = '<section class="screen active"><div class="ending">' +
+    '<div class="end-hero" style="--tone:' + ed.tone + '">' +
+      '<div class="end-emoji big" style="color:' + ed.tone + '">' + ed.emoji + '</div>' +
+      '<div class="kicker" style="color:' + ed.tone + '">' + esc(ed.tag) + '</div>' +
+      '<h1 class="serif">' + esc(ed.title) + '</h1>' +
+      '<p class="end-quote">' + esc(fillT(ed.quote, brand)) + '</p>' +
+    '</div>' +
+    '<div class="end-grid">' +
+      '<div class="card">' +
+        '<h3 class="end-h">Lời bình</h3>' +
+        ed.commentary.map((p) => '<p class="end-p">' + esc(fillT(p, brand)) + '</p>').join('') +
+      '</div>' +
+      '<div class="card">' +
+        '<h3 class="end-h">Bài học kinh tế</h3>' +
+        '<p class="end-p">' + esc(fillT(ed.lesson, brand)) + '</p>' +
+      '</div>' +
+    '</div>' +
+    '<div class="card" style="margin-top:18px">' +
+      '<h3 class="end-h">Tóm tắt hành trình 12 chương</h3>' +
+      '<div class="journey">' + journeySteps + '</div>' +
+    '</div>' +
+    (e.results.length > 1 ? '<div class="card" style="margin-top:18px"><h3 class="end-h">Kết quả từng người chơi</h3><div class="end-list">' + journey + '</div></div>' : '') +
+    (state.mode !== 'solo'
+      ? '<div class="card market-card" style="margin-top:18px">' +
+          '<div class="kicker">Kết cục thị trường</div><h3 class="end-h" style="font-size:20px;margin-top:4px">' + esc(market.title) + '</h3><p class="end-p">' + esc(market.text) + '</p>' +
+        '</div>'
+      : '') +
+    '<div class="btn-row" style="justify-content:center;margin-top:22px">' +
+      '<button class="btn btn-primary" data-act="restart" type="button">Chơi lại</button>' +
+      '<button class="btn btn-ghost" data-act="notebook" type="button">Sổ tay (' + unlockedCards.size + ')</button>' +
+      '<a class="btn btn-ghost" href="index.html">Trang chủ</a>' +
+    '</div>' +
+    '<p class="foot-note" style="text-align:center">Kết thúc đã mở: ' + unlockedEndings.size + '/6. Mỗi con đường đều để lại một bài học khác nhau.</p>' +
+  '</div></section>';
+}
+
+
+/* ===== 30-boot.js ===== */
+/* =====================================================================
+   ONLINE · WebRTC data channel + trao đổi mã thủ công
+   ===================================================================== */
+const RTC_CFG = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
+
+function encodeSDP(desc) {
+  return btoa(unescape(encodeURIComponent(JSON.stringify({ t: desc.type, s: desc.sdp }))));
+}
+function decodeSDP(text) {
+  const raw = atob(String(text).trim().replace(/\s+/g, ''));
+  const obj = JSON.parse(decodeURIComponent(escape(raw)));
+  return { type: obj.t, sdp: obj.s };
+}
+function waitIce(pc) {
+  return new Promise((resolve) => {
+    if (pc.iceGatheringState === 'complete') { resolve(); return; }
+    const check = () => { if (pc.iceGatheringState === 'complete') { pc.removeEventListener('icegatheringstatechange', check); resolve(); } };
+    pc.addEventListener('icegatheringstatechange', check);
+    setTimeout(resolve, 4000);
+  });
+}
+
+function bindChannel(dc, hostSide) {
+  NET.dc = dc;
+  dc.onopen = () => {
+    NET.connected = true;
+    if (hostSide) {
+      const s = $('#netStatus'); if (s) s.textContent = 'Đã kết nối. Đang chờ người chơi thứ hai…';
+    } else {
+      dc.send(JSON.stringify({ type: 'hello', name: pending ? pending.name : 'Người chơi 2', company: pending ? pending.company : 'Trà Vương' }));
+      const s = $('#netStatus'); if (s) s.textContent = 'Đã kết nối. Đang chờ chủ phòng bắt đầu…';
+    }
+  };
+  dc.onmessage = (ev) => {
+    let msg;
+    try { msg = JSON.parse(ev.data); } catch (e) { return; }
+    handleNetMessage(msg, hostSide);
+  };
+  dc.onclose = () => { NET.connected = false; };
+}
+
+function handleNetMessage(msg, hostSide) {
+  if (hostSide) {
+    if (msg.type === 'hello') {
+      NET.guestName = String(msg.name || 'Người chơi 2').slice(0, 24);
+      NET.guestCompany = String(msg.company || 'Trà Vương').slice(0, 28);
+      state = startHotseat(
+        [pending.name || 'Bạn', NET.guestName],
+        [pending.company || 'Trà Mộc', NET.guestCompany],
+        false
+      );
+      state.mode = 'online';
+      state.youAre = 'p1';
+      state.phase = 'choose';
+      closeOverlay();
+      pending = null;
+      broadcastState();
+      render();
+    } else if (msg.type === 'pick') {
+      remotePick = msg.id;
+      if (state && state._hostPick) resolveOnlineRound(state._hostPick, remotePick);
+    } else if (msg.type === 'restart') {
+      renderTitle(mainEl());
+    }
+    return;
+  }
+  if (!state) return;
+  if (msg.type === 'state' && msg.state) {
+    state = msg.state;
+    state.mode = 'online';
+    state.youAre = 'p2';
+    closeOverlay();
+    render();
+    if (state.phase === 'reveal' && state.lastReveal) openReveal();
+    if (state.screen === 'ending') renderEnding(mainEl());
+  }
+}
+
+function broadcastState() {
+  if (!NET.connected || !NET.dc || NET.dc.readyState !== 'open' || !state) return;
+  const copy = cloneState(state);
+  copy.net = null;
+  // Không gửi lựa chọn chưa công bố của chủ phòng sang máy khách.
+  delete copy._hostPick;
+  try { NET.dc.send(JSON.stringify({ type: 'state', state: copy })); } catch (e) { /* bỏ qua */ }
+}
+
+async function hostCreateOffer() {
+  try {
+    const pc = new RTCPeerConnection(RTC_CFG);
+    NET.pc = pc; NET.role = 'host'; NET.connected = false;
+    if (NET.dc) { try { NET.dc.close(); } catch (e) {} NET.dc = null; }
+    const dc = pc.createDataChannel('game', { ordered: true });
+    bindChannel(dc, true);
+    const offer = await pc.createOffer();
+    await pc.setLocalDescription(offer);
+    await waitIce(pc);
+    NET.offer = encodeSDP(pc.localDescription);
+    pending.onlineStage = 'host-offer';
+    pending.error = '';
+  } catch (e) {
+    pending.error = 'Không tạo được mã mời: ' + e.message;
+  }
+  render();
+}
+
+async function hostAcceptAnswer() {
+  const ta = $('#answerIn');
+  if (!ta || !ta.value.trim()) { pending.error = 'Hãy dán mã trả lời của người chơi thứ hai.'; render(); return; }
+  try {
+    const desc = decodeSDP(ta.value);
+    await NET.pc.setRemoteDescription(desc);
+    pending.error = '';
+    const s = $('#netStatus'); if (s) s.textContent = 'Đang kết nối…';
+    render();
+  } catch (e) {
+    pending.error = 'Mã trả lời không hợp lệ: ' + e.message;
+    render();
+  }
+}
+
+async function guestJoinOffer() {
+  const ta = $('#offerIn');
+  if (!ta || !ta.value.trim()) { pending.error = 'Hãy dán mã mời từ chủ phòng.'; render(); return; }
+  try {
+    const desc = decodeSDP(ta.value);
+    const pc = new RTCPeerConnection(RTC_CFG);
+    NET.pc = pc; NET.role = 'guest';
+    pc.ondatachannel = (ev) => bindChannel(ev.channel, false);
+    await pc.setRemoteDescription(desc);
+    const answer = await pc.createAnswer();
+    await pc.setLocalDescription(answer);
+    await waitIce(pc);
+    NET.answer = encodeSDP(pc.localDescription);
+    pending.onlineStage = 'guest-answer';
+    pending.error = '';
+  } catch (e) {
+    pending.error = 'Không thể đọc mã mời: ' + e.message;
+  }
+  render();
+}
+
+function chooseOnline(choiceId) {
+  const c = chapterChoices().find((x) => x.id === choiceId);
+  if (!c || !meetsReq(state, youPlayer(), c)) return;
+  if (isHost()) {
+    state._hostPick = choiceId;
+    if (remotePick) { resolveOnlineRound(choiceId, remotePick); return; }
+    state.phase = 'waiting';
+    render();
+  } else {
+    if (!NET.dc || NET.dc.readyState !== 'open') {
+      toastNetError('Mất kết nối với chủ phòng. Hãy tải lại trang và kết nối lại.');
+      return;
+    }
+    NET.dc.send(JSON.stringify({ type: 'pick', id: choiceId }));
+    state.phase = 'waiting';
+    render();
+  }
+}
+
+function toastNetError(message) {
+  const el = document.createElement('div');
+  el.className = 'toast show';
+  el.innerHTML = '<div class="toast-k">Kết nối</div><b>Không gửi được lựa chọn</b><p>' + esc(message) + '</p>';
+  document.body.appendChild(el);
+  setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 400); }, 5200);
+}
+
+function resolveOnlineRound(hostPickId, guestPickId) {
+  const hostP = state.players.find((p) => p.id === 'p1');
+  const guestP = state.players.find((p) => p.id === 'p2');
+  if (hostP) hostP.choiceId = hostPickId;
+  if (guestP) guestP.choiceId = guestPickId;
+  state._hostPick = null;
+  remotePick = null;
+  state.phase = 'choose';
+  resolveRound();
+}
+
+function copyField(sel, btn) {
+  const el = $(sel);
+  if (!el) return;
+  const text = el.value || el.textContent || '';
+  const done = () => {
+    if (!btn) return;
+    const old = btn.textContent;
+    btn.textContent = 'Đã sao chép ✓';
+    setTimeout(() => { btn.textContent = old; }, 1800);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, () => { el.select(); document.execCommand('copy'); done(); });
+  } else {
+    el.select();
+    try { document.execCommand('copy'); } catch (e) { /* bỏ qua */ }
+    done();
+  }
+}
+
+/* =====================================================================
+   Render dispatcher
+   ===================================================================== */
+function render() {
+  document.body.classList.toggle('in-game', !!(state && state.screen === 'play'));
+  const nc = $('#noteCount');
+  if (nc) nc.textContent = unlockedCards.size;
+  if (!state) { renderTitle(mainEl()); return; }
+  if (state.screen === 'setup') { renderSetup(mainEl()); return; }
+  if (state.screen === 'ending') { renderEnding(mainEl()); return; }
+  if (state.chapter >= STORY.chapters.length) { finishGame(); return; }
+  renderChapter();
+}
+
+function goHome() {
+  closeOverlay();
+  if (state && state.screen === 'play') saveGame();
+  if (NET.dc) { try { NET.dc.close(); } catch (e) {} NET.dc = null; }
+  NET.connected = false;
+  state = null;
+  pending = null;
+  renderTitle(mainEl());
+}
+
+function restartGame() {
+  closeOverlay();
+  const mode = state ? state.mode : 'solo';
+  if (mode === 'online') {
+    if (state && isOnline() && !isHost()) {
+      if (NET.dc && NET.dc.readyState === 'open') NET.dc.send(JSON.stringify({ type: 'restart' }));
+      goHome();
+      return;
+    }
+    if (state && isOnline() && isHost() && NET.connected) {
+      if (NET.dc && NET.dc.readyState === 'open') NET.dc.send(JSON.stringify({ type: 'restart' }));
+    }
+    openSetup('online');
+    return;
+  }
+  openSetup(mode);
+}
+
+function startFromSetup() {
+  if (!pending) return;
+  pending.error = '';
+  if (pending.mode === 'online') {
+    if (!pending.name.trim()) pending.name = 'Bạn';
+    if (!pending.company.trim()) pending.company = 'Trà Mộc';
+    if (pending.role === 'host') { hostCreateOffer(); return; }
+    pending.onlineStage = 'guest-input';
+    render();
+    return;
+  }
+  if (pending.mode === 'solo') {
+    const name = (pending.name || 'Bạn').trim().slice(0, 24) || 'Bạn';
+    const company = (pending.company || 'Trà Mộc').trim().slice(0, 28) || 'Trà Mộc';
+    state = startSolo(name, company);
+    saveGame();
+    closeOverlay();
+    render();
+    return;
+  }
+  const n = pending.count;
+  const names = [];
+  const comps = [];
+  for (let i = 0; i < n; i++) {
+    names.push((pending.names[i] || 'Người chơi ' + (i + 1)).trim().slice(0, 18) || 'Người chơi ' + (i + 1));
+    comps.push((pending.companies[i] || PLAYER_DEFAULT_COMPANIES[i]).trim().slice(0, 22) || PLAYER_DEFAULT_COMPANIES[i]);
+  }
+  state = startHotseat(names, comps, pending.withRegulator);
+  saveGame();
+  closeOverlay();
+  render();
+}
+
+/* ---------------- delegated events ---------------- */
+document.addEventListener('click', (ev) => {
+  const btn = ev.target.closest('[data-act]');
+  if (!btn) {
+    if (ev.target.classList && ev.target.classList.contains('overlay')) closeOverlay();
+    return;
+  }
+  const act = btn.dataset.act;
+  if (act === 'mode') { openSetup(btn.dataset.mode); return; }
+  if (act === 'home') { goHome(); return; }
+  if (act === 'continue') { continueGame(); return; }
+  if (act === 'continue-save') { loadSaved(); return; }
+  if (act === 'choose') { choose(btn.dataset.id); return; }
+  if (act === 'reg-choose') {
+    if (!state || !state.regulator) return;
+    state.regulator.choiceId = btn.dataset.id;
+    state.phase = 'reveal';
+    resolveRound();
+    return;
+  }
+  if (act === 'reveal-hand') { state.phase = 'choose'; saveGame(); render(); return; }
+  if (act === 'notebook') { openNotebook(); return; }
+  if (act === 'menu') { openMenu(); return; }
+  if (act === 'close') { closeOverlay(); return; }
+  if (act === 'restart') { restartGame(); return; }
+  if (act === 'start') { startFromSetup(); return; }
+  if (act === 'mp-count') {
+    pending.count = Number(btn.dataset.n);
+    if (pending.count >= 4) pending.withRegulator = false;
+    render();
+    return;
+  }
+  if (act === 'online-role') { pending.role = btn.dataset.role; pending.error = ''; render(); return; }
+  if (act === 'copy-offer') { copyField('#offerOut', btn); return; }
+  if (act === 'copy-answer') { copyField('#answerOut', btn); return; }
+  if (act === 'host-accept') { hostAcceptAnswer(); return; }
+  if (act === 'guest-join') { guestJoinOffer(); return; }
+});
+
+document.addEventListener('input', (ev) => {
+  const el = ev.target;
+  if (!pending) return;
+  if (el.type === 'checkbox' && el.dataset.field === 'regulator') { pending.withRegulator = el.checked; return; }
+  if (!el.dataset.field) return;
+  const f = el.dataset.field;
+  if (f !== 'name' && f !== 'company') return;
+  if (el.dataset.i !== undefined) {
+    const i = Number(el.dataset.i);
+    if (f === 'name') pending.names[i] = el.value; else pending.companies[i] = el.value;
+  } else {
+    pending[f] = el.value;
+  }
+});
+
+document.addEventListener('keydown', (ev) => {
+  if (ev.key === 'Escape') { closeOverlay(); return; }
+  if (!state || state.screen !== 'play') return;
+  if (ev.target && /input|textarea|select/i.test(ev.target.tagName)) return;
+  if (ev.key >= '1' && ev.key <= '4') {
+    const idx = Number(ev.key) - 1;
+    if (state.mode !== 'solo' && isRegTurn()) {
+      const a = REG_ACTIONS[idx];
+      if (!a) return;
+      state.regulator.choiceId = a.id;
+      state.phase = 'reveal';
+      resolveRound();
+      return;
+    }
+    const list = chapterChoices();
+    if (!list[idx]) return;
+    if (state.mode === 'solo' || state.phase === 'choose') choose(list[idx].id);
+  }
+});
+
+/* ---------------- boot ---------------- */
+(function boot() {
+  const params = new URLSearchParams(location.search);
+  if (params.get('fresh') === '1') saveJSON(SAVE_KEY, null);
+  renderTitle(mainEl());
+  if (params.get('resume') === '1') loadSaved();
+  const nc = $('#noteCount'); if (nc) nc.textContent = unlockedCards.size;
+})();
+</script>
+</body>
+</html>

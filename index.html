@@ -25,6 +25,8 @@
       --amber-glow: rgba(245, 183, 49, 0.28);
       --red: #D6202E;
       --red-glow: rgba(214, 32, 46, 0.32);
+      --jade: #7FD3BA;
+      --jade-glow: rgba(127, 211, 186, 0.28);
       --font-body: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'Space Grotesk', monospace;
       --font-display: 'Oswald', sans-serif;
@@ -279,6 +281,25 @@
     }
 
     .card-editorial:hover::before {
+      height: 4px;
+    }
+
+    /* Card 3: Monopoly Game (Jade Theme) */
+    .card-game {
+      border-color: rgba(127, 211, 186, 0.25);
+    }
+
+    .card-game::before {
+      background: linear-gradient(90deg, var(--jade), transparent);
+    }
+
+    .card-game:hover {
+      transform: translateY(-8px);
+      border-color: var(--jade);
+      box-shadow: 0 18px 45px rgba(127, 211, 186, 0.18), 0 0 0 1px var(--jade);
+    }
+
+    .card-game:hover::before {
       height: 4px;
     }
 
@@ -556,6 +577,47 @@
       to { transform: rotate(360deg); }
     }
 
+    /* Game Mockup Animation (bar chart + stat pips) */
+    .mini-game-canvas {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 7px;
+      padding: 0 26px 22px;
+      position: relative;
+    }
+
+    .mini-bar-col {
+      width: 16px;
+      border-radius: 3px 3px 0 0;
+      background: linear-gradient(180deg, rgba(127, 211, 186, 0.9), rgba(127, 211, 186, 0.15));
+      border: 1px solid rgba(127, 211, 186, 0.4);
+      border-bottom: none;
+      animation: barPulse 3.2s ease-in-out infinite alternate;
+    }
+
+    .mini-bar-col:nth-child(1) { height: 36%; animation-delay: 0s; }
+    .mini-bar-col:nth-child(2) { height: 58%; animation-delay: 0.2s; background: linear-gradient(180deg, rgba(231, 196, 137, 0.9), rgba(231, 196, 137, 0.15)); border-color: rgba(231, 196, 137, 0.4); }
+    .mini-bar-col:nth-child(3) { height: 82%; animation-delay: 0.4s; }
+    .mini-bar-col:nth-child(4) { height: 47%; animation-delay: 0.6s; background: linear-gradient(180deg, rgba(214, 32, 46, 0.85), rgba(214, 32, 46, 0.12)); border-color: rgba(214, 32, 46, 0.4); }
+    .mini-bar-col:nth-child(5) { height: 64%; animation-delay: 0.8s; }
+
+    @keyframes barPulse {
+      from { transform: scaleY(0.94); }
+      to { transform: scaleY(1); }
+    }
+
+    .mini-game-axis {
+      position: absolute;
+      bottom: 22px;
+      left: 26px;
+      right: 26px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
     /* Feature Specs List */
     .feature-list {
       list-style: none;
@@ -579,6 +641,7 @@
 
     .card-deck .feature-icon { color: var(--amber); }
     .card-editorial .feature-icon { color: var(--red); }
+    .card-game .feature-icon { color: var(--jade); }
 
     /* Action CTA Button */
     .cta-button {
@@ -617,6 +680,18 @@
       background: var(--red);
       color: #FFFFFF;
       box-shadow: 0 0 20px var(--red-glow);
+    }
+
+    .card-game .cta-button {
+      background: #101C1A;
+      color: var(--jade);
+      border: 1px solid rgba(127, 211, 186, 0.45);
+    }
+
+    .card-game:hover .cta-button {
+      background: var(--jade);
+      color: #04120E;
+      box-shadow: 0 0 20px var(--jade-glow);
     }
 
     .cta-arrow {
@@ -710,6 +785,13 @@
       opacity: 1;
     }
 
+    /* Jade sweep transition for the Monopoly simulation */
+    .portal-curtain.theme-jade {
+      background:
+        radial-gradient(ellipse at 50% 60%, rgba(127, 211, 186, 0.32) 0%, rgba(10, 13, 20, 0.92) 55%, #0A0D14 100%),
+        #0A0D14;
+    }
+
     .portal-card.is-selected {
       transform: scale(1.025) translateY(-6px) !important;
       filter: brightness(1.15);
@@ -743,11 +825,11 @@
       </div>
       <h1 class="hub-title">VẬT CHẤT &amp; VẬN ĐỘNG</h1>
       <p class="hub-subtitle">
-        Chào mừng bạn đến với cổng trải nghiệm nghiên cứu Triết học Mác – Lênin. Vui lòng chọn một trong hai định dạng trình diễn trực quan bên dưới để bắt đầu:
+        Chào mừng bạn đến với cổng trải nghiệm nghiên cứu Triết học Mác – Lênin. Chọn một định dạng trình diễn trực quan, hoặc bước vào mô phỏng kinh tế về độc quyền:
       </p>
     </header>
 
-    <!-- 2 Portal Cards Grid -->
+    <!-- 3 Portal Cards Grid -->
     <main class="portal-grid" role="region" aria-label="Lựa chọn phiên bản báo cáo">
       
       <!-- CARD 1: 3D SLIDE DECK (deck.html) -->
@@ -856,6 +938,56 @@
         </div>
       </a>
 
+      <!-- CARD 3: MONOPOLY SIMULATION (docquyen.html) -->
+      <a href="docquyen.html" class="portal-card card-game" id="card-monopoly" aria-label="Chơi mô phỏng kinh tế Độc quyền">
+        <div class="card-top">
+          <div class="format-pill">
+            <span>◈ PHONG CÁCH 03 // INTERACTIVE SIMULATION</span>
+          </div>
+          <h2 class="card-name">ĐỘC QUYỀN</h2>
+          <p class="card-desc">
+            Mô phỏng kinh tế 12 chương: từ một quán trà nhỏ đến đế chế thị phần. Sáu chỉ số, sáu kết thúc, và mỗi quyết định đều có người trả giá.
+          </p>
+
+          <!-- Animated Mini-Preview -->
+          <div class="mockup-preview" aria-hidden="true">
+            <div class="mini-game-canvas">
+              <div class="mini-game-axis"></div>
+              <div class="mini-bar-col"></div>
+              <div class="mini-bar-col"></div>
+              <div class="mini-bar-col"></div>
+              <div class="mini-bar-col"></div>
+              <div class="mini-bar-col"></div>
+              <span class="mini-corner-tag" style="color:#7FD3BA;background:rgba(127,211,186,.14)">12 ch.</span>
+            </div>
+          </div>
+
+          <ul class="feature-list">
+            <li>
+              <span class="feature-icon">✔</span>
+              <span>12 chương tình huống: sáp nhập, thao túng giá, điều tra</span>
+            </li>
+            <li>
+              <span class="feature-icon">✔</span>
+              <span>6 chỉ số sống và 6 kết thúc khác nhau</span>
+            </li>
+            <li>
+              <span class="feature-icon">✔</span>
+              <span>Sổ tay kiến thức kinh tế mở dần theo quyết định</span>
+            </li>
+            <li>
+              <span class="feature-icon">✔</span>
+              <span>1–4 người: chuyền máy hoặc kết nối P2P trực tiếp</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cta-button">
+          <span>BẮT ĐẦU MÔ PHỎNG <span class="hotkey-tag">PHÍM 3</span></span>
+          <span class="cta-arrow">→</span>
+        </div>
+      </a>
+
     </main>
 
 
@@ -868,6 +1000,7 @@
         <span>Phím tắt nhanh:</span>
         <span><span class="key-badge">1</span> Slide Deck</span>
         <span><span class="key-badge">2</span> Editorial</span>
+        <span><span class="key-badge">3</span> Độc quyền</span>
       </div>
     </footer>
   </div>
@@ -879,6 +1012,7 @@
     const hubWrap = document.querySelector('.hub-wrap');
     const cardDeck = document.getElementById('card-slide-deck');
     const cardEditorial = document.getElementById('card-editorial');
+    const cardGame = document.getElementById('card-monopoly');
 
     function startTransition(url, theme, cardElem) {
       if (isNavigating) return;
@@ -911,7 +1045,14 @@
       });
     }
 
-    // Keyboard Hotkey Navigation (1 -> Slide Deck, 2 -> Editorial)
+    if (cardGame) {
+      cardGame.addEventListener('click', (e) => {
+        e.preventDefault();
+        startTransition(cardGame.getAttribute('href'), 'theme-jade', cardGame);
+      });
+    }
+
+    // Keyboard Hotkey Navigation (1 -> Slide Deck, 2 -> Editorial, 3 -> Game)
     window.addEventListener('keydown', (e) => {
       // Don't trigger if user is in an input field
       if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
@@ -919,6 +1060,8 @@
         if (cardDeck) startTransition(cardDeck.getAttribute('href'), 'theme-amber', cardDeck);
       } else if (e.key === '2' || e.key.toLowerCase() === 'e') {
         if (cardEditorial) startTransition(cardEditorial.getAttribute('href'), 'theme-red', cardEditorial);
+      } else if (e.key === '3' || e.key.toLowerCase() === 'g') {
+        if (cardGame) startTransition(cardGame.getAttribute('href'), 'theme-jade', cardGame);
       }
     });
 
@@ -930,6 +1073,7 @@
         if (hubWrap) hubWrap.classList.remove('is-leaving');
         if (cardDeck) cardDeck.classList.remove('is-selected');
         if (cardEditorial) cardEditorial.classList.remove('is-selected');
+        if (cardGame) cardGame.classList.remove('is-selected');
       }
     });
 
