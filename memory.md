@@ -160,7 +160,7 @@ Khác biệt của bản phát hành: link điều hướng trong game trỏ t�
 ## 8. Việc nên làm tiếp
 
 - [ ] Kiểm thử online thật giữa hai máy/trình duyệt (STUN Google có thể fail sau NAT đối xứng — chấp nhận được với LAN/demo).
-- [ ] Rà lại `deck.html` (đang có thay đổi chưa commit từ trước).
-- [ ] Quyết định có track `spec.txt` vào repo hay không.
+- [ ] Rà lại `deck.html` (đang có thay đổi chưa commit từ trước — chỉ là sửa số thứ tự "1./2./3." trong `modalHeading` và `<strong>` trong `modalContent`, nội dung không đổi).
+- [x] Track `spec.txt` (đã commit cùng game).
 - [ ] Cân nhắc thêm nút “Sổ tay” hiển thị tiến độ thẻ trên màn kết thúc (hiện chỉ có nút mở).
-- [ ] Thêm `prefers-reduced-motion` cho mockup bar ở hub (hiện đã có animation vô hạn).
+- [x] `prefers-reduced-motion` cho mockup bar ở hub (đã có global rule `*{animation:none!important}`).
