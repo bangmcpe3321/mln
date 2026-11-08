@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#0a0c10">
 <meta name="description" content="Độc quyền — Quyền lực và cái giá: game nhập vai kinh tế 12 chương về cạnh tranh, độc quyền và người tiêu dùng.">
 <title>Độc quyền — Quyền lực &amp; cái giá</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🍵</text></svg>">
 <style>
   :root{
     --bg:#0a0c10;
@@ -31,7 +32,7 @@
     --radius-sm:13px;
     --shadow:0 24px 70px rgba(0,0,0,.42);
     --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,"Times New Roman",serif;
+    --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,"Times New Roman",serif;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -141,6 +142,9 @@
   .link-btn:hover{text-decoration:underline}
 
   .ending-strip{margin-top:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--faint)}
+  .ending-strip.clickable{cursor:pointer;user-select:none;transition:opacity .15s ease, color .15s ease}
+  .ending-strip.clickable:hover{color:var(--text);opacity:.95}
+  .ending-strip.clickable:hover span:first-child{text-decoration:underline}
   .ending-dots{display:flex;gap:5px}
   .ending-dots i{width:8px;height:8px;border-radius:50%;background:#2a3242;display:block}
   .ending-dots i.on{background:var(--gold);box-shadow:0 0 10px rgba(231,196,137,.6)}
@@ -1413,7 +1417,7 @@ function renderTitle(root) {
           '<span class="chip">1–4 người chơi</span>',
           '<span class="chip">Cùng máy hoặc P2P</span>',
         '</div>',
-        '<div class="ending-strip"><span>Kết thúc đã mở</span><span class="ending-dots">' + dots + '</span><span>' + unlockedEndings.size + '/6</span></div>',
+        '<div class="ending-strip clickable" data-act="endings" role="button" tabindex="0" title="Xem danh sách kết thúc đã mở"><span>Kết thúc đã mở</span><span class="ending-dots">' + dots + '</span><span>' + unlockedEndings.size + '/6 (nhấn xem)</span></div>',
       '</div>',
       '<div class="hero-panel">',
         '<h2>Bắt đầu</h2>',
@@ -1982,14 +1986,42 @@ function openNotebook() {
   '</div></div>';
 }
 
+function openEndings() {
+  const list = Object.keys(STORY.endings).map((id) => {
+    const e = STORY.endings[id];
+    const open = unlockedEndings.has(id);
+    if (open) {
+      return '<div class="note" style="border-left:3px solid ' + e.tone + ';margin-bottom:12px">' +
+        '<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">' +
+          '<span style="font-size:24px">' + e.emoji + '</span>' +
+          '<div><div class="kicker" style="color:' + e.tone + '">' + esc(e.tag) + '</div><b style="font-size:15px">' + esc(e.title) + '</b></div>' +
+        '</div>' +
+        '<p style="font-style:italic;color:var(--text);font-size:12.5px;margin:4px 0 8px">“' + esc(e.quote) + '”</p>' +
+        '<div class="note-detail" style="font-size:12px"><b>Bài học kinh tế: </b>' + esc(e.lesson) + '</div>' +
+      '</div>';
+    }
+    return '<div class="note locked" style="margin-bottom:12px">' +
+      '<div class="nt-t">Chưa mở</div>' +
+      '<b>••••••</b>' +
+      '<p>Đưa ra những quyết định chiến lược khác nhau qua 12 chương để khám phá kết thúc này.</p>' +
+    '</div>';
+  }).join('');
+
+  overlayEl().innerHTML = '<div class="overlay" data-overlay="endings"><div class="modal" role="dialog" aria-modal="true" aria-label="Danh sách kết thúc">' +
+    '<div class="modal-head"><div><div class="kicker">Bộ sưu tập</div><h2>Kết thúc đã mở · ' + unlockedEndings.size + '/6</h2></div><button class="close-btn" data-act="close" type="button" aria-label="Đóng">✕</button></div>' +
+    '<div class="notebook">' + list + '</div>' +
+  '</div></div>';
+}
+
 function openMenu() {
   if (!state) return;
   const endingDots = Object.keys(STORY.endings).map((id) => '<i class="' + (unlockedEndings.has(id) ? 'on' : '') + '"></i>').join('');
   overlayEl().innerHTML = '<div class="overlay" data-overlay="menu"><div class="modal" role="dialog" aria-modal="true" aria-label="Menu">' +
     '<div class="modal-head"><div><div class="kicker">Tạm dừng</div><h2>Menu</h2></div><button class="close-btn" data-act="close" type="button" aria-label="Đóng">✕</button></div>' +
-    '<div class="ending-strip" style="margin:0 0 16px"><span>Kết thúc đã mở</span><span class="ending-dots">' + endingDots + '</span><span>' + unlockedEndings.size + '/6</span></div>' +
+    '<div class="ending-strip clickable" data-act="endings" role="button" tabindex="0" title="Xem danh sách kết thúc" style="margin:0 0 16px"><span>Kết thúc đã mở</span><span class="ending-dots">' + endingDots + '</span><span>' + unlockedEndings.size + '/6 (nhấn xem)</span></div>' +
     '<div class="menu-list">' +
-      '<button class="mode-btn" data-act="notebook" type="button"><span class="mode-ico">📓</span><span><b>Sổ tay kiến thức</b><small>Đã mở ' + unlockedCards.size + ' thẻ.</small></span></button>' +
+      '<button class="mode-btn" data-act="notebook" type="button"><span class="mode-ico">📓</span><span><b>Sổ tay kiến thức</b><small>Đã mở ' + unlockedCards.size + '/' + Object.keys(STORY.cards).length + ' thẻ.</small></span></button>' +
+      '<button class="mode-btn" data-act="endings" type="button"><span class="mode-ico">🏆</span><span><b>Bộ sưu tập kết thúc</b><small>Đã mở ' + unlockedEndings.size + '/6 kết thúc.</small></span></button>' +
       '<button class="mode-btn" data-act="restart" type="button"><span class="mode-ico">↺</span><span><b>Chơi lại từ đầu</b><small>Bắt đầu ván mới với cùng chế độ.</small></span></button>' +
       '<a class="mode-btn" href="index.html"><span class="mode-ico">⌂</span><span><b>Về trang chủ</b><small>Quay lại trang giới thiệu game.</small></span></a>' +
       '<button class="mode-btn" data-act="home" type="button"><span class="mode-ico">◊</span><span><b>Về màn hình chính</b><small>Tiến trình hiện tại vẫn được lưu.</small></span></button>' +
@@ -2030,6 +2062,7 @@ function renderEnding(root) {
   const hero = state.mode === 'hotseat' ? e.results[0] : main;
   const ed = hero.ending;
   const brand = hero.p.company;
+  const endingDots = Object.keys(STORY.endings).map((id) => '<i class="' + (unlockedEndings.has(id) ? 'on' : '') + '"></i>').join('');
   const journey = e.results.map((r) => {
     const edd = r.ending;
     return '<div class="end-card" style="border-color:' + edd.tone + '33">' +
@@ -2075,12 +2108,14 @@ function renderEnding(root) {
           '<div class="kicker">Kết cục thị trường</div><h3 class="end-h" style="font-size:20px;margin-top:4px">' + esc(market.title) + '</h3><p class="end-p">' + esc(market.text) + '</p>' +
         '</div>'
       : '') +
-    '<div class="btn-row" style="justify-content:center;margin-top:22px">' +
+    '<div class="ending-strip clickable" data-act="endings" role="button" tabindex="0" style="justify-content:center;margin:18px auto 0" title="Xem danh sách kết thúc đã mở"><span>Kết thúc đã mở</span><span class="ending-dots">' + endingDots + '</span><span>' + unlockedEndings.size + '/6 (nhấn xem)</span></div>' +
+    '<div class="btn-row" style="justify-content:center;margin-top:16px">' +
       '<button class="btn btn-primary" data-act="restart" type="button">Chơi lại</button>' +
-      '<button class="btn btn-ghost" data-act="notebook" type="button">Sổ tay (' + unlockedCards.size + ')</button>' +
+      '<button class="btn btn-ghost" data-act="notebook" type="button">Sổ tay (' + unlockedCards.size + '/' + Object.keys(STORY.cards).length + ')</button>' +
+      '<button class="btn btn-ghost" data-act="endings" type="button">Bộ sưu tập (6)</button>' +
       '<a class="btn btn-ghost" href="index.html">Trang chủ</a>' +
     '</div>' +
-    '<p class="foot-note" style="text-align:center">Kết thúc đã mở: ' + unlockedEndings.size + '/6. Mỗi con đường đều để lại một bài học khác nhau.</p>' +
+    '<p class="foot-note" style="text-align:center">Mỗi con đường đều để lại một bài học khác nhau.</p>' +
   '</div></section>';
 }
 
@@ -2382,6 +2417,7 @@ document.addEventListener('click', (ev) => {
   }
   if (act === 'reveal-hand') { state.phase = 'choose'; saveGame(); render(); return; }
   if (act === 'notebook') { openNotebook(); return; }
+  if (act === 'endings') { openEndings(); return; }
   if (act === 'menu') { openMenu(); return; }
   if (act === 'close') { closeOverlay(); return; }
   if (act === 'restart') { restartGame(); return; }
@@ -2416,6 +2452,11 @@ document.addEventListener('input', (ev) => {
 
 document.addEventListener('keydown', (ev) => {
   if (ev.key === 'Escape') { closeOverlay(); return; }
+  if ((ev.key === 'Enter' || ev.key === ' ') && ev.target && ev.target.dataset && ev.target.dataset.act === 'endings') {
+    ev.preventDefault();
+    openEndings();
+    return;
+  }
   if (!state || state.screen !== 'play') return;
   if (ev.target && /input|textarea|select/i.test(ev.target.tagName)) return;
   if (ev.key >= '1' && ev.key <= '4') {
