@@ -164,3 +164,4 @@ Khác biệt của bản phát hành: link điều hướng trong game trỏ t�
 - [x] Track `spec.txt` (đã commit cùng game).
 - [x] Thêm nút “Sổ tay” hiển thị tiến độ thẻ trên màn kết thúc (`x/18`), thêm modal “Bộ sưu tập kết thúc” (`openEndings()`) hiển thị chi tiết các ending đã mở và thanh kết thúc tương tác.
 - [x] `prefers-reduced-motion` cho mockup bar ở hub (đã có global rule `*{animation:none!important}`).
+- [x] Chuyển đổi giao diện `docquyen.html` sang phong cách **Deluxe Monopoly Boardroom** (Theme Phong cách A): nền nỉ bàn cờ xanh ngọc (`#0b1d15`), logo hộp đỏ chữ trắng viền vàng `[ ĐỘC QUYỀN ]`, các thẻ lựa chọn mang dải màu tài sản cờ tỷ phú (Đỏ, Xanh lam, Xanh lục, Vàng), bảng chỉ số HUD và viền thẻ mạ vàng kim sang trọng; slide thuyết trình và tạp chí giữ nguyên học thuật.
