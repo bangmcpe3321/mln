@@ -2038,19 +2038,37 @@ function openEndings() {
 }
 
 function openMenu() {
-  if (!state) return;
   const endingDots = Object.keys(STORY.endings).map((id) => '<i class="' + (unlockedEndings.has(id) ? 'on' : '') + '"></i>').join('');
+  const inGame = !!state;
   overlayEl().innerHTML = '<div class="overlay" data-overlay="menu"><div class="modal" role="dialog" aria-modal="true" aria-label="Menu">' +
-    '<div class="modal-head"><div><div class="kicker">Tạm dừng</div><h2>Menu</h2></div><button class="close-btn" data-act="close" type="button" aria-label="Đóng">✕</button></div>' +
+    '<div class="modal-head"><div><div class="kicker">' + (inGame ? 'Tạm dừng' : 'Tùy chọn') + '</div><h2>Menu</h2></div><button class="close-btn" data-act="close" type="button" aria-label="Đóng">✕</button></div>' +
     '<div class="ending-strip clickable" data-act="endings" role="button" tabindex="0" title="Xem danh sách kết thúc" style="margin:0 0 16px"><span>Kết thúc đã mở</span><span class="ending-dots">' + endingDots + '</span><span>' + unlockedEndings.size + '/6 (nhấn xem)</span></div>' +
     '<div class="menu-list">' +
       '<button class="mode-btn" data-act="notebook" type="button"><span class="mode-ico">📓</span><span><b>Sổ tay kiến thức</b><small>Đã mở ' + unlockedCards.size + '/' + Object.keys(STORY.cards).length + ' thẻ.</small></span></button>' +
       '<button class="mode-btn" data-act="endings" type="button"><span class="mode-ico">🏆</span><span><b>Bộ sưu tập kết thúc</b><small>Đã mở ' + unlockedEndings.size + '/6 kết thúc.</small></span></button>' +
-      '<button class="mode-btn" data-act="restart" type="button"><span class="mode-ico">↺</span><span><b>Chơi lại từ đầu</b><small>Bắt đầu ván mới với cùng chế độ.</small></span></button>' +
+      (inGame ? '<button class="mode-btn" data-act="restart" type="button"><span class="mode-ico">↺</span><span><b>Chơi lại từ đầu</b><small>Bắt đầu lại ván mới với cùng chế độ.</small></span></button>' : '') +
       '<a class="mode-btn" href="index.html"><span class="mode-ico">⌂</span><span><b>Về trang chủ</b><small>Quay lại trang giới thiệu game.</small></span></a>' +
-      '<button class="mode-btn" data-act="home" type="button"><span class="mode-ico">◊</span><span><b>Về màn hình chính</b><small>Tiến trình hiện tại vẫn được lưu.</small></span></button>' +
+      (inGame ? '<button class="mode-btn" data-act="home" type="button"><span class="mode-ico">◊</span><span><b>Về màn hình chính</b><small>Tiến trình hiện tại vẫn được lưu.</small></span></button>' : '') +
+      '<button class="mode-btn" data-act="reset-progress" type="button" style="border-color:rgba(239,83,80,.4)"><span class="mode-ico" style="background:rgba(239,83,80,.12);color:var(--danger);border-color:rgba(239,83,80,.35)">🗑</span><span><b style="color:var(--danger)">Xóa toàn bộ tiến trình</b><small>Xóa ván chơi dở dang, sổ tay và kết thúc đã mở.</small></span></button>' +
     '</div>' +
   '</div></div>';
+}
+
+function resetProgress() {
+  const ok = window.confirm('Bạn có chắc muốn xóa toàn bộ tiến trình không?\n(Thao tác này sẽ xóa ván đang chơi, đặt lại sổ tay 0/18 thẻ và bộ sưu tập 0/6 kết thúc)');
+  if (!ok) return;
+  try {
+    localStorage.removeItem(SAVE_KEY);
+    localStorage.removeItem(CARDS_KEY);
+    localStorage.removeItem(ENDINGS_KEY);
+  } catch (e) {}
+  unlockedCards.clear();
+  unlockedEndings.clear();
+  state = null;
+  saveJSON(CARDS_KEY, []);
+  saveJSON(ENDINGS_KEY, []);
+  closeOverlay();
+  render();
 }
 
 function closeOverlay() { overlayEl().innerHTML = ''; }
@@ -2445,6 +2463,7 @@ document.addEventListener('click', (ev) => {
   if (act === 'menu') { openMenu(); return; }
   if (act === 'close') { closeOverlay(); return; }
   if (act === 'restart') { restartGame(); return; }
+  if (act === 'reset-progress') { resetProgress(); return; }
   if (act === 'start') { startFromSetup(); return; }
   if (act === 'mp-count') {
     pending.count = Number(btn.dataset.n);
@@ -2503,6 +2522,15 @@ document.addEventListener('keydown', (ev) => {
 (function boot() {
   const params = new URLSearchParams(location.search);
   if (params.get('fresh') === '1') saveJSON(SAVE_KEY, null);
+  if (params.get('reset') === '1' || params.get('clear') === '1') {
+    try {
+      localStorage.removeItem(SAVE_KEY);
+      localStorage.removeItem(CARDS_KEY);
+      localStorage.removeItem(ENDINGS_KEY);
+    } catch (e) {}
+    unlockedCards.clear();
+    unlockedEndings.clear();
+  }
   renderTitle(mainEl());
   if (params.get('resume') === '1') loadSaved();
   const nc = $('#noteCount'); if (nc) nc.textContent = unlockedCards.size;
